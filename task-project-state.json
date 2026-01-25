@@ -1819,6 +1819,23 @@
       "category_name": "UI/UX",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 111, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 116,
+      "task_name": "Mode Refinement - Endless/Sandbox/Custom Educational Content",
+      "description": "Comprehensive refinement of non-Story game modes (Endless, Sandbox, Custom) to provide proper educational content comparable to Story mode. PROBLEM: Non-Story modes had minimal introductions, no educational context, and lacked proper hints and objectives. IMPLEMENTED: (1) LevelGenerator.js complete rewrite (~300 lines) with GATE_TIERS (5 difficulty levels), LOGIC_PATTERNS (10 named patterns: Detector, Any-High, Odd-Parity, Even-Parity, Majority, Minority, Equality, Implication, NAND-All, NOR-All), PATTERN_HINTS for each pattern, generateSandboxLevel() and generateCustomLevel() methods. (2) GameManager.js updates: startSandbox(), startEndless(), startCustom() now use LevelGenerator with showIntro:true, new nextEndlessChallenge() method for Endless mode progression. (3) HUD.js updates: Mode-aware LEVEL_LOADED handler shows/hides Next button per mode, PUZZLE_VERIFIED shows mode-specific messages, Next button calls nextEndlessChallenge() for Endless, Help button works for all modes, showLevelIntro() displays mode-specific titles/labels/buttons. (4) HUDEducation.js extensions: getIntroductionHtml() now detects mode and routes to getSandboxIntroHtml(), getEndlessIntroHtml(), getCustomIntroHtml(), new renderTruthTablePreview() method. (5) styles/content.css: Added ~200 lines for mode badges (.mode-badge.sandbox/endless/custom), difficulty indicators (.diff-value.diff-beginner/intermediate/advanced/expert/master), hint boxes (.hint-box), truth table preview (.truth-table-preview, .truth-table), challenge constraints, sandbox features list. VERIFIED: All 508 unit tests pass, LevelGenerator produces correct level objects with introText/description/objective/hint/storyText/mode fields.",
+      "start_date": "2026-01-25",
+      "end_date": "2026-01-25",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 4,
+      "actual_hours": 4,
+      "is_critical_path": false,
+      "tags": ["modes", "endless", "sandbox", "custom", "educational", "ui", "procedural"],
+      "category_name": "Content",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": [{ "predecessor_task_id": 115, "type": "FS", "lag_days": 0 }]
     }
   ],
   "required_fields": [

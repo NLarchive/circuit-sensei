@@ -902,6 +902,19 @@ export const HUDEducation = {
         return '';
     },
     getIntroductionHtml(level, index, tierInfo, isFirstInTier) {
+        // Determine mode from level metadata
+        const mode = level.mode || 'STORY';
+        
+        // Mode-specific introduction content
+        if (mode === 'SANDBOX') {
+            return this.getSandboxIntroHtml(level);
+        } else if (mode === 'ENDLESS') {
+            return this.getEndlessIntroHtml(level);
+        } else if (mode === 'CUSTOM') {
+            return this.getCustomIntroHtml(level);
+        }
+        
+        // Story mode (original behavior)
         const conceptHtml = HUDUtils.formatStoryText(level.introText || level.description || '');
         const storyHtml = level.storyText ? `<h3>Deep Dive</h3><div class="story-content">${HUDUtils.formatStoryText(level.storyText)}</div>` : '';
         const detailsHtml = this.renderPhysicsDetails(level.physicsDetails, level);
@@ -914,6 +927,120 @@ export const HUDEducation = {
             <h3>The Concept</h3>${conceptHtml}${detailsHtml}${exercisesHtml}${storyHtml}
             <div class="interactive-note"><strong>Objective:</strong> ${HUDUtils.escapeHtml(level.objective || 'Complete the circuit.')}</div>
         </div>`;
+    },
+    
+    getSandboxIntroHtml(level) {
+        const introHtml = HUDUtils.formatStoryText(level.introText || '');
+        const storyHtml = level.storyText ? `<div class="story-content">${HUDUtils.formatStoryText(level.storyText)}</div>` : '';
+        const hintHtml = level.hint ? `<div class="hint-box"><strong>💡 Tip:</strong> ${HUDUtils.escapeHtml(level.hint)}</div>` : '';
+        
+        return `<div class="chapter-intro sandbox-intro">
+            <div class="mode-badge sandbox">🧪 Free Play</div>
+            ${introHtml}
+            ${storyHtml}
+            ${hintHtml}
+            <div class="sandbox-features">
+                <h4>Available Features:</h4>
+                <ul>
+                    <li>✓ All gates unlocked</li>
+                    <li>✓ Unlimited components</li>
+                    <li>✓ No time limit</li>
+                    <li>✓ Verify to test any circuit</li>
+                </ul>
+            </div>
+        </div>`;
+    },
+    
+    getEndlessIntroHtml(level) {
+        const introHtml = HUDUtils.formatStoryText(level.introText || '');
+        const storyHtml = level.storyText ? `<div class="story-content">${HUDUtils.formatStoryText(level.storyText)}</div>` : '';
+        const hintHtml = level.hint ? `<div class="hint-box"><strong>💡 Hint:</strong> ${HUDUtils.escapeHtml(level.hint)}</div>` : '';
+        const truthTableHtml = level.targetTruthTable ? this.renderTruthTablePreview(level.targetTruthTable, level.inputs) : '';
+        
+        const diffLabel = level.difficulty <= 2 ? 'Beginner' : 
+                         level.difficulty <= 4 ? 'Intermediate' : 
+                         level.difficulty <= 6 ? 'Advanced' : 
+                         level.difficulty <= 8 ? 'Expert' : 'Master';
+        
+        return `<div class="chapter-intro endless-intro">
+            <div class="mode-badge endless">🔄 Endless Challenge</div>
+            <div class="difficulty-indicator">
+                <span class="diff-label">Difficulty:</span>
+                <span class="diff-value diff-${diffLabel.toLowerCase()}">${diffLabel} (Level ${level.difficulty || 1})</span>
+            </div>
+            ${introHtml}
+            ${truthTableHtml}
+            <div class="challenge-constraints">
+                <p><strong>🎯 Goal:</strong> ${HUDUtils.escapeHtml(level.objective || 'Match the truth table.')}</p>
+                ${level.maxGates && level.maxGates !== Infinity ? `<p><strong>📏 Gate Limit:</strong> ${level.maxGates} gates maximum</p>` : ''}
+                ${level.xpReward ? `<p><strong>⭐ Reward:</strong> ${level.xpReward} XP</p>` : ''}
+            </div>
+            ${hintHtml}
+            ${storyHtml}
+        </div>`;
+    },
+    
+    getCustomIntroHtml(level) {
+        const introHtml = HUDUtils.formatStoryText(level.introText || '');
+        const storyHtml = level.storyText ? `<div class="story-content">${HUDUtils.formatStoryText(level.storyText)}</div>` : '';
+        const hintHtml = level.hint ? `<div class="hint-box"><strong>💡 Hint:</strong> ${HUDUtils.escapeHtml(level.hint)}</div>` : '';
+        const truthTableHtml = level.targetTruthTable ? this.renderTruthTablePreview(level.targetTruthTable, level.inputs) : '';
+        
+        return `<div class="chapter-intro custom-intro">
+            <div class="mode-badge custom">🎯 Custom Challenge</div>
+            ${introHtml}
+            ${truthTableHtml}
+            ${level.targetTruthTable ? `
+                <div class="challenge-constraints">
+                    <p><strong>🎯 Goal:</strong> ${HUDUtils.escapeHtml(level.objective || 'Match the truth table.')}</p>
+                    ${level.maxGates && level.maxGates !== Infinity ? `<p><strong>📏 Gate Limit:</strong> ${level.maxGates} gates maximum</p>` : ''}
+                </div>
+            ` : `
+                <div class="sandbox-mode-note">
+                    <p>No target defined - build freely!</p>
+                </div>
+            `}
+            ${hintHtml}
+            ${storyHtml}
+        </div>`;
+    },
+    
+    renderTruthTablePreview(truthTable, inputCount) {
+        if (!truthTable || truthTable.length === 0) return '';
+        
+        const inputs = inputCount || (truthTable[0]?.in?.length || 0);
+        const outputs = truthTable[0]?.out?.length || 1;
+        
+        // Generate input labels (A, B, C, ...)
+        const inputLabels = Array.from({ length: inputs }, (_, i) => String.fromCharCode(65 + i));
+        const outputLabels = outputs === 1 ? ['Y'] : Array.from({ length: outputs }, (_, i) => `Y${i}`);
+        
+        let html = `<div class="truth-table-preview">
+            <h4>📊 Target Truth Table</h4>
+            <table class="truth-table">
+                <thead>
+                    <tr>
+                        ${inputLabels.map(l => `<th class="input-col">${l}</th>`).join('')}
+                        <th class="separator"></th>
+                        ${outputLabels.map(l => `<th class="output-col">${l}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>`;
+        
+        truthTable.forEach(row => {
+            html += `<tr>`;
+            row.in.forEach(val => {
+                html += `<td class="input-val val-${val}">${val}</td>`;
+            });
+            html += `<td class="separator"></td>`;
+            row.out.forEach(val => {
+                html += `<td class="output-val val-${val}">${val}</td>`;
+            });
+            html += `</tr>`;
+        });
+        
+        html += `</tbody></table></div>`;
+        return html;
     },
     getInstructionsHtml(level, variant) {
         const descHtml = `<div class="problem-description">${HUDUtils.formatStoryText(level.description || '')}</div>`;

@@ -156,19 +156,15 @@ export class GameManager {
      * Start custom mode (Level Editor / Custom Puzzle)
      */
     startCustom(config = {}) {
-        this.currentLevel = {
-            id: 'custom',
-            title: config.title || 'Custom Circuit',
-            description: config.description || 'Design your own logic system.',
-            availableGates: config.gates || Object.keys(this.gates),
-            inputs: config.inputs || 2,
-            maxGates: config.maxGates || Infinity,
-            targetTruthTable: config.targetTruthTable || null
-        };
+        this.currentLevel = LevelGenerator.generateCustomLevel({
+            ...config,
+            gates: config.gates || Object.keys(this.gates)
+        });
 
         globalEvents.emit(Events.LEVEL_LOADED, {
             level: this.currentLevel,
-            mode: 'CUSTOM'
+            mode: 'CUSTOM',
+            showIntro: true
         });
     }
 
@@ -312,18 +308,15 @@ export class GameManager {
      * Start sandbox mode (free play)
      */
     startSandbox() {
-        this.currentLevel = {
-            id: 'sandbox',
-            title: 'Sandbox Mode',
-            description: 'Free play! Build whatever you want.',
-            availableGates: Object.keys(this.gates),
-            inputs: 4,
-            maxGates: Infinity
-        };
+        const sandboxLevel = LevelGenerator.generateSandboxLevel();
+        // Populate available gates with all gates
+        sandboxLevel.availableGates = Object.keys(this.gates);
+        this.currentLevel = sandboxLevel;
 
         globalEvents.emit(Events.LEVEL_LOADED, {
             level: this.currentLevel,
-            mode: 'SANDBOX'
+            mode: 'SANDBOX',
+            showIntro: true
         });
     }
 
@@ -336,8 +329,25 @@ export class GameManager {
 
         globalEvents.emit(Events.LEVEL_LOADED, {
             level: this.currentLevel,
-            mode: 'ENDLESS'
+            mode: 'ENDLESS',
+            showIntro: true
         });
+    }
+
+    /**
+     * Generate next endless challenge (after completing current)
+     */
+    nextEndlessChallenge() {
+        if (this.mode !== 'ENDLESS') return false;
+        this.difficulty = Math.min(this.difficulty + 1, 15);
+        this.currentLevel = LevelGenerator.generate(this.difficulty);
+
+        globalEvents.emit(Events.LEVEL_LOADED, {
+            level: this.currentLevel,
+            mode: 'ENDLESS',
+            showIntro: true
+        });
+        return true;
     }
 
     /**

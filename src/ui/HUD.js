@@ -452,11 +452,14 @@ export class HUD {
         // Set initial state
         updateModeButton();
 
-        // Help Button - show same content as level intro (reset scroll)
+        // Help Button - show level intro/help for current mode
         document.getElementById('btn-help').addEventListener('click', () => {
             const level = gameManager.currentLevel;
             if (level) {
-                const index = gameManager.levels.indexOf(level);
+                // For non-story modes, index doesn't matter but pass a reasonable value
+                const index = gameManager.mode === 'STORY' 
+                    ? gameManager.levels.indexOf(level) 
+                    : -1;
                 this.showLevelIntro(level, index);
             }
         });
@@ -602,7 +605,12 @@ export class HUD {
         });
 
         document.getElementById('btn-next').addEventListener('click', () => {
-            gameManager.nextLevel();
+            // Handle mode-specific next behavior
+            if (gameManager.mode === 'ENDLESS') {
+                gameManager.nextEndlessChallenge();
+            } else {
+                gameManager.nextLevel();
+            }
         });
 
         // Simulation controls (for sequential labs)
@@ -622,16 +630,32 @@ export class HUD {
     }
 
     bindEvents() {
-        // Show level intro for Story mode
+        // Show level intro for all modes when showIntro is true
         globalEvents.on(Events.LEVEL_LOADED, (data) => {
             this.updateLevelInfo(data.level);
             this.updateToolbox(gameManager.getAvailableGates());
-            document.getElementById('btn-next').disabled = true;
             
-            // In Story mode, show intro/info first unless the loader explicitly suppressed it
-            const shouldShowIntro = (data.showIntro !== false) && (gameManager.mode === 'STORY');
+            // Next button logic depends on mode
+            const nextBtn = document.getElementById('btn-next');
+            if (gameManager.mode === 'SANDBOX') {
+                nextBtn.disabled = true;
+                nextBtn.style.display = 'none';
+            } else if (gameManager.mode === 'ENDLESS') {
+                nextBtn.disabled = true;
+                nextBtn.style.display = '';
+                nextBtn.innerText = 'Next Challenge';
+            } else if (gameManager.mode === 'CUSTOM') {
+                nextBtn.disabled = true;
+                nextBtn.style.display = data.level.targetTruthTable ? '' : 'none';
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.style.display = '';
+                nextBtn.innerText = 'Next';
+            }
+            
+            // Show intro/info for all modes when requested
+            const shouldShowIntro = data.showIntro !== false;
             if (shouldShowIntro) {
-                // Show the intro overlay immediately to prevent previous level flash
                 this.showLevelIntro(data.level, data.index);
             }
         });
@@ -651,9 +675,21 @@ export class HUD {
         });
 
         globalEvents.on(Events.PUZZLE_VERIFIED, (data) => {
+            const nextBtn = document.getElementById('btn-next');
             if (data.valid) {
-                this.showMessage(`Success! Score: ${data.score}%`, 'success');
-                document.getElementById('btn-next').disabled = false;
+                const mode = gameManager.mode;
+                if (mode === 'SANDBOX') {
+                    this.showMessage(`Circuit verified! Score: ${data.score}%`, 'success');
+                } else if (mode === 'ENDLESS') {
+                    this.showMessage(`Challenge Complete! Score: ${data.score}% - Ready for next challenge!`, 'success');
+                    nextBtn.disabled = false;
+                } else if (mode === 'CUSTOM') {
+                    this.showMessage(`Custom puzzle solved! Score: ${data.score}%`, 'success');
+                    nextBtn.disabled = false;
+                } else {
+                    this.showMessage(`Success! Score: ${data.score}%`, 'success');
+                    nextBtn.disabled = false;
+                }
             } else {
                 this.showMessage(`Failed. ${data.failedCases.length} incorrect cases.`, 'error');
             }
@@ -802,17 +838,54 @@ export class HUD {
     showLevelIntro(level, index) {
         
         if (!level) return;
-        const tierInfo = gameManager.tiers[level.tier] || {};
-        const isFirstInTier = gameManager.levels.findIndex(l => l.tier === level.tier) === index;
         
-        document.getElementById('intro-tier-title').innerText = isFirstInTier ? `New Chapter: ${tierInfo.name}` : tierInfo.name;
-        document.getElementById('intro-level-title').innerText = index === 0 ? level.title : `Level ${index}: ${level.title}`;
+        const mode = gameManager.mode;
+        const tierInfo = gameManager.tiers[level.tier] || {};
+        const isFirstInTier = mode === 'STORY' && gameManager.levels.findIndex(l => l.tier === level.tier) === index;
+        
+        // Mode-specific tier title
+        let tierTitle = '';
+        let levelTitle = '';
+        
+        if (mode === 'SANDBOX') {
+            tierTitle = '🧪 Sandbox Mode';
+            levelTitle = 'Free Experimentation';
+        } else if (mode === 'ENDLESS') {
+            tierTitle = '🔄 Endless Mode';
+            levelTitle = level.title || `Challenge Level ${level.difficulty || 1}`;
+        } else if (mode === 'CUSTOM') {
+            tierTitle = '🎯 Custom Mode';
+            levelTitle = level.title || 'Custom Circuit';
+        } else {
+            // Story mode
+            tierTitle = isFirstInTier ? `New Chapter: ${tierInfo.name || ''}` : (tierInfo.name || '');
+            levelTitle = index === 0 ? level.title : `Level ${index}: ${level.title}`;
+        }
+        
+        document.getElementById('intro-tier-title').innerText = tierTitle;
+        document.getElementById('intro-level-title').innerText = levelTitle;
         
         document.getElementById('intro-visual').style.display = 'none';
         document.getElementById('intro-text').innerHTML = HUDEducation.getIntroductionHtml(level, index, tierInfo, isFirstInTier);
         
         const startBtn = document.getElementById('btn-start-level');
-        startBtn.innerText = index === 0 ? 'Go to Level 1 →' : 'Start Level →';
+        const backBtn = document.getElementById('btn-back-to-roadmap');
+        
+        // Mode-specific button labels
+        if (mode === 'SANDBOX') {
+            startBtn.innerText = 'Start Building →';
+            backBtn.style.display = 'none';
+        } else if (mode === 'ENDLESS') {
+            startBtn.innerText = 'Accept Challenge →';
+            backBtn.style.display = 'none';
+        } else if (mode === 'CUSTOM') {
+            startBtn.innerText = 'Begin →';
+            backBtn.style.display = 'none';
+        } else {
+            // Story mode
+            startBtn.innerText = index === 0 ? 'Go to Level 1 →' : 'Start Level →';
+            backBtn.style.display = '';
+        }
         
         document.getElementById('level-intro-overlay').classList.remove('hidden');
         const introContent = document.querySelector('.intro-content');

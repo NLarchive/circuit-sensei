@@ -11,9 +11,10 @@ async function startLevelFromIntro(page) {
 }
 
 test.describe('Glossary (reference guide)', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173');
-    await page.waitForSelector('#roadmap-overlay:not(.hidden)', { timeout: 10000 });
+  test.beforeEach(async ({ page, baseURL }) => {
+    const url = (baseURL || '/') + '?t=' + Date.now();
+    await page.goto(url, { waitUntil: 'networkidle' });
+    await page.waitForSelector('#roadmap-overlay', { state: 'visible', timeout: 30000 });
 
     // Enter first playable level so the HUD/nav controls are available.
     await page.locator('.roadmap-level').nth(1).locator('.level-left').click();

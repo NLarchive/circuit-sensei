@@ -1,5 +1,12 @@
 import { test, expect } from "@playwright/test";
 
+// Helper function to navigate with cache-busting for live site compatibility
+async function navigateToHome(page, baseURL) {
+  const url = (baseURL || '/') + '?t=' + Date.now();
+  await page.goto(url, { waitUntil: 'networkidle' });
+  await page.waitForSelector("#roadmap-overlay", { state: "visible", timeout: 30000 });
+}
+
 // Helper function to start a level after clicking on it in the roadmap
 async function startLevelFromIntro(page) {
   await page.waitForSelector("#btn-start-level", { state: "visible", timeout: 5000 });
@@ -33,11 +40,9 @@ async function drawWireLevel1(page) {
 }
 
 test.describe("Logic Architect Gameplay", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, baseURL }) => {
     page.on('console', msg => console.log(`PAGE LOG: ${msg.text()}`));
-    await page.goto("http://localhost:5173");
-    // Wait for roadmap to appear
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+    await navigateToHome(page, baseURL);
   });
 
   test("should load the first level from roadmap", async ({ page }) => {
@@ -89,7 +94,7 @@ test.describe("Logic Architect Gameplay", () => {
 
 // Task 32: Playwright E2E Coverage for Production Flows
 test.describe("Story Roadmap Navigation", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, baseURL }) => {
     page.on('console', msg => {
       // Log ALL console messages from the page
       console.log(`[BROWSER ${msg.type()}]:`, msg.text());
@@ -97,8 +102,7 @@ test.describe("Story Roadmap Navigation", () => {
     page.on('pageerror', err => {
       console.error(`[PAGE ERROR]:`, err.message);
     });
-    await page.goto("http://localhost:5173");
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)", { timeout: 10000 });
+    await navigateToHome(page, baseURL);
   });
 
   test("should show roadmap when Story mode is selected", async ({ page }) => {
@@ -375,9 +379,8 @@ test.describe("Story Roadmap Navigation", () => {
 });
 
 test.describe("Level Intro + Physics Overlays", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173");
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+  test.beforeEach(async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
   });
 
   test("should show level intro when selecting a level", async ({ page }) => {
@@ -461,9 +464,8 @@ test.describe("Level Intro + Physics Overlays", () => {
 });
 
 test.describe("Basic Wiring + Gate Placement", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173");
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+  test.beforeEach(async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
     // Load first playable level (Level 1)
     await page.locator(".roadmap-level").nth(1).locator('.level-left').click();
     await startLevelFromIntro(page);
@@ -541,9 +543,8 @@ test.describe("Basic Wiring + Gate Placement", () => {
 });
 
 test.describe("Verify/Next Progression", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173");
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+  test.beforeEach(async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
   });
 
   test("verify button should show failure message on empty circuit", async ({ page }) => {
@@ -596,21 +597,21 @@ test.describe("Verify/Next Progression", () => {
 });
 
 test.describe("XP and Persistence", () => {
-  test("should start with 0 XP after clearing localStorage", async ({ page }) => {
-    await page.goto("http://localhost:5173");
+  test("should start with 0 XP after clearing localStorage", async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
     await page.evaluate(() => localStorage.clear());
-    await page.reload();
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector("#roadmap-overlay", { state: 'visible', timeout: 30000 });
     
     const xpDisplay = page.locator("#xp-display");
     await expect(xpDisplay).toHaveText("0");
   });
 
-  test("should gain XP after completing a level", async ({ page }) => {
-    await page.goto("http://localhost:5173");
+  test("should gain XP after completing a level", async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
     await page.evaluate(() => localStorage.clear());
-    await page.reload();
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector("#roadmap-overlay", { state: 'visible', timeout: 30000 });
     
     // Solve level 1
     await page.locator(".roadmap-level").nth(1).locator('.level-left').click();
@@ -625,12 +626,12 @@ test.describe("XP and Persistence", () => {
     expect(xp).toBeGreaterThan(0);
   });
 
-  test("should persist XP after page reload", async ({ page }) => {
+  test("should persist XP after page reload", async ({ page, baseURL }) => {
     // Go to app and clear any existing state
-    await page.goto("http://localhost:5173");
+    await navigateToHome(page, baseURL);
     await page.evaluate(() => localStorage.clear());
-    await page.reload();
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector("#roadmap-overlay", { state: 'visible', timeout: 30000 });
     
     // Verify starting with 0 XP
     await expect(page.locator("#xp-display")).toHaveText("0");
@@ -659,11 +660,11 @@ test.describe("XP and Persistence", () => {
     expect(progress.xp).toBeGreaterThanOrEqual(xpValue);
   });
 
-  test("should persist unlocked levels after reload", async ({ page }) => {
-    await page.goto("http://localhost:5173");
+  test("should persist unlocked levels after reload", async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
     await page.evaluate(() => localStorage.clear());
-    await page.reload();
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector("#roadmap-overlay", { state: 'visible', timeout: 30000 });
     // Solve level 1
     await page.locator(".roadmap-level").nth(1).locator('.level-left').click();
     await startLevelFromIntro(page);
@@ -672,8 +673,8 @@ test.describe("XP and Persistence", () => {
     await expect(page.locator("#btn-next")).toBeEnabled({ timeout: 5000 });
     
     // Reload page
-    await page.reload();
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector("#roadmap-overlay", { state: 'visible', timeout: 30000 });
     
     // Second level should still be unlocked
     const secondLevel = page.locator(".roadmap-level").nth(2);
@@ -682,9 +683,8 @@ test.describe("XP and Persistence", () => {
 });
 
 test.describe("Simulation Controls", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173");
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+  test.beforeEach(async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
     await page.locator(".roadmap-level").nth(1).locator('.level-left').click();
     await startLevelFromIntro(page);
   });
@@ -712,9 +712,8 @@ test.describe("Simulation Controls", () => {
 });
 
 test.describe("Mode Switching", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173");
-    await page.waitForSelector("#roadmap-overlay:not(.hidden)");
+  test.beforeEach(async ({ page, baseURL }) => {
+    await navigateToHome(page, baseURL);
     // Close roadmap to access sidebar tabs using evaluate to bypass overlay issues
     await page.evaluate(() => {
       document.getElementById('btn-close-roadmap').click();

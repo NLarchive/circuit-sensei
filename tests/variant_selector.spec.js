@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Difficulty selector (roadmap + navbar)', () => {
-  test('can select difficulty on roadmap and change it in-game from navbar', async ({ page }) => {
-    await page.goto('http://localhost:5173');
+  test('can select difficulty on roadmap and change it in-game from navbar', async ({ page, baseURL }) => {
+    const url = (baseURL || '/') + '?t=' + Date.now();
+    await page.goto(url, { waitUntil: 'networkidle' });
 
     // Roadmap should appear
-    await page.waitForSelector('#roadmap-overlay:not(.hidden)', { timeout: 10000 });
+    await page.waitForSelector('#roadmap-overlay', { state: 'visible', timeout: 30000 });
 
     // Pick Level 1 (second roadmap item) and set difficulty to Hard before entering
     const level1 = page.locator('.roadmap-level').nth(1);

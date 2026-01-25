@@ -2,11 +2,12 @@ import { test, expect, devices } from '@playwright/test';
 
 test.use({ ...devices['iPhone SE'] });
 
-test('Mobile UI (iPhone SE): sidebar drawer and navbar overflow menu work', async ({ page }) => {
-  await page.goto('http://localhost:5173');
+test('Mobile UI (iPhone SE): sidebar drawer and navbar overflow menu work', async ({ page, baseURL }) => {
+  const url = (baseURL || '/') + '?t=' + Date.now();
+  await page.goto(url, { waitUntil: 'networkidle' });
 
   // Roadmap overlay covers the screen on first load; enter a level so the navbar is clickable.
-  await page.waitForSelector('#roadmap-overlay:not(.hidden)', { timeout: 10000 });
+  await page.waitForSelector('#roadmap-overlay', { state: 'visible', timeout: 30000 });
   const level1 = page.locator('.roadmap-level').nth(1);
   await expect(level1).toBeVisible();
   await level1.locator('.level-left').click();

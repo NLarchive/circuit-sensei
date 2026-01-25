@@ -1,11 +1,16 @@
 import { test, expect } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-  // We assume the dev server is running on http://localhost:5173
-  await page.goto('http://localhost:5173');
+test.beforeEach(async ({ page, baseURL }) => {
+  // Navigate with cache-busting for live site testing
+  // Use full baseURL + path with cache-bust param
+  const targetUrl = (baseURL || '/') + '?t=' + Date.now();
+  console.log('Navigating to:', targetUrl);
+  await page.goto(targetUrl, { waitUntil: 'networkidle' });
 
+  // Wait for app to initialize (data loaded, roadmap shown)
+  await page.waitForSelector('#roadmap-overlay', { state: 'visible', timeout: 30000 });
+  
   // Start the first playable level (Level 1) so gameplay UI is visible.
-  await page.waitForSelector('#roadmap-overlay:not(.hidden)', { timeout: 10000 });
   await page.locator('.roadmap-level').nth(1).locator('.level-left').click();
   await page.waitForSelector('#level-intro-overlay:not(.hidden)', { timeout: 10000 });
   await page.click('#btn-start-level');

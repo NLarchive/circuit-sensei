@@ -64,13 +64,9 @@ export class GameManager {
      */
     async loadGameData() {
         try {
+            const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
             const [gatesRes, storyData] = await Promise.all([
-                (() => {
-                    const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL)
-                        ? import.meta.env.BASE_URL
-                        : '/';
-                    return fetch(`${base}data/gates.json`);
-                })(),
+                fetch(`${base}data/gates.json`),
                 StoryLoader.loadStoryData()
             ]);
 

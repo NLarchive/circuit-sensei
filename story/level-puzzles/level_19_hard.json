@@ -1,0 +1,252 @@
+{
+  "id": "level_19_hard",
+  "baseId": "level_19",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop",
+    "fullAdder"
+  ],
+  "inputs": 4,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "00 vs 00: EQ"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "00 vs 01: LT"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "00 vs 10: LT"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "00 vs 11: LT"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "01 vs 00: GT"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "01 vs 01: EQ"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "01 vs 10: LT"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "01 vs 11: LT"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "10 vs 00: GT"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "10 vs 01: GT"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "10 vs 10: EQ"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "10 vs 11: LT"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "11 vs 00: GT"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "11 vs 01: GT"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "11 vs 10: GT"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "11 vs 11: EQ"
+    }
+  ],
+  "maxGates": 12,
+  "xpReward": 380,
+  "hint": "For 2 bits: GT = A1·B1' + (A1⊕B1)'·A0·B0'. EQ = (A1⊕B1)'·(A0⊕B0)'. LT = A1'·B1 + (A1⊕B1)'·A0'·B0. Use XNOR for equality checks.",
+  "title": "Magnitude Comparator",
+  "objective": "Compare two numbers: A>B, A=B, A<B",
+  "description": "Build a 2-bit magnitude comparator that outputs three signals: GT (A>B), EQ (A=B), LT (A<B).",
+  "physicsVisual": "magnitude_comparator"
+}

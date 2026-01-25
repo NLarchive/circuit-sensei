@@ -1,0 +1,70 @@
+{
+  "id": "level_14_hard",
+  "baseId": "level_14",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "D=1, EN=1: Capture HIGH"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "D=0, EN=0: HOLD (stay HIGH)"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "D=0, EN=1: Capture LOW"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "D=1, EN=0: HOLD (stay LOW)"
+    }
+  ],
+  "xpReward": 135,
+  "hint": "Generate S = D AND Enable, R = (NOT D) AND Enable. Feed S and R to the SR Latch. When Enable=0, both S and R are 0 (HOLD). When Enable=1, D=1 sets, D=0 resets.",
+  "maxGates": 4,
+  "title": "D Latch from Gates",
+  "objective": "Build a D Latch from scratch",
+  "description": "Construct a D Latch using basic gates and an SR Latch. The D Latch eliminates the forbidden S=R=1 state by deriving S and R from a single Data input.",
+  "physicsVisual": "d_latch_construction"
+}

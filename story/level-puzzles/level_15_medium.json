@@ -1,0 +1,93 @@
+{
+  "id": "level_15_medium",
+  "baseId": "level_15",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 3,
+  "targetSequence": [
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "D=1, CLK=0, EN=0: Setup"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "D=1, CLK↑, EN=0: No capture (EN off)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "D=1, CLK=0, EN=1: Setup with EN"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "D=1, CLK↑, EN=1: Capture D=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "D=0, CLK=0, EN=0: Hold Q=1"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "D=0, CLK↑, EN=0: Still hold Q=1"
+    }
+  ],
+  "xpReward": 135,
+  "hint": "Use a MUX: when EN=0, feed Q back to D input. When EN=1, feed Data to D input. The MUX output goes to the D-FF.",
+  "maxGates": 2,
+  "title": "D Flip-Flop with Enable",
+  "objective": "Conditional data capture",
+  "description": "Build a D-FF that only captures data when Enable=1. When Enable=0, it holds its previous value regardless of clock edges.",
+  "physicsVisual": "dff_enable"
+}

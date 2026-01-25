@@ -1,0 +1,36 @@
+{
+  "id": "level_01_hard",
+  "baseId": "level_01",
+  "variant": "hard",
+  "availableGates": [],
+  "inputs": 1,
+  "targetTruthTable": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 40,
+  "hint": "Connect the single input to all three outputs. In this simulator, fan-out is unlimited, but in real chips, each output adds load capacitance. This is why clock trees use buffer chains.",
+  "title": "Signal Fan-Out",
+  "objective": "Distribute one signal to three outputs",
+  "description": "A single input must drive three separate outputs simultaneously. This demonstrates fan-out—one source, multiple destinations.",
+  "physicsVisual": "fan_out_tree"
+}

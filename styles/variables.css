@@ -1,0 +1,136 @@
+/* ==========================================
+   CSS VARIABLES - Design System Tokens
+   ==========================================
+   
+   This file defines all CSS custom properties (variables)
+   for the application. Use these instead of hardcoded values.
+   ========================================== */
+
+:root {
+    /* ===== Color Palette ===== */
+    --bg-color: #1e1e1e;
+    --bg-color-dark: #1a1a2e;
+    --bg-color-light: #2a2a3e;
+    --panel-bg: rgba(40, 40, 40, 0.9);
+    --panel-bg-solid: #282828;
+    
+    /* Text colors */
+    --text-color: #e0e0e0;
+    --text-muted: #888888;
+    --text-dark: #666666;
+    --text-light: #ffffff;
+    
+    /* Accent colors */
+    --accent-color: #007acc;
+    --accent-light: #33a3ff;
+    --accent-dark: #005fa3;
+    --accent-darker: #004a7a;
+    
+    /* Semantic colors */
+    --success-color: #4caf50;
+    --success-light: #81c784;
+    --error-color: #f44336;
+    --error-light: #e57373;
+    --warning-color: #ff9800;
+    --warning-light: #ffb74d;
+    --info-color: #2196f3;
+    
+    /* Border colors */
+    --border-color: #444444;
+    --border-light: #555555;
+    --border-focus: var(--accent-color);
+    
+    /* ===== Typography ===== */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.85rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 2.5rem;
+    
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.7;
+    
+    /* ===== Spacing Scale ===== */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 24px;
+    --spacing-3xl: 32px;
+    --spacing-4xl: 48px;
+    
+    /* ===== Border Radius ===== */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    --radius-btn: 20px;
+    
+    /* ===== Shadows ===== */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.18);
+    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.22);
+    --shadow-xl: 0 6px 24px rgba(0, 0, 0, 0.3);
+    --shadow-inset: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    
+    /* ===== Z-Index Scale ===== */
+    --z-base: 1;
+    --z-sidebar: 10;
+    --z-navbar: 940;
+    --z-sidebar-backdrop: 945;
+    --z-sidebar-mobile: 950;
+    --z-overlay: 1000;
+    --z-overlay-content: 100;
+    --z-tooltip: 1100;
+    --z-modal: 1200;
+    
+    /* ===== Transitions ===== */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+    
+    /* ===== Layout ===== */
+    --sidebar-width: 250px;
+    --navbar-height: auto; /* Set dynamically */
+    --canvas-padding: 20px;
+    
+    /* ===== Component-specific ===== */
+    --gate-width: 80px;
+    --gate-height: 60px;
+    --pin-radius: 8px;
+    --grid-size: 20px;
+}
+
+/* ===== High Contrast Mode Support ===== */
+@media (prefers-contrast: high) {
+    :root {
+        --bg-color: #000000;
+        --panel-bg: #000000;
+        --text-color: #ffffff;
+        --border-color: #ffffff;
+        --accent-color: #00aaff;
+    }
+}
+
+/* ===== Reduced Motion Support ===== */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast: 0ms;
+        --transition-normal: 0ms;
+        --transition-slow: 0ms;
+    }
+}

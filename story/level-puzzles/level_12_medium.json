@@ -1,0 +1,65 @@
+{
+  "id": "level_12_medium",
+  "baseId": "level_12",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ]
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 100,
+  "hint": "Difference = A XOR B (identical to Sum). Borrow = (NOT A) AND B. You need one XOR, one NOT, and one AND gate.",
+  "title": "Half Subtractor",
+  "objective": "Subtract 2 bits (Difference and Borrow)",
+  "description": "Build a circuit that computes A - B, outputting the Difference and Borrow bits.",
+  "physicsVisual": "half_subtractor"
+}

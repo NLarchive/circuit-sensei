@@ -1,0 +1,383 @@
+/* ========================================
+   GLOSSARY OVERLAY
+   ======================================== */
+
+.glossary-content {
+    background: var(--panel-bg);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.glossary-header {
+    padding: 20px 25px 15px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.glossary-header h1 {
+    margin: 0 0 5px 0;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+}
+
+.glossary-header .subtitle {
+    margin: 0 0 15px 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.glossary-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.glossary-tab {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.glossary-tab:hover {
+    background: rgba(0, 122, 204, 0.2);
+    border-color: var(--accent-color);
+}
+
+.glossary-tab.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+.glossary-search {
+    width: 100%;
+}
+
+.glossary-search input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.glossary-search input::placeholder {
+    color: #666;
+}
+
+.glossary-search input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.glossary-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 25px;
+}
+
+.glossary-footer {
+    padding: 15px 25px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.glossary-section {
+    margin-bottom: 25px;
+}
+
+.glossary-section h3 {
+    color: var(--accent-color);
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.glossary-section h4 {
+    color: #aaa;
+    margin: 15px 0 10px 0;
+    font-size: 0.95rem;
+}
+
+.glossary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.glossary-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.glossary-item:hover {
+    border-color: var(--accent-color);
+}
+
+.glossary-item-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.glossary-item-header:hover {
+    background: rgba(0, 122, 204, 0.1);
+}
+
+.glossary-term {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.glossary-expansion {
+    color: #888;
+    font-style: italic;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.glossary-origin {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    background: rgba(0, 122, 204, 0.2);
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.glossary-item-body {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.glossary-item.expanded .glossary-item-body {
+    padding: 15px;
+    max-height: 500px;
+}
+
+.glossary-definition {
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+.glossary-why, .glossary-analogy, .glossary-formula, .glossary-meaning {
+    margin: 8px 0;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+.glossary-category {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(76, 175, 80, 0.2);
+    color: var(--success-color);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-top: 8px;
+}
+
+.glossary-formula-code {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    color: #4ec9b0;
+    font-size: 0.95rem;
+}
+
+.formula-variables {
+    margin: 10px 0;
+}
+
+.formula-variables ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.formula-variables li {
+    margin: 4px 0;
+    font-size: 0.9rem;
+}
+
+.var-symbol {
+    font-family: 'Consolas', monospace;
+    color: #4ec9b0;
+    font-weight: bold;
+}
+
+.var-units {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.glossary-example {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.example-solution {
+    color: var(--success-color);
+    font-family: 'Consolas', monospace;
+}
+
+.glossary-empty, .glossary-error {
+    text-align: center;
+    color: #888;
+    padding: 40px 20px;
+}
+
+/* Compact item variant */
+.glossary-item.compact .glossary-item-body {
+    padding: 10px 15px;
+    max-height: none;
+}
+
+.glossary-item.compact .glossary-definition {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* ========================================
+   TERM POPUP (Inline definitions)
+   ======================================== */
+
+.term-popup {
+    position: fixed;
+    z-index: 1000;
+    background: var(--panel-bg);
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    max-width: 320px;
+    min-width: 250px;
+}
+
+.term-popup.hidden {
+    display: none;
+}
+
+.term-popup-content {
+    padding: 0;
+}
+
+.term-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(0, 122, 204, 0.2);
+    border-bottom: 1px solid var(--border-color);
+}
+
+#term-popup-title {
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
+#term-popup-body {
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#term-popup-body p {
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+#term-popup-body .term-expansion {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+#term-popup-body .term-origin {
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+}
+
+#term-popup-body .formula-display {
+    text-align: center;
+    margin: 10px 0;
+}
+
+#term-popup-body .formula-display code {
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #4ec9b0;
+}
+
+/* ========================================
+   TERM LINK (Clickable terms in content)
+   ======================================== */
+
+.term-link {
+    color: var(--accent-color);
+    cursor: pointer;
+    border-bottom: 1px dashed var(--accent-color);
+    transition: all 0.2s ease;
+}
+
+.term-link:hover {
+    color: #fff;
+    background: rgba(0, 122, 204, 0.2);
+}
+
+/* Info button for terms in intro content */
+.term-info-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 4px;
+    vertical-align: middle;
+    border: none;
+    line-height: 1;
+}
+
+.term-info-btn:hover {
+    background: #0098ff;
+    transform: scale(1.1);
+}

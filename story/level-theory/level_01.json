@@ -1,0 +1,187 @@
+{
+  "id": "level_01",
+  "tier": "tier_1",
+  "title": "The Simple Wire",
+  "introText": "Before gates, before transistors, there is the wire. A wire seems simple—just metal connecting two points—but it embodies fundamental physics that makes all electronics possible. In this level, you'll understand what actually happens when current flows, why signals travel fast even though electrons move slowly, and how voltage represents information.",
+  "storyText": "You've completed the simplest possible circuit—but the physics behind it is profound. The wire faithfully transmits voltage levels (HIGH/LOW) at near light-speed, even though electrons themselves barely move. This abstraction—voltage as information—is the foundation of all digital systems. Every computer, phone, and smart device relies on billions of these simple voltage transfers happening reliably.",
+  "physicsVisual": "electron_flow_detailed",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Electric Charge (Q)",
+        "definition": "A fundamental property of matter. Measured in Coulombs (C). 1 Coulomb ≈ 6.24×10¹⁸ electrons.",
+        "why": "Charge is the fundamental quantity that flows to create current. It's the 'stuff' that moves.",
+        "analogy": "Like a volume of water (liters). Current is the flow rate (liters/sec), but Charge is the water itself.",
+        "latex": "Q = I \\times t",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6151em;\"></span><span class=\"mord mathnormal\">t</span></span></span></span>"
+      },
+      {
+        "term": "Energy (E)",
+        "definition": "The capacity to do work. Measured in Joules (J).",
+        "why": "Used to define Voltage (Energy per Charge). 1 Volt = 1 Joule / 1 Coulomb. It represents the work done to move the charge.",
+        "analogy": "Like the potential energy of water at a height. It takes energy (Joules) to pump water (Charge) up to a height (Voltage).",
+        "latex": "E = V \\times Q",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span></span></span></span>"
+      },
+      {
+        "term": "Electric Current (I)",
+        "definition": "The flow of electric charge through a conductor, measured in Amperes (A). One Ampere = one Coulomb of charge passing per second.",
+        "why": "Current is what actually does work in circuits—powering LEDs, spinning motors, storing data. No current flow = no circuit action.",
+        "analogy": "Like water flow in a pipe. Current (Amps) is like flow rate (liters/second). More flow = more water delivered.",
+        "latex": "I = \\frac{Q}{t}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2694em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9244em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.4461em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">Q</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+      },
+      {
+        "term": "Voltage (V)",
+        "definition": "Electric potential difference—the 'pressure' that pushes charges through a circuit. Measured in Volts (V). One Volt = one Joule of energy per Coulomb of charge.",
+        "why": "Voltage is how we encode information in digital circuits. HIGH voltage (~5V or 3.3V) = logic 1. LOW voltage (~0V) = logic 0.",
+        "analogy": "Like water pressure difference between two tanks. Higher pressure difference = stronger push for water to flow.",
+        "visuals": [
+          {
+            "type": "electric_field",
+            "title": "Electric Field & Potential Difference"
+          }
+        ],
+        "latex": "V = \\frac{E}{Q} (energy per charge)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.3534em;vertical-align:-0.4811em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8723em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">Q</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05764em;\">E</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4811em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">erc</span><span class=\"mord mathnormal\">ha</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>"
+      },
+      {
+        "term": "Drift Velocity",
+        "definition": "The slow average velocity (~0.1 mm/s) at which electrons actually move through a conductor when current flows.",
+        "why": "This explains a key paradox: electrons move very slowly, yet circuits respond almost instantly. The signal isn't carried by individual electrons traveling fast.",
+        "analogy": "Imagine a tube completely filled with marbles. Push one marble in at one end, and a marble instantly pops out the other end—even though no single marble traveled the full length.",
+        "visuals": [
+          {
+            "type": "electron_flow_detailed",
+            "title": "Charge Carriers in a Conductor"
+          }
+        ]
+      },
+      {
+        "term": "Signal Propagation Speed",
+        "definition": "The speed at which an electromagnetic disturbance (the 'signal') travels along a wire—typically 50-99% the speed of light.",
+        "why": "This is why circuits respond 'instantly' even though electrons drift slowly. When you flip a switch, the electric field change propagates at near light-speed, pushing all electrons simultaneously.",
+        "analogy": "When you push a long line of standing dominoes, the 'wave' of falling travels much faster than any single domino moves."
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "Ohm's Law",
+        "variables": [
+          {
+            "symbol": "V",
+            "meaning": "Voltage across the component",
+            "units": "Volts (V)"
+          },
+          {
+            "symbol": "I",
+            "meaning": "Current through the component",
+            "units": "Amperes (A)"
+          },
+          {
+            "symbol": "R",
+            "meaning": "Resistance of the component",
+            "units": "Ohms (Ω)"
+          }
+        ],
+        "meaning": "Voltage, current, and resistance are linked. If you know any two, you can calculate the third. Higher resistance means less current for the same voltage.",
+        "derivation": "This is an empirical law discovered by Georg Ohm in 1827. It holds for 'ohmic' materials like metals at constant temperature.",
+        "example": {
+          "problem": "A wire has 10Ω resistance. If 5V is applied across it, how much current flows?",
+          "given": [
+            "V = 5V",
+            "R = 10Ω"
+          ],
+          "steps": [
+            "Use Ohm's Law: V = I \\times R",
+            "Rearrange to find I: I = \\frac{V}{R}",
+            "Substitute: I = \\frac{5V}{10}Ω = 0.5A"
+          ],
+          "answer": "0.5 Amperes (500 mA)"
+        },
+        "latex": "V = I \\times R",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span></span></span></span>"
+      },
+      {
+        "name": "Current from Drift",
+        "variables": [
+          {
+            "symbol": "I",
+            "meaning": "Current",
+            "units": "Amperes (A)"
+          },
+          {
+            "symbol": "n",
+            "meaning": "Carrier density (free electrons per m³)",
+            "units": "electrons/m³"
+          },
+          {
+            "symbol": "A",
+            "meaning": "Cross-sectional area of wire",
+            "units": "m²"
+          },
+          {
+            "symbol": "v_{d}",
+            "meaning": "Drift velocity of electrons",
+            "units": "m/s"
+          },
+          {
+            "symbol": "q",
+            "meaning": "Charge per electron (1.6×10⁻¹⁹ C)",
+            "units": "Coulombs"
+          }
+        ],
+        "meaning": "Current depends on how many carriers there are (n), how big the wire is (A), how fast they drift (v_d), and the charge each carries (q). This explains why copper (high n) conducts well.",
+        "example": {
+          "problem": "Copper has n = 8.5×10²⁸ electrons/m³. A wire with area 1mm² carries 1A. What is the drift velocity?",
+          "given": [
+            "n = 8.5×10²⁸/m³",
+            "A = 1×10⁻⁶ m²",
+            "I = 1A",
+            "q = 1.6×10⁻¹⁹ C"
+          ],
+          "steps": [
+            "1. Rearrange formula: v_{d} = I / (n \\times A \\times q)",
+            "2. Group numerical values & powers of 10: v_{d} = 1 / ((8.5 \\times 1 \\times 1.6) \\times (10²⁸ \\times 10⁻⁶ \\times 10⁻¹⁹))",
+            "3. Add exponents: 28 - 6 - 19 = 3",
+            "4. Calculate base value: 8.5 \\times 1.6 = 13.6",
+            "5. Final SI result: v_{d} = 1 / (13.6 \\times 10³) = \\frac{1}{13600} ≈ 7.35 \\times 10⁻⁵ \\frac{m}{s}"
+          ],
+          "answer": "≈ 0.074 mm/s — electrons drift incredibly slowly (about 26 cm per hour)!"
+        },
+        "latex": "I = n \\times A \\times v_{d} \\times q",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">d</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">q</span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "A 9V battery is connected to a light bulb with 18Ω resistance. Calculate the current flowing through the bulb.",
+        "hint": "Use Ohm's Law: I = V/R",
+        "answer": "I = 9V / 18Ω = 0.5A"
+      },
+      {
+        "question": "If electrons in a USBcable drift at 0.036 mm/s, and data transfers at 480 Mbps, what enables this fast data transfer despite slow electron movement?",
+        "hint": "Think about what actually carries the 'signal'—is it the electrons themselves or something else?",
+        "answer": "The electromagnetic field propagates at near light-speed (~200,000 km/s). The field pushes all electrons simultaneously, so the 'signal' travels fast even though individual electrons barely move."
+      },
+      {
+        "question": "Why does a thicker wire have lower resistance? Explain using the current formula I = n × A × v_d × q.",
+        "hint": "What happens to A (cross-sectional area) when wire gets thicker?",
+        "answer": {
+          "steps": [
+            "(1) A 1mm² wire with I = 1A has R = 5Ω.",
+            "(2) If we double A to 2mm², I doubles to 2A.",
+            "(3) Then R = V/(2A) = 2.5Ω, which is half the original resistance."
+          ],
+          "answer": "According to the formula I = n × A × v_d × q, current (I) is directly proportional to the cross-sectional area (A). This means if A doubles, I doubles (assuming n, v_d, and q remain constant). A thicker wire has a larger A, which increases the current (I) for a given drift velocity. Since Ohm's Law (V = I × R) implies R = V/I, increasing the current for a constant voltage means the resistance (R) is lower."
+        }
+      }
+    ],
+    "realWorld": {
+      "context": "Every electronic device uses wires (or traces on circuit boards) to connect components. Understanding wire behavior is essential for reliable circuit design.",
+      "example": "A typical USB2.0 cable carries about 500mA of current. Despite this substantial current, the electrons inside the copper wires drift at only 0.036 mm/s—slower than a snail!",
+      "numbers": "The electromagnetic signal propagates at ~200,000 km/s (67% speed of light in copper). This means a signal can travel 1 meter in just 5 nanoseconds.",
+      "connection": "In this level, the wire transmits a HIGH or LOW voltage from input to output. This simple voltage transfer is the foundation of ALL digital communication."
+    }
+  }
+}

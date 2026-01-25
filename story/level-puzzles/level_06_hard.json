@@ -1,0 +1,62 @@
+{
+  "id": "level_06_hard",
+  "baseId": "level_06",
+  "variant": "hard",
+  "availableGates": [
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        1
+      ]
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 85,
+  "hint": "Three circuits sharing inputs A,B: (1) NOT_A = NAND(A,A), (2) AND = NAND(NAND(A,B), NAND(A,B)), (3) OR = NAND(NAND(A,A), NAND(B,B)). Total: 5 NANDs.",
+  "title": "NAND Universality Proof",
+  "objective": "Build NOT, AND, OR from NAND only",
+  "description": "Prove NAND is universal by building all three basic gates (NOT, AND, OR) using only NAND gates. Three outputs: NOT_A, A_AND_B, A_OR_B.",
+  "physicsVisual": "nand_universality"
+}

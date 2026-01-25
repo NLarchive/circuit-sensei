@@ -1,0 +1,82 @@
+{
+  "id": "level_15_easy",
+  "baseId": "level_15",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Init: D=1, CLK=0"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Clock Rise: Sample D=1"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "D change: Hold Q=1"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Clock Fall: Hold Q=1"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Clock Rise: Sample D=0"
+    }
+  ],
+  "xpReward": 120,
+  "hint": "D Flip-Flop samples input D only on the rising edge of CLK (0→1). Between edges, output holds its value.",
+  "maxGates": 1,
+  "title": "D Flip-Flop",
+  "objective": "Store data on clock edge",
+  "description": "Experience the D Flip-Flop: it captures the D input only on the rising edge of the clock, then holds that value until the next edge.",
+  "physicsVisual": "d_flipflop_basic"
+}

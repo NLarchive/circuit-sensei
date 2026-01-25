@@ -1,0 +1,59 @@
+{
+  "id": "level_08_medium",
+  "baseId": "level_08",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 60,
+  "hint": "XNOR = NOT(XOR) = NOT((A AND NOT B) OR (NOT A AND B)). Alternatively: (A AND B) OR (NOT A AND NOT B).",
+  "title": "XNOR: Equality Detector",
+  "objective": "Output 1 when inputs are equal",
+  "description": "XNOR (Exclusive NOR) outputs 1 when both inputs are the same (both 0 or both 1). It's the equality comparator.",
+  "physicsVisual": "xnor_equality"
+}

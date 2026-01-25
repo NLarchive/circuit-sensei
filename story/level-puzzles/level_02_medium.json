@@ -1,0 +1,54 @@
+{
+  "id": "level_02_medium",
+  "baseId": "level_02",
+  "variant": "medium",
+  "availableGates": [
+    "transistor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 30,
+  "hint": "When Enable=1, output should equal Data input. When Enable=0, output is 0 (disconnected state in simulation). Use transistors strategically.",
+  "title": "Pass Gate Logic",
+  "objective": "Build a bidirectional switch",
+  "description": "Create a transmission gate that can pass signals in either direction when enabled. Connect data through when control is HIGH, block when LOW.",
+  "physicsVisual": "transmission_gate"
+}

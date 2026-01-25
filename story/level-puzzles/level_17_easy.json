@@ -1,0 +1,107 @@
+{
+  "id": "level_17_easy",
+  "baseId": "level_17",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 1,
+  "targetSequence": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Initial: 0"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Tick 1: 01"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Wait: 01"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Tick 2: 10"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Wait: 10"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "Tick 3: 11"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "Wait: 11"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Tick 4: ROLLOVER to 00"
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 160,
+  "hint": "Chain two T-FFs. First FF toggles on every clock. Second FF uses first FF's output as its clock (ripple counter).",
+  "title": "2-Bit Ripple Counter",
+  "objective": "Count 00→01→10→11→00",
+  "description": "Build a 2-bit binary counter using chained T-FFs. It counts clock pulses: 0, 1, 2, 3, then rolls over to 0.",
+  "physicsVisual": "ripple_counter_2bit"
+}

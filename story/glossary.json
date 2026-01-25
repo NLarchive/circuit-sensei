@@ -1,0 +1,1264 @@
+{
+  "_comment": "Glossary Index - Core terminology and formulas with their origin levels",
+  "_purpose": "Track where each term is first defined to ensure prerequisites are met and enable info tooltips",
+  "_version": "1.0.0",
+  "_lastUpdated": "2026-01-09",
+  "acronyms": {
+    "BJT": {
+      "expansion": "Bipolar Junction Transistor",
+      "origin_level": "level_02",
+      "definition": "Current-controlled transistor with Base, Collector, Emitter terminals. Small base current controls larger collector current.",
+      "category": "semiconductor"
+    },
+    "MOSFET": {
+      "expansion": "Metal-Oxide-Semiconductor Field-Effect Transistor",
+      "origin_level": "level_02",
+      "definition": "Voltage-controlled transistor with Gate, Drain, Source terminals. Gate is insulated by oxide layer, drawing almost no DC current.",
+      "category": "semiconductor"
+    },
+    "FET": {
+      "expansion": "Field-Effect Transistor",
+      "origin_level": "level_02",
+      "definition": "A transistor in which an electric field at the Gate terminal controls the flow of current between Source and Drain. FETs are voltage-controlled devices, unlike BJTs (current-controlled). The three main terminals are Gate (G), Source (S), and Drain (D). MOSFETs are the most common type of FET in digital logic.",
+      "category": "semiconductor",
+      "terminals": {
+        "Gate (G)": "Control terminal. Voltage here creates an electric field that opens or closes the channel.",
+        "Source (S)": "Terminal where carriers enter the channel; reference for Gate voltage.",
+        "Drain (D)": "Terminal where carriers leave the channel; current flows from Source to Drain."
+      },
+      "related_terms": [
+        "MOSFET",
+        "BJT",
+        "Transistor"
+      ]
+    },
+    "VDD": {
+      "expansion": "Positive supply voltage",
+      "origin_level": "level_03",
+      "definition": "The positive supply voltage representing logic HIGH reference, typically 1V-5V in modern CMOS circuits.",
+      "category": "power_supply",
+      "related_terms": [
+        "GND",
+        "Logic HIGH",
+        "Power Supply"
+      ]
+    },
+    "GND": {
+      "expansion": "Ground (zero-voltage reference node)",
+      "origin_level": "level_03",
+      "definition": "The zero-voltage reference point (0V) representing logic LOW. All voltages in a circuit are measured relative to the GND point.",
+      "category": "power_supply",
+      "related_terms": [
+        "VDD",
+        "Logic LOW",
+        "Power Supply"
+      ]
+    },
+    "CMOS": {
+      "expansion": "Complementary Metal-Oxide-Semiconductor",
+      "origin_level": "level_03",
+      "definition": "Circuit design using paired NMOS and PMOS transistors. One pulls output HIGH, the other pulls LOW—they're complementary because only one is ON at any time.",
+      "category": "semiconductor"
+    },
+    "NMOS": {
+      "expansion": "N-channel Metal-Oxide-Semiconductor",
+      "origin_level": "level_03",
+      "definition": "MOSFET with N-type channel that conducts when gate voltage is HIGH. Used for pull-down networks.",
+      "category": "semiconductor"
+    },
+    "PMOS": {
+      "expansion": "P-channel Metal-Oxide-Semiconductor",
+      "origin_level": "level_03",
+      "definition": "MOSFET with P-type channel that conducts when gate voltage is LOW. Used for pull-up networks.",
+      "category": "semiconductor"
+    },
+    "KCL": {
+      "expansion": "Kirchhoff's Current Law",
+      "origin_level": "level_05",
+      "definition": "At any node in a circuit, the sum of currents entering equals the sum of currents leaving. Current is conserved.",
+      "category": "physics_electrical"
+    },
+    "LUT": {
+      "expansion": "Lookup Table",
+      "origin_level": "level_10",
+      "definition": "A memory-based implementation where any Boolean function's truth table is stored and indexed by inputs. FPGAs use LUTs as basic logic elements.",
+      "category": "combinational_circuits"
+    },
+    "MUX": {
+      "expansion": "Multiplexer",
+      "origin_level": "level_10",
+      "definition": "A combinational circuit that selects one of N data inputs and routes it to output based on select lines.",
+      "category": "combinational_circuits"
+    },
+    "MSB": {
+      "expansion": "Most Significant Bit",
+      "origin_level": "level_11",
+      "definition": "The leftmost bit in a binary number, representing the largest value (2^(n-1) for n-bit number).",
+      "category": "binary_representation"
+    },
+    "LSB": {
+      "expansion": "Least Significant Bit",
+      "origin_level": "level_11",
+      "definition": "The rightmost bit in a binary number, representing the smallest value (2^0 = 1).",
+      "category": "binary_representation"
+    },
+    "XOR": {
+      "expansion": "Exclusive OR",
+      "origin_level": "level_08",
+      "definition": "A logic gate that outputs 1 if and only if exactly one of its inputs is 1. Outputs 0 when inputs are the same.",
+      "category": "boolean_logic"
+    },
+    "CRC": {
+      "expansion": "Cyclic Redundancy Check",
+      "origin_level": "level_08",
+      "definition": "An error-detection code using polynomial division. Uses XOR chains to compute a checksum.",
+      "category": "error_detection"
+    },
+    "DFF": {
+      "expansion": "D Flip-Flop",
+      "origin_level": "level_15",
+      "definition": "A memory element that captures input D only on the active clock edge. Output Q holds this value until the next clock edge.",
+      "category": "sequential_circuits"
+    },
+    "FSM": {
+      "expansion": "Finite State Machine",
+      "origin_level": "level_18",
+      "definition": "A computational model with a finite number of states, transitions between states based on inputs, and outputs determined by state.",
+      "category": "sequential_circuits"
+    },
+    "ALU": {
+      "expansion": "Arithmetic Logic Unit",
+      "origin_level": "level_19",
+      "definition": "A combinational circuit that performs arithmetic (add, subtract) and logic (AND, OR, XOR) operations on binary operands.",
+      "category": "computer_architecture"
+    },
+    "CPU": {
+      "expansion": "Central Processing Unit",
+      "origin_level": "level_boss",
+      "definition": "The main processor of a computer that executes instructions. Contains datapath (registers, ALU) and control unit.",
+      "category": "computer_architecture"
+    },
+    "PC": {
+      "expansion": "Program Counter",
+      "origin_level": "level_boss",
+      "definition": "A register that holds the memory address of the next instruction to be fetched and executed.",
+      "category": "computer_architecture"
+    },
+    "IPC": {
+      "expansion": "Instructions Per Cycle",
+      "origin_level": "level_19",
+      "definition": "The average number of instructions completed per clock cycle. IPC > 1 indicates superscalar execution.",
+      "category": "computer_architecture"
+    },
+    "FPGA": {
+      "expansion": "Field-Programmable Gate Array",
+      "origin_level": "level_10",
+      "definition": "An integrated circuit that can be configured after manufacturing using LUTs and programmable interconnects.",
+      "category": "integrated_circuits"
+    },
+    "SRAM": {
+      "expansion": "Static Random-Access Memory",
+      "origin_level": "level_14",
+      "definition": "Memory using bistable circuits (latches) to store bits. Retains data as long as power is applied.",
+      "category": "memory"
+    },
+    "DRAM": {
+      "expansion": "Dynamic Random-Access Memory",
+      "origin_level": "level_11",
+      "definition": "Memory using capacitors to store bits. Requires periodic refresh to retain data.",
+      "category": "memory"
+    },
+    "DDR": {
+      "expansion": "Double Data Rate",
+      "origin_level": "level_11",
+      "definition": "Memory standard that transfers data on both rising and falling clock edges, doubling throughput.",
+      "category": "memory"
+    },
+    "RTL": {
+      "expansion": "Register-Transfer Level",
+      "origin_level": "level_07",
+      "definition": "An abstraction level describing digital circuits in terms of data flow between registers and operations.",
+      "category": "design_abstraction"
+    },
+    "SOP": {
+      "expansion": "Sum of Products",
+      "origin_level": "level_04",
+      "definition": "A Boolean expression form where AND terms (products) are ORed together. Each AND term is a minterm.",
+      "category": "boolean_logic"
+    },
+    "POS": {
+      "expansion": "Product of Sums",
+      "origin_level": "level_04",
+      "definition": "A Boolean expression form where OR terms (sums) are ANDed together. Each OR term is a maxterm.",
+      "category": "boolean_logic"
+    },
+    "CLA": {
+      "expansion": "Carry-Lookahead Adder",
+      "origin_level": "level_13",
+      "definition": "An adder architecture that computes carry signals in parallel, achieving O(log n) delay instead of O(n).",
+      "category": "combinational_circuits"
+    },
+    "RC": {
+      "expansion": "Resistor-Capacitor (time constant)",
+      "origin_level": "level_04",
+      "definition": "The product of resistance and capacitance, giving the time constant τ = R×C for charging/discharging.",
+      "category": "timing"
+    },
+    "CDC": {
+      "expansion": "Clock Domain Crossing",
+      "origin_level": "level_15",
+      "definition": "The challenge of safely transferring signals between circuits running on different clock domains.",
+      "category": "timing"
+    },
+    "MTBF": {
+      "expansion": "Mean Time Between Failures",
+      "origin_level": "level_14",
+      "definition": "The average time between system failures. For metastability: MTBF = exp(t_r/τ) / (f_clk × f_data × T0).",
+      "category": "reliability"
+    }
+  },
+  "terms": {
+    "Electric Charge": {
+      "origin_level": "level_01",
+      "symbol": "Q",
+      "units": "Coulombs (C)",
+      "definition": "A fundamental property of matter. Measured in Coulombs (C). 1 Coulomb ≈ 6.24×10¹⁸ electrons.",
+      "why": "Charge is the fundamental quantity that flows to create current. It's the 'stuff' that moves.",
+      "analogy": "Like a volume of water (liters). Current is the flow rate (liters/sec), but Charge is the water itself.",
+      "latex": "Q = I × t",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6151em;\"></span><span class=\"mord mathnormal\">t</span></span></span></span>",
+      "category": "physics_electrical"
+    },
+    "Energy": {
+      "origin_level": "level_01",
+      "symbol": "E",
+      "units": "Joules (J)",
+      "definition": "The capacity to do work. Measured in Joules (J).",
+      "why": "Used to define Voltage (Energy per Charge). 1 Volt = 1 Joule / 1 Coulomb.",
+      "analogy": "Like the potential energy of water at a height. It takes energy (Joules) to pump water (Charge) up to a height (Voltage).",
+      "latex": "E = V × Q",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span></span></span></span>",
+      "category": "physics_electrical"
+    },
+    "Electric Current": {
+      "origin_level": "level_01",
+      "symbol": "I",
+      "units": "Amperes (A)",
+      "definition": "The flow of electric charge through a conductor, measured in Amperes (A). One Ampere = one Coulomb of charge passing per second.",
+      "why": "Current is what actually does work in circuits—powering LEDs, spinning motors, storing data. No current flow = no circuit action.",
+      "analogy": "Like water flow in a pipe. Current (Amps) is like flow rate (liters/second). More flow = more water delivered.",
+      "latex": "I = Q/t",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mord\">/</span><span class=\"mord mathnormal\">t</span></span></span></span>",
+      "category": "physics_electrical"
+    },
+    "Voltage": {
+      "origin_level": "level_01",
+      "symbol": "V",
+      "units": "Volts (V)",
+      "definition": "Electric potential difference—the 'pressure' that pushes charges through a circuit. Measured in Volts (V). One Volt = one Joule of energy per Coulomb of charge.",
+      "why": "Voltage is how we encode information in digital circuits. HIGH voltage (~5V or 3.3V) = logic 1. LOW voltage (~0V) = logic 0.",
+      "analogy": "Like water pressure difference between two tanks. Higher pressure difference = stronger push for water to flow.",
+      "latex": "V = E/Q (energy per charge)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">E</span><span class=\"mord\">/</span><span class=\"mord mathnormal\">Q</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">erc</span><span class=\"mord mathnormal\">ha</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "physics_electrical"
+    },
+    "Resistance": {
+      "origin_level": "level_01",
+      "symbol": "R",
+      "units": "Ohms (Ω)",
+      "definition": "Opposition to current flow in a material. Measured in Ohms (Ω).",
+      "why": "Resistance determines how much current flows for a given voltage (Ohm's Law: V = I×R).",
+      "analogy": "Like friction in a pipe—narrower pipes (higher resistance) restrict water flow.",
+      "latex": "R = V/I",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mord\">/</span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span></span></span></span>",
+      "category": "physics_electrical"
+    },
+    "Drift Velocity": {
+      "origin_level": "level_01",
+      "symbol": "v_d",
+      "units": "m/s (typically ~0.1 mm/s)",
+      "definition": "The slow average velocity (~0.1 mm/s) at which electrons actually move through a conductor when current flows.",
+      "why": "This explains a key paradox: electrons move very slowly, yet circuits respond almost instantly. The signal isn't carried by individual electrons traveling fast.",
+      "analogy": "Imagine a tube completely filled with marbles. Push one marble in at one end, and a marble instantly pops out the other end—even though no single marble traveled the full length.",
+      "category": "physics_electrical"
+    },
+    "Signal Propagation Speed": {
+      "origin_level": "level_01",
+      "units": "m/s (50-99% speed of light)",
+      "definition": "The speed at which an electromagnetic disturbance (the 'signal') travels along a wire—typically 50-99% the speed of light.",
+      "why": "This is why circuits respond 'instantly' even though electrons drift slowly. When you flip a switch, the electric field change propagates at near light-speed, pushing all electrons simultaneously.",
+      "analogy": "When you push a long line of standing dominoes, the 'wave' of falling travels much faster than any single domino moves.",
+      "category": "physics_electrical"
+    },
+    "Valence Electrons": {
+      "origin_level": "level_02",
+      "definition": "Electrons in the outermost shell of an atom that participate in chemical bonding. Silicon has 4 valence electrons.",
+      "why": "The number of valence electrons determines how atoms bond and whether a material conducts. Silicon's 4 electrons create a stable structure that can be modified by doping.",
+      "analogy": "Like hands available for handshakes. Silicon has 4 'hands', needing 4 partners to be stable.",
+      "category": "semiconductor"
+    },
+    "Semiconductor": {
+      "origin_level": "level_02",
+      "definition": "A material (like silicon) with conductivity between a conductor and insulator. Its conductivity can be precisely controlled by adding impurities (doping) or applying voltage.",
+      "why": "Semiconductors are the foundation of all modern electronics. Unlike metals (always conduct) or insulators (never conduct), we can control when semiconductors conduct—enabling switches.",
+      "analogy": "A semiconductor is like a door with an electronic lock. Unlike an open doorway (conductor) or a wall (insulator), you can control whether it's open or closed.",
+      "category": "semiconductor"
+    },
+    "Doping": {
+      "origin_level": "level_02",
+      "definition": "Adding impurity atoms to pure silicon. N-type: add phosphorus (5 valence electrons) → excess free electrons. P-type: add boron (3 valence electrons) → electron vacancies called 'holes'.",
+      "why": "Doping creates regions with controllable amounts of mobile charge carriers. The boundary between N and P regions (the P-N junction) is where transistor magic happens.",
+      "analogy": "Imagine a parking lot. N-type = lots of extra cars (electrons) looking for spots. P-type = lots of empty parking spots (holes) waiting for cars.",
+      "category": "semiconductor"
+    },
+    "N-type": {
+      "origin_level": "level_02",
+      "definition": "Semiconductor doped with atoms having 5 valence electrons (e.g., phosphorus), creating excess free electrons as majority carriers.",
+      "why": "N-type regions have mobile negative charges (electrons) that can flow when voltage is applied.",
+      "category": "semiconductor"
+    },
+    "P-type": {
+      "origin_level": "level_02",
+      "definition": "Semiconductor doped with atoms having 3 valence electrons (e.g., boron), creating holes (electron vacancies) as majority carriers.",
+      "why": "P-type regions have mobile positive charges (holes) that can flow when voltage is applied.",
+      "category": "semiconductor"
+    },
+    "P-N Junction": {
+      "origin_level": "level_02",
+      "definition": "Where P-type and N-type silicon meet. Electrons diffuse from N to P, holes from P to N, leaving a 'depletion region' of immobile ions with a built-in electric field (~0.7V for silicon).",
+      "why": "The depletion region acts as a controllable barrier. Apply voltage one way → barrier shrinks → current flows (forward bias). Apply voltage the other way → barrier grows → no current (reverse bias).",
+      "analogy": "Like a one-way valve that opens only when you push hard enough in the right direction.",
+      "category": "semiconductor"
+    },
+    "Depletion Region": {
+      "origin_level": "level_02",
+      "definition": "The region at a P-N junction where electrons and holes have combined, leaving immobile ions. Creates a built-in electric field.",
+      "why": "The depletion region is the 'barrier' that must be overcome for current to flow. Its width changes with applied voltage.",
+      "category": "semiconductor"
+    },
+    "Forward Bias": {
+      "origin_level": "level_02",
+      "definition": "Applying positive voltage to P-side and negative to N-side of a junction, shrinking the depletion region and allowing current flow.",
+      "why": "Forward bias is how we turn a diode or transistor ON—reducing the barrier allows carriers to cross.",
+      "category": "semiconductor"
+    },
+    "Reverse Bias": {
+      "origin_level": "level_02",
+      "definition": "Applying negative voltage to P-side and positive to N-side, widening the depletion region and blocking current flow.",
+      "why": "Reverse bias is how we turn a junction OFF—the barrier blocks carrier flow.",
+      "category": "semiconductor"
+    },
+    "Transistor": {
+      "origin_level": "level_02",
+      "definition": "A semiconductor device with three terminals: a control input (Bse/Gate) and a current path (Collector-Emitter or Drain-Source). Small control signal → large current flow or blockage.",
+      "why": "This is how we compute! B controlling current flow with another electrical signal (not a mechanical switch), we can build circuits that control other circuits—the essence of logic.",
+      "analogy": "Like a water faucet: a small twist of your hand (control signal) controls a large water flow (main current).",
+      "category": "semiconductor"
+    },
+    "Threshold Voltage": {
+      "origin_level": "level_02",
+      "symbol": "V_th",
+      "units": "Volts (typically 0.3-0.7V)",
+      "definition": "The minimum gate-to-source voltage needed for a MOSFET to start conducting. Blow V_th, the transistor is OFF.",
+      "why": "V_th determines when the transistor switches ON. Lower V_th = faster switching but more leakage current when OFF.",
+      "latex": "I_D = 0 when V_{GS} < V_{th}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">D</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\">0</span><span class=\"mord mathnormal\" style=\"margin-right:0.02691em;\">w</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">n</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">G</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&lt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">h</span></span></span></span>",
+      "category": "semiconductor"
+    },
+    "Logic HIGH": {
+      "origin_level": "level_03",
+      "definition": "A voltage level representing binary 1, typically close to VDD (e.g., 3.3V or 5V in older systems, ~1V in modern chips).",
+      "why": "Logic HIGH represents 'true' or '1' in digital circuits. The actual voltage depends on the technology.",
+      "latex": "V_{HIGH} ≈ VDD",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.08125em;\">H</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">G</span><span class=\"mord mathnormal\" style=\"margin-right:0.08125em;\">H</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≈</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">DD</span></span></span></span>",
+      "category": "digital_logic"
+    },
+    "Logic LOW": {
+      "origin_level": "level_03",
+      "definition": "A voltage level representing binary 0, typically close to GND (0V).",
+      "why": "Logic LOW represents 'false' or '0' in digital circuits.",
+      "latex": "V_{LOW} ≈ GND = 0V",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">W</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≈</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">GN</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord\">0</span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span></span></span></span>",
+      "category": "digital_logic"
+    },
+    "Pull-Up Network": {
+      "origin_level": "level_03",
+      "definition": "The PMOS transistor network in CMOS that connects output to VDD (HIGH) when active.",
+      "why": "Pull-up drives the output HIGH. In CMOS, PMOS transistors are used because they conduct well when their gate is LOW.",
+      "category": "cmos_circuits"
+    },
+    "Pull-Down Network": {
+      "origin_level": "level_03",
+      "definition": "The NMOS transistor network in CMOS that connects output to GND (LOW) when active.",
+      "why": "Pull-down drives the output LOW. NMOS transistors conduct when their gate is HIGH.",
+      "category": "cmos_circuits"
+    },
+    "Capacitance": {
+      "origin_level": "level_03",
+      "symbol": "C",
+      "units": "Farads (F)",
+      "definition": "The ability to store charge. Measured in Farads (F). Real gates have small 'parasitic' capacitance that must be charged to change voltage.",
+      "why": "Charging this capacitance takes energy and time. This causes delay and power consumption.",
+      "analogy": "Like filling a bucket (capacitor) with a hose. You can't instantly fill it; it takes time.",
+      "latex": "C = Q / V",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mord\">/</span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span></span></span></span>",
+      "category": "physics_electrical"
+    },
+    "Power": {
+      "origin_level": "level_03",
+      "symbol": "P",
+      "units": "Watts (W)",
+      "definition": "Rate of energy use. Measured in Watts (W). 1 Watt = 1 Joule/second.",
+      "why": "Critical for battery life and cooling. Chips produce heat because they consume power.",
+      "latex": "P = E / t",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">E</span><span class=\"mord\">/</span><span class=\"mord mathnormal\">t</span></span></span></span>",
+      "category": "physics_electrical"
+    },
+    "Frequency": {
+      "origin_level": "level_03",
+      "symbol": "f",
+      "units": "Hertz (Hz)",
+      "definition": "The number of cycles per second, measured in Hertz (Hz). 1 GHz = 10⁹ Hz.",
+      "why": "Determines calculation speed. Higher frequency means more processing per second. Clock frequency is the 'heartbeat' of the CPU.",
+      "latex": "f = 1 / T",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">1/</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span></span></span></span>",
+      "category": "timing"
+    },
+    "Period": {
+      "origin_level": "level_03",
+      "symbol": "T",
+      "units": "seconds (s)",
+      "definition": "The time for one complete cycle, measured in seconds (s). 1 ns = 10⁻⁹ s.",
+      "why": "Clock period determines how long each 'heartbeat' of the CPU lasts. All operations must complete within one period.",
+      "latex": "T = 1 / f",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">1/</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span></span></span></span>",
+      "category": "timing"
+    },
+    "Static Power": {
+      "origin_level": "level_03",
+      "definition": "Power consumed while holding a state (ideally zero in CMOS). Caused by leakage currents in real transistors.",
+      "why": "CMOS's near-zero static power was revolutionary. Before CMOS, chips drew power even when idle.",
+      "latex": "P_{static} ≈ 0 (ideal CMOS)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">s</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">c</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≈</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">0</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">lCMOS</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "power"
+    },
+    "Dynamic Power": {
+      "origin_level": "level_03",
+      "definition": "Power consumed during switching (charging/discharging capacitances). Proportional to frequency and V².",
+      "why": "Dynamic power is the main power consumer in active circuits. Lowering voltage dramatically reduces power.",
+      "latex": "P_{dynamic} = C × V² × f",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">d</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mord mathnormal\">nami</span><span class=\"mord mathnormal\">c</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8974em;vertical-align:-0.0833em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span></span></span></span>",
+      "category": "power"
+    },
+    "Noise Margin": {
+      "origin_level": "level_03",
+      "definition": "The 'safety buffer' between what a gate outputs as HIGH/LOW and what the next gate requires as a valid HIGH/LOW input. Larger margin = more immunity to electrical noise.",
+      "why": "Real circuits have noise (crosstalk, power supply ripple, etc.). Noise margins ensure that small disturbances don't flip bits incorrectly—critical for reliable computing.",
+      "analogy": "Like requiring 'definitely hot' (>80°C) or 'definitely cold' (<20°C) instead of exact temperatures. The gap (20-80°C) is where we're uncertain, so we avoid it.",
+      "category": "digital_logic"
+    },
+    "Series Circuit": {
+      "origin_level": "level_04",
+      "definition": "Components connected end-to-end so current must flow through ALL of them. If any component fails (opens), the entire current path breaks.",
+      "why": "Series connection IS AND logic physically: current flows (output=1) only if Switch_A AND Switch_BAND... all conduct.",
+      "analogy": "Like a chain of doors you must pass through—if ANY door is locked, you can't reach the end.",
+      "category": "circuit_topology"
+    },
+    "Parallel Circuit": {
+      "origin_level": "level_05",
+      "definition": "Components connected side-by-side so current can flow through ANY path. Even if some paths fail (open), current can still flow through the remaining ones.",
+      "why": "Parallel connection IS OR logic physically: current flows (output=1) if Path_A OR Path_BOR... any path conducts.",
+      "analogy": "Like multiple doors to a room—if ANY door is open, you can enter.",
+      "category": "circuit_topology"
+    },
+    "Boolean AND": {
+      "origin_level": "level_04",
+      "symbol": "·, ∧, AND",
+      "definition": "A logical operation that outputs TRUE (1) only when ALL inputs are TRUE. Written as A·\\bar{B}, A∧\\bar{B}, or A AND \\bar{B}.",
+      "why": "AND is one of three fundamental operations (with OR and NOT) that can express any computable function. It's essential for decision-making in circuits.",
+      "latex": "Y = A · \\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "truth_table": {
+        "10": 0,
+        "11": 1,
+        "00": 0,
+        "01": 0
+      },
+      "category": "boolean_logic"
+    },
+    "Bolean OR": {
+      "origin_level": "level_05",
+      "symbol": "+, ∨, OR",
+      "definition": "A logical operation that outputs TRUE (1) when AT LEAST ONE input is TRUE. Written as A+\\bar{B}, A∨\\bar{B}, or A OR \\bar{B}.",
+      "why": "OR is inclusive: even if both inputs are true, output is still true (1+1=1 in Bolean algebra, not 2!). This differs from everyday 'or' which often means 'one but not both'.",
+      "latex": "Y = A + \\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "truth_table": {
+        "10": 1,
+        "11": 1,
+        "00": 0,
+        "01": 1
+      },
+      "category": "boolean_logic"
+    },
+    "Bolean NOT": {
+      "origin_level": "level_03",
+      "symbol": "¯, ′, ¬, NOT",
+      "definition": "A logical operation that outputs the opposite of its input. Also called inversion or complement.",
+      "why": "NOT is the simplest logic operation—it flips 0 to 1 and 1 to 0. Combined with AND and OR, it can express any Bolean function.",
+      "latex": "Y = \\bar{A} = NOT(A)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">NOT</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span></span></span></span>",
+      "truth_table": {
+        "0": 1,
+        "1": 0
+      },
+      "category": "boolean_logic"
+    },
+    "Truth Table": {
+      "origin_level": "level_04",
+      "definition": "A table listing ALL possible input combinations and their corresponding outputs. For n inputs, there are 2^n rows.",
+      "why": "Truth tables completely define a logic function. They're the specification that your circuit must match.",
+      "analogy": "Like a lookup table: given inputs, look up the correct output.",
+      "category": "boolean_logic"
+    },
+    "Bit Masking": {
+      "origin_level": "level_04",
+      "definition": "Using AND with a pattern (mask) to extract or clear specific bits. AND with 1 keeps the bit; AND with 0 clears it.",
+      "why": "Bt masking is used constantly in programming: extracting fields from data, clearing flags, testing specific bits. It's the hardware behind bitwise & operators.",
+      "latex": "bit = (data AND mask)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">bi</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">ma</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\" style=\"margin-right:0.03148em;\">k</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "binary_operations"
+    },
+    "Propagation Delay": {
+      "origin_level": "level_04",
+      "symbol": "t_pd",
+      "units": "seconds (typically ps or ns)",
+      "definition": "The time for an output to change after an input changes. Caused by charging/discharging parasitic capacitances.",
+      "why": "Propagation delay limits how fast circuits can operate. The slowest path (critical path) determines maximum frequency.",
+      "latex": "t_{pd} = R_{on} × C_{load}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.9805em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">p</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">d</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">o</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">d</span></span></span></span>",
+      "category": "timing"
+    },
+    "Universal Gate": {
+      "origin_level": "level_06",
+      "definition": "A gate type that can implement ANY Bolean function using only that gate type. NAND and NOR are the only two-input universal gates.",
+      "why": "Universality means one manufacturing process, one cell type, simpler design tools. This dramatically reduced the cost and complexity of chip production.",
+      "analogy": "Like having Lego blocks that can build anything—you don't need a separate factory for each shape.",
+      "category": "boolean_logic"
+    },
+    "Functional Completeness": {
+      "origin_level": "level_06",
+      "definition": "A set of operations is functionally complete if every possible Bolean function can be expressed using only those operations. {NAND}, {NOR}, {AND, NOT}, {OR, NOT} are all complete.",
+      "why": "Proves we can build ANY circuit from a minimal set of basic operations. NAND alone is sufficient!",
+      "latex": "NOT(A) = NAND(A,A)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">NOT</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "boolean_logic"
+    },
+    "Exclusive OR": {
+      "origin_level": "level_08",
+      "symbol": "⊕, XOR",
+      "definition": "A logic gate that outputs 1 if and only if exactly one of its inputs is 1. Outputs 0 when inputs are the same.",
+      "why": "XOR detects difference between two bits—essential for comparison, error detection, and arithmetic.",
+      "latex": "A ⊕ \\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "truth_table": {
+        "10": 1,
+        "11": 0,
+        "00": 0,
+        "01": 1
+      },
+      "category": "boolean_logic"
+    },
+    "Modulo-2 Arithmetic": {
+      "origin_level": "level_08",
+      "definition": "Addition where 1+1=0 (wraps around). XOR performs this naturally: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0.",
+      "why": "Forms the basis of binary addition (ignoring carry) and polynomial arithmetic in error detection.",
+      "latex": "(a + b) mod 2",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">a</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">b</span><span class=\"mclose\">)</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">d</span><span class=\"mord\">2</span></span></span></span>",
+      "category": "arithmetic"
+    },
+    "Parity Bt": {
+      "origin_level": "level_08",
+      "definition": "A single bit added to data to make the total number of 1s even (even parity) or odd (odd parity).",
+      "why": "If a single bit flips during transmission, the parity changes, detecting the error. Simple but catches all single-bit errors.",
+      "latex": "Parity = \\bar{B}₀ ⊕ \\bar{B}₁ ⊕ \\bar{B}₂ ⊕ ... ⊕ \\bar{B}ₙ",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">0</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"mord\">...</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>",
+      "category": "error_detection"
+    },
+    "De Morgan's First Theorem": {
+      "origin_level": "level_09",
+      "definition": "The complement of a product equals the sum of complements: NOT(A AND \\bar{B}) = NOT(A) OR NOT(\\bar{B}).",
+      "why": "Transforms AND operations into OR operations with inversions—enables gate substitution.",
+      "analogy": "\"It's NOT (raining AND sunny)\" = \"It's NOT raining OR it's NOT sunny\"—either condition breaks the combo.",
+      "latex": "NOT(A·\\bar{B}) = \\bar{A} + \\bar{\\bar{B}}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">NOT</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.9034em;vertical-align:-0.0833em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span></span></span></span>",
+      "category": "boolean_algebra"
+    },
+    "De Morgan's Second Theorem": {
+      "origin_level": "level_09",
+      "definition": "The complement of a sum equals the product of complements: NOT(A OR \\bar{B}) = NOT(A) AND NOT(\\bar{B}).",
+      "why": "Transforms OR operations into AND operations with inversions—the dual of the first theorem.",
+      "analogy": "\"It's NOT (raining OR sunny)\" = \"It's NOT raining AND it's NOT sunny\"—both must fail.",
+      "latex": "NOT(A+\\bar{B}) = \\bar{A} · \\bar{\\bar{B}}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">NOT</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span></span></span></span>",
+      "category": "boolean_algebra"
+    },
+    "Bubble Pushing": {
+      "origin_level": "level_09",
+      "definition": "A schematic technique where inversion 'bubbles' can be moved through gates by swapping AND↔OR.",
+      "why": "Simplifies circuit analysis and enables NAND-only or NOR-only implementations.",
+      "category": "boolean_algebra"
+    },
+    "Multiplexer": {
+      "origin_level": "level_10",
+      "definition": "A combinational circuit that selects one of N data inputs and routes it to the output, based on select lines.",
+      "why": "MUXes are the building blocks of data routing—used in CPUs, memory systems, and FPGAs.",
+      "analogy": "Like a railroad switch: one track in, select which of two tracks to continue on.",
+      "latex": "Out = (A · \\bar{S}) + (B· S)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0701em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "combinational_circuits"
+    },
+    "Select Lines": {
+      "origin_level": "level_10",
+      "definition": "Control inputs that determine which data input is passed to the output. n select lines can choose among 2ⁿ inputs.",
+      "why": "Bnary encoding of selection is efficient—2 bits can select from 4 inputs, 3 bits from 8 inputs.",
+      "latex": "Inputs = 2^(select lines)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.138em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.888em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mopen mtight\">(</span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">se</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">ec</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">tl</span><span class=\"mord mathnormal\">in</span><span class=\"mord mathnormal\">es</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "combinational_circuits"
+    },
+    "Decoder": {
+      "origin_level": "level_11",
+      "definition": "A combinational circuit that converts an n-bit binary input into one of 2ⁿ output lines, activating exactly one output.",
+      "why": "Decoders translate binary addresses into physical selection signals—essential for memory and address decoding.",
+      "latex": "n inputs → 2ⁿ outputs",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.854em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">nin</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8588em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span></span></span></span>",
+      "category": "combinational_circuits"
+    },
+    "One-Hot Encoding": {
+      "origin_level": "level_11",
+      "definition": "A representation where exactly one bit is '1' and all others are '0'. For value i, bit i is 1.",
+      "why": "One-hot signals are easy to use as enable lines—no further decoding needed. Common for FSM state encoding.",
+      "latex": "For value i: bit i = 1, all others = 0",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">F</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">i</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">bi</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">1</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">ll</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">ers</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">0</span></span></span></span>",
+      "category": "encoding"
+    },
+    "Minterm": {
+      "origin_level": "level_11",
+      "definition": "A product (AND) of all input variables where each variable appears once, either complemented or uncomplemented.",
+      "why": "Each decoder output is a minterm of the inputs—the mathematical foundation of decoders.",
+      "latex": "m₀ = \\bar{A}·\\bar{\\bar{B}}, m₁ = \\bar{A}·\\bar{B}, m₂ = A·\\bar{\\bar{B}}, m₃ = A·\\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.5806em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">0</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">3</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "category": "boolean_algebra"
+    },
+    "Half Adder": {
+      "origin_level": "level_12",
+      "definition": "A circuit that adds two single-bit inputs (A, \\bar{B}) and produces a Sum and a Carry output.",
+      "why": "The half adder is the building block—it handles the simplest case of binary addition.",
+      "latex": "Sum = A ⊕ \\bar{B}, Carry = A · \\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">m</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">rry</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "category": "arithmetic_circuits"
+    },
+    "Full Adder": {
+      "origin_level": "level_13",
+      "definition": "A circuit that adds three single-bit inputs (A, \\bar{B}, Carry-in) and produces Sum and Carry-out.",
+      "why": "Full adders can be chained to create n-bit adders—the carry-out of one stage becomes carry-in of the next.",
+      "latex": "Sum = A ⊕ B⊕ Cin, Cout = (A·\\bar{B}) + (Cin·(A⊕\\bar{B}))",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">m</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mclose\">))</span></span></span></span>",
+      "category": "arithmetic_circuits"
+    },
+    "Carry-In": {
+      "origin_level": "level_13",
+      "symbol": "Cin",
+      "definition": "The carry bit from the previous (lower) bit position. Distinguishes full adder from half adder.",
+      "why": "In multi-bit addition, each bit position must account for overflow from the previous position.",
+      "latex": "Cin comes from previous stage's Cout",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.9463em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span><span class=\"mord mathnormal\">co</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\">es</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\">ro</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">re</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">ss</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord\"><span class=\"mord mathnormal\">e</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7519em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">′</span></span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span></span></span></span>",
+      "category": "arithmetic_circuits"
+    },
+    "Carry-Out": {
+      "origin_level": "level_12",
+      "symbol": "Cout",
+      "definition": "A signal indicating the addition overflowed the current bit. Carry is 1 only when both inputs are 1 (in half adder).",
+      "why": "The carry must propagate to the next higher bit position to get the correct total.",
+      "latex": "Carry = A · B(AND)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">rry</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "arithmetic_circuits"
+    },
+    "Generate": {
+      "origin_level": "level_13",
+      "symbol": "G",
+      "definition": "A condition where a carry is produced regardless of incoming carry. Occurs when both A and Bare 1.",
+      "why": "Generate signals enable carry-lookahead: compute carries without waiting for ripple.",
+      "latex": "G = A · \\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">G</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">⋅</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "category": "arithmetic_circuits"
+    },
+    "Propagate": {
+      "origin_level": "level_13",
+      "symbol": "P",
+      "definition": "A condition where an incoming carry passes through to output. Occurs when exactly one of A or Bis 1.",
+      "why": "Propagate signals determine whether a carry chain continues or stops at each stage.",
+      "latex": "P = A ⊕ \\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "category": "arithmetic_circuits"
+    },
+    "SR Latch": {
+      "origin_level": "level_14",
+      "definition": "A bistable circuit with Set (S) and Reset (R) inputs. S=1 sets output Q to 1; R=1 resets Q to 0; both=0 holds the previous state.",
+      "why": "The SR latch introduces MEMORY—the ability to store a bit of information. This is revolutionary: circuits can now remember!",
+      "analogy": "Like a light switch with SET and RESET buttons: press SET and the light stays on; press RESET and it stays off; neither and it stays as it was.",
+      "latex": "Q = NOR(R, \\bar{Q}), \\bar{Q} = NOR(S, Q)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0701em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">NOR</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord accent\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">Q</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1944em;\"><span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord accent\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">Q</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1944em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">NOR</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Bstable": {
+      "origin_level": "level_14",
+      "definition": "A circuit with two stable states that can remain in either state indefinitely. SR latch is the simplest example.",
+      "why": "Bstability is the foundation of digital memory—without it, circuits forget instantly.",
+      "category": "sequential_circuits"
+    },
+    "Positive Feedback": {
+      "origin_level": "level_14",
+      "definition": "When output feeds back to reinforce itself. In SR latch, if Q=1, the feedback keeps Q at 1.",
+      "why": "Positive feedback creates bistability—once in a state, the latch 'wants' to stay there.",
+      "category": "sequential_circuits"
+    },
+    "Forbidden State": {
+      "origin_level": "level_14",
+      "definition": "In SR latch, when both Set and Reset are active (S=R=1), the outputs are undefined and may oscillate when released.",
+      "why": "This is a race condition—when S and R both go to 0, the latch may settle unpredictably. The D flip-flop avoids this.",
+      "latex": "S=R=1: Q=\\bar{Q}=0 (invalid), then race when released",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">1</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord accent\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">Q</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1944em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">0</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">in</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">d</span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">ce</span><span class=\"mord mathnormal\" style=\"margin-right:0.02691em;\">w</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">re</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">se</span><span class=\"mord mathnormal\">d</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "D Flip-Flop": {
+      "origin_level": "level_15",
+      "definition": "A memory element that captures input D only on the active edge of the clock (usually rising edge). Output Q holds this value until the next clock edge.",
+      "why": "Edge-triggering enables synchronous design—all state changes happen at a predictable moment, making complex systems manageable.",
+      "analogy": "Like a camera: D is the scene, clock edge is the shutter click. The photo (Q) captures the moment and holds it.",
+      "latex": "Q(next) = D (at clock edge)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">x</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">c</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">oc</span><span class=\"mord mathnormal\" style=\"margin-right:0.03148em;\">k</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Edge Triggering": {
+      "origin_level": "level_15",
+      "definition": "The flip-flop responds only during the transition of the clock signal (0→1 for positive edge, 1→0 for negative edge).",
+      "why": "Edge triggering prevents multiple captures during a clock period—only one capture per cycle, regardless of how long the clock is HIGH.",
+      "latex": "Trigger on CLK: 0→1 (rising edge)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">gg</span><span class=\"mord mathnormal\">ero</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">L</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">K</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">0</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">1</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">in</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Setup Time": {
+      "origin_level": "level_15",
+      "symbol": "t_su",
+      "units": "seconds (typically ps)",
+      "definition": "The minimum time D must be stable \\bar{B}EFORE the clock edge for reliable capture.",
+      "why": "The internal logic needs time to propagate D to the capture point before clock arrives. Violating setup time causes metastability.",
+      "latex": "D stable for t_{su} before clock edge",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Ds</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">ab</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">s</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">b</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\">orec</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">oc</span><span class=\"mord mathnormal\" style=\"margin-right:0.03148em;\">k</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span></span></span></span>",
+      "category": "timing"
+    },
+    "Hold Time": {
+      "origin_level": "level_15",
+      "symbol": "t_h",
+      "units": "seconds (typically ps)",
+      "definition": "The minimum time D must remain stable AFTER the clock edge.",
+      "why": "The capture logic needs D to remain stable while it's being latched internally. Violating hold time causes metastability.",
+      "latex": "D stable for t_h after clock edge",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Ds</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">ab</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">erc</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">oc</span><span class=\"mord mathnormal\" style=\"margin-right:0.03148em;\">k</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span></span></span></span>",
+      "category": "timing"
+    },
+    "Metastability": {
+      "origin_level": "level_15",
+      "definition": "An unstable state where a flip-flop's output is neither clearly 0 nor 1. Occurs when setup/hold times are violated.",
+      "why": "Metastability can cause system failures. Synchronizer chains give extra time for resolution.",
+      "category": "timing"
+    },
+    "T Flip-Flop": {
+      "origin_level": "level_16",
+      "definition": "A flip-flop that toggles its output on each active clock edge. When T=1, Q_next = NOT(Q). When T=0, Q holds.",
+      "why": "T flip-flops are the building blocks of counters and frequency dividers—essential for digital timing.",
+      "analogy": "Like a light switch that flips every time you tap it—tap once for ON, tap again for OFF.",
+      "latex": "Q_{next} = Q ⊕ T (toggle when T=1)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">Q</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">x</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">gg</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.02691em;\">w</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">1</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Frequency Division": {
+      "origin_level": "level_16",
+      "definition": "Reducing clock frequency by an integer factor. A T flip-flop divides by 2; n cascaded T-FFs divide by 2ⁿ.",
+      "why": "High-frequency oscillators are precise but fast. Division creates usable lower frequencies for various purposes.",
+      "latex": "f_{out} = f_{in} / 2ⁿ",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">o</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">n</span><span class=\"mord\">/</span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span></span></span></span>",
+      "category": "timing"
+    },
+    "Duty Cycle": {
+      "origin_level": "level_16",
+      "definition": "The percentage of time a signal is HIGH during one period. T flip-flop output has exactly 50% duty cycle.",
+      "why": "Many circuits require specific duty cycles. 50% is symmetric and often ideal for clocks.",
+      "latex": "Duty = T_{high} / T_{period} × 100%",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">h</span><span class=\"mord\">/</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">p</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">d</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">100</span></span></span></span>",
+      "category": "timing"
+    },
+    "Bnary Counter": {
+      "origin_level": "level_17",
+      "definition": "A sequential circuit that counts through binary states in sequence: 00→01→10→11→00 (for 2-bit).",
+      "why": "Counters track events, generate addresses, and form the core of timers and program counters.",
+      "analogy": "Like an odometer: each digit counts up, and when it reaches max, it rolls over and carries to the next digit.",
+      "latex": "States = 2ⁿ for n-bit counter",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">es</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">bi</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">co</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Ripple Counter": {
+      "origin_level": "level_17",
+      "definition": "A counter where each flip-flop is clocked by the output of the previous stage. Changes 'ripple' through.",
+      "why": "Simple design using cascaded T flip-flops, but slower due to accumulated propagation delay.",
+      "latex": "Delay = n × t_{prop}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">De</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.9012em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">p</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">ro</span><span class=\"mord mathnormal\">p</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Synchronous Counter": {
+      "origin_level": "level_17",
+      "definition": "A counter where all flip-flops share the same clock. Combinational logic determines which FFs toggle.",
+      "why": "All outputs change simultaneously, enabling faster operation and avoiding glitches.",
+      "latex": "Delay = t_{prop} (same for all bits)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">De</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">p</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">ro</span><span class=\"mord mathnormal\">p</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">am</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">ll</span><span class=\"mord mathnormal\">bi</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Rollover": {
+      "origin_level": "level_17",
+      "definition": "When a counter exceeds its maximum value and wraps around to zero. For n bits: 2ⁿ-1 → 0.",
+      "why": "Rollover can generate interrupts, trigger events, or indicate a complete counting cycle.",
+      "latex": "11...1 + 1 = 00...0",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7278em;vertical-align:-0.0833em;\"></span><span class=\"mord\">11...1</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">1</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">00...0</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Finite State Machine": {
+      "origin_level": "level_18",
+      "definition": "A computational model with a finite number of states, transitions between states based on inputs, and outputs determined by state (and possibly inputs).",
+      "why": "FSMs are the foundation of sequential logic design—they model any system with memory and defined behaviors.",
+      "latex": "FSM = (States, Inputs, Outputs, Transitions)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">FSM</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">es</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">an</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">s</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Moore Machine": {
+      "origin_level": "level_18",
+      "definition": "An FSM where outputs depend ONLY on the current state, not on inputs. Outputs are 'attached' to states.",
+      "why": "Moore machines have stable, glitch-free outputs that change only on clock edges.",
+      "latex": "Output = f(State)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Mealy Machine": {
+      "origin_level": "level_18",
+      "definition": "An FSM where outputs depend on both current state AND current inputs. Outputs are 'attached' to transitions.",
+      "why": "Mealy machines can respond faster (within same clock cycle) but may have glitchy outputs.",
+      "latex": "Output = f(State, Input)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "State Encoding": {
+      "origin_level": "level_18",
+      "definition": "The binary representation chosen for each state. Options: binary (minimum FFs), one-hot (one FF per state), Gray code.",
+      "why": "Encoding affects circuit complexity, speed, and power consumption. One-hot is faster but uses more flip-flops.",
+      "latex": "Bnary: ceil(log₂N) FFs. One-hot: N FFs.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mord mathnormal\">ina</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">ry</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">ce</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">o</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mclose\">)</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">FF</span><span class=\"mord mathnormal\">s</span><span class=\"mord\">.</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">e</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">NFF</span><span class=\"mord mathnormal\">s</span><span class=\"mord\">.</span></span></span></span>",
+      "category": "sequential_circuits"
+    },
+    "Arithmetic Logic Unit": {
+      "origin_level": "level_19",
+      "definition": "A combinational circuit that performs arithmetic (add, subtract) and logic (AND, OR, XOR) operations on binary operands.",
+      "why": "The ALU is the 'calculator' inside every CPU. All computations happen here.",
+      "latex": "Result = Operation(A, \\bar{B}, Opcode)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mord mathnormal\">es</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">lt</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">Op</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">n</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">Op</span><span class=\"mord mathnormal\">co</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Opcode": {
+      "origin_level": "level_19",
+      "definition": "A binary code that selects which operation the ALU performs. Different opcodes select ADD, SU\\bar{B}, AND, OR, etc.",
+      "why": "The opcode comes from the instruction being executed—how software controls hardware.",
+      "latex": "ALU_{Op}: 00=AND, 01=OR, 10=ADD, 11=SU\\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\">L</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">O</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">p</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">00</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">01</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">OR</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">10</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">DD</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">11</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">U</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Status Flags": {
+      "origin_level": "level_19",
+      "definition": "Single-bit outputs indicating properties of the ALU result: Zero (Z), Negative (N), Carry (C), Overflow (V).",
+      "why": "Flags enable conditional branches. \\bar{B}EQ checks Z=1; \\bar{B}LT checks N≠V.",
+      "latex": "Z = (Result == 0), N = Result[MS\\bar{B}]",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">Z</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mord mathnormal\">es</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">lt</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">==</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">0</span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mord mathnormal\">es</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">lt</span><span class=\"mopen\">[</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">MS\\bar{B}</span><span class=\"mclose\">]</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Two's Complement": {
+      "origin_level": "level_19",
+      "definition": "A representation for signed binary numbers where negative numbers are represented as the bitwise complement plus one.",
+      "why": "Lets us use the same adder hardware for both addition and subtraction. A - B= A + NOT(\\bar{B}) + 1.",
+      "latex": "-N = ~N + 1",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord\">−</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace nobreak\"> </span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">1</span></span></span></span>",
+      "category": "arithmetic"
+    },
+    "Von Neumann Architecture": {
+      "origin_level": "level_boss",
+      "definition": "A computer architecture where program instructions and data share the same memory and bus, with sequential instruction execution.",
+      "why": "THE architecture of modern computers. Stored-program concept allows flexible software that can modify itself.",
+      "latex": "Memory holds both Instructions and Data",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">ory</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">b</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">c</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">an</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Datapath": {
+      "origin_level": "level_boss",
+      "definition": "The hardware components that perform data processing: registers, ALU, multiplexers, and connecting buses.",
+      "why": "The datapath is where computation physically happens—data flows through and is transformed.",
+      "latex": "Datapath = Registers + ALU + MUXes + Bses",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">ers</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">LU</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">U</span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">X</span><span class=\"mord mathnormal\">es</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">ses</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Control Unit": {
+      "origin_level": "level_boss",
+      "definition": "The FSM that decodes instructions and generates control signals to orchestrate datapath operations.",
+      "why": "The control unit is the 'brain' that tells the datapath what to do each cycle.",
+      "latex": "Control Signals = f(Opcode)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">ro</span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">lS</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">na</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">Op</span><span class=\"mord mathnormal\">co</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Fetch-Decode-Execute Cycle": {
+      "origin_level": "level_boss",
+      "definition": "The fundamental CPU operation: (1) Fetch instruction from memory, (2) Decode opcode and operands, (3) Execute.",
+      "why": "This cycle repeats billions of times per second, running every program you use.",
+      "latex": "Loop: Fetch → Decode → Execute → (repeat)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">L</span><span class=\"mord mathnormal\">oo</span><span class=\"mord mathnormal\">p</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">F</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">c</span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">Deco</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">e</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">E</span><span class=\"mord mathnormal\">x</span><span class=\"mord mathnormal\">ec</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">re</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Pipeline": {
+      "origin_level": "level_boss",
+      "definition": "A technique where multiple instructions are overlapped in execution. While one instruction executes, the next is being decoded, and another is being fetched.",
+      "why": "Pipelining increases throughput by keeping all parts of the CPU busy simultaneously.",
+      "latex": "Stages: IF → ID → EX → MEM → W\\bar{B}",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">es</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">F</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">EX</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">MEM</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">W</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">\\bar{B}</span></span></span></span>",
+      "category": "computer_architecture"
+    },
+    "Pipeline Hazard": {
+      "origin_level": "level_boss",
+      "definition": "Problems preventing next instruction from executing. Types: Data hazard (dependency), Control hazard (branch), Structural hazard (resource conflict).",
+      "why": "Hazards cause 'stalls' that reduce performance. Modern CPUs use forwarding, branch prediction to mitigate.",
+      "latex": "Stall cycles reduce effective IPC",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">ll</span><span class=\"mord mathnormal\">cyc</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">esre</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">cee</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">ff</span><span class=\"mord mathnormal\">ec</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span></span></span></span>",
+      "category": "computer_architecture"
+    }
+  },
+  "categories": {
+    "physics_electrical": {
+      "name": "Electrical Physics",
+      "description": "Fundamental electrical concepts: charge, current, voltage, resistance, capacitance",
+      "introduced_in": "level_01"
+    },
+    "semiconductor": {
+      "name": "Semiconductor Physics",
+      "description": "Semiconductor materials, doping, P-N junctions, transistor operation",
+      "introduced_in": "level_02"
+    },
+    "power_supply": {
+      "name": "Power Supply & CMOS",
+      "description": "VDD, GND, CMOS technology, power consumption",
+      "introduced_in": "level_03"
+    },
+    "digital_logic": {
+      "name": "Digital Logic Fundamentals",
+      "description": "Logic levels, noise margins, signal representation",
+      "introduced_in": "level_03"
+    },
+    "cmos_circuits": {
+      "name": "CMOS Circuit Design",
+      "description": "Pull-up/pull-down networks, CMOS implementation",
+      "introduced_in": "level_03"
+    },
+    "boolean_logic": {
+      "name": "Bolean Logic",
+      "description": "AND, OR, NOT, XOR, NAND, NOR operations",
+      "introduced_in": "level_03"
+    },
+    "boolean_algebra": {
+      "name": "Bolean Algebra",
+      "description": "De Morgan's theorems, bubble pushing, algebraic manipulation",
+      "introduced_in": "level_09"
+    },
+    "circuit_topology": {
+      "name": "Circuit Topology",
+      "description": "Series and parallel circuit connections",
+      "introduced_in": "level_04"
+    },
+    "binary_representation": {
+      "name": "Bnary Representation",
+      "description": "MS\\bar{B}, LS\\bar{B}, bit ordering, encoding schemes",
+      "introduced_in": "level_11"
+    },
+    "binary_operations": {
+      "name": "Bnary Operations",
+      "description": "Bt masking, shifting, logical operations on binary data",
+      "introduced_in": "level_04"
+    },
+    "timing": {
+      "name": "Timing & Synchronization",
+      "description": "Frequency, period, propagation delay, setup/hold times",
+      "introduced_in": "level_03"
+    },
+    "power": {
+      "name": "Power Consumption",
+      "description": "Static power, dynamic power, power optimization",
+      "introduced_in": "level_03"
+    },
+    "combinational_circuits": {
+      "name": "Combinational Logic Circuits",
+      "description": "MUX, decoder, encoder, LUT implementations",
+      "introduced_in": "level_10"
+    },
+    "arithmetic_circuits": {
+      "name": "Arithmetic Circuits",
+      "description": "Adders, subtractors, carry propagation",
+      "introduced_in": "level_12"
+    },
+    "arithmetic": {
+      "name": "Arithmetic Concepts",
+      "description": "Bnary addition, modulo-2 arithmetic, two's complement",
+      "introduced_in": "level_08"
+    },
+    "sequential_circuits": {
+      "name": "Sequential Logic Circuits",
+      "description": "Latches, flip-flops, counters, state machines",
+      "introduced_in": "level_14"
+    },
+    "error_detection": {
+      "name": "Error Detection",
+      "description": "Parity, CRC, error correction codes",
+      "introduced_in": "level_08"
+    },
+    "encoding": {
+      "name": "Data Encoding",
+      "description": "One-hot, Gray code, binary encoding schemes",
+      "introduced_in": "level_11"
+    },
+    "memory": {
+      "name": "Memory Systems",
+      "description": "SRAM, DRAM, memory hierarchy",
+      "introduced_in": "level_14"
+    },
+    "computer_architecture": {
+      "name": "Computer Architecture",
+      "description": "ALU, datapath, control unit, CPU organization",
+      "introduced_in": "level_19"
+    },
+    "design_abstraction": {
+      "name": "Design Abstraction",
+      "description": "RTL, gate-level, transistor-level design",
+      "introduced_in": "level_07"
+    },
+    "integrated_circuits": {
+      "name": "Integrated Circuits",
+      "description": "FPGAs, ASICs, standard cells",
+      "introduced_in": "level_10"
+    },
+    "reliability": {
+      "name": "Reliability & Testing",
+      "description": "MT\\bar{B}F, metastability, timing margins",
+      "introduced_in": "level_14"
+    }
+  },
+  "by_level": {
+    "level_01": [
+      "electric_charge",
+      "voltage",
+      "current",
+      "resistance",
+      "conductor",
+      "insulator",
+      "electron",
+      "drift_velocity",
+      "signal",
+      "digital_signal",
+      "coulomb",
+      "ampere",
+      "volt",
+      "ohm"
+    ],
+    "level_02": [
+      "transistor",
+      "semiconductor",
+      "doping",
+      "n_type",
+      "p_type",
+      "pn_junction",
+      "switch",
+      "amplifier",
+      "\\bar{B}JT",
+      "MOSFET",
+      "FET",
+      "gate_terminal",
+      "drain",
+      "source",
+      "collector",
+      "emitter",
+      "base",
+      "threshold_voltage"
+    ],
+    "level_03": [
+      "VDD",
+      "GND",
+      "CMOS",
+      "NMOS",
+      "PMOS",
+      "inverter",
+      "pull_up",
+      "pull_down",
+      "power_dissipation",
+      "dynamic_power",
+      "capacitance",
+      "logic_high",
+      "logic_low",
+      "noise_margin",
+      "propagation_delay",
+      "frequency",
+      "period",
+      "hertz",
+      "NOT"
+    ],
+    "level_04": [
+      "AND",
+      "truth_table",
+      "series_circuit",
+      "boolean_and"
+    ],
+    "level_05": [
+      "OR",
+      "parallel_circuit",
+      "boolean_or",
+      "KCL"
+    ],
+    "level_06": [
+      "NAND",
+      "universal_gate",
+      "functional_completeness"
+    ],
+    "level_07": [
+      "logic_synthesis",
+      "technology_mapping",
+      "standard_cell"
+    ],
+    "level_08": [
+      "XOR",
+      "XNOR",
+      "modulo_2",
+      "parity",
+      "error_detection"
+    ],
+    "level_09": [
+      "de_morgan",
+      "bubble_pushing",
+      "boolean_algebra"
+    ],
+    "level_10": [
+      "MUX",
+      "multiplexer",
+      "select_lines",
+      "data_routing",
+      "LUT"
+    ],
+    "level_11": [
+      "decoder",
+      "address_decoding",
+      "one_hot",
+      "MS\\bar{B}",
+      "LS\\bar{B}",
+      "binary_number"
+    ],
+    "level_12": [
+      "half_adder",
+      "binary_addition",
+      "sum",
+      "carry"
+    ],
+    "level_13": [
+      "full_adder",
+      "carry_in",
+      "carry_out",
+      "ripple_carry",
+      "carry_lookahead",
+      "generate",
+      "propagate",
+      "FA",
+      "CLA"
+    ],
+    "level_14": [
+      "SR_latch",
+      "bistable",
+      "feedback",
+      "set",
+      "reset",
+      "metastability",
+      "forbidden_state",
+      "SRAM"
+    ],
+    "level_15": [
+      "D_flipflop",
+      "DFF",
+      "edge_triggered",
+      "clock",
+      "rising_edge",
+      "falling_edge",
+      "setup_time",
+      "hold_time",
+      "clock_to_Q",
+      "synchronous"
+    ],
+    "level_16": [
+      "T_flipflop",
+      "toggle",
+      "frequency_division",
+      "duty_cycle",
+      "prescaler"
+    ],
+    "level_17": [
+      "counter",
+      "binary_counter",
+      "ripple_counter",
+      "synchronous_counter",
+      "rollover",
+      "FSM"
+    ],
+    "level_18": [
+      "finite_state_machine",
+      "state_diagram",
+      "state_table",
+      "Moore_machine",
+      "Mealy_machine",
+      "state_encoding",
+      "next_state_logic"
+    ],
+    "level_19": [
+      "ALU",
+      "opcode",
+      "arithmetic",
+      "subtraction",
+      "twos_complement",
+      "status_flags",
+      "zero_flag",
+      "negative_flag",
+      "carry_flag",
+      "overflow_flag",
+      "IPC"
+    ],
+    "level_boss": [
+      "CPU",
+      "von_Neumann",
+      "datapath",
+      "control_unit",
+      "PC",
+      "register_file",
+      "instruction",
+      "fetch",
+      "decode",
+      "execute",
+      "pipeline",
+      "hazard",
+      "CPI"
+    ]
+  }
+}

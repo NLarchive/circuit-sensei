@@ -1,0 +1,233 @@
+{
+  "id": "level_11_hard",
+  "baseId": "level_11",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 4,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "No input: default 00"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "I0 only: output 00"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "I1 only: output 01"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "I1,I0: I1 wins, output 01"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "I2 only: output 10"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "I2,I0: I2 wins, output 10"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "I2,I1: I2 wins, output 10"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "I2,I1,I0: I2 wins, output 10"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "I3 only: output 11"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "I3,I0: I3 wins, output 11"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "I3,I1: I3 wins, output 11"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "I3,I1,I0: I3 wins, output 11"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "I3,I2: I3 wins, output 11"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "I3,I2,I0: I3 wins, output 11"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "I3,I2,I1: I3 wins, output 11"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "All inputs: I3 wins, output 11"
+    }
+  ],
+  "maxGates": 6,
+  "xpReward": 115,
+  "hint": "For 4 inputs (I3,I2,I1,I0), output bits are: Out1 = I3 OR I2, Out0 = I3 OR (I1 AND NOT I2). The highest active input wins.",
+  "title": "Priority Encoder",
+  "objective": "Find highest-priority active input",
+  "description": "Build a 4-to-2 priority encoder: output the binary index of the highest-numbered active input. If input 3 is high, output 11. Input 2 high (and 3 low) outputs 10, etc.",
+  "physicsVisual": "priority_encoder"
+}

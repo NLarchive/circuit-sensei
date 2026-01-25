@@ -1,0 +1,43 @@
+{
+  "name": "logic-architect",
+  "version": "1.0.0",
+  "description": "Interactive Logic Gates Simulator - Learn computer architecture from Zero to Hero",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "prerender": "node .scripts/prerender-formulas.js",
+    "generate": "node .scripts/generate_variants.js",
+    "generate:clean": "node .scripts/generate_variants.js --clean",
+    "migrate": "node .scripts/migrate_to_manifest.js",
+    "validate:manifest": "node .scripts/validate_generated.js",
+    "dev": "vite --no-open --clearScreen false",
+    "build": "npm run generate && npm run prerender && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.{js,css,html,json}\"",
+    "ci": "npm run lint && npm run generate && npm test && npm run build && npm run test:e2e"
+  },
+  "keywords": [
+    "logic-gates",
+    "simulator",
+    "education",
+    "computer-science"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "eslint": "^8.0.0",
+    "happy-dom": "^20.1.0",
+    "jsdom": "^27.4.0",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "dependencies": {
+    "katex": "^0.16.27"
+  }
+}

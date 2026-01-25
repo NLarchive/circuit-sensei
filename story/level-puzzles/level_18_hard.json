@@ -1,0 +1,127 @@
+{
+  "id": "level_18_hard",
+  "baseId": "level_18",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0, In=0: Start in S0"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑, In=1: S0→S1"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0, In=0: Setup"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑, In=0: S1→S10"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0, In=1: Setup"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "CLK↑, In=1: DETECTED 101! Output=1, →S1"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0, In=0: Setup"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑, In=0: S1→S10"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0, In=1: Setup"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "CLK↑, In=1: DETECTED 101 again!"
+    }
+  ],
+  "maxGates": 8,
+  "xpReward": 250,
+  "hint": "States: S0→(1)→S1→(0)→S10→(1)→S0+OUTPUT. Use 2 D-FFs for 3 states. Output = Q1·Q0'·Input (in state S10 and input=1). This is a Mealy machine: output depends on current state AND input.",
+  "title": "Sequence Detector (101)",
+  "objective": "Detect the pattern 101",
+  "description": "Build an FSM that outputs 1 when it detects the sequence '101' in a serial input stream. The detector should be overlapping (can immediately start detecting the next sequence).",
+  "physicsVisual": "sequence_detector"
+}

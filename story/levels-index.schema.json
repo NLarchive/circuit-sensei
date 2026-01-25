@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "levels-index.schema.json",
+  "title": "Logic Architect Levels Index",
+  "description": "Schema for the lightweight level index with references to theory and puzzle files",
+  "type": "object",
+  "required": ["$schema", "version", "levels"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to this schema"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Index version (semver)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the index"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when index was generated"
+    },
+    "totalLevels": {
+      "type": "integer",
+      "description": "Total number of playable levels (excluding intro)"
+    },
+    "structure": {
+      "type": "object",
+      "description": "Folder structure references",
+      "properties": {
+        "theoryFolder": {
+          "type": "string",
+          "description": "Path to theory content folder"
+        },
+        "puzzlesFolder": {
+          "type": "string",
+          "description": "Path to puzzle content folder"
+        },
+        "mediaFolder": {
+          "type": "string",
+          "description": "Path to media assets folder"
+        }
+      }
+    },
+    "levels": {
+      "type": "array",
+      "description": "Array of level index entries",
+      "items": {
+        "$ref": "#/definitions/levelIndexEntry"
+      }
+    }
+  },
+  "definitions": {
+    "levelIndexEntry": {
+      "type": "object",
+      "required": ["id", "tier", "title", "theoryFile"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^level_(0[0-9]|1[0-9]|boss)$",
+          "description": "Unique level identifier"
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["intro", "tier_1", "tier_2", "tier_3", "tier_4", "tier_5", "tier_6"],
+          "description": "Curriculum tier this level belongs to"
+        },
+        "title": {
+          "type": "string",
+          "description": "Display title of the level"
+        },
+        "objective": {
+          "type": "string",
+          "description": "Brief objective statement"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the level"
+        },
+        "isIndex": {
+          "type": "boolean",
+          "description": "True if this is the course overview (level_00)"
+        },
+        "theoryFile": {
+          "type": "string",
+          "description": "Relative path to the theory content file"
+        },
+        "puzzleFiles": {
+          "oneOf": [
+            {
+              "type": "object",
+              "description": "Map of variant names to puzzle file paths",
+              "properties": {
+                "easy": { "type": "string" },
+                "medium": { "type": "string" },
+                "hard": { "type": "string" },
+                "base": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "null",
+              "description": "Null for index levels with no puzzles"
+            }
+          ]
+        },
+        "mediaFile": {
+          "type": "string",
+          "description": "Optional path to level-specific media (music, video)"
+        }
+      }
+    }
+  }
+}

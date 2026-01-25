@@ -1,0 +1,122 @@
+{
+  "id": "level_10_hard",
+  "baseId": "level_10",
+  "variant": "hard",
+  "availableGates": [
+    "mux2to1"
+  ],
+  "inputs": 6,
+  "targetTruthTable": [
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 100,
+  "hint": "Layer 1: MUX1 selects D0 or D1 (using S0), MUX2 selects D2 or D3 (using S0). Layer 2: MUX3 selects between MUX1 and MUX2 outputs (using S1).",
+  "title": "4:1 MUX from 2:1 MUXes",
+  "objective": "Build a 4-input multiplexer",
+  "description": "Construct a 4:1 MUX using three 2:1 MUXes. Select one of four data inputs using two select lines.",
+  "physicsVisual": "mux_4to1_tree"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "level_03_medium",
+  "baseId": "level_03",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not"
+  ],
+  "inputs": 1,
+  "targetTruthTable": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 30,
+  "hint": "Connect Input → NOT → NOT → Output. Both test cases should show that the output equals the input, proving double negation.",
+  "title": "Double Negation",
+  "objective": "Prove NOT(NOT(A)) = A",
+  "description": "Apply two NOT gates in series to demonstrate the double negation law. This fundamental identity is used in Boolean algebra simplification.",
+  "physicsVisual": "double_negation"
+}

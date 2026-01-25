@@ -1,0 +1,688 @@
+/* Structured lesson layout inside intro/instructions */
+.lesson-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.lesson-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 14px 18px;
+}
+
+.lesson-card h3 {
+    margin: 0 0 10px 0;
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
+.lesson-card h4 {
+    margin: 12px 0 6px 0;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.lesson-card ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #ccc;
+    list-style: none;
+}
+
+.lesson-card li {
+    margin: 8px 0;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 12px;
+}
+
+.lesson-card li::before {
+    content: "▸";
+    position: absolute;
+    left: -8px;
+    color: var(--accent-color);
+}
+
+.lesson-card ul.equations {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lesson-card ul.equations li {
+    padding-left: 0;
+    margin: 12px 0;
+}
+
+.lesson-card ul.equations li::before {
+    display: none;
+}
+
+.gate-limit {
+    color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+    padding: 8px;
+    border-radius: 4px;
+    border-left: 4px solid #f44336;
+}
+
+/* ===== DETAILED PHYSICS CONTENT STYLING ===== */
+.lesson-grid.detailed {
+    gap: 24px;
+}
+
+.lesson-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.section-title {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    margin: 0 0 14px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Concept Cards */
+.concept-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.concept-card {
+    background: rgba(0, 122, 204, 0.08);
+    border: 1px solid rgba(0, 122, 204, 0.3);
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+
+.concept-title {
+    color: #7dcfff;
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+}
+
+.concept-definition,
+.concept-why,
+.concept-analogy,
+.concept-formula {
+    margin: 8px 0;
+    line-height: 1.6;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.concept-definition strong,
+.concept-why strong,
+.concept-analogy strong,
+.concept-formula strong {
+    color: #9ece6a;
+    font-weight: 600;
+}
+
+.concept-formula code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    color: #fff;
+}
+
+/* ===== Reusable UI utilities (prefer these over one-off blocks) ===== */
+.ui-block {
+    margin-top: 12px;
+}
+
+.ui-subtitle {
+    color: #7dcfff;
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.ui-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+}
+
+.ui-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+
+.ui-card--info {
+    background: rgba(0, 122, 204, 0.08);
+    border-color: rgba(0, 122, 204, 0.3);
+}
+
+.ui-card--purple {
+    background: rgba(156, 39, 176, 0.08);
+    border-color: rgba(156, 39, 176, 0.3);
+}
+
+.ui-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.ui-meta {
+    color: #9ece6a;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.ui-note {
+    margin-top: 12px;
+    line-height: 1.6;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.ui-note strong {
+    color: #bb86fc;
+}
+
+.ui-list {
+    margin: 0;
+    padding-left: 18px;
+    color: #ccc;
+}
+
+.ui-list li {
+    margin: 6px 0;
+    line-height: 1.5;
+}
+
+/* Formulas in list items */
+.formula-list code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    color: #7dcfff;
+    font-size: 0.95em;
+}
+
+.ui-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 122, 204, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.ui-table th,
+.ui-table td {
+    padding: 8px 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 122, 204, 0.2);
+    color: #ccc;
+}
+
+.ui-table th {
+    background: rgba(0, 122, 204, 0.1);
+    color: #7dcfff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.ui-table td {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.95rem;
+}
+
+/* Formula Cards */
+.formula-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.formula-card {
+    background: rgba(156, 39, 176, 0.08);
+    border: 1px solid rgba(156, 39, 176, 0.3);
+    border-radius: 8px;
+    padding: 16px 18px;
+}
+
+.formula-name {
+    color: #bb86fc;
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+}
+
+.formula-main {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.formula-main code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 1.2rem;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.formula-variables {
+    margin: 10px 0;
+    color: #ccc;
+}
+
+.formula-variables ul {
+    margin: 6px 0 0 0;
+    padding-left: 20px;
+    list-style: none;
+}
+
+.formula-variables li {
+    margin: 4px 0;
+    line-height: 1.5;
+}
+
+.formula-variables li::before {
+    content: "•";
+    color: var(--accent-color);
+    margin-right: 8px;
+}
+
+.var-symbol {
+    color: #7dcfff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-weight: 600;
+}
+
+.var-units {
+    color: #9ece6a;
+    font-size: 0.85em;
+}
+
+.formula-meaning,
+.formula-derivation,
+.formula-units {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.formula-meaning strong,
+.formula-derivation strong,
+.formula-units strong {
+    color: #bb86fc;
+}
+
+/* Worked Examples */
+.worked-example {
+    margin-top: 14px;
+    background: rgba(255, 152, 0, 0.08);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    border-radius: 6px;
+    padding: 12px 14px;
+}
+
+.worked-example > strong {
+    color: #ffb74d;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.example-problem {
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.example-given {
+    margin: 8px 0;
+    color: #ccc;
+}
+
+.example-given ul {
+    margin: 4px 0 0 16px;
+    padding: 0;
+}
+
+.example-steps {
+    margin: 10px 0;
+    color: #ccc;
+}
+
+.example-steps ol {
+    margin: 6px 0 0 20px;
+    padding: 0;
+}
+
+.example-steps li {
+    margin: 6px 0;
+    line-height: 1.5;
+}
+
+.example-answer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255, 152, 0, 0.3);
+    color: #ffb74d;
+}
+
+/* Exercise Cards */
+.exercise-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.exercise-item {
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+    background: rgba(76, 175, 80, 0.08);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: 6px;
+}
+
+.exercise-num {
+    color: #81c784;
+    font-weight: bold;
+    min-width: 24px;
+}
+
+.exercise-content {
+    flex: 1;
+}
+
+.exercise-question {
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.exercise-hint,
+.exercise-answer {
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+.exercise-hint summary,
+.exercise-answer summary {
+    cursor: pointer;
+    color: #81c784;
+    font-weight: 500;
+}
+
+.exercise-hint[open] summary,
+.exercise-answer[open] summary {
+    margin-bottom: 6px;
+}
+
+/* Real-World Card */
+.real-world-card {
+    background: rgba(33, 150, 243, 0.08);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+
+.real-world-card p {
+    margin: 8px 0;
+    line-height: 1.7;
+    color: #ccc;
+}
+
+.rw-context {
+    color: #fff !important;
+    font-size: 1rem;
+}
+
+.rw-example,
+.rw-numbers,
+.rw-connection {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.rw-example strong,
+.rw-numbers strong,
+.rw-connection strong {
+    color: #64b5f6;
+}
+
+.chapter-map {
+    margin: 0;
+    padding-left: 22px;
+    color: #ccc;
+}
+
+.chapter-map li {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.exercise-list {
+    margin: 0;
+    padding-left: 22px;
+    color: #ccc;
+}
+
+.exercise-list li {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.story-content { background: rgba(0,0,0,0.2); padding: 16px 20px; border-radius: 5px; border-left: 3px solid var(--accent-color); font-size: 0.95rem; line-height: 1.8; }
+.story-content h4 {
+    color: #ddd;
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+}
+.story-content ul,
+.story-content ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.chapter-desc {
+    font-style: italic;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.interactive-note {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--success-color);
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+    color: #fff;
+}
+
+.chapter-intro hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 20px 0;
+}
+
+/* Exercise dropdowns - ensure proper styling */
+.exercise-hint,
+.exercise-answer {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    overflow: hidden; /* keep rounded corners */
+}
+
+/* Ensure list markers inside the content are visible even when parent uses overflow:hidden */
+.exercise-answer ol,
+.exercise-hint ol {
+    padding-left: 20px; /* explicit padding to keep markers inside the element box */
+    margin: 0 0 0 6px;
+    list-style-position: inside; /* put markers inside so they're not clipped */
+}
+
+.exercise-hint summary,
+.exercise-answer summary {
+    cursor: pointer;
+    color: #81c784;
+    font-weight: 500;
+    padding: 6px 10px;
+    background: rgba(76, 175, 80, 0.15);
+    border-radius: 4px;
+    user-select: none;
+    list-style: none;
+}
+
+.exercise-hint summary::-webkit-details-marker,
+.exercise-answer summary::-webkit-details-marker {
+    display: none;
+}
+
+.exercise-hint summary::before,
+.exercise-answer summary::before {
+    content: "▶ ";
+    font-size: 0.8em;
+}
+
+.exercise-hint[open] summary::before,
+.exercise-answer[open] summary::before {
+    content: "▼ ";
+}
+
+.exercise-hint[open],
+.exercise-answer[open] {
+    background: rgba(76, 175, 80, 0.08);
+    padding: 0 0 8px 0;
+}
+
+.exercise-hint[open] > :not(summary),
+.exercise-answer[open] > :not(summary) {
+    padding: 10px 12px;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* Curriculum Overview Styles */
+.curriculum-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px 0;
+}
+
+.overview-section h3 {
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 6px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.outcomes-list {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px 15px 15px 35px !important;
+    border-radius: 8px;
+}
+
+.tier-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.curriculum-tier-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.curriculum-tier-card strong {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tier-meta {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #aaa;
+}
+
+.progression-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.phase-card {
+    background: rgba(0, 122, 204, 0.1);
+    border-radius: 8px;
+    padding: 12px 18px;
+    position: relative;
+    border-left: 4px solid var(--accent-color);
+}
+
+.phase-card strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.phase-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+/* Current level section styling */
+.current-level-new {
+    background: rgba(76, 175, 80, 0.05);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.current-level-new h4 {
+    color: var(--success-color);
+    margin-top: 0;
+}
+
+.current-level-previous details {
+    margin-top: 15px;
+}
+
+.current-level-previous summary {
+    cursor: pointer;
+    color: var(--accent-color);
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.current-level-previous summary:hover {
+    background: rgba(0, 122, 204, 0.1);
+}

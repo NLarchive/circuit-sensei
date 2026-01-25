@@ -1,0 +1,399 @@
+{
+  "input": {
+    "id": "input",
+    "name": "Input Switch",
+    "category": "core",
+    "description": "A manual toggle switch. Click to flip between 0 and 1. The source of your signal.",
+    "icon": "IN",
+    "symbol": "SW",
+    "inputs": 0,
+    "outputs": 1,
+    "learningNote": "In hardware, this might be a physical switch connected to VCC or GND.",
+    "physicsNotes": {
+      "implementation": "Mechanical / SPDT Switch",
+      "bounce": "Debouncing required (~10-50ms)",
+      "protection": "Pull-up/Pull-down resistors needed"
+    },
+    "unlockLevel": 1
+  },
+  "output": {
+    "id": "output",
+    "name": "Output LED",
+    "category": "core",
+    "description": "A light-emitting diode. Shines when the input is 1 (High). Visualizes your results.",
+    "icon": "OUT",
+    "symbol": "LED",
+    "inputs": 1,
+    "outputs": 0,
+    "learningNote": "The final state of your logic. In reality, it converts electrical energy into light.",
+    "physicsNotes": {
+      "implementation": "Semiconductor Junction",
+      "forwardVoltage": "1.8V - 3.3V typical",
+      "current": "Needs limiting resistor (e.g. 220-470 Ohm)"
+    },
+    "unlockLevel": 1
+  },
+  "clock": {
+    "id": "clock",
+    "name": "Clock Signal",
+    "category": "tier_4",
+    "description": "A regular pulse that alternates between 0 and 1. Essential for sequential logic.",
+    "icon": "CLK",
+    "symbol": "CLK",
+    "inputs": 0,
+    "outputs": 1,
+    "truthTable": [],
+    "learningNote": "Synchronizes changes. The heartbeat of the processor.",
+    "physicsNotes": {
+      "implementation": "Crystal Oscillator / PLL",
+      "timing": "Jitter < 50ps, Skew < 100ps",
+      "energy": "Significant dynamic power (f*C*V^2)"
+    },
+    "unlockLevel": 15
+  },
+  "transistor": {
+    "id": "transistor",
+    "name": "Transistor (NPN)",
+    "category": "tier_1",
+    "description": "The fundamental building block. A small current at the base controls a larger current between collector and emitter.",
+    "icon": "",
+    "inputs": 1,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0], "out": [0] },
+      { "in": [1], "out": [1] }
+    ],
+    "learningNote": "Transistors are the atoms of computing. Billions of them work together in your CPU.",
+    "physicsNotes": {
+      "carriers": "Electrons (Majority) / Holes",
+      "structure": "BJT (NPN Junction)",
+      "switchingTime": "approx. 1-10ns"
+    },
+    "unlockLevel": 1
+  },
+  "not": {
+    "id": "not",
+    "name": "NOT Gate (Inverter)",
+    "category": "tier_1",
+    "description": "Flips the input. If input is 1, output is 0. If input is 0, output is 1.",
+    "icon": "",
+    "symbol": "",
+    "inputs": 1,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0], "out": [1] },
+      { "in": [1], "out": [0] }
+    ],
+    "learningNote": "Built with a single transistor that shorts the output to ground when active.",
+    "physicsNotes": {
+      "implementation": "CMOS (NFET + PFET)",
+      "swing": "Full Rail-to-Rail",
+      "leakage": "Tunneling current in sub-7nm"
+    },
+    "unlockLevel": 3
+  },
+  "and": {
+    "id": "and",
+    "name": "AND Gate",
+    "category": "tier_1",
+    "description": "Output is 1 only when ALL inputs are 1. Think of it as a series circuit - all switches must be ON.",
+    "icon": "",
+    "symbol": "D",
+    "inputs": 2,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0, 0], "out": [0] },
+      { "in": [0, 1], "out": [0] },
+      { "in": [1, 0], "out": [0] },
+      { "in": [1, 1], "out": [1] }
+    ],
+    "learningNote": "In the real world, this is two transistors in SERIES. Both must conduct for current to flow.",
+    "physicsNotes": {
+      "implementation": "NMOS logic (Series Stack)",
+      "drive": "Limited by combined resistance",
+      "pdp": "Power-Delay Product ~10fJ"
+    },
+    "unlockLevel": 4
+  },
+  "or": {
+    "id": "or",
+    "name": "OR Gate",
+    "category": "tier_1",
+    "description": "Output is 1 when ANY input is 1. Think of it as a parallel circuit - any switch being ON works.",
+    "icon": "",
+    "symbol": "",
+    "inputs": 2,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0, 0], "out": [0] },
+      { "in": [0, 1], "out": [1] },
+      { "in": [1, 0], "out": [1] },
+      { "in": [1, 1], "out": [1] }
+    ],
+    "learningNote": "In the real world, this is two transistors in PARALLEL. Either one conducting allows current to flow.",
+    "physicsNotes": {
+      "implementation": "NMOS logic (Parallel Stack)",
+      "drive": "Independent drivers",
+      "fanout": "Supports multiple following inputs"
+    },
+    "unlockLevel": 5
+  },
+  "nand": {
+    "id": "nand",
+    "name": "NAND Gate",
+    "category": "tier_2",
+    "description": "NOT-AND: The universal gate. Output is 0 only when ALL inputs are 1. You can build ANY other gate using only NANDs!",
+    "icon": "",
+    "symbol": "D",
+    "inputs": 2,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0, 0], "out": [1] },
+      { "in": [0, 1], "out": [1] },
+      { "in": [1, 0], "out": [1] },
+      { "in": [1, 1], "out": [0] }
+    ],
+    "learningNote": "NAND is called 'universal' because you can create AND, OR, NOT, and XOR using only NAND gates!",
+    "physicsNotes": {
+      "implementation": "Native CMOS NAND",
+      "complexity": "4 transistors",
+      "efficiency": "Higher density than AND+NOT"
+    },
+    "unlockLevel": 6
+  },
+  "nor": {
+    "id": "nor",
+    "name": "NOR Gate",
+    "category": "tier_2",
+    "description": "NOT-OR: Another universal gate. Output is 1 only when ALL inputs are 0.",
+    "icon": "",
+    "symbol": "",
+    "inputs": 2,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0, 0], "out": [1] },
+      { "in": [0, 1], "out": [0] },
+      { "in": [1, 0], "out": [0] },
+      { "in": [1, 1], "out": [0] }
+    ],
+    "learningNote": "The Apollo Guidance Computer that landed on the Moon was built entirely from NOR gates!",
+    "physicsNotes": {
+      "implementation": "Native CMOS NOR",
+      "reliability": "Radiation hardenable",
+      "history": "AGC used 3-input NORs"
+    },
+    "unlockLevel": 7
+  },
+  "xor": {
+    "id": "xor",
+    "name": "XOR Gate (Exclusive OR)",
+    "category": "tier_2",
+    "description": "Output is 1 only when inputs are DIFFERENT. Essential for binary addition.",
+    "icon": "",
+    "symbol": "",
+    "inputs": 2,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0, 0], "out": [0] },
+      { "in": [0, 1], "out": [1] },
+      { "in": [1, 0], "out": [1] },
+      { "in": [1, 1], "out": [0] }
+    ],
+    "learningNote": "XOR is the heart of binary addition. 1+1=10 in binary, and XOR gives you the '0' (the sum bit).",
+    "physicsNotes": {
+      "implementation": "CMOS Transmission Gate XOR",
+      "complexity": "8-12 transistors typical",
+      "timing": "Higher delay than AND/OR due to transmission gates"
+    },
+    "unlockLevel": 8
+  },
+  "xnor": {
+    "id": "xnor",
+    "name": "XNOR Gate (Equivalence)",
+    "category": "tier_2",
+    "description": "Output is 1 only when inputs are THE SAME. It is a comparator.",
+    "icon": "",
+    "symbol": "",
+    "inputs": 2,
+    "outputs": 1,
+    "truthTable": [
+      { "in": [0, 0], "out": [1] },
+      { "in": [0, 1], "out": [0] },
+      { "in": [1, 0], "out": [0] },
+      { "in": [1, 1], "out": [1] }
+    ],
+    "learningNote": "XNOR is used in equality comparators - it tells you if two bits are the same.",
+    "physicsNotes": {
+      "implementation": "XOR + Inverter or Direct CMOS",
+      "application": "Bit comparators, CRC generators",
+      "pdp": "Similar to XOR power-delay profile"
+    },
+    "unlockLevel": 9
+  },
+  "halfAdder": {
+    "id": "halfAdder",
+    "name": "Half Adder",
+    "category": "tier_3",
+    "description": "Adds two single bits. Outputs a SUM and a CARRY. Built from XOR + AND.",
+    "icon": "+",
+    "inputs": 2,
+    "outputs": 2,
+    "truthTable": [
+      { "in": [0, 0], "out": [0, 0] },
+      { "in": [0, 1], "out": [1, 0] },
+      { "in": [1, 0], "out": [1, 0] },
+      { "in": [1, 1], "out": [0, 1] }
+    ],
+    "outputLabels": ["Sum", "Carry"],
+    "learningNote": "The first step to building a calculator! Sum = A XOR B, Carry = A AND B.",
+    "physicsNotes": {
+      "implementation": "XOR + AND gate pair",
+      "delay": "Critical path through XOR (longer than AND)",
+      "composition": "Two half adders + OR = full adder"
+    },
+    "unlockLevel": 10
+  },
+  "fullAdder": {
+    "id": "fullAdder",
+    "name": "Full Adder",
+    "category": "tier_3",
+    "description": "Adds three bits (A, B, and Carry-In). Can be chained for multi-bit addition.",
+    "icon": "+",
+    "inputs": 3,
+    "outputs": 2,
+    "truthTable": [
+      { "in": [0, 0, 0], "out": [0, 0] },
+      { "in": [0, 0, 1], "out": [1, 0] },
+      { "in": [0, 1, 0], "out": [1, 0] },
+      { "in": [0, 1, 1], "out": [0, 1] },
+      { "in": [1, 0, 0], "out": [1, 0] },
+      { "in": [1, 0, 1], "out": [0, 1] },
+      { "in": [1, 1, 0], "out": [0, 1] },
+      { "in": [1, 1, 1], "out": [1, 1] }
+    ],
+    "outputLabels": ["Sum", "Carry"],
+    "learningNote": "Chain 4 full adders together and you have a 4-bit calculator!",
+    "physicsNotes": {
+      "implementation": "2 XOR + 2 AND + 1 OR (28 transistors)",
+      "criticalPath": "Carry chain determines max clock speed",
+      "optimization": "CLA (Carry-Lookahead) reduces O(n) to O(log n)"
+    },
+    "unlockLevel": 12
+  },
+  "srLatch": {
+    "id": "srLatch",
+    "name": "SR Latch",
+    "category": "tier_4",
+    "description": "The simplest memory element. Set (S) turns it ON, Reset (R) turns it OFF. It REMEMBERS its state.",
+    "icon": "",
+    "inputs": 2,
+    "outputs": 2,
+    "inputLabels": ["Set", "Reset"],
+    "outputLabels": ["Q", "Q"],
+    "learningNote": "This is how your computer remembers things! Two cross-connected NOR gates create a feedback loop.",
+    "physicsNotes": {
+      "implementation": "Cross-coupled NOR or NAND (4T)",
+      "metastability": "S=R=1 is forbidden (race condition)",
+      "application": "SRAM 6T cell uses this structure"
+    },
+    "unlockLevel": 14
+  },
+  "tristate": {
+    "id": "tristate",
+    "name": "Tri-State Buffer",
+    "category": "tier_5",
+    "description": "Controls if a signal is connected to a bus. When Enable is 0, the output is 'High-Impedance' (disconnected).",
+    "icon": "Z",
+    "symbol": "Z",
+    "inputs": 2,
+    "outputs": 1,
+    "inputLabels": ["Data", "Enable"],
+    "truthTable": [
+      { "in": [0, 0], "out": [2] },
+      { "in": [1, 0], "out": [2] },
+      { "in": [0, 1], "out": [0] },
+      { "in": [1, 1], "out": [1] }
+    ],
+    "learningNote": "Essential for 'Buses' where many components share the same wire. Only one can be enabled at a time to avoid contention!",
+    "physicsNotes": {
+      "implementation": "CMOS transmission gate + inverter",
+      "hizState": "Both NFET and PFET OFF = high impedance",
+      "contention": "Two drivers = short circuit, undefined voltage"
+    },
+    "unlockLevel": 18
+  },
+  "dFlipFlop": {
+    "id": "dFlipFlop",
+    "name": "D Flip-Flop",
+    "category": "tier_4",
+    "description": "Stores 1 bit of data. The output copies the input only when the clock ticks.",
+    "icon": "D",
+    "physicsNotes": {
+      "implementation": "Master-Slave latch pair (20-24 transistors)",
+      "timing": "Setup time ~100ps, Hold time ~50ps at 7nm",
+      "clkToQ": "Clock-to-Q delay defines register speed"
+    },
+    "inputs": 2,
+    "outputs": 1,
+    "inputLabels": ["Data", "Clock"],
+    "outputLabels": ["Q"],
+    "learningNote": "Every register in your CPU is made of these. They synchronize everything to the clock signal.",
+    "unlockLevel": 16
+  },
+  "mux2to1": {
+    "id": "mux2to1",
+    "name": "2-to-1 Multiplexer",
+    "category": "tier_3",
+    "description": "A data selector. The SELECT input chooses which of the two data inputs to pass through.",
+    "icon": "MUX",
+    "inputs": 3,
+    "outputs": 1,
+    "inputLabels": ["A", "B", "Select"],
+    "truthTable": [
+      { "in": [0, 0, 0], "out": [0] },
+      { "in": [0, 1, 0], "out": [0] },
+      { "in": [1, 0, 0], "out": [1] },
+      { "in": [1, 1, 0], "out": [1] },
+      { "in": [0, 0, 1], "out": [0] },
+      { "in": [0, 1, 1], "out": [1] },
+      { "in": [1, 0, 1], "out": [0] },
+      { "in": [1, 1, 1], "out": [1] }
+    ],
+    "learningNote": "If Select=0, output=A. If Select=1, output=B. This is how CPUs route data!",
+    "physicsNotes": {
+      "implementation": "CMOS Transmission Gates (6T) or AND-OR (12T)",
+      "delay": "Transmission gate MUX is faster, lower power",
+      "scaling": "2^n:1 MUX uses log2(n) select bits"
+    },
+    "unlockLevel": 11
+  },
+  "tflipflop": {
+    "id": "tflipflop",
+    "name": "T Flip-Flop",
+    "category": "tier_4",
+    "description": "Toggle flip-flop: when T=1 and clock rises, the output toggles (flips to opposite state). When T=0, the output holds.",
+    "icon": "T",
+    "symbol": "T",
+    "inputs": 2,
+    "outputs": 2,
+    "inputLabels": ["T", "Clock"],
+    "outputLabels": ["Q", "Q̅"],
+    "physicsNote": "Built from a D-FF with Q̅ XOR T feedback. Key building block for binary counters: each stage toggles when all lower bits are 1.",
+    "learningNote": "Connect T=1 and you get a divide-by-2 frequency divider. Chain them together to build a binary counter!",
+    "unlockLevel": 16
+  },
+  "jkflipflop": {
+    "id": "jkflipflop",
+    "name": "JK Flip-Flop",
+    "category": "tier_4",
+    "description": "Universal flip-flop with Set, Reset, Hold, and Toggle modes. J=1 sets, K=1 resets, J=K=1 toggles, J=K=0 holds.",
+    "icon": "JK",
+    "symbol": "JK",
+    "inputs": 3,
+    "outputs": 2,
+    "inputLabels": ["J", "K", "Clock"],
+    "outputLabels": ["Q", "Q̅"],
+    "physicsNote": "Evolved from SR latch to eliminate the forbidden state. Master-slave construction prevents race-around. Can emulate any other FF type.",
+    "learningNote": "The 'Swiss Army knife' of flip-flops! Wire J=K for T-FF behavior, or D→J, D̅→K for D-FF behavior.",
+    "unlockLevel": 17  }
+}

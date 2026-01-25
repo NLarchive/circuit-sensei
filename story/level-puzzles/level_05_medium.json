@@ -1,0 +1,101 @@
+{
+  "id": "level_05_medium",
+  "baseId": "level_05",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 35,
+  "hint": "Chain two OR gates: first OR takes A and B, second OR takes that result and C. Any single HIGH input produces HIGH output.",
+  "title": "3-Input OR (Cascade)",
+  "objective": "Any of three inputs HIGH",
+  "description": "Build a 3-input OR gate using 2-input OR gates. Output is 1 when A OR B OR C is 1.",
+  "physicsVisual": "cascade_or"
+}

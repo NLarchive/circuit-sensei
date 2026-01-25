@@ -1,0 +1,189 @@
+{
+  "id": "level_09",
+  "tier": "tier_2",
+  "title": "De Morgan Laws",
+  "introText": "DE MORGAN'S THEOREMS & BUBBLE PUSHING: Augustus De Morgan (1847) proved two fundamental theorems that relate AND, OR, and NOT. These laws enable 'bubble pushing'—a schematic technique that transforms gates while preserving function.",
+  "storyText": "BUBBLE PUSHING IN PRACTICE: When analyzing or optimizing circuits, bubble pushing transforms gates while preserving function. Rules: (1) Push bubbles through gate by changing AND↔OR, (2) Bubbles on all inputs can move to output (or vice versa), (3) Two bubbles cancel.",
+  "physicsVisual": "de_morgan_detailed",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "De Morgan's First Theorem",
+        "definition": "The complement of a product equals the sum of complements: NOT(A AND B) = NOT(A) OR NOT(B).",
+        "why": "Transforms AND operations into OR operations with inversions—enables gate substitution.",
+        "analogy": "\"It's NOT raining AND sunny\" = \"It's NOT raining OR it's NOT sunny\"—either condition breaks the combo.",
+        "visuals": [
+          {
+            "type": "de_morgan",
+            "title": "De Morgan's First Law"
+          }
+        ],
+        "latex": "\\overline{A \\cdot B} = \\overline{A} + \\overline{B}",
+        "html": null
+      },
+      {
+        "term": "De Morgan's Second Theorem",
+        "definition": "The complement of a sum equals the product of complements: NOT(A OR B) = NOT(A) AND NOT(B).",
+        "why": "Transforms OR operations into AND operations with inversions—the dual of the first theorem.",
+        "analogy": "\"NOT (coffee OR tea)\" = \"NOT coffee AND NOT tea\"—you want neither.",
+        "latex": "\\overline{A + B} = \\overline{A} \\cdot \\overline{B}",
+        "html": null
+      },
+      {
+        "term": "Bubble Pushing",
+        "definition": "A schematic technique where inversion 'bubbles' can be moved through gates by swapping AND↔OR.",
+        "why": "Simplifies circuit analysis and enables conversion between NAND-only and NOR-only implementations.",
+        "analogy": "Like algebraic manipulation—moving negatives around an equation while keeping it balanced.",
+        "latex": null,
+        "html": null,
+        "visuals": [
+          {
+            "type": "nand_universal",
+            "title": "Gate Transformations"
+          }
+        ]
+      },
+      {
+        "term": "NAND-to-OR Conversion",
+        "definition": "A NAND gate with inverted inputs behaves as an OR gate: NOT(NOT(A) AND NOT(B)) = A OR B.",
+        "why": "Proves NAND universality for OR—combined with NOT from NAND, any function is possible.",
+        "analogy": "Disguising a NAND as an OR by flipping the inputs.",
+        "visuals": [
+          {
+            "type": "parallel_circuit",
+            "title": "OR via Parallel Paths"
+          }
+        ],
+        "latex": "NAND(\\overline{A}, \\overline{B}) = A + B",
+        "html": null
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "De Morgan's First Law",
+        "variables": [
+          {
+            "symbol": "A \\cdot B",
+            "meaning": "A AND B",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\overline{A}",
+            "meaning": "NOT A (complement)",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\overline{B}",
+            "meaning": "NOT B (complement)",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "To negate an AND, negate each input and change AND to OR. The NAND is the negated AND.",
+        "derivation": "Proof by truth table: NOT(A·B) and (\\overline{A}+\\overline{B}) produce identical outputs for all input combinations.",
+        "example": {
+          "problem": "Apply De Morgan to simplify NOT(1 · 1).",
+          "given": [
+            "A = 1",
+            "B = 1",
+            "NOT(A · B) = \\overline{A} + \\overline{B}"
+          ],
+          "steps": [
+            "Direct: \\overline{1 \\cdot 1} = \\overline{1} = 0",
+            "De Morgan: \\overline{A} + \\overline{B} = \\overline{1} + \\overline{1} = 0 + 0 = 0",
+            "Both methods give 0 ✓"
+          ],
+          "answer": "NOT(1 · 1) = 0, verified by De Morgan"
+        },
+        "latex": "\\overline{A \\cdot B} = \\overline{A} + \\overline{B}",
+        "html": null
+      },
+      {
+        "name": "De Morgan's Second Law",
+        "variables": [
+          {
+            "symbol": "A + B",
+            "meaning": "A OR B",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\overline{A} \\cdot \\overline{B}",
+            "meaning": "NOT-A AND NOT-B",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "To negate an OR, negate each input and change OR to AND. The NOR is the negated OR.",
+        "derivation": "This is the dual of the first law. Can be derived by substituting \\overline{A} for A and \\overline{B} for B in law 1.",
+        "example": {
+          "problem": "Apply De Morgan to NOT(0 + 0).",
+          "given": [
+            "A = 0",
+            "B = 0"
+          ],
+          "steps": [
+            "Direct: \\overline{0 + 0} = \\overline{0} = 1",
+            "De Morgan: \\overline{A} \\cdot \\overline{B} = \\overline{0} \\cdot \\overline{0} = 1 \\cdot 1 = 1",
+            "Both methods give 1 ✓"
+          ],
+          "answer": "NOT(0 + 0) = 1, verified by De Morgan"
+        },
+        "latex": "\\overline{A + B} = \\overline{A} \\cdot \\overline{B}",
+        "html": null
+      },
+      {
+        "name": "OR from NAND (This Level)",
+        "latex": "A + B = NAND(NAND(A,A), NAND(B,B))",
+        "html": null,
+        "variables": [
+          {
+            "symbol": "NAND(A,A)",
+            "meaning": "NOT(A) - inverter from NAND",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "NAND(NOT A, NOT B)",
+            "meaning": "NOT(NOT A AND NOT B) = A OR B by De Morgan",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "First invert both inputs (using NAND as NOT), then NAND the results to get OR.",
+        "derivation": "NAND(NOT A, NOT B) = NOT(NOT A · NOT B) = NOT(NOT(A + B)) = A + B by double negation and De Morgan.",
+        "example": {
+          "problem": "Compute 0 OR 1 using only NAND gates.",
+          "given": [
+            "A = 0",
+            "B = 1"
+          ],
+          "steps": [
+            "Step 1: NAND(0,0) = NOT(0) = 1",
+            "Step 2: NAND(1,1) = NOT(1) = 0",
+            "Step 3: NAND(1,0) = NOT(1 AND 0) = NOT(0) = 1"
+          ],
+          "answer": "0 OR 1 = 1 (using 3 NAND gates)"
+        }
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Apply De Morgan's first law to simplify NOT(X · Y · Z). (Hint: it extends to 3+ inputs)",
+        "hint": "NOT(A · B · C) = NOT(A) + NOT(B) + NOT(C)",
+        "answer": "NOT(X · Y · Z) = NOT(X) + NOT(Y) + NOT(Z)"
+      },
+      {
+        "question": "Convert the expression (A + B) to use only NAND gates. How many NANDs needed?",
+        "hint": "NOT(A) = NAND(A,A). Then NAND the inverted inputs.",
+        "answer": "3 NANDs: NAND(A,A), NAND(B,B), then NAND those two outputs."
+      },
+      {
+        "question": "Using bubble pushing, redraw AND(A,B) as an equivalent NOR-based circuit.",
+        "hint": "AND = NOT(NOT(A) OR NOT(B)) = NOR(NOT(A), NOT(B)). So: 2 inverters into a NOR.",
+        "answer": "AND(A,B) = NOR(NOT(A), NOT(B)) = NOR with inverted inputs (3 gates if NOT is separate, or 1 NOR with bubble inputs)"
+      }
+    ],
+    "realWorld": {
+      "context": "De Morgan's laws are fundamental to digital design optimization and verification.",
+      "example": "Synthesis tools use De Morgan transformations to convert logic to NAND-only or NOR-only forms, depending on which is faster in the target technology.",
+      "numbers": "In a 7nm process, NAND2 delay is ~10ps, NOR2 is ~12ps. De Morgan helps choose the faster form.",
+      "connection": "This level proves OR can be built from NAND—combined with NOT (level 07), we can build any Boolean function from NANDs alone."
+    }
+  }
+}

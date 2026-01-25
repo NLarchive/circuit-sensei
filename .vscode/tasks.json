@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Dev Server",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"problemMatcher": [
+				"$vite"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Start Dev Server",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"problemMatcher": [
+				"$vite"
+			]
+		},
+		{
+			"label": "Run duplicate-finder script",
+			"type": "shell",
+			"command": "node .scripts/find_duplicates.js",
+			"isBackground": false
+		},
+		{
+			"label": "Run search script",
+			"type": "shell",
+			"command": "node .scripts/find_string.js",
+			"isBackground": false
+		},
+		{
+			"label": "Start Dev Server",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true
+		}
+	]
+}

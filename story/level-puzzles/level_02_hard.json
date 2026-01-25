@@ -1,0 +1,98 @@
+{
+  "id": "level_02_hard",
+  "baseId": "level_02",
+  "variant": "hard",
+  "availableGates": [
+    "transistor"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 50,
+  "hint": "Build the function: OUT = NOT((A AND B) OR C). Chain transistors in series for AND, parallel for OR. Remember to invert at the end.",
+  "title": "CMOS Logic: AND-OR-INVERT (AOI)",
+  "objective": "Build an AOI21 gate: OUT = NOT((A AND B) OR C)",
+  "description": "Implement a compound AOI (AND-OR-INVERT) gate using only transistors. This optimized CMOS structure is faster and smaller than using separate gates.",
+  "physicsVisual": "cmos_aoi"
+}

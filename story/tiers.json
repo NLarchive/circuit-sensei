@@ -1,0 +1,79 @@
+{
+  "intro": {
+    "name": "Course Introduction",
+    "subtitle": "Welcome to Logic Architect",
+    "description": "Overview of your journey from electrons to computation.",
+    "modules": [
+      "Course structure and learning path",
+      "Prerequisites and estimated time",
+      "What you will learn and build",
+      "Tier roadmap and difficulty progression"
+    ]
+  },
+  "tier_1": {
+    "name": "The Silicon Age",
+    "subtitle": "From Sand to Switches",
+    "description": "Everything starts with the transistor. Learn how electricity becomes logic.",
+    "modules": [
+      "Charge, voltage, current, and signal propagation",
+      "Semiconductor basics: doping, junctions, and switching",
+      "CMOS vs historical devices (tubes → transistors)",
+      "Logic levels, noise margins, and why digital works"
+    ]
+  },
+  "tier_2": {
+    "name": "Boolean Algebra",
+    "subtitle": "The Universal Language",
+    "description": "Master the fundamental logic gates and prove their universality.",
+    "modules": [
+      "Universal gates (NAND/NOR) and functional completeness",
+      "Algebraic manipulation and equivalence transformations",
+      "De Morgan’s theorems and bubble pushing",
+      "XOR, parity, and modulo-2 reasoning"
+    ]
+  },
+  "tier_3": {
+    "name": "Combinational Logic",
+    "subtitle": "Decision Making",
+    "description": "Build circuits that make decisions, route data, and perform math.",
+    "modules": [
+      "Data routing with multiplexers and decoders",
+      "Truth tables → implementations (SOP/POS intuition)",
+      "Adders, carry propagation, and performance tradeoffs",
+      "System use-cases: addressing, selection, and arithmetic"
+    ]
+  },
+  "tier_4": {
+    "name": "Sequential Logic",
+    "subtitle": "Memory & Time",
+    "description": "Introduce the concept of time. Store data and synchronize signals.",
+    "modules": [
+      "Feedback as memory: latches and bistability",
+      "Edge-triggering: flip-flops and synchronous design",
+      "Timing analysis: setup/hold, clock-to-Q, propagation",
+      "Clocking in real chips: skew, jitter, and CDC basics"
+    ]
+  },
+  "tier_5": {
+    "name": "Finite State Machines",
+    "subtitle": "Automata Theory",
+    "description": "Design intelligent circuits that move through specific states.",
+    "modules": [
+      "State diagrams, state tables, and next-state logic",
+      "Moore vs Mealy outputs and glitch avoidance",
+      "State encoding strategies (binary, one-hot, Gray)",
+      "Counters and controllers as practical FSMs"
+    ]
+  },
+  "tier_6": {
+    "name": "Computer Architecture",
+    "subtitle": "The Von Neumann Machine",
+    "description": "Combine everything to build the brain of a computer.",
+    "modules": [
+      "Datapath blocks: PC, register file, ALU, memory",
+      "Control: opcode decode and control-signal generation",
+      "Critical path and performance: f_max, CPI, throughput",
+      "Pipelining overview: IF/ID/EX/MEM/WBand hazards"
+    ]
+  }
+}

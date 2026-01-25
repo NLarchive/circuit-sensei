@@ -1,0 +1,65 @@
+{
+  "id": "level_12_easy",
+  "baseId": "level_12",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 90,
+  "hint": "Half Adder: Sum = A XOR B (difference), Carry = A AND B (overflow). Two gates, two outputs.",
+  "title": "Half Adder",
+  "objective": "Add two single bits (Sum and Carry)",
+  "description": "Build a half adder: the first arithmetic circuit. It adds two bits, producing a Sum and Carry output.",
+  "physicsVisual": "half_adder"
+}

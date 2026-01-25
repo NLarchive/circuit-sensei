@@ -1,0 +1,58 @@
+{
+  "id": "level_12_hard",
+  "baseId": "level_12",
+  "variant": "hard",
+  "availableGates": [
+    "nor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    }
+  ],
+  "maxGates": 7,
+  "xpReward": 125,
+  "hint": "Sum (XOR) from NOR needs 4-5 gates. Carry (AND) from NOR needs 3 gates. NOT X = X NOR X. Build NOT, then OR (by De Morgan), then work toward XOR and AND.",
+  "title": "Apollo NOR Half Adder",
+  "objective": "Build Half Adder using NOR gates only",
+  "description": "The Apollo Guidance Computer used ONLY NOR gates. Build a Half Adder (Sum and Carry) using exclusively NOR gates.",
+  "physicsVisual": "apollo_nor_adder"
+}

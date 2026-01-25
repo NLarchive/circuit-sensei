@@ -1,0 +1,54 @@
+{
+  "id": "level_02_easy",
+  "baseId": "level_02",
+  "variant": "easy",
+  "availableGates": [
+    "transistor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 15,
+  "hint": "The transistor acts as an electrically-controlled switch. When Base (control input) is HIGH, current flows from Collector to Emitter.",
+  "title": "Transistor as Switch",
+  "objective": "Use a transistor to control signal flow",
+  "description": "Experience the transistor's switching behavior: the control signal (Base) determines whether the main signal passes through.",
+  "physicsVisual": "transistor_switch"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "level_04_easy",
+  "baseId": "level_04",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 25,
+  "hint": "Connect both inputs to the AND gate. Output is HIGH only when BOTH inputs are HIGH.",
+  "title": "The AND Gate",
+  "objective": "Output 1 only when both inputs are 1",
+  "description": "Use the AND gate to implement logical conjunction. Like switches in series: all must be closed for current to flow.",
+  "physicsVisual": "and_gate_basic"
+}

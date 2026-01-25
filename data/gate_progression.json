@@ -1,0 +1,151 @@
+{
+  "_comment": "Gate/Operator Progression Tracking - Gates available at each level based on curriculum",
+  "_rule": "Variants can use the gate being taught at that level PLUS all previous gates. Cannot use gates from FUTURE levels.",
+  "_updated": "2026-01-12",
+  
+  "gate_introduction": {
+    "level_01": {
+      "new_gate": null,
+      "gates_available": [],
+      "description": "Wire only - no gates yet"
+    },
+    "level_02": {
+      "new_gate": "transistor",
+      "gates_available": ["transistor"],
+      "description": "Transistor taught here"
+    },
+    "level_03": {
+      "new_gate": "not",
+      "gates_available": ["transistor", "not"],
+      "description": "NOT gate taught here"
+    },
+    "level_04": {
+      "new_gate": "and",
+      "gates_available": ["transistor", "not", "and"],
+      "description": "AND gate taught here"
+    },
+    "level_05": {
+      "new_gate": "or",
+      "gates_available": ["transistor", "not", "and", "or"],
+      "description": "OR gate taught here"
+    },
+    "level_06": {
+      "new_gate": "nand",
+      "gates_available": ["transistor", "not", "and", "or", "nand"],
+      "description": "NAND gate taught here"
+    },
+    "level_07": {
+      "new_gate": "nor",
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor"],
+      "description": "NOR taught via synthesis"
+    },
+    "level_08": {
+      "new_gate": "xor",
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor"],
+      "description": "XOR gate taught here"
+    },
+    "level_09": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor"],
+      "description": "De Morgan laws - synthesis practice"
+    },
+    "level_10": {
+      "new_gate": "mux2to1",
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1"],
+      "description": "MUX taught here"
+    },
+    "level_11": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1"],
+      "description": "Decoder level"
+    },
+    "level_12": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1"],
+      "description": "Half Adder level"
+    },
+    "level_13": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1"],
+      "description": "Full Adder level"
+    },
+    "level_14": {
+      "new_gate": "srLatch",
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1", "srLatch"],
+      "description": "SR Latch taught here"
+    },
+    "level_15": {
+      "new_gate": "dFlipFlop",
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1", "srLatch", "dFlipFlop"],
+      "description": "D Flip-Flop taught here"
+    },
+    "level_16": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1", "srLatch", "dFlipFlop"],
+      "description": "Toggle FF level"
+    },
+    "level_17": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1", "srLatch", "dFlipFlop"],
+      "description": "Counter level"
+    },
+    "level_18": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1", "srLatch", "dFlipFlop"],
+      "description": "FSM level"
+    },
+    "level_19": {
+      "new_gate": "fullAdder",
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1", "srLatch", "dFlipFlop", "fullAdder"],
+      "description": "ALU level - fullAdder taught here"
+    },
+    "level_boss": {
+      "new_gate": null,
+      "gates_available": ["transistor", "not", "and", "or", "nand", "nor", "xor", "mux2to1", "srLatch", "dFlipFlop", "fullAdder"],
+      "description": "CPU Datapath - all gates available"
+    }
+  },
+
+  "famous_circuits": {
+    "level_04_hard": {
+      "name": "NAND Gate Construction",
+      "history": "Henry Sheffer proved in 1913 that NAND is functionally complete - any Boolean function can be built from NAND alone."
+    },
+    "level_05_hard": {
+      "name": "Majority Gate (2-of-3 Voting)",
+      "history": "Used in NASA Space Shuttle (1981-2011) triple-redundant flight computers. Two agreeing computers override one failing."
+    },
+    "level_06_hard": {
+      "name": "NAND Universality Proof",
+      "history": "Charles Sanders Peirce (1880) first noted NAND's universality. All modern CMOS chips are fundamentally NAND-based."
+    },
+    "level_07_hard": {
+      "name": "4-NAND XOR Circuit",
+      "history": "Classic TTL design from 1960s. The 7486 quad XOR chip used this exact pattern."
+    },
+    "level_08_hard": {
+      "name": "Parity Generator",
+      "history": "Richard Hamming invented parity checking at Bell Labs (1950) for error detection in telephone systems."
+    },
+    "level_12_hard": {
+      "name": "Apollo NOR Half Adder",
+      "history": "MIT's Apollo Guidance Computer (1966) used only ~5,600 NOR gates. It landed humans on the Moon."
+    },
+    "level_16_hard": {
+      "name": "JK Flip-Flop",
+      "history": "Named after Jack Kilby (Nobel Prize 2000), inventor of the integrated circuit at Texas Instruments (1958)."
+    },
+    "level_18_hard": {
+      "name": "Sequence Detector FSM",
+      "history": "Pattern matching FSMs power everything from network packet filters to DNA sequence analysis."
+    }
+  },
+
+  "special_gate_restrictions": {
+    "level_06_hard": "NAND only - universality proof",
+    "level_07_medium": "NAND only - AND from NAND synthesis",
+    "level_07_hard": "NAND only - XOR from NAND (classic 4-gate)",
+    "level_10_hard": "mux2to1 only - hierarchical MUX construction",
+    "level_12_hard": "NOR only - Apollo AGC tribute"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "id": "level_08_hard",
+  "baseId": "level_08",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 75,
+  "hint": "Chain XOR gates: (A XOR B) XOR C. XOR is associative, so order doesn't matter. The result is the parity of all three bits.",
+  "title": "Parity Generator (3-bit)",
+  "objective": "Output 1 if odd number of inputs are 1",
+  "description": "Build a 3-input parity generator using XOR gates. This is the basis of all error-detection codes.",
+  "physicsVisual": "parity_generator"
+}

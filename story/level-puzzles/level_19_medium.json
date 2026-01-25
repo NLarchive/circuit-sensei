@@ -1,0 +1,124 @@
+{
+  "id": "level_19_medium",
+  "baseId": "level_19",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop",
+    "fullAdder"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Op=ADD: 0+0=0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Op=ADD: 0+1=1"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Op=ADD: 1+0=1"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Op=ADD: 1+1=10"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Op=AND: 0&0=0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Op=AND: 0&1=0"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Op=AND: 1&0=0"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Op=AND: 1&1=1"
+    }
+  ],
+  "maxGates": 6,
+  "xpReward": 320,
+  "hint": "Compute ADD, AND, OR results in parallel. Use a 4:1 MUX (or tree of 2:1 MUXes) controlled by 2-bit opcode to select output. For simplicity, just implement 2 ops: opcode=0 for ADD, opcode=1 for AND.",
+  "title": "ALU with Logic Operations",
+  "objective": "Add AND, OR, XOR operations",
+  "description": "Extend the ALU to perform both arithmetic (ADD/SUB) and logic (AND/OR/XOR) operations based on a 2-bit opcode.",
+  "physicsVisual": "alu_extended"
+}

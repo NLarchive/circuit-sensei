@@ -1,0 +1,211 @@
+{
+  "id": "level_03",
+  "tier": "tier_1",
+  "title": "The Inverter (NOT)",
+  "introText": "The NOT gate (inverter) is the simplest logic gate: it flips HIGH to LOW, and LOW to HIGH. Its implementation reveals why CMOS (Complementary Metal-Oxide-Semiconductor) technology dominates modern electronics—the clever pairing of two different transistor types that together consume almost no power when not switching.",
+  "storyText": "You've built an inverter—the fundamental building block for more complex gates. The CMOS inverter is elegant: it uses paired transistors that never conduct simultaneously, so it draws almost no static power. This is why your phone battery lasts all day despite having billions of transistors: they only consume power when actually switching.",
+  "physicsVisual": "cmos_inverter",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "VDD and GND (Power Supply)",
+        "definition": "VDD stands for 'Voltage Drain Drain' (referencing the supply connected to the Drain terminals of Field-Effect Transistors) and represents the positive supply voltage (typically 1V-5V). GND stands for 'Ground' and represents the zero-voltage reference point (0V). Together, they provide the potential difference (pressure) that powers all circuit operations.",
+        "why": "Every circuit needs a power source to move charges. VDD provides the 'high' energy level, and GND provides the 'low' return path to complete the loop. All logic voltages are measured relative to GND.",
+        "analogy": "Like water pressure: VDD is the elevated water tank (high potential), and GND is the drain at the bottom (zero potential). Current flows from VDD toward GND only when a switch (transistor) opens a path.",
+        "latex": "Supply Voltage (V_{supply}) = VDD - GND",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">ppl</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">lt</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">s</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">ppl</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">y</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">DD</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">GN</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span></span></span></span>"
+      },
+      {
+        "term": "CMOS (Complementary MOS)",
+        "definition": "CMOS stands for 'Complementary Metal-Oxide-Semiconductor'. It represents a circuit design using paired NMOS (N-channel) and PMOS (P-channel) transistors. 'Complementary' means they work in pairs: when one is ON, the other is OFF, ensuring no direct path exists from VDD to GND.",
+        "why": "This design is the secret to low-power electronics. Because one transistor in the pair is always OFF, the circuit consumes almost no power when it's not switching between states—allowing your phone battery to last much longer.",
+        "analogy": "Like a door with a spring that keeps it closed. You only use energy to push it open; once you let go, it returns to a stable state without using more energy.",
+        "visuals": [
+          {
+            "type": "cmos_inverter",
+            "title": "CMOS Inverter: Pull-up / Pull-down"
+          }
+        ]
+      },
+      {
+        "term": "Pull-Up and Pull-Down Networks",
+        "definition": "CMOS circuits use two 'networks' of transistors: The PMOS network (P-channel MOS) 'pulls up' the output to VDD (Logic 1), and the NMOS network (N-channel MOS) 'pulls down' the output to GND (Logic 0).",
+        "why": "This complementary structure ensures the output is always actively driven to a valid logic level—it's never 'floating' (unconnected) and never short-circuited.",
+        "analogy": "Like a tug-of-war where only one team pulls at a time. The rope (output) is always pulled firmly to either the HIGH side or the LOW side."
+      },
+      {
+        "term": "Capacitance (C)",
+        "definition": "The ability to store charge. Measured in Farads (F). Real gates have small 'parasitic' capacitance that must be charged to change voltage.",
+        "why": "Charging this capacitance takes energy and time. This causes delay and power consumption.",
+        "analogy": "Like filling a bucket (capacitor) with a hose. You can't instantly fill it; it takes time.",
+        "latex": "C = \\frac{Q}{V}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2694em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9244em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.22222em;\">V</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.4461em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">Q</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+      },
+      {
+        "term": "Power (P) in Watts",
+        "definition": "Rate of energy use. Measured in Watts (W). 1 Watt = 1 Joule/second.",
+        "why": "Critical for battery life and cooling. Chips produce heat because they consume power.",
+        "latex": "P = \\frac{E}{t}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2173em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8723em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05764em;\">E</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+      },
+      {
+        "term": "Frequency (f) and Period (T)",
+        "definition": "Frequency is the number of cycles per second, measured in Hertz (Hz). Period is the time for one cycle, measured in seconds (s). 1 GHz = 10⁹ Hz, and 1 ns = 10⁻⁹ s. The relationship is f = 1/T, where f is frequency in Hz and T is period in seconds. For example: If something takes 1 second per cycle, frequency = 1/1 = 1 Hz. If something takes 0.25 seconds per cycle, frequency = 1/0.25 = 4 Hz. If something takes 250 ps (250 × 10⁻¹² s) per cycle, frequency = 1/(250 × 10⁻¹²) = 4 × 10⁹ Hz = 4 GHz.",
+        "why": "Determines calculation speed. Higher frequency means more processing per second. Clock period determines the duration of each 'heartbeat' of the CPU.",
+        "latex": "f = \\frac{1}{T}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.1901em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.13889em;\">T</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+      },
+      {
+        "term": "Static Power vs Dynamic Power",
+        "definition": "Static power = power consumed while holding a state (ideally zero in CMOS). Dynamic power = power consumed during switching (charging/discharging capacitances).",
+        "why": "CMOS's near-zero static power was revolutionary. Before CMOS, chips drew power even when idle. Now a chip can have billions of transistors but only consume power for the transistors actually switching.",
+        "latex": "P_{dynamic} = C \\times V² \\times f",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.9694em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">d</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">y</span><span class=\"mord mathnormal mtight\">nami</span><span class=\"mord mathnormal mtight\">c</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8974em;vertical-align:-0.0833em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span></span></span></span>"
+      },
+      {
+        "term": "Noise Margin",
+        "definition": "The 'safety buffer' between what a gate outputs as HIGH/LOW and what the next gate requires as a valid HIGH/LOW input. Larger margin = more immunity to electrical noise.",
+        "why": "Real circuits have noise (crosstalk, power supply ripple, etc.). Noise margins ensure that small disturbances don't flip bits incorrectly—critical for reliable computing.",
+        "analogy": "Like requiring 'definitely hot' (>80°C) or 'definitely cold' (<20°C) instead of exact temperatures. The gap (20-80°C) is where we're uncertain, so we avoid it."
+      },
+      {
+        "term": "Vacuum Tubes (Historical Switch)",
+        "definition": "Before transistors, computers used vacuum tubes: heated cathodes emit electrons (thermionic emission) and a control grid modulates the electron flow to an anode.",
+        "why": "Vacuum tubes proved that electrical signals can control other electrical signals (gain/switching), but they were hot, large, fragile, and power-hungry. CMOS replaces them with tiny solid-state devices.",
+        "analogy": "Like controlling airflow with a valve in a hollow pipe: the grid is the valve, the electron stream is the airflow.",
+        "visuals": [
+          {
+            "type": "vacuum_tube",
+            "title": "Thermionic Emission (Historical Switch)"
+          }
+        ]
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "CMOS Dynamic Power",
+        "variables": [
+          {
+            "symbol": "P",
+            "meaning": "Power dissipated during switching",
+            "units": "Watts (W)"
+          },
+          {
+            "symbol": "C",
+            "meaning": "Load capacitance (gate + wiring)",
+            "units": "Farads (F)"
+          },
+          {
+            "symbol": "V",
+            "meaning": "Supply voltage",
+            "units": "Volts (V)"
+          },
+          {
+            "symbol": "f",
+            "meaning": "Switching frequency",
+            "units": "Hertz (Hz)"
+          }
+        ],
+        "meaning": "Power consumption scales with voltage SQUARED. This is why CPUs use lower voltages (1V instead of 5V) to save power. It also scales linearly with frequency—faster clocks = more power.",
+        "example": {
+          "problem": "A gate has C = 10fF, V = 1V, switches at f = 1GHz. Calculate power.",
+          "given": [
+            "C = 10×10⁻¹⁵ F",
+            "V = 1V",
+            "f = 10⁹ Hz"
+          ],
+          "steps": [
+            "1. Convert units to Base SI: C = 10fF = 10 \\times 10⁻¹⁵ F; f = 1GHz = 10⁹ Hz",
+            "2. Apply formula P = C \\times V² \\times f",
+            "3. Substitute: P = (10 \\times 10⁻¹⁵ F) \\times (1V)² \\times (10⁹ Hz)",
+            "4. Multiply powers of 10: P = 10 \\times 1 (1²) \\times 10⁻¹⁵⁺⁹ = 10 \\times 10⁻⁶ W",
+            "5. Convert to microwatts: 10 \\times 10⁻⁶ W = 10 μW"
+          ],
+          "answer": "10 μW per gate. Scaling up: 10 billion gates (10¹⁰) × 10 μW = 100,000 W or 100 kW. (Note: In real chips, an 'activity factor' reduces this as not all gates switch at once)."
+        },
+        "latex": "P = C \\times V² \\times f",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8974em;vertical-align:-0.0833em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span></span></span></span>"
+      },
+      {
+        "name": "CMOS Static Power (Ideal)",
+        "variables": [],
+        "meaning": "In an ideal CMOS circuit, one transistor is always OFF, blocking any DC current path from VDD to GND. Real circuits have tiny leakage currents, but static power is vastly less than older technologies.",
+        "derivation": "When input is LOW: PMOS ON (connects VDD to output), NMOS OFF (blocks path to GND). When input is HIGH: NMOS ON, PMOS OFF. There's never a complete path from VDD to GND.",
+        "latex": "P_{static} ≈ 0",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">s</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">i</span><span class=\"mord mathnormal mtight\">c</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≈</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">0</span></span></span></span>"
+      },
+      {
+        "name": "Noise Margin (HIGH)",
+        "variables": [
+          {
+            "symbol": "NM_{H}",
+            "meaning": "Noise margin for HIGH signals",
+            "units": "Volts"
+          },
+          {
+            "symbol": "V_{OH}",
+            "meaning": "Output HIGH voltage (minimum guaranteed)",
+            "units": "Volts"
+          },
+          {
+            "symbol": "V_{IH}",
+            "meaning": "Input HIGH threshold (minimum required)",
+            "units": "Volts"
+          }
+        ],
+        "meaning": "The output must be at least V_OH, but the next gate only needs V_IH to recognize HIGH. The difference is safety margin—noise up to this amount won't cause errors.",
+        "example": {
+          "problem": "If V_OH = 4.4V and V_IH = 3.5V, what is the noise margin for HIGH?",
+          "given": [
+            "V_OH = 4.4V",
+            "V_IH = 3.5V"
+          ],
+          "steps": [
+            "NM_{H} = V_{OH} - V_{IH}",
+            "NM_{H} = 4.4V - 3.5V = 0.9V"
+          ],
+          "answer": "0.9V of noise margin—signals can be corrupted by up to 0.9V and still be read correctly"
+        },
+        "latex": "NM_{H} = V_{OH} - V_{IH}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.08125em;\">H</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.08125em;\">H</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.08125em;\">H</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "A chip has 1 billion gates, each with C = 5fF, running at 3GHz with V = 0.8V. Estimate the total dynamic power consumption.",
+        "hint": "Calculate per-gate power, then multiply by number of active gates (assume 30% switch per cycle)",
+        "answer": {
+          "steps": [
+            "Step 1: Convert all values to SI units. C = 5 fF = 5 × 10⁻¹⁵ F; V = 0.8 V; f = 3 GHz = 3 × 10⁹ Hz.",
+            "Step 2: Calculate per-gate power. P = C × V² × f = (5 × 10⁻¹⁵ F) × (0.8 V)² × (3 × 10⁹ Hz) = (5 × 0.64 × 3) × 10⁻¹⁵ × 10⁹ W = 9.6 × 10⁻⁶ W = 9.6 μW per gate.",
+            "Step 3: Find number of active gates. 1 billion gates × 30% activity = 10⁹ × 0.3 = 3 × 10⁸ gates.",
+            "Step 4: Calculate total power. Total = (3 × 10⁸) × (9.6 × 10⁻⁶ W) = 2,880 W = 2.88 kW."
+          ],
+          "answer": "2.88 kW"
+        }
+      },
+      {
+        "question": "Why do lower supply voltages dramatically reduce power consumption?",
+        "hint": "Look at how V appears in the power formula",
+        "answer": {
+          "steps": [],
+          "answer": "Power ∝ V². Halving voltage (5V→2.5V) reduces power by 4×, not 2×. This is why modern CPUs use ~1V instead of the 5V of early computers."
+        }
+      },
+      {
+        "question": "Complete the truth table for a NOT gate: Input=0 → Output=? Input=1 → Output=?",
+        "hint": "The output is always the opposite of the input",
+        "answer": {
+          "steps": [],
+          "answer": "Input=0 → Output=1; Input=1 → Output=0"
+        }
+      }
+    ],
+    "realWorld": {
+      "context": "The CMOS inverter revolutionized electronics by enabling low-power chips with billions of transistors.",
+      "example": "ENIAC (1945) used 17,468 vacuum tubes and consumed 150 kilowatts—enough to power 100 homes. A modern smartphone chip has 15 billion transistors but uses less than 5 watts.",
+      "numbers": "This represents a 10-billion-fold improvement in transistors-per-watt over 80 years. The CMOS inverter's complementary design—where only one transistor conducts at a time—is the key enabler.",
+      "connection": "In this level, you're using a NOT gate—the simplest CMOS circuit. Every complex processor is built from combinations of these basic inverters and similar gates."
+    }
+  }
+}

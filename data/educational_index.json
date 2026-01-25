@@ -1,0 +1,2070 @@
+{
+  "terms": [
+    {
+      "term": "The Learning Journey",
+      "definition": "This course progresses from physics (electrons, voltage) through abstraction layers (gates, circuits, systems) to a working computer.",
+      "why": "Understanding each layer deeply prepares you for the next. Skipping ahead leads to gaps in understanding.",
+      "analogy": "Like building a house: foundation (physics), framing (gates), rooms (circuits), complete home (computer).",
+      "firstIntroduced": "level_00"
+    },
+    {
+      "term": "Abstraction in Engineering",
+      "definition": "Each level hides lower-level complexity. Gates hide transistors. Circuits hide gates. CPUs hide circuits.",
+      "why": "Abstraction makes complex systems manageable. You do not think about electrons when coding.",
+      "analogy": "Like driving a car: you use the steering wheel abstraction, not individual tire rotations.",
+      "firstIntroduced": "level_00"
+    },
+    {
+      "term": "Digital vs Analog",
+      "definition": "Digital uses discrete values (0 and 1). Analog uses continuous values. Digital is noise-resistant.",
+      "why": "Digital circuits can regenerate signals (a slightly-off 1 becomes a perfect 1), enabling reliable computation.",
+      "analogy": "Digital is like Morse code (dots and dashes), analog is like speaking (infinite variations).",
+      "firstIntroduced": "level_00"
+    },
+    {
+      "term": "The Power of Universality",
+      "definition": "NAND gates alone can build ANY digital circuit. This simplifies manufacturing enormously.",
+      "why": "Instead of making 10 different gate types, factories make trillions of identical NAND gates.",
+      "analogy": "Like having one type of LEGO brick that can build any structure when combined properly.",
+      "firstIntroduced": "level_00"
+    },
+    {
+      "term": "Electric Charge (Q)",
+      "definition": "A fundamental property of matter. Measured in Coulombs (C). 1 Coulomb ≈ 6.24×10¹⁸ electrons.",
+      "why": "Charge is the fundamental quantity that flows to create current. It's the 'stuff' that moves.",
+      "analogy": "Like a volume of water (liters). Current is the flow rate (liters/sec), but Charge is the water itself.",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "term": "Energy (E)",
+      "definition": "The capacity to do work. Measured in Joules (J).",
+      "why": "Used to define Voltage (Energy per Charge). 1 Volt = 1 Joule / 1 Coulomb. It represents the work done to move the charge.",
+      "analogy": "Like the potential energy of water at a height. It takes energy (Joules) to pump water (Charge) up to a height (Voltage).",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "term": "Electric Current (I)",
+      "definition": "The flow of electric charge through a conductor, measured in Amperes (A). One Ampere = one Coulomb of charge passing per second.",
+      "why": "Current is what actually does work in circuits—powering LEDs, spinning motors, storing data. No current flow = no circuit action.",
+      "analogy": "Like water flow in a pipe. Current (Amps) is like flow rate (liters/second). More flow = more water delivered.",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "term": "Voltage (V)",
+      "definition": "Electric potential difference—the 'pressure' that pushes charges through a circuit. Measured in Volts (V). One Volt = one Joule of energy per Coulomb of charge.",
+      "why": "Voltage is how we encode information in digital circuits. HIGH voltage (~5V or 3.3V) = logic 1. LOW voltage (~0V) = logic 0.",
+      "analogy": "Like water pressure difference between two tanks. Higher pressure difference = stronger push for water to flow.",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "term": "Drift Velocity",
+      "definition": "The slow average velocity (~0.1 mm/s) at which electrons actually move through a conductor when current flows.",
+      "why": "This explains a key paradox: electrons move very slowly, yet circuits respond almost instantly. The signal isn't carried by individual electrons traveling fast.",
+      "analogy": "Imagine a tube completely filled with marbles. Push one marble in at one end, and a marble instantly pops out the other end—even though no single marble traveled the full length.",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "term": "Signal Propagation Speed",
+      "definition": "The speed at which an electromagnetic disturbance (the 'signal') travels along a wire—typically 50-99% the speed of light.",
+      "why": "This is why circuits respond 'instantly' even though electrons drift slowly. When you flip a switch, the electric field change propagates at near light-speed, pushing all electrons simultaneously.",
+      "analogy": "When you push a long line of standing dominoes, the 'wave' of falling travels much faster than any single domino moves.",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "term": "Valence Electrons",
+      "definition": "Electrons in the outermost shell of an atom that participate in chemical bonding. Silicon has 4 valence electrons, forming a crystal lattice.",
+      "why": "The number of valence electrons determines how atoms bond and whether a material conducts. Silicon's 4 electrons create a stable structure that can be modified by doping.",
+      "analogy": "Like hands available for handshakes. Silicon has 4 'hands', needing 4 partners to be stable.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "term": "Semiconductor",
+      "definition": "A material (like silicon) with conductivity between a conductor and insulator. Its conductivity can be precisely controlled by adding impurities (doping) or applying voltage.",
+      "why": "Semiconductors are the foundation of all modern electronics. Unlike metals (always conduct) or insulators (never conduct), we can control when semiconductors conduct—enabling switches.",
+      "analogy": "A semiconductor is like a door with an electronic lock. Unlike an open doorway (conductor) or a wall (insulator), you can control whether it's open or closed.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "term": "Doping (N-type and P-type)",
+      "definition": "Adding impurity atoms to pure silicon. N-type: add phosphorus (5 valence electrons) → excess free electrons (negative carriers). P-type: add boron (3 valence electrons) → electron vacancies called 'holes' (positive carriers).",
+      "why": "Doping creates regions with controllable amounts of mobile charge carriers. The boundary between N and P regions (the P-N junction) is where transistor magic happens.",
+      "analogy": "Imagine a parking lot. N-type = lots of extra cars (electrons) looking for spots. P-type = lots of empty parking spots (holes) waiting for cars.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "term": "P-N Junction & Depletion Region",
+      "definition": "Where P-type and N-type silicon meet. Electrons diffuse from N to P, holes from P to N, leaving a 'depletion region' of immobile ions with a built-in electric field (~0.7V for silicon).",
+      "why": "The depletion region acts as a controllable barrier. Apply voltage one way → barrier shrinks → current flows (forward bias). Apply voltage the other way → barrier grows → no current (reverse bias).",
+      "analogy": "Like a one-way valve that opens only when you push hard enough in the right direction.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "term": "Transistor as a Switch",
+      "definition": "A transistor has three terminals: a control input (Base/Gate) and a current path (Collector-Emitter or Drain-Source). Small control signal → large current flow or blockage.",
+      "why": "This is how we compute! By controlling current flow with another electrical signal (not a mechanical switch), we can build circuits that control other circuits—the essence of logic.",
+      "analogy": "Like a water faucet: a small twist of your hand (control signal) controls a large water flow (main current). The hand does little work, but controls lots of water.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "term": "BJT (Bipolar Junction Transistor)",
+      "definition": "The Bipolar Junction Transistor (BJT) is a current-controlled device where a small current at the Base (B) terminal controls a much larger current between the Collector (C) and Emitter (E). It is 'bipolar' because it uses both electrons and holes as charge carriers.",
+      "why": "BJTs provide high current gain and are useful where strong current amplification is needed, though they draw base current and are less power-efficient than MOSFETs.",
+      "analogy": "Like a lever that needs continuous force to stay engaged.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "term": "MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor)",
+      "definition": "The MOSFET is a voltage-controlled transistor where an electric field (the 'Field-Effect') across an insulated Gate (G) controls the flow between Drain (D) and Source (S). The 'Metal-Oxide-Semiconductor' refers to the layers used to build its insulated gate.",
+      "why": "MOSFETs dominate modern chips because the insulated gate draws nearly zero current, enabling billions of transistors with low power consumption and high density.",
+      "analogy": "Like a light switch that stays on with no effort once flipped.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "term": "VDD and GND (Power Supply)",
+      "definition": "VDD (Voltage Drain-Drain) is the positive supply voltage (HIGH reference, typically 1V-5V). GND (Ground) is the reference point (0V) that completes the circuit. These provide the energy that powers all circuit operations.",
+      "why": "Every circuit needs a power source. VDD provides energy; GND completes the circuit. The voltage difference (VDD - GND) determines logic HIGH level.",
+      "analogy": "Like water pressure: VDD is the elevated tank (high pressure), GND is the drain (zero pressure). Current flows from high to low.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "CMOS (Complementary Metal-Oxide-Semiconductor)",
+      "definition": "A circuit design using paired NMOS and PMOS transistors. One transistor pulls output HIGH, the other pulls LOW—they're 'complementary' because only one is ON at any time.",
+      "why": "CMOS is why we have laptops, smartphones, and IoT devices. Since one transistor is always OFF, no steady current flows from power to ground—enabling ultra-low power consumption.",
+      "analogy": "Like a door with two handles connected to opposite sides. Pushing on one side (input HIGH) pulls one handle while releasing the other—the door can only open one way at a time.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Pull-Up and Pull-Down Networks",
+      "definition": "In CMOS, the PMOS transistor 'pulls up' to VDD (HIGH) when ON. The NMOS transistor 'pulls down' to GND (LOW) when ON. They never pull in the same direction simultaneously.",
+      "why": "This complementary pulling ensures the output is always driven to a valid logic level—never floating, never short-circuited between VDD and GND.",
+      "analogy": "Like a tug-of-war where only one team ever pulls at a time. The rope (output) always moves to a definite position.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Capacitance (C)",
+      "definition": "The ability to store charge. Measured in Farads (F). Real gates have small 'parasitic' capacitance that must be charged to change voltage.",
+      "why": "Charging this capacitance takes energy and time. This causes delay and power consumption.",
+      "analogy": "Like filling a bucket (capacitor) with a hose. You can't instantly fill it; it takes time.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Power (P) in Watts",
+      "definition": "Rate of energy use. Measured in Watts (W). 1 Watt = 1 Joule/second.",
+      "why": "Critical for battery life and cooling. Chips produce heat because they consume power.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Frequency (f) and Period (T)",
+      "definition": "Frequency is the number of cycles per second, measured in Hertz (Hz). Period is the time for one cycle, measured in seconds (s). 1 GHz = 10⁹ Hz, and 1 ns = 10⁻⁹ s.",
+      "why": "Determines calculation speed. Higher frequency means more processing per second. Clock period determines the duration of each 'heartbeat' of the CPU.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Static Power vs Dynamic Power",
+      "definition": "Static power = power consumed while holding a state (ideally zero in CMOS). Dynamic power = power consumed during switching (charging/discharging capacitances).",
+      "why": "CMOS's near-zero static power was revolutionary. Before CMOS, chips drew power even when idle. Now a chip can have billions of transistors but only consume power for the transistors actually switching.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Noise Margin",
+      "definition": "The 'safety buffer' between what a gate outputs as HIGH/LOW and what the next gate requires as a valid HIGH/LOW input. Larger margin = more immunity to electrical noise.",
+      "why": "Real circuits have noise (crosstalk, power supply ripple, etc.). Noise margins ensure that small disturbances don't flip bits incorrectly—critical for reliable computing.",
+      "analogy": "Like requiring 'definitely hot' (>80°C) or 'definitely cold' (<20°C) instead of exact temperatures. The gap (20-80°C) is where we're uncertain, so we avoid it.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Vacuum Tubes (Historical Switch)",
+      "definition": "Before transistors, computers used vacuum tubes: heated cathodes emit electrons (thermionic emission) and a control grid modulates the electron flow to an anode.",
+      "why": "Vacuum tubes proved that electrical signals can control other electrical signals (gain/switching), but they were hot, large, fragile, and power-hungry. CMOS replaces them with tiny solid-state devices.",
+      "analogy": "Like controlling airflow with a valve in a hollow pipe: the grid is the valve, the electron stream is the airflow.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "term": "Series Circuit",
+      "definition": "Components connected end-to-end so current must flow through ALL of them. If any component fails (opens), the entire current path breaks.",
+      "why": "Series connection IS AND logic physically: current flows (output=1) only if Switch_A AND Switch_B AND... all conduct.",
+      "analogy": "Like a chain of doors you must pass through—if ANY door is locked, you can't reach the end.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "term": "Boolean AND Operation",
+      "definition": "A logical operation that outputs TRUE (1) only when ALL inputs are TRUE. Written as A·B, A∧B, or A AND B.",
+      "why": "AND is one of three fundamental operations (with OR and NOT) that can express any computable function. It's essential for decision-making in circuits.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "term": "Truth Table",
+      "definition": "A table listing ALL possible input combinations and their corresponding outputs. For n inputs, there are 2^n rows.",
+      "why": "Truth tables completely define a logic function. They're the specification that your circuit must match. For AND with 2 inputs: 4 rows (00→0, 01→0, 10→0, 11→1).",
+      "analogy": "Like a lookup table: given inputs, look up the correct output.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "term": "Bit Masking",
+      "definition": "Using AND with a pattern (mask) to extract or clear specific bits. AND with 1 keeps the bit; AND with 0 clears it.",
+      "why": "Bit masking is used constantly in programming: extracting fields from data, clearing flags, testing specific bits. It's the hardware behind bitwise & operators.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "term": "SI Prefixes for Time",
+      "definition": "Standard prefixes for small time units: ms (milli) = 10⁻³s, μs (micro) = 10⁻⁶s, ns (nano) = 10⁻⁹s, ps (pico) = 10⁻¹²s.",
+      "why": "Modern circuits switch in nanoseconds or picoseconds. 1 GHz = 1 ns period. Understanding these scales is essential for timing analysis.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "term": "Parallel Circuit",
+      "definition": "Components connected side-by-side so current can flow through ANY path. Even if some paths fail (open), current can still flow through the remaining ones.",
+      "why": "Parallel connection IS OR logic physically: current flows (output=1) if Path_A OR Path_B OR... any path conducts.",
+      "analogy": "Like multiple doors to a room—if ANY door is open, you can enter.",
+      "firstIntroduced": "level_05"
+    },
+    {
+      "term": "Boolean OR Operation",
+      "definition": "A logical operation that outputs TRUE (1) when AT LEAST ONE input is TRUE. Written as A+B, A∨B, or A OR B.",
+      "why": "OR is inclusive: even if both inputs are true, output is still true (1+1=1 in Boolean algebra, not 2!). This differs from everyday 'or' which often means 'one but not both'.",
+      "firstIntroduced": "level_05"
+    },
+    {
+      "term": "Kirchhoff's Current Law (KCL)",
+      "definition": "At any node (junction) in a circuit, the sum of currents entering equals the sum of currents leaving. Current is conserved.",
+      "why": "KCL explains why parallel circuits work: currents from multiple branches combine at a junction. More paths = more total current capability.",
+      "firstIntroduced": "level_05"
+    },
+    {
+      "term": "Fan-In and Fan-Out",
+      "definition": "Fan-in = number of inputs a gate accepts. Fan-out = number of gate inputs one output can reliably drive.",
+      "why": "Each additional input (fan-in) adds transistors and delay. Each additional load (fan-out) adds capacitance, slowing the driver. Both affect circuit speed.",
+      "analogy": "Fan-in: how many people can vote on a decision. Fan-out: how many people one person can effectively communicate with.",
+      "firstIntroduced": "level_05"
+    },
+    {
+      "term": "Universal Gate",
+      "definition": "A gate type that can implement ANY Boolean function using only that gate type. NAND and NOR are the only two-input universal gates.",
+      "why": "Universality means one manufacturing process, one cell type, simpler design tools. This dramatically reduced the cost and complexity of chip production.",
+      "analogy": "Like having Lego blocks that can build anything—you don't need a separate factory for each shape.",
+      "firstIntroduced": "level_06"
+    },
+    {
+      "term": "Functional Completeness",
+      "definition": "A set of operations is functionally complete if every possible Boolean function can be expressed using only those operations.",
+      "why": "Proving {NAND} is complete: build NOT with NAND(A,A), build AND with NAND(NAND(A,B),NAND(A,B)), build OR with NAND(NAND(A,A),NAND(B,B)). Since {AND,OR,NOT} is complete, NAND is complete.",
+      "firstIntroduced": "level_06"
+    },
+    {
+      "term": "CMOS NAND Implementation",
+      "definition": "A NAND gate uses 2 NMOS transistors in series (pull-down) + 2 PMOS transistors in parallel (pull-up). Only 4 transistors total.",
+      "why": "NAND requires FEWER transistors than AND (which needs NAND + inverter = 6 transistors). This efficiency is why synthesis tools prefer NAND-based implementations.",
+      "analogy": "Building an AND gate is like building a NAND and then immediately un-doing it with an inverter—wasteful.",
+      "firstIntroduced": "level_06"
+    },
+    {
+      "term": "Standard Cell Library",
+      "definition": "A pre-designed collection of logic gates (NAND2, NAND3, NOR2, INV, etc.) that chip designers use as building blocks.",
+      "why": "Libraries are characterized for timing, power, and area. Synthesis tools automatically map designs to these cells, preferring NAND because it's fastest and smallest in CMOS.",
+      "analogy": "Like a catalog of pre-approved parts. Designers pick from the catalog rather than designing each transistor.",
+      "firstIntroduced": "level_06"
+    },
+    {
+      "term": "Logic Synthesis",
+      "definition": "The automated process of converting high-level hardware description (Verilog/VHDL) into a gate-level netlist.",
+      "why": "Enables designers to write abstract logic and let tools optimize it for specific technology.",
+      "analogy": "Like a compiler for hardware—you write high-level code, and it produces optimized gate-level 'assembly'.",
+      "firstIntroduced": "level_07"
+    },
+    {
+      "term": "Technology Mapping",
+      "definition": "Converting technology-independent logic into specific cells from a foundry's standard cell library.",
+      "why": "Each foundry has different transistor characteristics. Mapping optimizes for the target process.",
+      "analogy": "Like choosing which LEGO pieces to use—same structure, different available bricks.",
+      "firstIntroduced": "level_07"
+    },
+    {
+      "term": "Universality Proof (NOT from NAND)",
+      "definition": "Demonstrating that NAND can create any logic function by first showing it can create NOT: NAND(A,A) = NOT(A).",
+      "why": "If we can build NOT, AND, and OR from NAND, we can build ANY Boolean function.",
+      "analogy": "Like proving you can cook any meal if you have salt, heat, and water—the fundamentals.",
+      "firstIntroduced": "level_07"
+    },
+    {
+      "term": "Exclusive OR (XOR)",
+      "definition": "A logic gate that outputs 1 if and only if exactly one of its inputs is 1. Outputs 0 when inputs are the same.",
+      "why": "XOR detects difference between two bits—essential for comparison, error detection, and arithmetic.",
+      "analogy": "Like a disagreement detector: outputs TRUE when two people disagree, FALSE when they agree.",
+      "firstIntroduced": "level_08"
+    },
+    {
+      "term": "Modulo-2 Arithmetic",
+      "definition": "Addition where 1+1=0 (wraps around). XOR performs this naturally: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0.",
+      "why": "Forms the basis of binary addition (ignoring carry) and polynomial arithmetic in error detection.",
+      "analogy": "Like clock arithmetic: 11:00 + 2 hours = 1:00 (wraps around). Binary wraps at 2.",
+      "firstIntroduced": "level_08"
+    },
+    {
+      "term": "Self-Inverse Property",
+      "definition": "XOR is its own inverse: A ⊕ B ⊕ B = A. XORing twice with the same value returns the original.",
+      "why": "This property enables encryption (XOR with key), error correction, and data swapping without temp variable.",
+      "analogy": "Like a light switch: flip twice and you're back where you started.",
+      "firstIntroduced": "level_08"
+    },
+    {
+      "term": "Parity Bit",
+      "definition": "A single bit added to data to make the total number of 1s even (even parity) or odd (odd parity).",
+      "why": "If a single bit flips during transmission, the parity changes, detecting the error.",
+      "analogy": "Like a checksum: add up all digits and check if the sum is even or odd.",
+      "firstIntroduced": "level_08"
+    },
+    {
+      "term": "De Morgan's First Theorem",
+      "definition": "The complement of a product equals the sum of complements: NOT(A AND B) = NOT(A) OR NOT(B).",
+      "why": "Transforms AND operations into OR operations with inversions—enables gate substitution.",
+      "analogy": "\"It's NOT raining AND sunny\" = \"It's NOT raining OR it's NOT sunny\"—either condition breaks the combo.",
+      "firstIntroduced": "level_09"
+    },
+    {
+      "term": "De Morgan's Second Theorem",
+      "definition": "The complement of a sum equals the product of complements: NOT(A OR B) = NOT(A) AND NOT(B).",
+      "why": "Transforms OR operations into AND operations with inversions—the dual of the first theorem.",
+      "analogy": "\"NOT (coffee OR tea)\" = \"NOT coffee AND NOT tea\"—you want neither.",
+      "firstIntroduced": "level_09"
+    },
+    {
+      "term": "Bubble Pushing",
+      "definition": "A schematic technique where inversion 'bubbles' can be moved through gates by swapping AND↔OR.",
+      "why": "Simplifies circuit analysis and enables conversion between NAND-only and NOR-only implementations.",
+      "analogy": "Like algebraic manipulation—moving negatives around an equation while keeping it balanced.",
+      "firstIntroduced": "level_09"
+    },
+    {
+      "term": "NAND-to-OR Conversion",
+      "definition": "A NAND gate with inverted inputs behaves as an OR gate: NOT(NOT(A) AND NOT(B)) = A OR B.",
+      "why": "Proves NAND universality for OR—combined with NOT from NAND, any function is possible.",
+      "analogy": "Disguising a NAND as an OR by flipping the inputs.",
+      "firstIntroduced": "level_09"
+    },
+    {
+      "term": "Multiplexer (MUX)",
+      "definition": "A combinational circuit that selects one of N data inputs and routes it to the output, based on select lines.",
+      "why": "MUXes are the building blocks of data routing—used in CPUs, memory systems, and FPGAs.",
+      "analogy": "Like a railroad switch: one track in, select which of two tracks to continue on.",
+      "firstIntroduced": "level_10"
+    },
+    {
+      "term": "Select Lines",
+      "definition": "Control inputs that determine which data input is passed to the output. n select lines can choose among 2ⁿ inputs.",
+      "why": "Binary encoding of selection is efficient—2 bits can select from 4 inputs, 3 bits from 8, etc.",
+      "analogy": "Like a TV remote: channel number (select) determines which signal (data) you see.",
+      "firstIntroduced": "level_10"
+    },
+    {
+      "term": "Lookup Table (LUT)",
+      "definition": "A memory-based implementation where any Boolean function's truth table is stored and indexed by inputs.",
+      "why": "LUTs enable programmable logic—FPGAs use them to implement any function by just changing the stored values.",
+      "analogy": "Like a cheat sheet: instead of calculating, you look up pre-computed answers.",
+      "firstIntroduced": "level_10"
+    },
+    {
+      "term": "Data Path vs Control Path",
+      "definition": "Data path moves and processes data (MUXes, ALU). Control path decides which operations to perform.",
+      "why": "Separating data and control simplifies design—MUXes are the connection between the two.",
+      "analogy": "Data path is the highway; control path is the traffic lights deciding which cars go where.",
+      "firstIntroduced": "level_10"
+    },
+    {
+      "term": "MSB and LSB",
+      "definition": "MSB (Most Significant Bit) = the leftmost bit, representing the largest value (2^(n-1)). LSB (Least Significant Bit) = the rightmost bit, representing the smallest value (2^0 = 1).",
+      "why": "Bit position matters! In 1010, MSB=1 (value 8), LSB=0 (value 0). Knowing MSB/LSB helps understand binary numbers and circuit bit ordering.",
+      "analogy": "Like decimal: in 1234, the '1' is most significant (thousands place), '4' is least significant (ones place).",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "term": "Decoder",
+      "definition": "A combinational circuit that converts an n-bit binary input into one of 2ⁿ output lines, activating exactly one output.",
+      "why": "Decoders translate binary addresses into physical selection signals—essential for memory and device access.",
+      "analogy": "Like a hotel elevator: you press floor 7 (binary input), and only the 7th floor light turns on (one-hot output).",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "term": "One-Hot Encoding",
+      "definition": "A representation where exactly one bit is '1' and all others are '0'. Each output line corresponds to one input combination.",
+      "why": "One-hot signals are easy to use as enable lines—no further decoding needed.",
+      "analogy": "Like a piano where only one key can be pressed at a time.",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "term": "Minterm",
+      "definition": "A product (AND) of all input variables where each variable appears once, either complemented or uncomplemented.",
+      "why": "Each decoder output is a minterm of the inputs—this is the mathematical foundation of decoders.",
+      "analogy": "Like a combination lock: every dial must be in exactly the right position.",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "term": "Address Decoding",
+      "definition": "The process of using binary address bits to select a specific memory location or peripheral device.",
+      "why": "CPUs generate addresses; decoders convert them to physical selection signals.",
+      "analogy": "Like a postal system: zip code (address) determines which post office (decoder output) handles your mail.",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "term": "Binary Addition",
+      "definition": "Addition in base-2 where each digit is 0 or 1. When sum exceeds 1, a carry is generated to the next bit position.",
+      "why": "All computer arithmetic ultimately reduces to binary addition. Understanding it is fundamental.",
+      "analogy": "Like decimal addition (0-9), but simpler: only 0 and 1. When you run out of digits, carry to the next column.",
+      "firstIntroduced": "level_12"
+    },
+    {
+      "term": "Half Adder",
+      "definition": "A circuit that adds two single-bit inputs (A, B) and produces a Sum and a Carry output.",
+      "why": "The half adder is the building block—it handles the simplest case of binary addition.",
+      "analogy": "Like adding two single-digit numbers in decimal, getting a result and possibly a carry.",
+      "firstIntroduced": "level_12"
+    },
+    {
+      "term": "Sum Output",
+      "definition": "The result of adding A and B in the current bit position (ignoring carry). Sum is 1 when inputs differ.",
+      "why": "The sum represents the 'ones place' of the addition result for this bit position.",
+      "analogy": "Like the rightmost digit when you add: 7+5=12, the sum digit is 2.",
+      "firstIntroduced": "level_12"
+    },
+    {
+      "term": "Carry Output",
+      "definition": "A signal indicating the addition overflowed the current bit. Carry is 1 only when both inputs are 1.",
+      "why": "The carry must propagate to the next higher bit position to get the correct total.",
+      "analogy": "Like 'carrying the 1' in decimal: 7+5=12, carry the 1 to the tens place.",
+      "firstIntroduced": "level_12"
+    },
+    {
+      "term": "Full Adder",
+      "definition": "A circuit that adds three single-bit inputs (A, B, Carry-in) and produces Sum and Carry-out.",
+      "why": "Full adders can be chained to create n-bit adders—the carry-out of one stage becomes carry-in of the next.",
+      "analogy": "Like adding a column in multi-digit addition: you add the two digits PLUS any carry from the previous column.",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "term": "Carry-In (Cin)",
+      "definition": "The carry bit from the previous (lower) bit position. This is what distinguishes a full adder from a half adder.",
+      "why": "In multi-bit addition, each bit position must account for overflow from the previous position.",
+      "analogy": "The '1' you wrote above the next column when doing longhand addition.",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "term": "Generate (G)",
+      "definition": "A condition where a carry is produced regardless of the incoming carry. Occurs when both A and B are 1.",
+      "why": "Generate signals enable carry-lookahead: we can compute carries without waiting for ripple.",
+      "analogy": "Like two tall people standing together—they'll reach the ceiling regardless of what's below them.",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "term": "Propagate (P)",
+      "definition": "A condition where an incoming carry passes through to the output. Occurs when exactly one of A or B is 1.",
+      "why": "Propagate signals determine whether a carry chain continues or stops at each stage.",
+      "analogy": "Like a relay runner—if you receive the baton (carry), you pass it on.",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "term": "Big O Notation",
+      "definition": "A mathematical notation describing how performance scales with input size n. O(n) = linear (doubles with n), O(log n) = logarithmic (grows slowly), O(1) = constant.",
+      "why": "Used to compare adder architectures: ripple-carry is O(n) delay (slow for large n), carry-lookahead is O(log n) (much faster).",
+      "analogy": "O(n): reading every page of a book. O(log n): using the index to find a topic. O(1): knowing exactly which page.",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "term": "SR Latch",
+      "definition": "A bistable circuit with Set (S) and Reset (R) inputs. S=1 sets output Q to 1; R=1 resets Q to 0; both=0 holds the previous state.",
+      "why": "The SR latch introduces MEMORY—the ability to store a bit of information. This is revolutionary: circuits can now remember!",
+      "analogy": "Like a light switch with SET and RESET buttons: press SET and the light stays on; press RESET and it stays off; neither and it stays as it was.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "term": "Bistable Multivibrator",
+      "definition": "A circuit with two stable states that can remain in either state indefinitely. The SR latch is the simplest example.",
+      "why": "Bistability is the foundation of digital memory—without it, circuits would forget instantly.",
+      "analogy": "Like a ball in a valley between two hills—it will rest in one valley or the other, not in between.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "term": "Positive Feedback",
+      "definition": "When output feeds back to reinforce itself. In the SR latch, if Q=1, the feedback keeps Q at 1.",
+      "why": "Positive feedback creates the bistability—once in a state, the latch 'wants' to stay there.",
+      "analogy": "Like microphone feedback: the speaker output feeds into the microphone, amplifying itself.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "term": "Forbidden State (S=R=1)",
+      "definition": "When both Set and Reset are active, the outputs are undefined and may oscillate when released.",
+      "why": "This is a race condition—when S and R both go to 0, the latch may settle unpredictably or oscillate.",
+      "analogy": "Like telling someone 'go forward' and 'go backward' simultaneously—contradictory commands.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "term": "Race Condition",
+      "definition": "A timing hazard where the circuit's outcome depends on which signal arrives first. In the SR latch, releasing S=R=1 simultaneously creates unpredictable behavior.",
+      "why": "Race conditions cause non-deterministic bugs. Proper design avoids them through timing constraints or circuit structure.",
+      "analogy": "Like two people trying to go through a door at exactly the same time—who goes first is unpredictable.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "term": "D Flip-Flop",
+      "definition": "A memory element that captures input D only on the active edge of the clock (usually rising edge). Output Q holds this value until the next clock edge.",
+      "why": "Edge-triggering enables synchronous design—all state changes happen at a predictable moment, making complex systems manageable.",
+      "analogy": "Like a camera: D is the scene, clock edge is the shutter click. The photo (Q) captures the moment and holds it.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "term": "Edge Triggering",
+      "definition": "The flip-flop responds only during the transition of the clock signal (0→1 for positive edge), not while clock is high or low.",
+      "why": "Edge triggering prevents multiple captures during a clock period—output changes exactly once per cycle.",
+      "analogy": "Like a turnstile: it lets you through only during the moment you push, not while you're holding it.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "term": "Setup Time (t_su)",
+      "definition": "The minimum time D must be stable BEFORE the clock edge for reliable capture.",
+      "why": "The internal logic needs time to propagate D to the capture point before the clock arrives.",
+      "analogy": "Like arriving at the train station before the train departs—too late and you miss it.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "term": "Hold Time (t_h)",
+      "definition": "The minimum time D must remain stable AFTER the clock edge.",
+      "why": "The capture logic needs D to remain stable while it's being latched internally.",
+      "analogy": "Like holding still after a camera flash—move too soon and the photo blurs.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "term": "Metastability",
+      "definition": "An unstable state where a flip-flop's output is neither clearly 0 nor 1, oscillating or taking extra time to resolve. Occurs when setup/hold times are violated.",
+      "why": "Metastability can cause system failures. Synchronizer chains (2-3 flip-flops) give extra time for resolution.",
+      "analogy": "Like a ball balanced on a hill's peak—it will eventually fall to one side, but takes time.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "term": "T Flip-Flop (Toggle)",
+      "definition": "A flip-flop that toggles its output on each active clock edge. When T=1, Q_next = NOT(Q). When T=0, Q holds.",
+      "why": "T flip-flops are the building blocks of counters and frequency dividers—essential for digital timing.",
+      "analogy": "Like a light switch that flips every time you tap it—tap once for ON, tap again for OFF.",
+      "firstIntroduced": "level_16"
+    },
+    {
+      "term": "Frequency Division",
+      "definition": "Reducing clock frequency by an integer factor. A T flip-flop divides by 2; n cascaded T-FFs divide by 2ⁿ.",
+      "why": "High-frequency oscillators are precise but fast. Division creates usable lower frequencies.",
+      "analogy": "Like gear reduction: a fast-spinning motor shaft drives a slower output shaft.",
+      "firstIntroduced": "level_16"
+    },
+    {
+      "term": "Duty Cycle",
+      "definition": "The percentage of time a signal is HIGH during one period. A T flip-flop output has exactly 50% duty cycle.",
+      "why": "Many circuits require specific duty cycles. 50% is symmetric and often ideal.",
+      "analogy": "Like work-rest ratio: 50% duty = equal time ON and OFF.",
+      "firstIntroduced": "level_16"
+    },
+    {
+      "term": "D-to-T Conversion",
+      "definition": "A T flip-flop is made from a D flip-flop by connecting Q̄ to D. This makes D always the opposite of Q.",
+      "why": "D flip-flops are more common in libraries; knowing the conversion lets you build T behavior.",
+      "analogy": "Like using a see-saw: connecting Q̄ to D makes the output 'see-saw' between 0 and 1.",
+      "firstIntroduced": "level_16"
+    },
+    {
+      "term": "Binary Counter",
+      "definition": "A sequential circuit that counts through binary states in sequence: 00→01→10→11→00 (for 2-bit).",
+      "why": "Counters track events, generate addresses, and form the core of timers and program counters.",
+      "analogy": "Like an odometer: each digit counts up, and when it reaches max, it rolls over and carries to the next digit.",
+      "firstIntroduced": "level_17"
+    },
+    {
+      "term": "Ripple Counter",
+      "definition": "A counter where each flip-flop is clocked by the output of the previous stage. Changes 'ripple' through.",
+      "why": "Simple design using cascaded T flip-flops, but slower due to accumulated propagation delay.",
+      "analogy": "Like dominoes falling: each one triggers the next after a small delay.",
+      "firstIntroduced": "level_17"
+    },
+    {
+      "term": "Synchronous Counter",
+      "definition": "A counter where all flip-flops share the same clock. Combinational logic determines which FFs toggle.",
+      "why": "All outputs change simultaneously (within one t_prop), enabling faster operation.",
+      "analogy": "Like synchronized swimmers: everyone moves at the same moment.",
+      "firstIntroduced": "level_17"
+    },
+    {
+      "term": "Rollover (Overflow)",
+      "definition": "When a counter exceeds its maximum value and wraps around to zero. For n bits: 2ⁿ-1 → 0.",
+      "why": "Rollover can generate interrupts, trigger events, or indicate a complete counting cycle.",
+      "analogy": "Like a clock going from 11:59 to 12:00—the cycle completes and starts over.",
+      "firstIntroduced": "level_17"
+    },
+    {
+      "term": "Finite State Machine (FSM)",
+      "definition": "A computational model with a finite number of states, transitions between states based on inputs, and outputs determined by state (and possibly inputs).",
+      "why": "FSMs are the foundation of sequential logic design—they model any system with memory and defined behaviors.",
+      "analogy": "Like a board game: you're always on one square (state), dice rolls (inputs) determine your next square, and the square determines what happens (output).",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "term": "Moore Machine",
+      "definition": "An FSM where outputs depend ONLY on the current state, not on inputs. Outputs are 'attached' to states.",
+      "why": "Moore machines have stable, glitch-free outputs that change only on clock edges.",
+      "analogy": "Like traffic light colors: the light color depends on which state you're in, not on what cars are doing.",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "term": "Mealy Machine",
+      "definition": "An FSM where outputs depend on both current state AND current inputs. Outputs are 'attached' to transitions.",
+      "why": "Mealy machines can respond faster (within the same clock cycle as input) but may have glitchy outputs.",
+      "analogy": "Like a vending machine: what it dispenses depends on current state AND what button you press.",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "term": "State Encoding",
+      "definition": "The binary representation chosen for each state. Options: binary (minimum FFs), one-hot (one FF per state), Gray code (minimal transitions).",
+      "why": "Encoding affects circuit complexity, speed, and power consumption.",
+      "analogy": "Like numbering seats in a theater: you can use row+seat, sequential numbers, or coordinates.",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "term": "Arithmetic Logic Unit (ALU)",
+      "definition": "A combinational circuit that performs arithmetic (add, subtract) and logic (AND, OR, XOR) operations on binary operands.",
+      "why": "The ALU is the 'calculator' inside every CPU. All computations ultimately happen here.",
+      "analogy": "Like a Swiss Army knife for numbers: multiple tools (operations) in one unit, selected by which one you pull out (opcode).",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "term": "Opcode (Operation Code)",
+      "definition": "A binary code that selects which operation the ALU performs. Different opcodes select ADD, SUB, AND, OR, etc.",
+      "why": "The opcode comes from the instruction being executed—it's how software controls hardware.",
+      "analogy": "Like a TV remote button: each button (opcode) selects a different channel (operation).",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "term": "Status Flags",
+      "definition": "Single-bit outputs indicating properties of the ALU result: Zero (Z), Negative (N), Carry (C), Overflow (V).",
+      "why": "Flags enable conditional branches. BEQ checks Z=1; BLT checks N≠V.",
+      "analogy": "Like warning lights on a dashboard: they tell you about the result without showing the full number.",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "term": "Superscalar Execution",
+      "definition": "A CPU design that issues multiple instructions per clock cycle to parallel execution units. Achieves IPC (Instructions Per Cycle) greater than 1.",
+      "why": "Modern CPUs execute 4-8 instructions/cycle using multiple ALUs, load/store units, and branch units in parallel.",
+      "analogy": "Like a restaurant with multiple chefs—more orders completed per minute than a single chef.",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "term": "Two's Complement Subtraction",
+      "definition": "Subtraction implemented as addition: A - B = A + NOT(B) + 1. Invert B and add 1 (the 'complement').",
+      "why": "This lets us use the same adder hardware for both addition and subtraction.",
+      "analogy": "Like going backward by going forward on a circular track—adding the complement takes you 'backward'.",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "term": "Subtraction Terminology",
+      "definition": "Minuend = the number being subtracted FROM (A in A-B). Subtrahend = the number being subtracted (B in A-B). Difference = the result.",
+      "why": "These terms appear in ALU documentation and help clarify operand roles in subtraction circuits.",
+      "analogy": "In 10-3=7: 10 is the minuend (what you have), 3 is the subtrahend (what you take away), 7 is the difference.",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "term": "Von Neumann Architecture",
+      "definition": "A computer architecture where program instructions and data share the same memory and bus, with sequential instruction execution.",
+      "why": "This is THE architecture of modern computers. The stored-program concept allows software to be as flexible as the hardware.",
+      "analogy": "Like a chef (CPU) following a recipe (program) stored in the same kitchen (memory) where ingredients (data) are kept.",
+      "firstIntroduced": "level_boss"
+    },
+    {
+      "term": "Datapath",
+      "definition": "The hardware components that perform data processing: registers, ALU, multiplexers, and the buses connecting them.",
+      "why": "The datapath is where computation physically happens—data flows through and is transformed.",
+      "analogy": "Like the pipes and valves in a factory—they carry and route materials (data) for processing.",
+      "firstIntroduced": "level_boss"
+    },
+    {
+      "term": "Control Unit",
+      "definition": "The FSM that decodes instructions and generates control signals to orchestrate datapath operations.",
+      "why": "The control unit is the 'brain' that tells the datapath what to do each cycle.",
+      "analogy": "Like a traffic controller: it doesn't move cars (data) itself but directs the flow.",
+      "firstIntroduced": "level_boss"
+    },
+    {
+      "term": "Fetch-Decode-Execute Cycle",
+      "definition": "The fundamental operation of a CPU: (1) Fetch instruction from memory, (2) Decode opcode and operands, (3) Execute the operation.",
+      "why": "This cycle repeats billions of times per second in your computer, running every program.",
+      "analogy": "Like reading a recipe: (1) Read the next step, (2) Understand what it says, (3) Do it.",
+      "firstIntroduced": "level_boss"
+    },
+    {
+      "term": "Pipeline Hazards",
+      "definition": "Problems that prevent the next instruction from executing in its designated clock cycle. Types: Data hazard (need result not yet computed), Control hazard (branch destination unknown), Structural hazard (resource conflict).",
+      "why": "Hazards cause 'stalls' (pipeline bubbles) that reduce performance. Modern CPUs use forwarding, branch prediction, and out-of-order execution to mitigate them.",
+      "analogy": "Like an assembly line where a station must wait for parts from the previous station—the whole line slows down.",
+      "firstIntroduced": "level_boss"
+    },
+    {
+      "term": "IPC (Instructions Per Cycle)",
+      "definition": "The average number of instructions completed per clock cycle. IPC > 1 indicates superscalar execution; IPC < 1 indicates frequent stalls.",
+      "why": "Performance = IPC × Frequency. Improving IPC is as important as increasing clock speed.",
+      "analogy": "Like productivity: not just how fast you work (frequency), but how many tasks you complete per hour (IPC).",
+      "firstIntroduced": "level_boss"
+    }
+  ],
+  "formulas": [
+    {
+      "name": "Moore's Law",
+      "formula": "Transistors is approximately 2^((year-1971)/2)",
+      "variables": [
+        {
+          "symbol": "Transistors",
+          "meaning": "Number of transistors per chip",
+          "units": "count"
+        },
+        {
+          "symbol": "year",
+          "meaning": "Calendar year",
+          "units": "year"
+        }
+      ],
+      "meaning": "Transistor density doubles approximately every 2 years. This exponential growth enabled modern computing.",
+      "firstIntroduced": "level_00"
+    },
+    {
+      "name": "Ohm's Law",
+      "formula": "V = I × R",
+      "variables": [
+        {
+          "symbol": "V",
+          "meaning": "Voltage across the component",
+          "units": "Volts (V)"
+        },
+        {
+          "symbol": "I",
+          "meaning": "Current through the component",
+          "units": "Amperes (A)"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Resistance of the component",
+          "units": "Ohms (Ω)"
+        }
+      ],
+      "meaning": "Voltage, current, and resistance are linked. If you know any two, you can calculate the third. Higher resistance means less current for the same voltage.",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "name": "Current from Drift",
+      "formula": "I = n × A × v_d × q",
+      "variables": [
+        {
+          "symbol": "I",
+          "meaning": "Current",
+          "units": "Amperes (A)"
+        },
+        {
+          "symbol": "n",
+          "meaning": "Carrier density (free electrons per m³)",
+          "units": "electrons/m³"
+        },
+        {
+          "symbol": "A",
+          "meaning": "Cross-sectional area of wire",
+          "units": "m²"
+        },
+        {
+          "symbol": "v_d",
+          "meaning": "Drift velocity of electrons",
+          "units": "m/s"
+        },
+        {
+          "symbol": "q",
+          "meaning": "Charge per electron (1.6×10⁻¹⁹ C)",
+          "units": "Coulombs"
+        }
+      ],
+      "meaning": "Current depends on how many carriers there are (n), how big the wire is (A), how fast they drift (v_d), and the charge each carries (q). This explains why copper (high n) conducts well.",
+      "firstIntroduced": "level_01"
+    },
+    {
+      "name": "BJT Current Gain",
+      "formula": "I_C = β × I_B",
+      "variables": [
+        {
+          "symbol": "I_C",
+          "meaning": "Collector current (main controlled current)",
+          "units": "Amperes"
+        },
+        {
+          "symbol": "β",
+          "meaning": "Current gain (typically 50-300)",
+          "units": "dimensionless"
+        },
+        {
+          "symbol": "I_B",
+          "meaning": "Base current (small control current)",
+          "units": "Amperes"
+        }
+      ],
+      "meaning": "A tiny base current controls a much larger collector current. This 'amplification' is what makes transistors useful—small signals control large ones.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "name": "Base-Emitter Turn-On Voltage",
+      "formula": "V_BE ≈ 0.7V (for silicon)",
+      "variables": [
+        {
+          "symbol": "V_BE",
+          "meaning": "Voltage between Base and Emitter",
+          "units": "Volts"
+        }
+      ],
+      "meaning": "For a silicon BJT to turn ON (conduct), the base must be ~0.7V higher than the emitter. This is the P-N junction's built-in voltage that must be overcome.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "name": "MOSFET Threshold Voltage",
+      "formula": "I_D = 0 when V_GS < V_th",
+      "variables": [
+        {
+          "symbol": "I_D",
+          "meaning": "Drain current",
+          "units": "Amperes"
+        },
+        {
+          "symbol": "V_GS",
+          "meaning": "Gate-to-Source voltage",
+          "units": "Volts"
+        },
+        {
+          "symbol": "V_th",
+          "meaning": "Threshold voltage (~0.3-0.7V)",
+          "units": "Volts"
+        }
+      ],
+      "meaning": "A MOSFET acts as an open switch until gate voltage exceeds the threshold. Then a conducting channel forms and current can flow.",
+      "firstIntroduced": "level_02"
+    },
+    {
+      "name": "CMOS Dynamic Power",
+      "formula": "P = C × V² × f",
+      "variables": [
+        {
+          "symbol": "P",
+          "meaning": "Power dissipated during switching",
+          "units": "Watts (W)"
+        },
+        {
+          "symbol": "C",
+          "meaning": "Load capacitance (gate + wiring)",
+          "units": "Farads (F)"
+        },
+        {
+          "symbol": "V",
+          "meaning": "Supply voltage",
+          "units": "Volts (V)"
+        },
+        {
+          "symbol": "f",
+          "meaning": "Switching frequency",
+          "units": "Hertz (Hz)"
+        }
+      ],
+      "meaning": "Power consumption scales with voltage SQUARED. This is why CPUs use lower voltages (1V instead of 5V) to save power. It also scales linearly with frequency—faster clocks = more power.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "name": "CMOS Static Power (Ideal)",
+      "formula": "P_static ≈ 0",
+      "variables": [],
+      "meaning": "In an ideal CMOS circuit, one transistor is always OFF, blocking any DC current path from VDD to GND. Real circuits have tiny leakage currents, but static power is vastly less than older technologies.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "name": "Noise Margin (HIGH)",
+      "formula": "NM_H = V_OH - V_IH",
+      "variables": [
+        {
+          "symbol": "NM_H",
+          "meaning": "Noise margin for HIGH signals",
+          "units": "Volts"
+        },
+        {
+          "symbol": "V_OH",
+          "meaning": "Output HIGH voltage (minimum guaranteed)",
+          "units": "Volts"
+        },
+        {
+          "symbol": "V_IH",
+          "meaning": "Input HIGH threshold (minimum required)",
+          "units": "Volts"
+        }
+      ],
+      "meaning": "The output must be at least V_OH, but the next gate only needs V_IH to recognize HIGH. The difference is safety margin—noise up to this amount won't cause errors.",
+      "firstIntroduced": "level_03"
+    },
+    {
+      "name": "Series Resistance",
+      "formula": "R_total = R₁ + R₂ + R₃ + ...",
+      "variables": [
+        {
+          "symbol": "R_total",
+          "meaning": "Total resistance of series combination",
+          "units": "Ohms (Ω)"
+        },
+        {
+          "symbol": "R₁, R₂",
+          "meaning": "Individual resistor values",
+          "units": "Ohms (Ω)"
+        }
+      ],
+      "meaning": "In series, resistances ADD. More resistors in series = harder for current to flow = higher total resistance.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "name": "Propagation Delay",
+      "formula": "t_pd = R_on × C_load",
+      "variables": [
+        {
+          "symbol": "t_pd",
+          "meaning": "Propagation delay (time for output to change)",
+          "units": "seconds"
+        },
+        {
+          "symbol": "R_on",
+          "meaning": "Transistor's on-resistance",
+          "units": "Ohms (Ω)"
+        },
+        {
+          "symbol": "C_load",
+          "meaning": "Capacitance being charged/discharged",
+          "units": "Farads (F)"
+        }
+      ],
+      "meaning": "Output doesn't change instantly—it takes time to charge/discharge parasitic capacitances. This RC time constant limits how fast the circuit can switch.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "name": "Maximum Frequency",
+      "formula": "f_max = 1 / t_pd",
+      "variables": [
+        {
+          "symbol": "f_max",
+          "meaning": "Maximum operating frequency",
+          "units": "Hertz (Hz)"
+        },
+        {
+          "symbol": "t_pd",
+          "meaning": "Total propagation delay through the path",
+          "units": "seconds"
+        }
+      ],
+      "meaning": "You can't clock a circuit faster than signals can propagate. The slowest path (critical path) determines maximum frequency.",
+      "firstIntroduced": "level_04"
+    },
+    {
+      "name": "Parallel Resistance",
+      "formula": "1/R_total = 1/R₁ + 1/R₂ + 1/R₃ + ...",
+      "variables": [
+        {
+          "symbol": "R_total",
+          "meaning": "Total resistance of parallel combination",
+          "units": "Ohms (Ω)"
+        },
+        {
+          "symbol": "R₁, R₂",
+          "meaning": "Individual resistor values",
+          "units": "Ohms (Ω)"
+        }
+      ],
+      "meaning": "In parallel, resistances combine reciprocally. Total is LESS than the smallest individual resistor. More paths = easier for current = lower resistance.",
+      "firstIntroduced": "level_05"
+    },
+    {
+      "name": "KCL at a Node",
+      "formula": "I_1 + I_2 + ... = I_out",
+      "variables": [
+        {
+          "symbol": "I_1, I_2",
+          "meaning": "Currents entering the node",
+          "units": "Amperes (A)"
+        },
+        {
+          "symbol": "I_out",
+          "meaning": "Current leaving the node",
+          "units": "Amperes (A)"
+        }
+      ],
+      "meaning": "Charge is conserved. If 2A flows in from one branch and 3A from another, 5A must flow out.",
+      "firstIntroduced": "level_05"
+    },
+    {
+      "name": "Delay with Fan-Out",
+      "formula": "t = t₀ + t_load × FO",
+      "variables": [
+        {
+          "symbol": "t",
+          "meaning": "Total propagation delay",
+          "units": "seconds"
+        },
+        {
+          "symbol": "t₀",
+          "meaning": "Intrinsic gate delay (zero fan-out)",
+          "units": "seconds"
+        },
+        {
+          "symbol": "t_load",
+          "meaning": "Additional delay per unit load",
+          "units": "seconds"
+        },
+        {
+          "symbol": "FO",
+          "meaning": "Fan-out (number of loads driven)",
+          "units": "count"
+        }
+      ],
+      "meaning": "More loads = more capacitance to charge = slower. Delay grows linearly with fan-out. Solutions: add buffers, use larger driver transistors.",
+      "firstIntroduced": "level_05"
+    },
+    {
+      "name": "NAND Boolean Expression",
+      "formula": "NAND(A,B) = NOT(A AND B) = Ā + B̄",
+      "variables": [
+        {
+          "symbol": "A, B",
+          "meaning": "Input signals (0 or 1)",
+          "units": "binary"
+        },
+        {
+          "symbol": "Ā, B̄",
+          "meaning": "Complements (inverted inputs)",
+          "units": "binary"
+        }
+      ],
+      "meaning": "NAND is 'NOT-AND': it outputs 0 only when both inputs are 1. By De Morgan's law, this equals OR of the inverted inputs.",
+      "firstIntroduced": "level_06"
+    },
+    {
+      "name": "NOT from NAND",
+      "formula": "NOT(A) = NAND(A, A)",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "Input signal",
+          "units": "binary"
+        }
+      ],
+      "meaning": "Tie both NAND inputs together. NAND(A,A) = NOT(A AND A) = NOT(A). This is the simplest universality demonstration.",
+      "firstIntroduced": "level_06"
+    },
+    {
+      "name": "Transistor Count Comparison",
+      "formula": "NAND = 4T, AND = 6T, OR = 6T, NOR = 4T",
+      "variables": [
+        {
+          "symbol": "T",
+          "meaning": "Transistor count",
+          "units": "transistors"
+        }
+      ],
+      "meaning": "NAND and NOR are the smallest 2-input gates in CMOS (4 transistors each). AND and OR require an extra inverter stage (6 total). This is why synthesis prefers NAND/NOR.",
+      "firstIntroduced": "level_06"
+    },
+    {
+      "name": "NOT from NAND Identity",
+      "formula": "NOT(A) = NAND(A, A)",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "Input signal",
+          "units": "Logic level (0 or 1)"
+        },
+        {
+          "symbol": "NAND(A,A)",
+          "meaning": "NAND gate with both inputs tied together",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "When both inputs of a NAND gate receive the same signal, the output is the inverse of that signal.",
+      "firstIntroduced": "level_07"
+    },
+    {
+      "name": "Synthesis Area Cost",
+      "formula": "Area ∝ Σ(W × L)",
+      "variables": [
+        {
+          "symbol": "Area",
+          "meaning": "Total chip area used by gates",
+          "units": "μm²"
+        },
+        {
+          "symbol": "W",
+          "meaning": "Transistor width",
+          "units": "μm"
+        },
+        {
+          "symbol": "L",
+          "meaning": "Transistor length (channel length)",
+          "units": "nm"
+        }
+      ],
+      "meaning": "Chip area is proportional to the sum of all transistor areas. Fewer, smaller transistors = cheaper chip.",
+      "firstIntroduced": "level_07"
+    },
+    {
+      "name": "XOR Boolean Expression (Sum of Products)",
+      "formula": "A ⊕ B = (A · B̄) + (Ā · B)",
+      "variables": [
+        {
+          "symbol": "A, B",
+          "meaning": "Input signals",
+          "units": "Logic level (0 or 1)"
+        },
+        {
+          "symbol": "B̄, Ā",
+          "meaning": "Complement (NOT) of B and A",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "·",
+          "meaning": "AND operation",
+          "units": ""
+        },
+        {
+          "symbol": "+",
+          "meaning": "OR operation",
+          "units": ""
+        }
+      ],
+      "meaning": "XOR is true when A is 1 and B is 0, OR when A is 0 and B is 1. Either one, but not both.",
+      "firstIntroduced": "level_08"
+    },
+    {
+      "name": "XOR Alternate Form (Product of Sums)",
+      "formula": "A ⊕ B = (A + B) · (Ā + B̄)",
+      "variables": [
+        {
+          "symbol": "A + B",
+          "meaning": "A OR B",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Ā + B̄",
+          "meaning": "NOT-A OR NOT-B = NAND(A,B)",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "XOR is true when (A or B is true) AND (not both are true). Combines OR with NAND.",
+      "firstIntroduced": "level_08"
+    },
+    {
+      "name": "Gate Count Formula",
+      "formula": "Transistors = Σ(gates × transistors_per_gate)",
+      "variables": [
+        {
+          "symbol": "gates",
+          "meaning": "Number of each gate type",
+          "units": "count"
+        },
+        {
+          "symbol": "transistors_per_gate",
+          "meaning": "NOT=2, NAND/NOR=4, AND/OR=6",
+          "units": "count"
+        }
+      ],
+      "meaning": "Total transistor count determines chip area and cost. Fewer transistors = cheaper, smaller chip.",
+      "firstIntroduced": "level_08"
+    },
+    {
+      "name": "De Morgan's First Law",
+      "formula": "NOT(A · B) = Ā + B̄",
+      "variables": [
+        {
+          "symbol": "A · B",
+          "meaning": "A AND B",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Ā",
+          "meaning": "NOT A (complement)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "B̄",
+          "meaning": "NOT B (complement)",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "To negate an AND, negate each input and change AND to OR. The NAND is the negated AND.",
+      "firstIntroduced": "level_09"
+    },
+    {
+      "name": "De Morgan's Second Law",
+      "formula": "NOT(A + B) = Ā · B̄",
+      "variables": [
+        {
+          "symbol": "A + B",
+          "meaning": "A OR B",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Ā · B̄",
+          "meaning": "NOT-A AND NOT-B",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "To negate an OR, negate each input and change OR to AND. The NOR is the negated OR.",
+      "firstIntroduced": "level_09"
+    },
+    {
+      "name": "OR from NAND (This Level)",
+      "formula": "A + B = NAND(NAND(A,A), NAND(B,B))",
+      "variables": [
+        {
+          "symbol": "NAND(A,A)",
+          "meaning": "NOT(A) - inverter from NAND",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "NAND(Ā,B̄)",
+          "meaning": "NOT(NOT(A) AND NOT(B)) = A OR B by De Morgan",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "First invert both inputs (using NAND as NOT), then NAND the results to get OR.",
+      "firstIntroduced": "level_09"
+    },
+    {
+      "name": "2:1 MUX Boolean Equation",
+      "formula": "Out = (A · S̄) + (B · S)",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "Data input 0 (selected when S=0)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Data input 1 (selected when S=1)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "S",
+          "meaning": "Select input",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "S̄",
+          "meaning": "NOT S (complement of select)",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "When S=0, the A·S̄ term passes A through. When S=1, the B·S term passes B through. Only one term is active at a time.",
+      "firstIntroduced": "level_10"
+    },
+    {
+      "name": "MUX Scaling Formula",
+      "formula": "Data Inputs = 2^n, where n = select lines",
+      "variables": [
+        {
+          "symbol": "n",
+          "meaning": "Number of select lines",
+          "units": "count"
+        },
+        {
+          "symbol": "2^n",
+          "meaning": "Number of data inputs the MUX can select from",
+          "units": "count"
+        }
+      ],
+      "meaning": "Each additional select line doubles the number of inputs. 1 select → 2 inputs, 2 selects → 4 inputs, etc.",
+      "firstIntroduced": "level_10"
+    },
+    {
+      "name": "Gate Count for 2:1 MUX",
+      "formula": "Gates = 2 AND + 1 OR + 1 NOT = 4 gates",
+      "variables": [
+        {
+          "symbol": "AND",
+          "meaning": "AND gates (one for each data input)",
+          "units": "count"
+        },
+        {
+          "symbol": "OR",
+          "meaning": "OR gate to combine the AND outputs",
+          "units": "count"
+        },
+        {
+          "symbol": "NOT",
+          "meaning": "Inverter for the select signal",
+          "units": "count"
+        }
+      ],
+      "meaning": "A 2:1 MUX requires 4 gates minimum. Larger MUXes can be built hierarchically.",
+      "firstIntroduced": "level_10"
+    },
+    {
+      "name": "2-to-4 Decoder Outputs",
+      "formula": "Y₀ = Ā·B̄, Y₁ = Ā·B, Y₂ = A·B̄, Y₃ = A·B",
+      "variables": [
+        {
+          "symbol": "A, B",
+          "meaning": "Input bits (A is MSB, B is LSB)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Ā, B̄",
+          "meaning": "Complements of A and B",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Y₀-Y₃",
+          "meaning": "Output lines (exactly one is HIGH)",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "Each output is the AND of the input combination that selects it. Y₀ is selected by 00, Y₁ by 01, etc.",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "name": "Decoder Scaling",
+      "formula": "Outputs = 2ⁿ, Gates = n NOT + 2ⁿ AND",
+      "variables": [
+        {
+          "symbol": "n",
+          "meaning": "Number of input bits",
+          "units": "count"
+        },
+        {
+          "symbol": "2ⁿ",
+          "meaning": "Number of output lines",
+          "units": "count"
+        },
+        {
+          "symbol": "NOT",
+          "meaning": "Inverters for each input",
+          "units": "gates"
+        },
+        {
+          "symbol": "AND",
+          "meaning": "One AND gate per output",
+          "units": "gates"
+        }
+      ],
+      "meaning": "A decoder with n inputs needs n inverters (for complements) and 2ⁿ AND gates (one per output).",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "name": "Memory Address Decoding",
+      "formula": "Cell Selected = Row Decoder(A_high) AND Column Decoder(A_low)",
+      "variables": [
+        {
+          "symbol": "A_high",
+          "meaning": "High-order address bits (row selection)",
+          "units": "bits"
+        },
+        {
+          "symbol": "A_low",
+          "meaning": "Low-order address bits (column selection)",
+          "units": "bits"
+        },
+        {
+          "symbol": "Row Decoder",
+          "meaning": "Selects one of 2^k rows",
+          "units": ""
+        },
+        {
+          "symbol": "Column Decoder",
+          "meaning": "Selects one of 2^m columns",
+          "units": ""
+        }
+      ],
+      "meaning": "2D decoding splits the address into row and column parts, reducing decoder size from 2^(k+m) to 2^k + 2^m.",
+      "firstIntroduced": "level_11"
+    },
+    {
+      "name": "Half Adder Sum",
+      "formula": "Sum = A ⊕ B",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "First input bit",
+          "units": "Logic level (0 or 1)"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Second input bit",
+          "units": "Logic level (0 or 1)"
+        },
+        {
+          "symbol": "Sum",
+          "meaning": "Result bit (before carry)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "⊕",
+          "meaning": "XOR operation",
+          "units": ""
+        }
+      ],
+      "meaning": "Sum is 1 when exactly one input is 1. This matches modulo-2 addition: 1+1=0 (carry handled separately).",
+      "firstIntroduced": "level_12"
+    },
+    {
+      "name": "Half Adder Carry",
+      "formula": "Carry = A · B",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "First input bit",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Second input bit",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Carry",
+          "meaning": "Overflow bit to next position",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "·",
+          "meaning": "AND operation",
+          "units": ""
+        }
+      ],
+      "meaning": "Carry is 1 only when both inputs are 1 (the only case where 1+1=2 overflows a single bit).",
+      "firstIntroduced": "level_12"
+    },
+    {
+      "name": "Binary Addition Result",
+      "formula": "A + B = (Carry × 2) + Sum",
+      "variables": [
+        {
+          "symbol": "A, B",
+          "meaning": "Input bits",
+          "units": "0 or 1"
+        },
+        {
+          "symbol": "Carry",
+          "meaning": "High bit of result",
+          "units": "0 or 1"
+        },
+        {
+          "symbol": "Sum",
+          "meaning": "Low bit of result",
+          "units": "0 or 1"
+        }
+      ],
+      "meaning": "The complete result combines carry (worth 2) and sum (worth 1). Result ranges from 0 to 2.",
+      "firstIntroduced": "level_12"
+    },
+    {
+      "name": "Full Adder Sum",
+      "formula": "Sum = A ⊕ B ⊕ Cin",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "First input bit",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Second input bit",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Cin",
+          "meaning": "Carry-in from previous stage",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Sum",
+          "meaning": "Result bit for this position",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "Sum is 1 when an odd number of inputs are 1. This is 3-input XOR (modulo-2 sum).",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "name": "Full Adder Carry-Out",
+      "formula": "Cout = (A · B) + (Cin · (A ⊕ B))",
+      "variables": [
+        {
+          "symbol": "A · B",
+          "meaning": "Generate term: carry created when both inputs are 1",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "A ⊕ B",
+          "meaning": "Propagate term: indicates carry can pass through",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Cin · (A⊕B)",
+          "meaning": "Carry propagated from input",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "Carry-out occurs if a carry is generated (A·B=1) OR if a carry is propagated (Cin=1 and A⊕B=1).",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "name": "Ripple-Carry Adder Delay",
+      "formula": "Delay = n × t_carry",
+      "variables": [
+        {
+          "symbol": "n",
+          "meaning": "Number of bits",
+          "units": "count"
+        },
+        {
+          "symbol": "t_carry",
+          "meaning": "Delay for carry to propagate through one full adder",
+          "units": "nanoseconds"
+        }
+      ],
+      "meaning": "In a ripple-carry adder, the worst case has the carry propagating through all n stages sequentially.",
+      "firstIntroduced": "level_13"
+    },
+    {
+      "name": "NOR-based SR Latch",
+      "formula": "Q = NOR(R, Q̄), Q̄ = NOR(S, Q)",
+      "variables": [
+        {
+          "symbol": "S",
+          "meaning": "Set input (active HIGH)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Reset input (active HIGH)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Q",
+          "meaning": "Output (stored state)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Q̄",
+          "meaning": "Complement output",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "Each output is a NOR of the opposite input and the other output. Cross-coupling creates feedback.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "name": "Hold Condition",
+      "formula": "S=0, R=0 → Q_next = Q_current",
+      "variables": [
+        {
+          "symbol": "S",
+          "meaning": "Set input",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "R",
+          "meaning": "Reset input",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Q_next",
+          "meaning": "Output after operation",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Q_current",
+          "meaning": "Output before operation",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "When neither S nor R is active, the latch holds its current state indefinitely. This is MEMORY.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "name": "SRAM Cell (6T)",
+      "formula": "Cell = 4T (latch) + 2T (access)",
+      "variables": [
+        {
+          "symbol": "4T",
+          "meaning": "4 transistors forming cross-coupled inverters (the latch)",
+          "units": "transistors"
+        },
+        {
+          "symbol": "2T",
+          "meaning": "2 access transistors connecting latch to bitlines",
+          "units": "transistors"
+        },
+        {
+          "symbol": "6T",
+          "meaning": "Total transistors per bit",
+          "units": "transistors"
+        }
+      ],
+      "meaning": "SRAM uses a latch for storage (4T) plus access transistors (2T) for read/write control.",
+      "firstIntroduced": "level_14"
+    },
+    {
+      "name": "Maximum Clock Frequency",
+      "formula": "f_max = 1 / (t_cq + t_logic + t_su)",
+      "variables": [
+        {
+          "symbol": "f_max",
+          "meaning": "Maximum clock frequency",
+          "units": "Hz (GHz for modern CPUs)"
+        },
+        {
+          "symbol": "t_cq",
+          "meaning": "Clock-to-Q delay (FF output delay)",
+          "units": "picoseconds"
+        },
+        {
+          "symbol": "t_logic",
+          "meaning": "Combinational logic delay between FFs",
+          "units": "picoseconds"
+        },
+        {
+          "symbol": "t_su",
+          "meaning": "Setup time of receiving FF",
+          "units": "picoseconds"
+        }
+      ],
+      "meaning": "The clock period must be long enough for data to propagate from one FF through logic to the next FF's input.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "name": "Hold Time Requirement",
+      "formula": "t_cq + t_logic > t_h",
+      "variables": [
+        {
+          "symbol": "t_cq",
+          "meaning": "Source FF clock-to-Q delay",
+          "units": "picoseconds"
+        },
+        {
+          "symbol": "t_logic",
+          "meaning": "Minimum logic delay (could be 0 for direct connection)",
+          "units": "picoseconds"
+        },
+        {
+          "symbol": "t_h",
+          "meaning": "Destination FF hold time",
+          "units": "picoseconds"
+        }
+      ],
+      "meaning": "Data must not arrive at the destination FF too quickly—it must hold stable for t_h after the clock edge.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "name": "Metastability MTBF",
+      "formula": "MTBF = exp(t_res / τ) / (f_clk × f_data × T_window)",
+      "variables": [
+        {
+          "symbol": "MTBF",
+          "meaning": "Mean Time Between Failures (metastability events)",
+          "units": "seconds (years ideally)"
+        },
+        {
+          "symbol": "t_res",
+          "meaning": "Resolution time (slack for metastability to resolve)",
+          "units": "nanoseconds"
+        },
+        {
+          "symbol": "τ (tau)",
+          "meaning": "Metastability time constant - how fast the flip-flop resolves unstable states (technology dependent, typically 10-50ps)",
+          "units": "picoseconds"
+        },
+        {
+          "symbol": "f_clk",
+          "meaning": "Clock frequency",
+          "units": "Hz"
+        },
+        {
+          "symbol": "f_data",
+          "meaning": "Data transition rate",
+          "units": "Hz"
+        },
+        {
+          "symbol": "T_window",
+          "meaning": "Timing violation window (setup + hold)",
+          "units": "seconds"
+        }
+      ],
+      "meaning": "More resolution time exponentially increases MTBF. This is why we use 2-3 flip-flop synchronizer chains.",
+      "firstIntroduced": "level_15"
+    },
+    {
+      "name": "T Flip-Flop Behavior",
+      "formula": "Q_next = Q ⊕ T",
+      "variables": [
+        {
+          "symbol": "Q",
+          "meaning": "Current output",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "T",
+          "meaning": "Toggle enable input",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Q_next",
+          "meaning": "Output after clock edge",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "⊕",
+          "meaning": "XOR operation",
+          "units": ""
+        }
+      ],
+      "meaning": "When T=1, output toggles (XOR with 1 inverts). When T=0, output holds (XOR with 0 keeps same).",
+      "firstIntroduced": "level_16"
+    },
+    {
+      "name": "Frequency Division",
+      "formula": "f_out = f_in / 2ⁿ",
+      "variables": [
+        {
+          "symbol": "f_in",
+          "meaning": "Input clock frequency",
+          "units": "Hz"
+        },
+        {
+          "symbol": "f_out",
+          "meaning": "Output frequency",
+          "units": "Hz"
+        },
+        {
+          "symbol": "n",
+          "meaning": "Number of cascaded T flip-flops",
+          "units": "count"
+        }
+      ],
+      "meaning": "Each T flip-flop halves the frequency. Chaining n of them divides by 2ⁿ.",
+      "firstIntroduced": "level_16"
+    },
+    {
+      "name": "Ripple Counter Delay",
+      "formula": "t_ripple = n × t_prop",
+      "variables": [
+        {
+          "symbol": "t_ripple",
+          "meaning": "Total delay from clock to MSB output",
+          "units": "nanoseconds"
+        },
+        {
+          "symbol": "n",
+          "meaning": "Number of stages (bits)",
+          "units": "count"
+        },
+        {
+          "symbol": "t_prop",
+          "meaning": "Propagation delay per flip-flop",
+          "units": "nanoseconds"
+        }
+      ],
+      "meaning": "In a ripple counter, each stage waits for the previous. Total delay accumulates.",
+      "firstIntroduced": "level_16"
+    },
+    {
+      "name": "Counter State Count",
+      "formula": "States = 2ⁿ",
+      "variables": [
+        {
+          "symbol": "States",
+          "meaning": "Number of unique count values",
+          "units": "count"
+        },
+        {
+          "symbol": "n",
+          "meaning": "Number of bits (flip-flops)",
+          "units": "bits"
+        }
+      ],
+      "meaning": "An n-bit counter can represent 2ⁿ different values, from 0 to 2ⁿ-1.",
+      "firstIntroduced": "level_17"
+    },
+    {
+      "name": "Ripple Counter Toggle Condition",
+      "formula": "T₀ = 1 (always), Tₙ = Q_{n-1} falling edge",
+      "variables": [
+        {
+          "symbol": "T₀",
+          "meaning": "Toggle enable for LSB (bit 0)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Tₙ",
+          "meaning": "Toggle enable for bit n",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Q_{n-1}",
+          "meaning": "Output of previous bit",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "In a ripple counter, each bit toggles when the previous bit transitions from 1 to 0.",
+      "firstIntroduced": "level_17"
+    },
+    {
+      "name": "Synchronous Counter Toggle Condition",
+      "formula": "Tₙ = Q₀ · Q₁ · ... · Q_{n-1}",
+      "variables": [
+        {
+          "symbol": "Tₙ",
+          "meaning": "Toggle enable for bit n",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "Q₀...Q_{n-1}",
+          "meaning": "All lower bit outputs",
+          "units": "Logic levels"
+        }
+      ],
+      "meaning": "In a synchronous counter, bit n toggles when ALL lower bits are 1 (about to roll over).",
+      "firstIntroduced": "level_17"
+    },
+    {
+      "name": "Ceiling Function",
+      "formula": "⌈x⌉ = smallest integer ≥ x",
+      "variables": [
+        {
+          "symbol": "⌈x⌉",
+          "meaning": "Ceiling of x - round up to next integer",
+          "units": "integer"
+        },
+        {
+          "symbol": "x",
+          "meaning": "Any real number",
+          "units": "real"
+        }
+      ],
+      "meaning": "Always rounds UP. Used when you need 'at least' a certain number (like flip-flops for states).",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "name": "State Count vs Flip-Flops",
+      "formula": "FFs = ⌈log₂(States)⌉",
+      "variables": [
+        {
+          "symbol": "FFs",
+          "meaning": "Number of flip-flops needed",
+          "units": "count"
+        },
+        {
+          "symbol": "States",
+          "meaning": "Number of states in FSM",
+          "units": "count"
+        },
+        {
+          "symbol": "⌈x⌉",
+          "meaning": "Ceiling function (round up)",
+          "units": ""
+        }
+      ],
+      "meaning": "For binary encoding, you need enough flip-flops to represent all states in binary.",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "name": "Traffic Light State Encoding",
+      "formula": "GREEN=00, YELLOW=01, RED=10",
+      "variables": [
+        {
+          "symbol": "S₁S₀",
+          "meaning": "Two-bit state encoding",
+          "units": "binary"
+        },
+        {
+          "symbol": "00",
+          "meaning": "GREEN state",
+          "units": ""
+        },
+        {
+          "symbol": "01",
+          "meaning": "YELLOW state",
+          "units": ""
+        },
+        {
+          "symbol": "10",
+          "meaning": "RED state",
+          "units": ""
+        }
+      ],
+      "meaning": "Each state is assigned a unique binary code. The sequence is GREEN→YELLOW→RED→GREEN.",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "name": "Next State Logic (Mod-3 Counter)",
+      "formula": "S₁_next = S₀·S̄₁, S₀_next = S̄₀·S̄₁",
+      "variables": [
+        {
+          "symbol": "S₁, S₀",
+          "meaning": "Current state bits",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "S₁_next, S₀_next",
+          "meaning": "Next state bits",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "These equations implement the state transition 00→01→10→00 (cycling through 3 states).",
+      "firstIntroduced": "level_18"
+    },
+    {
+      "name": "Two's Complement Subtraction",
+      "formula": "A - B = A + NOT(B) + 1",
+      "variables": [
+        {
+          "symbol": "A",
+          "meaning": "Minuend (number being subtracted from)",
+          "units": "Binary"
+        },
+        {
+          "symbol": "B",
+          "meaning": "Subtrahend (number being subtracted)",
+          "units": "Binary"
+        },
+        {
+          "symbol": "NOT(B)",
+          "meaning": "Bitwise complement of B",
+          "units": "Binary"
+        },
+        {
+          "symbol": "+1",
+          "meaning": "Added via carry-in of adder",
+          "units": ""
+        }
+      ],
+      "meaning": "Subtraction reuses the adder by inverting B and setting carry-in to 1.",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "name": "Zero Flag",
+      "formula": "Z = NOT(R₀ OR R₁ OR ... OR R_{n-1})",
+      "variables": [
+        {
+          "symbol": "Z",
+          "meaning": "Zero flag (1 if result is zero)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "R₀...R_{n-1}",
+          "meaning": "Result bits",
+          "units": "Logic levels"
+        }
+      ],
+      "meaning": "Z is 1 only when ALL result bits are 0. This is a NOR of all bits.",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "name": "Overflow Flag (Signed)",
+      "formula": "V = C_{in,MSB} XOR C_{out,MSB}",
+      "variables": [
+        {
+          "symbol": "V",
+          "meaning": "Overflow flag (signed overflow)",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "C_{in,MSB}",
+          "meaning": "Carry into the MSB position",
+          "units": "Logic level"
+        },
+        {
+          "symbol": "C_{out,MSB}",
+          "meaning": "Carry out of the MSB position",
+          "units": "Logic level"
+        }
+      ],
+      "meaning": "Signed overflow occurs when the sign of the result is wrong—detected by comparing carries at MSB.",
+      "firstIntroduced": "level_19"
+    },
+    {
+      "name": "Instruction Fetch",
+      "formula": "IR = Memory[PC]; PC = PC + 4",
+      "variables": [
+        {
+          "symbol": "IR",
+          "meaning": "Instruction Register (holds current instruction)",
+          "units": "32 bits"
+        },
+        {
+          "symbol": "PC",
+          "meaning": "Program Counter (address of next instruction)",
+          "units": "32-bit address"
+        },
+        {
+          "symbol": "Memory[PC]",
+          "meaning": "Instruction at address PC",
+          "units": "32-bit instruction"
+        }
+      ],
+      "meaning": "Fetch reads the instruction pointed to by PC into IR, then increments PC to point to the next instruction.",
+      "firstIntroduced": "level_boss"
+    },
+    {
+      "name": "Critical Path (Single-Cycle)",
+      "formula": "T_cycle ≥ t_PC + t_IM + t_RF + t_ALU + t_DM + t_WB",
+      "variables": [
+        {
+          "symbol": "T_cycle",
+          "meaning": "Clock period",
+          "units": "nanoseconds"
+        },
+        {
+          "symbol": "t_PC",
+          "meaning": "PC read time",
+          "units": "ns"
+        },
+        {
+          "symbol": "t_IM",
+          "meaning": "Instruction memory access",
+          "units": "ns"
+        },
+        {
+          "symbol": "t_RF",
+          "meaning": "Register file read",
+          "units": "ns"
+        },
+        {
+          "symbol": "t_ALU",
+          "meaning": "ALU computation",
+          "units": "ns"
+        },
+        {
+          "symbol": "t_DM",
+          "meaning": "Data memory access",
+          "units": "ns"
+        },
+        {
+          "symbol": "t_WB",
+          "meaning": "Writeback to register",
+          "units": "ns"
+        }
+      ],
+      "meaning": "In single-cycle design, the clock period must accommodate the longest instruction path (typically LOAD).",
+      "firstIntroduced": "level_boss"
+    },
+    {
+      "name": "Pipeline Speedup",
+      "formula": "Speedup ≈ n (for n-stage pipeline)",
+      "variables": [
+        {
+          "symbol": "n",
+          "meaning": "Number of pipeline stages",
+          "units": "count"
+        },
+        {
+          "symbol": "Speedup",
+          "meaning": "Throughput improvement vs single-cycle",
+          "units": "factor"
+        }
+      ],
+      "meaning": "An n-stage pipeline can ideally execute n instructions simultaneously, achieving n× throughput.",
+      "firstIntroduced": "level_boss"
+    }
+  ]
+}

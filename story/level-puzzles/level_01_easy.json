@@ -1,0 +1,32 @@
+{
+  "id": "level_01_easy",
+  "baseId": "level_01",
+  "variant": "easy",
+  "availableGates": [],
+  "inputs": 1,
+  "targetTruthTable": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 10,
+  "hint": "Drag from Input to Output. This is the simplest circuit: a direct wire connection that passes the signal unchanged.",
+  "title": "The Simple Wire",
+  "objective": "Connect input directly to output",
+  "description": "Build the simplest possible circuit: a wire that transmits voltage faithfully from input to output.",
+  "physicsVisual": "wire_connection"
+}

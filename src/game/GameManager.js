@@ -1,0 +1,475 @@
+import { globalEvents, Events } from './EventBus.js';
+import { LevelGenerator } from './generators/LevelGenerator.js';
+import { StoryLoader } from '../utils/StoryLoader.js';
+import { AchievementSystem } from './systems/AchievementSystem.js';
+
+/**
+ * GameManager - Main game state machine
+ * Handles game modes, level progression, and scoring
+ */
+export class GameManager {
+    constructor() {
+        this.currentLevel = null;
+        this.currentLevelIndex = 0;
+        this.currentVariant = 'easy'; // Track current variant
+        this.levels = [];
+        this.tiers = {};
+        this.gates = {};
+        this.gatesIndexLower = new Map();
+        this.state = 'MENU'; // MENU, PLAYING, PAUSED, COMPLETE
+        this.mode = 'STORY'; // STORY, SANDBOX, ENDLESS, CUSTOM
+        this.difficulty = 1;
+        
+        // Player progress
+        this.progress = {
+            xp: 0,
+            completedLevels: {}, // { levelId: { easy: false, medium: false, hard: false } }
+            unlockedTiers: ['intro', 'tier_1'],
+            achievements: [],
+            highScores: {}
+        };
+
+        // Current session tracked data for achievements/stats
+        this.sessionStats = {
+            gatesPlaced: 0,
+            wiresConnected: 0,
+            simulationsRun: 0
+        };
+
+        this.loadProgress();
+        this.setupEventListeners();
+        
+        // Initialize systems
+        this.achievementSystem = new AchievementSystem(this);
+    }
+
+    /**
+     * Initialize the game
+     */
+    async init() {
+        const success = await this.loadGameData();
+        if (success) {
+            // Check if we should resume or start fresh
+            if (this.progress.completedLevels.length > 0) {
+                this.startGame('STORY');
+            } else {
+                this.startGame('STORY');
+            }
+        }
+        return success;
+    }
+
+    /**
+     * Load game data from JSON files
+     */
+    async loadGameData() {
+        try {
+            const [gatesRes, storyData] = await Promise.all([
+                fetch('/data/gates.json'),
+                StoryLoader.loadStoryData()
+            ]);
+
+            this.gates = await gatesRes.json();
+            this.buildGateIndex();
+            this.levels = storyData.levels;
+            this.tiers = storyData.tiers;
+            this.levelVariants = storyData.variants || {}; // { levelId: {original, easy, hard} }
+
+            console.log('Game data loaded:', {
+                gates: Object.keys(this.gates).length,
+                levels: this.levels.length,
+                tiers: Object.keys(this.tiers).length,
+                variants: Object.keys(this.levelVariants || {}).length
+            });
+
+            return true;
+        } catch (error) {
+            console.error('Failed to load game data:', error);
+            return false;
+        }
+    }
+
+    buildGateIndex() {
+        this.gatesIndexLower = new Map();
+        for (const [key, gate] of Object.entries(this.gates || {})) {
+            const lowerKey = String(key).toLowerCase();
+            this.gatesIndexLower.set(lowerKey, gate);
+            if (gate && typeof gate === 'object' && gate.id) {
+                this.gatesIndexLower.set(String(gate.id).toLowerCase(), gate);
+            }
+        }
+    }
+
+    resolveGateMeta(gateId) {
+        if (!gateId) return null;
+        const direct = this.gates[gateId];
+        if (direct) return direct;
+
+        const lower = String(gateId).toLowerCase();
+        return this.gatesIndexLower.get(lower) || null;
+    }
+
+    /**
+     * Setup event listeners
+     */
+    setupEventListeners() {
+        globalEvents.on(Events.PUZZLE_VERIFIED, (data) => {
+            if (data.valid && this.state === 'PLAYING') {
+                this.completeLevel(data.score);
+            }
+        });
+
+        // Track session stats for achievements
+        globalEvents.on(Events.GATE_PLACED, () => {
+            if (this.sessionStats) this.sessionStats.gatesPlaced++;
+        });
+
+        globalEvents.on(Events.WIRE_CONNECTED, () => {
+            if (this.sessionStats) this.sessionStats.wiresConnected++;
+        });
+    }
+
+    /**
+     * Start the game in a specific mode
+     */
+    startGame(mode = 'STORY') {
+        this.mode = mode;
+        this.state = 'PLAYING';
+
+        if (mode === 'STORY') {
+            // Story mode is roadmap-driven: do not auto-load a level here.
+            // Loading the "next uncompleted" level caused Story to jump ahead
+            // (e.g., landing on Level 2 info) instead of showing the roadmap.
+        } else if (mode === 'SANDBOX') {
+            this.startSandbox();
+        } else if (mode === 'ENDLESS') {
+            this.startEndless();
+        } else if (mode === 'CUSTOM') {
+            this.startCustom();
+        }
+
+        globalEvents.emit(Events.MODE_CHANGED, { mode });
+    }
+
+    /**
+     * Start custom mode (Level Editor / Custom Puzzle)
+     */
+    startCustom(config = {}) {
+        this.currentLevel = {
+            id: 'custom',
+            title: config.title || 'Custom Circuit',
+            description: config.description || 'Design your own logic system.',
+            availableGates: config.gates || Object.keys(this.gates),
+            inputs: config.inputs || 2,
+            maxGates: config.maxGates || Infinity,
+            targetTruthTable: config.targetTruthTable || null
+        };
+
+        globalEvents.emit(Events.LEVEL_LOADED, {
+            level: this.currentLevel,
+            mode: 'CUSTOM'
+        });
+    }
+
+    /**
+     * Load a specific level by index or ID
+     */
+    /**
+     * Load a level by index or ID and optionally select a variant (original|easy|hard)
+     * options: { showIntro: true|false }
+     */
+    loadLevel(levelIdOrIndex, variant = 'easy', options = {}) {
+        let baseLevel;
+
+        if (typeof levelIdOrIndex === 'number') {
+            baseLevel = this.levels[levelIdOrIndex];
+            this.currentLevelIndex = levelIdOrIndex;
+        } else {
+            baseLevel = this.levels.find(l => l.id === levelIdOrIndex);
+            this.currentLevelIndex = this.levels.indexOf(baseLevel);
+        }
+
+        if (!baseLevel) {
+            console.error('Level not found:', levelIdOrIndex);
+            return false;
+        }
+
+        // If variant available, merge it on top of the base level.
+        // Variants are intended to change gameplay constraints (gate limits, available gates, XP),
+        // while preserving educational content (introText, storyText, physicsDetails, visuals).
+        const variantsForLevel = this.levelVariants && this.levelVariants[baseLevel.id];
+        let levelToLoad = baseLevel;
+        if (variantsForLevel && variantsForLevel[variant]) {
+            const variantLevel = variantsForLevel[variant];
+            const merged = { ...baseLevel, ...variantLevel };
+
+            // Preserve base identifiers and educational content if not specifically overridden by variant
+            merged.id = baseLevel.id;
+            merged.tier = baseLevel.tier;
+            
+            // Allow variant to override these if provided, otherwise fall back to base
+            merged.title = variantLevel.title || baseLevel.title;
+            merged.description = variantLevel.description || baseLevel.description;
+            merged.objective = variantLevel.objective || baseLevel.objective;
+            merged.introText = variantLevel.introText || baseLevel.introText;
+            merged.hint = variantLevel.hint || baseLevel.hint;
+
+            // Preserve story/physics from base (usually consistent across variants)
+            merged.storyText = baseLevel.storyText;
+            merged.physicsDetails = baseLevel.physicsDetails;
+            merged.physicsVisual = variantLevel.physicsVisual || baseLevel.physicsVisual;
+
+            levelToLoad = merged;
+        }
+
+        this.currentLevel = levelToLoad;
+        this.currentVariant = variant; // Track current variant
+        this.state = 'PLAYING';
+
+        const showIntro = options && options.showIntro === false ? false : true;
+
+        globalEvents.emit(Events.LEVEL_LOADED, {
+            level: levelToLoad,
+            index: this.currentLevelIndex,
+            tier: this.tiers[levelToLoad.tier || baseLevel.tier],
+            showIntro
+        });
+
+        return true;
+    }
+
+    /**
+     * Get the next uncompleted level
+     */
+    getNextUncompletedLevel() {
+        const nextIndex = this.levels.findIndex(
+            level => !level.isIndex && (!this.progress.completedLevels[level.id] || !this.progress.completedLevels[level.id].easy)
+        );
+        return nextIndex >= 0 ? nextIndex : 1; // Default to level_01 (index 1) if all completed
+    }
+
+    /**
+     * Complete current level and award XP
+     */
+    completeLevel(score = 100) {
+        if (!this.currentLevel) return;
+
+        const levelId = this.currentLevel.id.replace(/_(easy|medium|hard)$/, ''); // Get base level ID
+        const xpReward = this.currentLevel.xpReward || 0;
+        const bonusXP = Math.round(xpReward * (score / 100));
+
+        // Update progress for the variant
+        if (!this.progress.completedLevels[levelId]) {
+            this.progress.completedLevels[levelId] = { easy: false, medium: false, hard: false };
+        }
+        this.progress.completedLevels[levelId][this.currentVariant] = true;
+
+        this.progress.xp += bonusXP;
+
+        // Check for tier unlock
+        this.checkTierUnlocks();
+
+        // Save progress
+        this.saveProgress();
+
+        this.state = 'COMPLETE';
+
+        globalEvents.emit(Events.LEVEL_COMPLETE, {
+            level: this.currentLevel,
+            score,
+            xpEarned: bonusXP,
+            totalXP: this.progress.xp
+        });
+
+        globalEvents.emit(Events.XP_GAINED, {
+            amount: bonusXP,
+            total: this.progress.xp
+        });
+    }
+
+    /**
+     * Check if new tiers should be unlocked
+     */
+    checkTierUnlocks() {
+        const tierThresholds = {
+            'tier_2': 200,   // After Silicon Age
+            'tier_3': 600,   // After Boolean Algebra
+            'tier_4': 1100,  // After Combinational Logic
+            'tier_5': 1800,  // After Sequential Logic
+            'tier_6': 2300   // After FSMs
+        };
+
+        Object.entries(tierThresholds).forEach(([tier, threshold]) => {
+            if (this.progress.xp >= threshold && !this.progress.unlockedTiers.includes(tier)) {
+                this.progress.unlockedTiers.push(tier);
+                globalEvents.emit(Events.TIER_UNLOCKED, { tier, tierData: this.tiers[tier] });
+            }
+        });
+    }
+
+    /**
+     * Start sandbox mode (free play)
+     */
+    startSandbox() {
+        this.currentLevel = {
+            id: 'sandbox',
+            title: 'Sandbox Mode',
+            description: 'Free play! Build whatever you want.',
+            availableGates: Object.keys(this.gates),
+            inputs: 4,
+            maxGates: Infinity
+        };
+
+        globalEvents.emit(Events.LEVEL_LOADED, {
+            level: this.currentLevel,
+            mode: 'SANDBOX'
+        });
+    }
+
+    /**
+     * Start endless mode
+     */
+    startEndless() {
+        this.difficulty = Math.floor(this.progress.xp / 100) + 1;
+        this.currentLevel = LevelGenerator.generate(this.difficulty);
+
+        globalEvents.emit(Events.LEVEL_LOADED, {
+            level: this.currentLevel,
+            mode: 'ENDLESS'
+        });
+    }
+
+    /**
+     * Go to next level (preserves current difficulty variant)
+     */
+    nextLevel() {
+        if (this.currentLevelIndex < this.levels.length - 1) {
+            this.loadLevel(this.currentLevelIndex + 1, this.currentVariant || 'original');
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Restart current level
+     */
+    restartLevel() {
+        if (this.currentLevel) {
+            this.loadLevel(this.currentLevelIndex, this.currentVariant || 'original');
+        }
+    }
+
+    /**
+     * Get available gates for current level
+     */
+    getAvailableGates() {
+        if (!this.currentLevel) return [];
+        
+        const availableGates = this.currentLevel.availableGates || [];
+        const gateIds = [...availableGates];
+        
+        // Ensure input and output are always available for recovery
+        if (!gateIds.includes('input')) gateIds.unshift('input');
+        if (!gateIds.includes('output')) gateIds.push('output');
+
+        return gateIds.map(gateId => {
+            const meta = this.resolveGateMeta(gateId);
+            if (!meta) {
+                return {
+                    id: gateId,
+                    name: String(gateId),
+                    description: 'Gate metadata missing in /data/gates.json',
+                    inputs: 2,
+                    outputs: 1
+                };
+            }
+            return {
+                id: gateId,
+                ...meta
+            };
+        });
+    }
+
+    /**
+     * Save progress to localStorage
+     */
+    saveProgress() {
+        try {
+            localStorage.setItem('logicArchitect_progress', JSON.stringify(this.progress));
+        } catch (e) {
+            console.warn('Could not save progress:', e);
+        }
+    }
+
+    /**
+     * Load progress from localStorage
+     */
+    loadProgress() {
+        try {
+            const saved = localStorage.getItem('logicArchitect_progress');
+            if (saved) {
+                this.progress = { ...this.progress, ...JSON.parse(saved) };
+            }
+            
+            // Migrate old completedLevels array to new object format
+            if (Array.isArray(this.progress.completedLevels)) {
+                const migrated = {};
+                this.progress.completedLevels.forEach(levelId => {
+                    migrated[levelId] = { original: true, easy: false, hard: false };
+                });
+                this.progress.completedLevels = migrated;
+            }
+            
+            // Ensure completedLevels is an object
+            if (typeof this.progress.completedLevels !== 'object' || Array.isArray(this.progress.completedLevels)) {
+                this.progress.completedLevels = {};
+            }
+            
+            // Retroactive fix: 'intro' and 'tier_1' should ALWAYS be unlocked
+            if (Array.isArray(this.progress.unlockedTiers)) {
+                if (!this.progress.unlockedTiers.includes('intro')) {
+                    this.progress.unlockedTiers.unshift('intro');
+                }
+                if (!this.progress.unlockedTiers.includes('tier_1')) {
+                    this.progress.unlockedTiers.push('tier_1');
+                }
+            } else {
+                this.progress.unlockedTiers = ['intro', 'tier_1'];
+            }
+        } catch (e) {
+            console.warn('Could not load progress:', e);
+        }
+    }
+
+    /**
+     * Reset all progress
+     */
+    resetProgress() {
+        this.progress = {
+            xp: 0,
+            completedLevels: {},
+            unlockedTiers: ['tier_1'],
+            achievements: [],
+            highScores: {}
+        };
+        this.saveProgress();
+    }
+
+    /**
+     * Get player stats
+     */
+    getStats() {
+        const completedCount = Object.values(this.progress.completedLevels).filter(
+            variants => variants.original || variants.easy || variants.hard
+        ).length;
+        return {
+            xp: this.progress.xp,
+            completedLevels: completedCount,
+            totalLevels: this.levels.length,
+            unlockedTiers: this.progress.unlockedTiers,
+            achievements: this.progress.achievements.length
+        };
+    }
+}
+
+export const gameManager = new GameManager();

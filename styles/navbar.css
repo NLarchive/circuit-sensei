@@ -1,0 +1,344 @@
+/* ==========================================
+   NAVBAR STYLES - Complete & Isolated
+   ==========================================
+   
+   STRUCTURE:
+   #navbar
+   ├── .nav-row-top
+   │   ├── .nav-left (title, instructions btn, difficulty)
+   │   └── .nav-right (sidebar toggle, more menu)
+   └── .nav-row-secondary
+       ├── .controls (reset, verify, pause, step, next)
+       └── .nav-right-group
+           ├── .mode-toggle (select/wire mode)
+           ├── .zoom-controls (zoom +/-)
+           └── .nav-more-inline (xp, glossary, help)
+   ========================================== */
+
+
+/* ==========================================
+   NAVBAR ROOT
+   ========================================== */
+#navbar {
+    grid-column: 1 / 3;
+    background: var(--panel-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+    z-index: 940;
+    gap: 6px;
+}
+
+@media (max-width: 768px) {
+    #navbar {
+        padding: 6px 10px;
+        gap: 4px;
+    }
+}
+
+
+/* ==========================================
+   TOP ROW
+   ========================================== */
+.nav-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 36px;
+}
+
+/* Left section - Level info */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 0 1 auto;
+}
+
+.nav-left h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* Right section - Mobile controls */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .nav-left h2 {
+        font-size: 0.9rem;
+        max-width: 120px;
+    }
+    
+    .nav-left {
+        gap: 6px;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav-left h2 {
+        font-size: 0.85rem;
+        max-width: 80px;
+    }
+}
+
+
+/* ==========================================
+   SECONDARY ROW
+   ========================================== */
+.nav-row-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+
+/* ==========================================
+   CONTROLS GROUP (Main action buttons)
+   ========================================== */
+.controls {
+    background: var(--panel-bg);
+    padding: 4px 8px;
+    border-radius: 20px;
+    display: flex;
+    gap: 4px;
+    border: 1px solid var(--border-color);
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .controls {
+        padding: 3px 6px;
+        gap: 3px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .controls {
+        padding: 2px 4px;
+        gap: 2px;
+    }
+}
+
+
+/* ==========================================
+   RIGHT GROUP (Mode toggle, zoom, etc.)
+   ========================================== */
+.nav-right-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .nav-right-group {
+        gap: 4px;
+    }
+}
+
+
+/* ==========================================
+   MODE TOGGLE (Select/Wire mode)
+   ========================================== */
+.mode-toggle {
+    display: flex;
+    gap: 2px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3px;
+    border-radius: 6px;
+    align-items: center;
+}
+
+.btn-mode {
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: #888;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.btn-mode:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.btn-mode.active {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .btn-mode {
+        padding: 6px 10px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .btn-mode {
+        padding: 5px 8px;
+        font-size: 1rem;
+    }
+}
+
+
+/* ==========================================
+   ZOOM CONTROLS
+   ========================================== */
+.zoom-controls {
+    display: flex;
+    gap: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    border-radius: 6px;
+    align-items: center;
+}
+
+#zoom-display {
+    min-width: 50px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    padding: 0 4px;
+}
+
+/* Hide zoom on mobile - available in More menu */
+@media (max-width: 768px) {
+    .zoom-controls {
+        display: none !important;
+    }
+}
+
+
+/* ==========================================
+   MORE INLINE (XP, Glossary, Help)
+   ========================================== */
+.nav-more-inline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Hide on mobile - available in More menu */
+@media (max-width: 768px) {
+    .nav-more-inline {
+        display: none !important;
+    }
+}
+
+
+/* ==========================================
+   NAV MORE TRIGGER (Mobile "..." button)
+   ========================================== */
+.nav-more-trigger {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .nav-more-trigger {
+        display: flex !important;
+    }
+}
+
+
+/* ==========================================
+   NAV MORE MODAL (Mobile overflow menu)
+   ========================================== */
+.nav-more-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+.nav-more-modal.hidden {
+    display: none;
+}
+
+.nav-more-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.nav-more-modal-card {
+    position: relative;
+    z-index: 1;
+    width: min(92vw, 340px);
+    max-height: 80vh;
+    overflow: auto;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+.nav-more-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-more-modal-header h3 {
+    margin: 0;
+    color: var(--accent-color);
+}
+
+.nav-more-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-more-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-more-mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+}
+
+.nav-more-zoom {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-more-zoom .btn {
+    flex: 1;
+}

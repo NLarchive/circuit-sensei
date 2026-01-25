@@ -1,0 +1,61 @@
+{
+  "id": "level_10_medium",
+  "baseId": "level_10",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 85,
+  "hint": "Connect: Data0 = 0, Data1 = B, Sel = A. When A=0, output is Data0=0. When A=1, output is Data1=B. This is A AND B!",
+  "title": "MUX as Universal Gate",
+  "objective": "Implement AND using a 2:1 MUX",
+  "description": "Prove that a MUX can implement any Boolean function. Start by building an AND gate using only a 2:1 multiplexer.",
+  "physicsVisual": "mux_as_and"
+}

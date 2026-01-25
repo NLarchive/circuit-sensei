@@ -1,0 +1,137 @@
+{
+  "id": "level_11_medium",
+  "baseId": "level_11",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "A=00, EN=0: disabled"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "A=01, EN=0: disabled"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "A=10, EN=0: disabled"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "A=11, EN=0: disabled"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "desc": "A=00, EN=1: Out0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "desc": "A=01, EN=1: Out1"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "desc": "A=10, EN=1: Out2"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "desc": "A=11, EN=1: Out3"
+    }
+  ],
+  "maxGates": 10,
+  "xpReward": 95,
+  "hint": "Take your 2-to-4 decoder and AND each output with the Enable signal. This 'gates' the entire decoder.",
+  "title": "Decoder with Enable",
+  "objective": "Add an Enable control to decoder",
+  "description": "Build a 2-to-4 decoder that only activates outputs when Enable=1. When Enable=0, all outputs are 0.",
+  "physicsVisual": "decoder_enable"
+}

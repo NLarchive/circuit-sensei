@@ -1,0 +1,286 @@
+/* ==========================================
+   BUTTON STYLES - All Button Types
+   ==========================================
+   
+   BUTTON TYPES:
+   1. .btn - Base button (with variants: primary, secondary, success)
+   2. .btn-small - Compact size variant
+   3. .btn-large - Large size variant
+   4. .btn-icon - Circular icon buttons
+   ========================================== */
+
+
+/* ==========================================
+   BASE BUTTON (.btn)
+   ========================================== */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.1s, opacity 0.2s, filter 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1.2;
+}
+
+.btn:hover:not(:disabled) {
+    filter: brightness(1.15);
+}
+
+.btn:active:not(:disabled) {
+    transform: scale(0.96);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
+   BUTTON COLOR VARIANTS
+   ========================================== */
+.btn.primary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.btn.secondary {
+    background: #555;
+    color: white;
+}
+
+.btn.secondary:hover:not(:disabled) {
+    background: #666;
+}
+
+.btn.success {
+    background: var(--success-color);
+    color: white;
+}
+
+
+/* ==========================================
+   BUTTON SIZE VARIANTS
+   ========================================== */
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    min-height: 32px;
+    border-radius: 16px;
+}
+
+.btn-large {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    border-radius: 24px;
+}
+
+
+/* ==========================================
+   ICON BUTTON (.btn-icon)
+   ========================================== */
+.btn-icon {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.btn-icon:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.btn-icon:active {
+    transform: scale(0.92);
+}
+
+.btn-icon.small {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+   ========================================== */
+
+/* Touch-friendly hit areas */
+@media (pointer: coarse) {
+    .btn,
+    .btn-small,
+    .btn-icon {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .btn-small {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-icon {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* Compact buttons on mobile */
+@media (max-width: 768px) {
+    .controls .btn-small {
+        padding: 5px 10px;
+        font-size: 0.78rem;
+        min-height: 30px;
+    }
+}
+
+/* Very small screens - Icon-only mode */
+@media (max-width: 400px) {
+    .controls .btn-small {
+        font-size: 0;
+        min-width: 32px;
+        padding: 6px;
+    }
+    
+    /* Show icons via pseudo-elements */
+    #btn-reset::after {
+        content: "↺";
+        font-size: 1rem;
+    }
+    
+    #btn-check::after {
+        content: "✓";
+        font-size: 1rem;
+    }
+    
+    #btn-next::after {
+        content: "→";
+        font-size: 1rem;
+    }
+    
+    #btn-sim-toggle::after {
+        content: "⏸";
+        font-size: 0.9rem;
+    }
+    
+    #btn-sim-step::after {
+        content: "⏭";
+        font-size: 0.9rem;
+    }
+    
+    #btn-instructions {
+        padding: 5px 8px;
+        font-size: 0.85rem;
+    }
+}
+
+
+/* ==========================================
+   MUSIC TOGGLE BUTTON
+   ========================================== */
+.music-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    padding: 0;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.music-toggle-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.music-toggle-btn:hover svg {
+    stroke: white;
+}
+
+.music-toggle-btn:active {
+    transform: scale(0.92);
+}
+
+.music-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--accent-color);
+    transition: stroke 0.2s;
+}
+
+.music-toggle-btn.muted {
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+}
+
+.music-toggle-btn.muted svg {
+    stroke: var(--text-muted);
+    opacity: 0.6;
+}
+
+.music-toggle-btn.muted:hover {
+    background: var(--text-muted);
+    color: white;
+}
+
+.music-toggle-btn.muted:hover svg {
+    stroke: white;
+    opacity: 1;
+}
+
+/* Floating version (when no navbar) */
+.music-toggle-btn.music-toggle-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 48px;
+    height: 48px;
+    background: var(--panel-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.music-toggle-btn.music-toggle-floating svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Mobile adjustments */
+@media (pointer: coarse) {
+    .music-toggle-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .music-toggle-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}

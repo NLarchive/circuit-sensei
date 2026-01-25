@@ -1,0 +1,105 @@
+{
+  "id": "level_boss_hard",
+  "baseId": "level_boss",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop",
+    "fullAdder"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Reset: Clear pipeline"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Ready: Pipeline empty"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK1: Fetch I1 (pipeline filling)"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Hold: I1 in IR"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK2: Execute I1, Fetch I2 (full pipeline)"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Hold: I2 in IR"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "CLK3: Execute I2, Fetch I3 (steady state)"
+    }
+  ],
+  "xpReward": 1500,
+  "hint": "Use two sets of registers: IR (Instruction Register) holds the fetched instruction, and a PC (Program Counter) tracks what to fetch next. On each clock: PC increments (fetch stage) while IR's instruction executes (execute stage). A MUX handles the initial fill of the pipeline.",
+  "maxGates": 15,
+  "title": "2-Stage Pipeline",
+  "objective": "Fetch while Executing",
+  "description": "Build a simple 2-stage pipelined processor: Stage 1 fetches the next instruction while Stage 2 executes the current one. Double the throughput!",
+  "physicsVisual": "pipeline_2stage"
+}

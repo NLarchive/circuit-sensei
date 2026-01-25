@@ -1,0 +1,60 @@
+{
+  "id": "level_08_easy",
+  "baseId": "level_08",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 50,
+  "hint": "XOR = (A OR B) AND NOT(A AND B). Output is 1 when inputs are different, 0 when inputs are the same.",
+  "title": "The XOR Gate",
+  "objective": "Output 1 when inputs are different",
+  "description": "Build an XOR (Exclusive OR) gate using basic gates. XOR is the 'difference detector' - essential for addition and parity checking.",
+  "physicsVisual": "xor_gate_basic"
+}

@@ -1,0 +1,86 @@
+/* Multi-visual presentation in the intro visual area */
+.visual-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.visual-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.visual-caption {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Equation block with formula and explanation */
+.equation-block {
+    background: rgba(0,122,204,0.1);
+    border-left: 3px solid var(--accent-color);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 8px 0;
+}
+
+.equation-formula {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 1.05rem;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.equation-explain {
+    font-size: 0.9rem;
+    color: #bbb;
+    line-height: 1.5;
+}
+
+.equation-explain .var {
+    color: #7dcfff;
+    font-weight: 500;
+}
+
+.equation-explain .unit {
+    color: #9ece6a;
+}
+
+/* Inline fraction styling for minimal LaTeX-like rendering */
+.fraction { display: inline-flex; align-items: baseline; gap: 0.25rem; vertical-align: middle; }
+.fraction .num { font-size: 0.95em; }
+.fraction .den { font-size: 0.85em; opacity: 0.9; transform: translateY(0.05em); }
+.fraction .slash { color: #ccc; margin: 0 0.15rem; }
+
+.edu-svg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Visual container - placed below concept text */
+.visual-container {
+    margin: 20px 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.visual-container .visual-stack {
+    margin: 0;
+}
+
+/* Hide the old intro-visual area when visuals are embedded in text */
+.intro-visual:empty {
+    display: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}

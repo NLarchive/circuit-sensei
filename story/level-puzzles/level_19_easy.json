@@ -1,0 +1,124 @@
+{
+  "id": "level_19_easy",
+  "baseId": "level_19",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop",
+    "fullAdder"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "0 + 0 = 0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "0 + 1 = 1"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "1 + 0 = 1"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "1 + 1 = 10"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "0 - 0 = 0 (Carry=1 means no borrow)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "0 - 1 = 1 (Carry=0 means borrow)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "1 - 0 = 1 (Carry=1 means no borrow)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "1 - 1 = 0 (Carry=1 means no borrow)"
+    }
+  ],
+  "maxGates": 10,
+  "xpReward": 300,
+  "hint": "ALU: Use opcode to select operation. MUX chooses between ADD (Full Adder) and SUB (XOR B with opcode, add 1 for 2's complement).",
+  "title": "Simple ALU",
+  "objective": "Add or Subtract based on opcode",
+  "description": "Build a simple Arithmetic Logic Unit (ALU) that can perform ADD or SUB based on an operation select input.",
+  "physicsVisual": "alu_basic"
+}

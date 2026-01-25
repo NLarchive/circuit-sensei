@@ -1,0 +1,60 @@
+{
+  "id": "level_09_medium",
+  "baseId": "level_09",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 70,
+  "hint": "Invert A (NOR(A,A)), invert B (NOR(B,B)), then NOR those results. The output is A AND B.",
+  "title": "De Morgan: NOR to AND",
+  "objective": "Build AND using NOR gates only",
+  "description": "Apply De Morgan's theorem in reverse: build an AND gate using only NOR gates.",
+  "physicsVisual": "nor_to_and"
+}

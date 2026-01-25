@@ -1,0 +1,181 @@
+{
+  "id": "level_05",
+  "tier": "tier_1",
+  "title": "OR Gate",
+  "introText": "The OR gate outputs HIGH when ANY of its inputs is HIGH. Think of it as alternatives—if this OR that is true, the output is true. Physically, this is like switches in parallel: current can flow through any available path.",
+  "storyText": "You've mastered the OR gate—the 'any will do' gate. With AND, OR, and NOT, you can build ANY digital circuit. OR gates are used for aggregating conditions (any interrupt triggers service), creating redundancy (any path works), and setting bits in data.",
+  "physicsVisual": "parallel_circuit_detailed",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Parallel Circuit",
+        "definition": "Components connected side-by-side so current can flow through ANY path. Even if some paths fail (open), current can still flow through the remaining ones.",
+        "why": "Parallel connection IS OR logic physically: current flows (output=1) if Path_A OR Path_B OR... any path conducts.",
+        "analogy": "Like multiple doors to a room—if ANY door is open, you can enter.",
+        "visuals": [
+          {
+            "type": "parallel_circuit_detailed",
+            "title": "Parallel Paths: OR (Any Can Conduct)"
+          }
+        ]
+      },
+      {
+        "term": "Boolean OR Operation",
+        "definition": "A logical operation that outputs TRUE (1) when AT LEAST ONE input is TRUE. Written as A+B, A∨B, or A OR B.",
+        "why": "OR is inclusive: even if both inputs are true, output is still true (1+1=1 in Boolean algebra, not 2!). This differs from everyday 'or' which often means 'one but not both'.",
+        "formula": "Y = A + B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+      },
+      {
+        "term": "Kirchhoff's Current Law (KCL)",
+        "definition": "At any node (junction) in a circuit, the sum of currents entering equals the sum of currents leaving. Current is conserved.",
+        "why": "KCL explains why parallel circuits work: currents from multiple branches combine at a junction. More paths = more total current capability.",
+        "formula": "ΣI_{in} = ΣI_{out}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1.0556em;vertical-align:-0.25em;\"></span><span class=\"mop op-symbol small-op\" style=\"position:relative;top:0em;\">Σ</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">in</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0556em;vertical-align:-0.25em;\"></span><span class=\"mop op-symbol small-op\" style=\"position:relative;top:0em;\">Σ</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+      },
+      {
+        "term": "Fan-In and Fan-Out",
+        "definition": "Fan-in = number of inputs a gate accepts. Fan-out = number of gate inputs one output can reliably drive.",
+        "why": "Each additional input (fan-in) adds transistors and delay. Each additional load (fan-out) adds capacitance, slowing the driver. Both affect circuit speed.",
+        "analogy": "Fan-in: how many people can vote on a decision. Fan-out: how many people one person can effectively communicate with."
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "Parallel Resistance",
+        "formula": "\\frac{1}{R_{total}} = \\frac{1}{R_{1}} + \\frac{1}{R_{2}} + \\frac{1}{R_{3}} + \\ldots",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1.296em;vertical-align:-0.4509em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3488em;margin-left:-0.0077em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1512em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4509em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2902em;vertical-align:-0.4451em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3173em;\"><span style=\"top:-2.357em;margin-left:-0.0077em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.143em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4451em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2902em;vertical-align:-0.4451em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3173em;\"><span style=\"top:-2.357em;margin-left:-0.0077em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.143em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4451em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2902em;vertical-align:-0.4451em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3173em;\"><span style=\"top:-2.357em;margin-left:-0.0077em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\">3</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.143em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4451em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.123em;\"></span><span class=\"minner\">…</span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "R_{total}",
+            "meaning": "Total resistance of parallel combination",
+            "units": "Ohms (Ω)"
+          },
+          {
+            "symbol": "R_{1}, R_{2}",
+            "meaning": "Individual resistor values",
+            "units": "Ohms (Ω)"
+          }
+        ],
+        "meaning": "In parallel, resistances combine reciprocally. Total is LESS than the smallest individual resistor. More paths = easier for current = lower resistance.",
+        "example": {
+          "problem": "Two resistors of 100Ω and 100Ω are in parallel. What is the total resistance?",
+          "given": [
+            "R₁ = 100Ω",
+            "R₂ = 100Ω"
+          ],
+          "steps": [
+            "\\frac{1}{R_{total}} = \\frac{1}{R_{1}} + \\frac{1}{R_{2}}",
+            "\\frac{1}{R_{total}} = \\frac{1}{100} + \\frac{1}{100} = \\frac{2}{100} = \\frac{1}{50}",
+            "R_{total} = 50Ω"
+          ],
+          "answer": "50Ω — half of either individual resistor"
+        }
+      },
+      {
+        "name": "KCL at a Node",
+        "formula": "I_{1} + I_{2} + \\ldots = I_{out}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"minner\">…</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "I_{1}, I_{2}",
+            "meaning": "Currents entering the node",
+            "units": "Amperes (A)"
+          },
+          {
+            "symbol": "I_{out}",
+            "meaning": "Current leaving the node",
+            "units": "Amperes (A)"
+          }
+        ],
+        "meaning": "Charge is conserved. If 2A flows in from one branch and 3A from another, 5A must flow out.",
+        "example": {
+          "problem": "A junction has three wires. Wire A brings 2A, Wire B brings 3A. Wire C carries current away. How much flows through C?",
+          "given": [
+            "I_A = 2A",
+            "I_B = 3A"
+          ],
+          "steps": [
+            "1. By KCL, total current in must equal total current out.",
+            "2. Equation: I_{in} = I_{out}",
+            "3. Substitute: I_{A} + I_{B} = I_{C}",
+            "4. Calculate: 2A + 3A = 5A"
+          ],
+          "answer": "5A flows through wire C"
+        }
+      },
+      {
+        "name": "Delay with Fan-Out",
+        "formula": "t = t_{0} + t_{load} \\times FO",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6151em;\"></span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\">d</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">FO</span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "t",
+            "meaning": "Total propagation delay",
+            "units": "seconds"
+          },
+          {
+            "symbol": "t_{0}",
+            "meaning": "Intrinsic gate delay (zero fan-out)",
+            "units": "seconds"
+          },
+          {
+            "symbol": "t_{load}",
+            "meaning": "Additional delay per unit load",
+            "units": "seconds"
+          },
+          {
+            "symbol": "FO",
+            "meaning": "Fan-out (number of loads driven)",
+            "units": "count"
+          }
+        ],
+        "meaning": "More loads = more capacitance to charge = slower. Delay grows linearly with fan-out. Solutions: add buffers, use larger driver transistors.",
+        "example": {
+          "problem": "A gate has t₀=20ps and t_load=5ps. If it drives 4 gates, what is the delay?",
+          "given": [
+            "t₀ = 20ps",
+            "t_load = 5ps",
+            "FO = 4"
+          ],
+          "steps": [
+            "1. Apply formula t = t_{0} + t_{load} \\times FO",
+            "2. Note multiplication order: t = 20ps + (5ps \\times 4)",
+            "3. Calculate product: t = 20ps + 20ps",
+            "4. Result: 40ps"
+          ],
+          "answer": "40ps — fan-out doubled the delay"
+        }
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Complete the OR truth table: A=0,B=0→? A=0,B=1→? A=1,B=0→? A=1,B=1→?",
+        "hint": "OR outputs 1 when AT LEAST ONE input is 1",
+        "answer": "00→0, 01→1, 10→1, 11→1"
+      },
+      {
+        "question": "Two 200Ω resistors are in parallel. A third 200Ω resistor is in series with this parallel combination. What is the total resistance?",
+        "hint": "First calculate parallel (1/R_p = 1/R1 + 1/R2), then add the series resistor (R_total = R_p + R_series)",
+        "answer": {
+          "steps": [
+            "1. Parallel block: 1/R_p = 1/200 + 1/200 = 2/200 → R_p = 100Ω.",
+            "2. Add series: R_total = 100Ω + 200Ω = 300Ω."
+          ],
+          "answer": "300Ω"
+        }
+      },
+      {
+        "question": "How does OR differ from XOR when both inputs are 1?",
+        "hint": "OR is 'inclusive or' — at least one. XOR is 'exclusive or' — exactly one.",
+        "answer": "OR(1,1) = 1 (at least one is true). XOR(1,1) = 0 (not exactly one is true)."
+      }
+    ],
+    "realWorld": {
+      "context": "OR gates aggregate multiple conditions or signals into a single output.",
+      "example": "An interrupt controller uses OR logic: CPU_interrupt = IRQ0 OR IRQ1 OR IRQ2... If ANY device requests service, the CPU is interrupted.",
+      "numbers": "Modern CPUs have 256+ interrupt sources. OR trees aggregate these into a single interrupt line, with priority logic determining which to service first.",
+      "connection": "In this level, you're implementing A OR B. This operation is used billions of times per second to aggregate signals and detect 'any true' conditions."
+    }
+  }
+}

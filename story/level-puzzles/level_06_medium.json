@@ -1,0 +1,58 @@
+{
+  "id": "level_06_medium",
+  "baseId": "level_06",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 55,
+  "hint": "NOR = NOT(A OR B). Output is 1 only when A=0 AND B=0. Build it from an OR gate followed by NOT.",
+  "title": "NOR: The Other Universal",
+  "objective": "Build NOR gate",
+  "description": "NOR (NOT OR) is the dual universal gate to NAND. Output is 1 only when both inputs are 0.",
+  "physicsVisual": "nor_universal"
+}

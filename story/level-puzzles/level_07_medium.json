@@ -1,0 +1,54 @@
+{
+  "id": "level_07_medium",
+  "baseId": "level_07",
+  "variant": "medium",
+  "availableGates": [
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 55,
+  "hint": "Use two NANDs: first computes A NAND B, second inverts it (NAND(X,X) = NOT X). Result: NOT(NOT(A AND B)) = A AND B.",
+  "title": "AND from NAND",
+  "objective": "Build AND using only NAND gates",
+  "description": "Reconstruct the AND function using only NAND gates. This is the inverse operation: A NAND B, then invert.",
+  "physicsVisual": "nand_to_and"
+}

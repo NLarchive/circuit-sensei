@@ -1,0 +1,223 @@
+/* ==========================================
+   LAYOUT - Main App Grid & Structural Elements
+   ==========================================
+   
+   This file handles:
+   - Main app grid layout (#app)
+   - Sidebar structure (#sidebar)
+   - Main view area (#main-view)
+   - Canvas & UI layer
+   - Mobile/Desktop visibility helpers
+   - Sidebar backdrop for mobile
+   ========================================== */
+
+
+/* ==========================================
+   VISIBILITY HELPERS
+   ========================================== */
+.mobile-only {
+    display: none !important;
+}
+
+.desktop-only {
+    display: flex !important;
+}
+
+/* Mobile: Show mobile-only, hide desktop-only */
+@media (max-width: 768px) {
+    .mobile-only {
+        display: flex !important;
+    }
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+
+/* ==========================================
+   SIDEBAR
+   ========================================== */
+#sidebar {
+    grid-row: 2;
+    background: var(--panel-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Mobile sidebar - slides in from left */
+@media (max-width: 768px) {
+    #app {
+        grid-template-columns: 1fr;
+    }
+    
+    #sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        bottom: 0;
+        width: 250px;
+        z-index: 950;
+        transition: left 0.3s ease;
+        padding-top: 80px; /* Space for navbar */
+    }
+    
+    #sidebar.mobile-open {
+        left: 0;
+    }
+}
+
+/* Sidebar backdrop for mobile */
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 945;
+    display: none;
+    pointer-events: auto;
+}
+
+.sidebar-backdrop.visible {
+    display: block;
+}
+
+
+/* ==========================================
+   MAIN VIEW & CANVAS
+   ========================================== */
+#main-view {
+    grid-row: 2;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mobile: main view takes full width */
+@media (max-width: 768px) {
+    #main-view {
+        grid-column: 1;
+    }
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none; /* Prevent default touch gestures */
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   MODE SELECT (Mobile sidebar mode dropdown)
+   ========================================== */
+.mode-select-wrap {
+    display: none;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+    gap: 8px;
+    align-items: center;
+}
+
+.mode-select-label {
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.mode-select-mobile {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .mode-select-wrap {
+        display: flex;
+    }
+}
+
+
+/* ==========================================
+   HUD ELEMENTS
+   ========================================== */
+.hud-bottom {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.message-area {
+    height: 30px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.message-area.success { color: var(--success-color); }
+.message-area.error { color: var(--error-color); }
+.message-area.warning { color: #ff9800; }
+
+
+/* ==========================================
+   LEVEL INFO COMPACT (Legacy support)
+   ========================================== */
+.level-info-compact {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+}
+
+.level-info-compact h2 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.level-info-compact p {
+    display: none;
+}
+
+@media (min-width: 601px) {
+    .level-info-compact h2 {
+        font-size: 1.1rem;
+        max-width: none;
+    }
+    
+    .level-info-compact p {
+        display: block;
+        margin: 0;
+        font-size: 0.85rem;
+        color: #aaa;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
+    }
+}

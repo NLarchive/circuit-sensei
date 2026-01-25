@@ -1,0 +1,58 @@
+{
+  "id": "level_06_easy",
+  "baseId": "level_06",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 30,
+  "hint": "NAND = NOT(AND). Connect both inputs to the NAND gate. Output is LOW only when BOTH inputs are HIGH.",
+  "title": "The NAND Gate",
+  "objective": "Output 0 only when both inputs are 1",
+  "description": "Use the NAND gate - the universal gate. NAND outputs 1 unless both inputs are 1. It can build any other gate!",
+  "physicsVisual": "nand_gate_basic"
+}

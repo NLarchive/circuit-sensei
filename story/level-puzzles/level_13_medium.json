@@ -1,0 +1,113 @@
+{
+  "id": "level_13_medium",
+  "baseId": "level_13",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ]
+    }
+  ],
+  "maxGates": 7,
+  "xpReward": 115,
+  "hint": "Diff = A XOR B XOR Bin. Bout = ((NOT A) AND (B OR Bin)) OR (B AND Bin). Two XOR gates for Diff, then logic gates for Bout.",
+  "title": "Full Subtractor",
+  "objective": "Subtract with Borrow-in",
+  "description": "Build a Full Subtractor: compute A - B - Bin, outputting Difference and Borrow-out.",
+  "physicsVisual": "full_subtractor"
+}

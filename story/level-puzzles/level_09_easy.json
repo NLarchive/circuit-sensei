@@ -1,0 +1,60 @@
+{
+  "id": "level_09_easy",
+  "baseId": "level_09",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 60,
+  "hint": "De Morgan's Law: NOT(A AND B) = (NOT A) OR (NOT B). Invert each input, then NAND the results.",
+  "title": "De Morgan's Theorem",
+  "objective": "Prove NOT(A AND B) = A' OR B'",
+  "description": "Demonstrate De Morgan's Law using gates. This fundamental theorem shows the duality between AND/OR and NOT operations.",
+  "physicsVisual": "de_morgan_and"
+}

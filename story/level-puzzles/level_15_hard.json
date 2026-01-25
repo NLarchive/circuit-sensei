@@ -1,0 +1,117 @@
+{
+  "id": "level_15_hard",
+  "baseId": "level_15",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=0, CLK=0: No edge"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=0, CLK↑: Still 0"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=1, CLK=0: Setup rising"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "In=1, CLK↑: EDGE DETECTED!"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=1, CLK=0: Hold"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=1, CLK↑: No edge (still high)"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=0, CLK=0: Falling"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=1, CLK=0: Setup new rise"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "In=1, CLK↑: EDGE DETECTED!"
+    }
+  ],
+  "xpReward": 155,
+  "hint": "Use a D-FF to create a 1-cycle delayed version of the input. Then: Output = Input AND (NOT Delayed). When input goes 0→1, Delayed is still 0, so output is 1. Next cycle, Delayed becomes 1, output returns to 0.",
+  "maxGates": 3,
+  "title": "Rising Edge Detector",
+  "objective": "Detect 0→1 transitions",
+  "description": "Build a circuit that outputs a single pulse (1 for one clock cycle) whenever the input transitions from 0 to 1.",
+  "physicsVisual": "edge_detector"
+}

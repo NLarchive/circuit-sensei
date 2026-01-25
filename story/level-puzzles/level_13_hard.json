@@ -1,0 +1,249 @@
+{
+  "id": "level_13_hard",
+  "baseId": "level_13",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 4,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0
+      ],
+      "desc": "00+00=000"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "00+01=001"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "00+10=010"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        1
+      ],
+      "desc": "00+11=011"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "01+00=001"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "01+01=010"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        1
+      ],
+      "desc": "01+10=011"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "01+11=100"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "10+00=010"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        1
+      ],
+      "desc": "10+01=011"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "10+10=100"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        1
+      ],
+      "desc": "10+11=101"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        1
+      ],
+      "desc": "11+00=011"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "11+01=100"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        1
+      ],
+      "desc": "11+10=101"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1,
+        0
+      ],
+      "desc": "11+11=110"
+    }
+  ],
+  "maxGates": 8,
+  "xpReward": 135,
+  "hint": "Stage 0: Half Adder for A0+B0 → S0, C0. Stage 1: Full Adder for A1+B1+C0 → S1, Cout. Total output is 3 bits: Cout, S1, S0.",
+  "title": "2-Bit Ripple Carry Adder",
+  "objective": "Add two 2-bit numbers",
+  "description": "Build a 2-bit adder by chaining a Half Adder and a Full Adder. Inputs: A1A0 + B1B0 → S1S0 + Cout.",
+  "physicsVisual": "ripple_carry_2bit"
+}

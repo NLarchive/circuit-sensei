@@ -1,0 +1,113 @@
+{
+  "id": "level_13_easy",
+  "baseId": "level_13",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ]
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 100,
+  "hint": "Full Adder = Two Half Adders + OR. First HA: A XOR B → partial sum. Second HA: partial XOR Cin → final Sum. OR the carries.",
+  "title": "Full Adder",
+  "objective": "Add 3 bits (A + B + Carry-in)",
+  "description": "Build a full adder by combining two half adders. It adds three bits: A, B, and Carry-in, producing Sum and Carry-out.",
+  "physicsVisual": "full_adder"
+}

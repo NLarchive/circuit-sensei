@@ -1,0 +1,109 @@
+{
+  "id": "level_05_hard",
+  "baseId": "level_05",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "0 votes: minority"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "1 vote: minority"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "1 vote: minority"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "2 votes: MAJORITY"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "1 vote: minority"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "2 votes: MAJORITY"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "2 votes: MAJORITY"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "3 votes: MAJORITY"
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 60,
+  "hint": "Majority = (A AND B) OR (B AND C) OR (A AND C). Build three AND gates (one per pair: AB, BC, AC), then combine with two OR gates: ((AB OR BC) OR AC).",
+  "title": "Majority Gate (2-of-3 Voting)",
+  "objective": "Output 1 when majority of inputs are 1",
+  "description": "Build a 3-input majority gate: output is 1 when at least 2 of the 3 inputs are 1. This is the fundamental voting circuit used in fault-tolerant systems.",
+  "physicsVisual": "majority_gate"
+}

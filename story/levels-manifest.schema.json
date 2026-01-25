@@ -1,0 +1,198 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "levels-manifest.schema.json",
+  "title": "Logic Architect Levels Manifest",
+  "description": "Schema for the centralized level manifest with variant inheritance",
+  "type": "object",
+  "required": ["$schema", "version", "levels"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to this schema"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Manifest version (semver)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the manifest"
+    },
+    "levels": {
+      "type": "array",
+      "description": "Array of level definitions with variant overrides",
+      "items": {
+        "$ref": "#/definitions/levelEntry"
+      }
+    }
+  },
+  "definitions": {
+    "levelEntry": {
+      "type": "object",
+      "required": ["id", "tier", "title", "objective", "description"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^level_(\\d{2}|boss)$",
+          "description": "Base level ID (e.g., level_01, level_boss)"
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["intro", "tier_1", "tier_2", "tier_3", "tier_4", "tier_5", "tier_6"],
+          "description": "Curriculum tier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Level title (shared across variants)"
+        },
+        "objective": {
+          "type": "string",
+          "description": "Short objective text"
+        },
+        "description": {
+          "type": "string",
+          "description": "Level description"
+        },
+        "introText": {
+          "type": "string",
+          "description": "Educational intro text (inherited by variants)"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Hint for the player"
+        },
+        "physicsVisual": {
+          "type": "string",
+          "description": "Physics visualization key"
+        },
+        "isIndex": {
+          "type": "boolean",
+          "description": "True if this is an index/overview level"
+        },
+        "availableGates": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Base gates available (variants may override)"
+        },
+        "inputs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of inputs"
+        },
+        "targetTruthTable": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/truthTableRow" },
+          "description": "Base truth table (variants may override)"
+        },
+        "maxGates": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Base max gates limit"
+        },
+        "xpReward": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Base XP reward"
+        },
+        "storyText": {
+          "type": "string",
+          "description": "Story completion text (educational, inherited)"
+        },
+        "physicsDetails": {
+          "type": "object",
+          "description": "Physics/educational content (inherited)"
+        },
+        "courseOverview": {
+          "type": "object",
+          "description": "Course overview data (for index levels)"
+        },
+        "tierOverview": {
+          "type": "array",
+          "description": "Tier overview data (for index levels)"
+        },
+        "variants": {
+          "type": "object",
+          "description": "Variant-specific overrides",
+          "properties": {
+            "easy": { "$ref": "#/definitions/variantOverride" },
+            "medium": { "$ref": "#/definitions/variantOverride" },
+            "hard": { "$ref": "#/definitions/variantOverride" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "variantOverride": {
+      "type": "object",
+      "description": "Variant-specific overrides (merged on top of base level)",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Optional variant-specific title"
+        },
+        "objective": {
+          "type": "string",
+          "description": "Optional variant-specific objective"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional variant-specific description"
+        },
+        "introText": {
+          "type": "string",
+          "description": "Optional variant-specific intro"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Optional variant-specific hint"
+        },
+        "physicsVisual": {
+          "type": "string",
+          "description": "Optional variant-specific visual"
+        },
+        "availableGates": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Gates available for this variant (overrides base)"
+        },
+        "inputs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of inputs for variant"
+        },
+        "targetTruthTable": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/truthTableRow" },
+          "description": "Truth table for variant"
+        },
+        "maxGates": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Max gates for variant"
+        },
+        "xpReward": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "XP reward for variant"
+        }
+      },
+      "additionalProperties": true
+    },
+    "truthTableRow": {
+      "type": "object",
+      "required": ["in", "out"],
+      "properties": {
+        "in": {
+          "type": "array",
+          "items": { "type": "integer", "enum": [0, 1] }
+        },
+        "out": {
+          "type": "array",
+          "items": { "type": "integer", "enum": [0, 1] }
+        }
+      }
+    }
+  }
+}

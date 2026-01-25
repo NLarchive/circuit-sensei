@@ -1,0 +1,35 @@
+{
+  "id": "level_03_easy",
+  "baseId": "level_03",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not"
+  ],
+  "inputs": 1,
+  "targetTruthTable": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 20,
+  "hint": "The NOT gate (inverter) flips the input: 0 becomes 1, and 1 becomes 0. Connect input → NOT → output.",
+  "title": "The Inverter (NOT Gate)",
+  "objective": "Flip HIGH to LOW and LOW to HIGH",
+  "description": "Use the NOT gate to invert a signal. This fundamental operation is the building block for all logic.",
+  "physicsVisual": "cmos_inverter"
+}

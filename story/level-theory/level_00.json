@@ -1,0 +1,385 @@
+{
+  "id": "level_00",
+  "tier": "intro",
+  "title": "Logic Architect: Course Overview",
+  "introText": "FROM ELECTRONS TO COMPUTATION: This course takes you on an epic journey through digital electronics. You'll start with a simple wire and end by building a CPU. Each level teaches real physics and engineering - the same knowledge used to design the chips in your phone and computer.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "The Learning Journey",
+        "definition": "This course progresses from physics (electrons, voltage) through abstraction layers (gates, circuits, systems) to a working computer.",
+        "why": "Understanding each layer deeply prepares you for the next. Skipping ahead leads to gaps in understanding.",
+        "analogy": "Like building a house: foundation (physics), framing (gates), rooms (circuits), complete home (computer)."
+      },
+      {
+        "term": "Abstraction in Engineering",
+        "definition": "Each level hides lower-level complexity. Gates hide transistors. Circuits hide gates. CPUs hide circuits.",
+        "why": "Abstraction makes complex systems manageable. You do not think about electrons when coding.",
+        "analogy": "Like driving a car: you use the steering wheel abstraction, not individual tire rotations."
+      },
+      {
+        "term": "Digital vs Analog",
+        "definition": "Digital uses discrete values (0 and 1). Analog uses continuous values. Digital is noise-resistant.",
+        "why": "Digital circuits can regenerate signals (a slightly-off 1 becomes a perfect 1), enabling reliable computation.",
+        "analogy": "Digital is like Morse code (dots and dashes), analog is like speaking (infinite variations)."
+      },
+      {
+        "term": "The Power of Universality",
+        "definition": "NAND gates alone can build ANY digital circuit. This simplifies manufacturing enormously.",
+        "why": "Instead of making 10 different gate types, factories make trillions of identical NAND gates.",
+        "analogy": "Like having one type of LEGO brick that can build any structure when combined properly."
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "Moore's Law",
+        "variables": [
+          {
+            "symbol": "Transistors",
+            "meaning": "Number of transistors per chip",
+            "units": "count"
+          },
+          {
+            "symbol": "year",
+            "meaning": "Calendar year",
+            "units": "year"
+          }
+        ],
+        "meaning": "Transistor density doubles approximately every 2 years. This exponential growth enabled modern computing.",
+        "example": {
+          "problem": "Estimate transistors in 2023 vs 1971",
+          "given": [
+            "1971: approximately 2000 transistors (Intel 4004)"
+          ],
+          "steps": [
+            "Years elapsed: 2023 - 1971 = 52 years",
+            "Doublings: \\frac{52}{2} = 26",
+            "Multiplier: 2^{26} is approximately 67 million",
+            "Estimate: 2000 times 67M is approximately 134 billion"
+          ],
+          "answer": "approximately 100+ billion transistors (Apple M2 has 20B, high-end GPUs have 80B+)"
+        },
+        "latex": "Transistors \\approx 2^{(year-1971)/2}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1.138em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">an</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">ors</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">pp</span><span class=\"mord mathnormal\">ro</span><span class=\"mord mathnormal\">x</span><span class=\"mord mathnormal\">ima</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.888em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mopen mtight\">(</span><span class=\"mord mathnormal mtight\">ye</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">r</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1971</span></span></span></span></span></span></span></span></span><span class=\"mord\">/2</span><span class=\"mclose\">)</span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "If you complete one level per day, how long will this course take?",
+        "hint": "Count the main levels: 01-19 plus boss",
+        "answer": "20 days (or faster if you do multiple levels per session!)"
+      },
+      {
+        "question": "Which tier represents the biggest conceptual jump?",
+        "hint": "When do we first introduce time and memory into circuits?",
+        "answer": "Tier 4 (Sequential Logic) - moving from stateless to stateful circuits is the hardest concept."
+      }
+    ],
+    "realWorld": {
+      "context": "Every electronic device you use - phone, computer, car, appliances - contains the circuits you will learn to build.",
+      "example": "Your smartphone has more computing power than all of NASA had during the Apollo missions - thanks to the miniaturization and integration of these fundamental circuits.",
+      "numbers": "A modern CPU executes approximately 100 billion operations per second. Each operation uses the gates you will learn: AND, OR, XOR, flip-flops, adders.",
+      "connection": "By the end of this course, the magic of computers will be replaced by understanding. You will see circuits, not mysteries."
+    }
+  },
+  "courseOverview": {
+    "totalLevels": 20,
+    "totalTiers": 6,
+    "estimatedTime": "8-12 hours",
+    "prerequisites": "None - we start from absolute basics",
+    "learningOutcomes": [
+      "Understand how electricity carries information",
+      "Build memory elements and sequential circuits",
+      "Implement a working arithmetic logic unit",
+      "Comprehend the fetch-decode-execute cycle"
+    ]
+  },
+  "tierOverview": [
+    {
+      "tier": "tier_1",
+      "name": "The Silicon Age",
+      "levels": [
+        "level_01",
+        "level_02",
+        "level_03",
+        "level_04",
+        "level_05"
+      ],
+      "theme": "Physics to Switches to Gates",
+      "description": "Learn the physical foundation: how electrons flow, how transistors switch, and how basic gates emerge from physics.",
+      "difficultyRamp": "GENTLE - These levels are tutorials. Just connect components and observe. No complex design required.",
+      "keyInsight": "A transistor is just a switch. All computing reduces to switching."
+    },
+    {
+      "tier": "tier_2",
+      "name": "Boolean Algebra",
+      "levels": [
+        "level_06",
+        "level_07",
+        "level_08",
+        "level_09"
+      ],
+      "theme": "Universal Gates to Any Function",
+      "description": "Discover that NAND alone can build ANY logic function. Master XOR and De Morgan's laws.",
+      "difficultyRamp": "MODERATE - Start designing small circuits. Level 09 requires combining 3 gates.",
+      "keyInsight": "NAND is universal. With one gate type, you can build any computer."
+    },
+    {
+      "tier": "tier_3",
+      "name": "Combinational Logic",
+      "levels": [
+        "level_10",
+        "level_11",
+        "level_12",
+        "level_13"
+      ],
+      "theme": "Data Routing to Arithmetic",
+      "description": "Build the circuits that make decisions (MUX), select addresses (decoder), and do math (adders).",
+      "difficultyRamp": "CHALLENGING - Multi-gate designs. Full adder needs 5 gates working together.",
+      "keyInsight": "Computers do math with XOR and AND. Addition is the foundation of all arithmetic."
+    },
+    {
+      "tier": "tier_4",
+      "name": "Sequential Logic",
+      "levels": [
+        "level_14",
+        "level_15",
+        "level_16"
+      ],
+      "theme": "Memory to Synchronization",
+      "description": "Introduce TIME. Build circuits that remember (latches) and synchronize (flip-flops).",
+      "difficultyRamp": "CONCEPTUAL LEAP - Understanding feedback and clocking is the hardest conceptual jump.",
+      "keyInsight": "Feedback creates memory. Clocks create order. Together they enable computation over time."
+    },
+    {
+      "tier": "tier_5",
+      "name": "Finite State Machines",
+      "levels": [
+        "level_17",
+        "level_18"
+      ],
+      "theme": "Counters to Controllers",
+      "description": "Design circuits that move through defined states - the control logic inside every processor.",
+      "difficultyRamp": "DESIGN INTENSIVE - You must plan state transitions before building.",
+      "keyInsight": "Any sequential behavior can be modeled as states plus transitions."
+    },
+    {
+      "tier": "tier_6",
+      "name": "Computer Architecture",
+      "levels": [
+        "level_19",
+        "level_boss"
+      ],
+      "theme": "ALU to CPU",
+      "description": "The grand finale. Build an ALU, then combine everything into a working processor.",
+      "difficultyRamp": "MASTERY - Integrate all previous knowledge. The boss level is the ultimate test.",
+      "keyInsight": "A CPU is just gates plus memory plus control. You now understand how computers work."
+    }
+  ],
+  "levelGuide": {
+    "level_01": {
+      "title": "The Simple Wire",
+      "concept": "Current, voltage, signal propagation",
+      "difficulty": "Tutorial",
+      "task": "Connect input to output",
+      "insight": "Electrons drift slowly, but signals travel at near light-speed."
+    },
+    "level_02": {
+      "title": "The Transistor",
+      "concept": "Semiconductors, P-N junctions, switching",
+      "difficulty": "Tutorial",
+      "task": "Use a transistor as a controlled switch",
+      "insight": "A small signal controls a large current - the basis of amplification."
+    },
+    "level_03": {
+      "title": "NOT Gate (Inverter)",
+      "concept": "CMOS logic, complementary switching",
+      "difficulty": "Tutorial",
+      "task": "Build an inverter",
+      "insight": "Inversion is the simplest computation - flip 0 to 1."
+    },
+    "level_04": {
+      "title": "AND Gate",
+      "concept": "Series circuits, Boolean multiplication",
+      "difficulty": "Easy",
+      "task": "Output 1 only when both inputs are 1",
+      "insight": "Series equals AND. Both switches must close for current to flow."
+    },
+    "level_05": {
+      "title": "OR Gate",
+      "concept": "Parallel circuits, Boolean addition",
+      "difficulty": "Easy",
+      "task": "Output 1 when any input is 1",
+      "insight": "Parallel equals OR. Any path conducts."
+    },
+    "level_06": {
+      "title": "NAND: The Universal",
+      "concept": "Universal gates, functional completeness",
+      "difficulty": "Easy",
+      "task": "Use the NAND gate",
+      "insight": "NAND equals NOT(AND). It is the only gate type needed to build any circuit."
+    },
+    "level_07": {
+      "title": "Logic from NAND",
+      "concept": "Technology mapping, synthesis",
+      "difficulty": "Easy-Medium",
+      "task": "Build NOT using only NAND",
+      "insight": "NAND(A,A) equals NOT(A). Tie the inputs together!"
+    },
+    "level_08": {
+      "title": "XOR (Exclusive OR)",
+      "concept": "Parity, modulo-2 arithmetic",
+      "difficulty": "Medium",
+      "task": "Output 1 when inputs differ",
+      "insight": "XOR is addition without carry. It is the heart of error detection."
+    },
+    "level_09": {
+      "title": "De Morgan Laws",
+      "concept": "Boolean algebra, bubble pushing",
+      "difficulty": "Medium",
+      "task": "Build OR using only NAND gates",
+      "insight": "Invert inputs, change AND to OR. This completes the universality proof."
+    },
+    "level_10": {
+      "title": "Multiplexer (MUX)",
+      "concept": "Data selection, control paths",
+      "difficulty": "Medium",
+      "task": "Select between two inputs based on selector",
+      "insight": "MUX equals programmable routing. FPGAs use MUX-based lookup tables."
+    },
+    "level_11": {
+      "title": "Decoder (2-to-4)",
+      "concept": "Address decoding, one-hot encoding",
+      "difficulty": "Medium-Hard",
+      "task": "Convert 2-bit binary to 4 output lines",
+      "insight": "Every memory access uses decoders to select cells."
+    },
+    "level_12": {
+      "title": "Half Adder",
+      "concept": "Binary addition, Sum and Carry",
+      "difficulty": "Medium",
+      "task": "Add two bits, output Sum and Carry",
+      "insight": "Sum equals XOR, Carry equals AND. This is how computers add!"
+    },
+    "level_13": {
+      "title": "Full Adder",
+      "concept": "Carry propagation, ripple chains",
+      "difficulty": "Hard",
+      "task": "Add three bits (A, B, Carry-in)",
+      "insight": "Chain full adders for multi-bit arithmetic."
+    },
+    "level_14": {
+      "title": "SR Latch",
+      "concept": "Bistability, feedback, memory",
+      "difficulty": "Conceptual",
+      "task": "Store and recall a bit using Set/Reset",
+      "insight": "Feedback creates memory! Two stable states equals 1 bit of storage."
+    },
+    "level_15": {
+      "title": "D Flip-Flop",
+      "concept": "Edge triggering, synchronous design",
+      "difficulty": "Conceptual",
+      "task": "Capture D input only on clock edge",
+      "insight": "All changes happen at the clock edge. This makes design predictable."
+    },
+    "level_16": {
+      "title": "Toggle Flip-Flop",
+      "concept": "Frequency division, feedback",
+      "difficulty": "Medium",
+      "task": "Toggle output on each clock pulse",
+      "insight": "T-FF divides frequency by 2. Chain them for counters."
+    },
+    "level_17": {
+      "title": "2-Bit Counter",
+      "concept": "State machines, binary counting",
+      "difficulty": "Hard",
+      "task": "Count through 00, 01, 10, 11, 00",
+      "insight": "A counter is the simplest FSM. Every CPU has a program counter."
+    },
+    "level_18": {
+      "title": "Traffic Light Controller",
+      "concept": "FSM design methodology",
+      "difficulty": "Hard",
+      "task": "Cycle through GREEN, YELLOW, RED",
+      "insight": "Any sequential behavior equals states plus transitions."
+    },
+    "level_19": {
+      "title": "Arithmetic Logic Unit",
+      "concept": "Opcode selection, status flags",
+      "difficulty": "Very Hard",
+      "task": "Add OR subtract based on operation code",
+      "insight": "The ALU is where computation happens. Flags enable conditionals."
+    },
+    "level_boss": {
+      "title": "The CPU Datapath",
+      "concept": "Von Neumann architecture, fetch-decode-execute",
+      "difficulty": "Boss",
+      "task": "Fetch, decode, and execute an instruction",
+      "insight": "A CPU is gates plus memory plus control. You now understand computers!"
+    }
+  },
+  "difficultyProgression": {
+    "phase1_tutorials": {
+      "levels": [
+        "level_01",
+        "level_02",
+        "level_03"
+      ],
+      "description": "Pure observation and single connections. Just follow instructions.",
+      "tip": "Do not worry about solving anything. These levels teach concepts."
+    },
+    "phase2_singleGate": {
+      "levels": [
+        "level_04",
+        "level_05",
+        "level_06"
+      ],
+      "description": "Use one gate. Understand input to output relationships.",
+      "tip": "Study the truth table. Match your circuit output to it."
+    },
+    "phase3_multiGate": {
+      "levels": [
+        "level_07",
+        "level_08",
+        "level_09"
+      ],
+      "description": "Combine 2-4 gates. Plan before building.",
+      "tip": "Draw the circuit on paper first. Then implement."
+    },
+    "phase4_systems": {
+      "levels": [
+        "level_10",
+        "level_11",
+        "level_12",
+        "level_13"
+      ],
+      "description": "Build functional units with 4-6 gates.",
+      "tip": "Break the problem into sub-problems. Build and test incrementally."
+    },
+    "phase5_sequential": {
+      "levels": [
+        "level_14",
+        "level_15",
+        "level_16"
+      ],
+      "description": "MAJOR CONCEPT SHIFT. Understand feedback and time.",
+      "tip": "Focus on understanding the why before the how. Re-read explanations."
+    },
+    "phase6_stateMachines": {
+      "levels": [
+        "level_17",
+        "level_18"
+      ],
+      "description": "Design state transition logic. Plan states first.",
+      "tip": "Draw the state diagram. Label transitions. Then derive equations."
+    },
+    "phase7_architecture": {
+      "levels": [
+        "level_19",
+        "level_boss"
+      ],
+      "description": "Integration of all skills. The ultimate challenge.",
+      "tip": "This is where everything comes together. Take your time."
+    }
+  }
+}

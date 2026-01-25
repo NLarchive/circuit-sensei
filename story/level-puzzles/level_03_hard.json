@@ -1,0 +1,55 @@
+{
+  "id": "level_03_hard",
+  "baseId": "level_03",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 50,
+  "hint": "When En=0, output is 0 regardless of A. When En=1, output = NOT(A). Combine NOT and transistor logic: use Enable to gate the inverted signal.",
+  "title": "Controlled Inverter",
+  "objective": "Invert signal when enabled",
+  "description": "Build a circuit that outputs NOT(A) when Enable=1, and outputs 0 when Enable=0. This is a gated inverter used in bus drivers.",
+  "physicsVisual": "tristate_inverter"
+}

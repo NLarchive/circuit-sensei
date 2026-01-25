@@ -1,0 +1,77 @@
+{
+  "id": "level_17_medium",
+  "baseId": "level_17",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 1,
+  "targetSequence": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Initial: 00"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Tick 1: 01 (1 bit change)"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "Tick 2: 11 (1 bit change)"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Tick 3: 10 (1 bit change)"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Tick 4: 00 (wrap, 1 bit change)"
+    }
+  ],
+  "maxGates": 6,
+  "xpReward": 175,
+  "hint": "Gray code sequence: 00→01→11→10→00. Use two D-FFs and logic to compute next state. Q1_next and Q0_next depend on current Q1,Q0 in a specific pattern.",
+  "title": "Gray Code Counter",
+  "objective": "Count in Gray code sequence",
+  "description": "Build a 2-bit counter that counts in Gray code: 00→01→11→10→00. Only one bit changes per transition.",
+  "physicsVisual": "gray_code_counter"
+}

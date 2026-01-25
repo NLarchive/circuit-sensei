@@ -1,0 +1,1585 @@
+{
+  "_comment": "Formula Index - All formulas with their origin levels and variable definitions",
+  "_purpose": "Track where each formula is first introduced, define all variables, enable info tooltips",
+  "_version": "1.0.0",
+  "_lastUpdated": "2026-01-09",
+  "formulas": {
+    "ohms_law": {
+      "name": "Ohm's Law",
+      "latex": "V = I \\times R",
+      "origin_level": "level_01",
+      "category": "physics_electrical",
+      "variables": {
+        "V": {
+          "name": "Voltage",
+          "meaning": "Electric potential difference across the component",
+          "units": "Volts (V)",
+          "defined_in": "level_01"
+        },
+        "I": {
+          "name": "Current",
+          "meaning": "Flow of electric charge through the component",
+          "units": "Amperes (A)",
+          "defined_in": "level_01"
+        },
+        "R": {
+          "name": "Resistance",
+          "meaning": "Opposition to current flow",
+          "units": "Ohms (Ω)",
+          "defined_in": "level_01"
+        }
+      },
+      "meaning": "Voltage, current, and resistance are linked. If you know any two, you can calculate the third. Higher resistance means less current for the same voltage.",
+      "rearrangements": [
+        "I = V / R",
+        "R = V / I"
+      ],
+      "example": {
+        "problem": "A wire has 10Ω resistance. If 5V is applied across it, how much current flows?",
+        "solution": "I = V / R = 5V / 10Ω = 0.5A"
+      },
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span></span></span></span>"
+    },
+    "charge_current_time": {
+      "name": "Charge-Current-Time Relationship",
+      "latex": "Q = I \\times t",
+      "origin_level": "level_01",
+      "category": "physics_electrical",
+      "variables": {
+        "Q": {
+          "name": "Electric Charge",
+          "meaning": "Amount of electrical charge",
+          "units": "Coulombs (C)",
+          "defined_in": "level_01"
+        },
+        "I": {
+          "name": "Current",
+          "meaning": "Rate of charge flow",
+          "units": "Amperes (A)",
+          "defined_in": "level_01"
+        },
+        "t": {
+          "name": "Time",
+          "meaning": "Duration of current flow",
+          "units": "Seconds (s)",
+          "defined_in": "level_01"
+        }
+      },
+      "meaning": "Total charge equals current multiplied by time. 1 Ampere flowing for 1 second = 1 Coulomb of charge.",
+      "rearrangements": [
+        "I = Q / t",
+        "t = Q / I"
+      ],
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6151em;\"></span><span class=\"mord mathnormal\">t</span></span></span></span>"
+    },
+    "voltage_energy_charge": {
+      "name": "Voltage-Energy-Charge Relationship",
+      "latex": "V = \\frac{E}{Q}",
+      "origin_level": "level_01",
+      "category": "physics_electrical",
+      "variables": {
+        "V": {
+          "name": "Voltage",
+          "meaning": "Energy per unit charge (potential difference)",
+          "units": "Volts (V) = Joules/Coulomb",
+          "defined_in": "level_01"
+        },
+        "E": {
+          "name": "Energy",
+          "meaning": "Work done or energy transferred",
+          "units": "Joules (J)",
+          "defined_in": "level_01"
+        },
+        "Q": {
+          "name": "Charge",
+          "meaning": "Amount of electrical charge",
+          "units": "Coulombs (C)",
+          "defined_in": "level_01"
+        }
+      },
+      "meaning": "Voltage is energy per charge. 1 Volt means 1 Joule of energy per Coulomb of charge moved.",
+      "rearrangements": [
+        "E = V × Q",
+        "Q = E / V"
+      ],
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.3534em;vertical-align:-0.4811em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8723em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">Q</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05764em;\">E</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4811em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+    },
+    "current_from_drift": {
+      "name": "Current from Drift Velocity",
+      "latex": "I = n \\cdot A \\cdot v_d \\cdot q",
+      "origin_level": "level_01",
+      "category": "physics_electrical",
+      "variables": {
+        "I": {
+          "name": "Current",
+          "meaning": "Macroscopic current flow",
+          "units": "Amperes (A)",
+          "defined_in": "level_01"
+        },
+        "n": {
+          "name": "Carrier Density",
+          "meaning": "Number of free electrons per unit volume",
+          "units": "electrons/m³",
+          "defined_in": "level_01"
+        },
+        "A": {
+          "name": "Cross-sectional Area",
+          "meaning": "Area of wire perpendicular to current flow",
+          "units": "m²",
+          "defined_in": "level_01"
+        },
+        "v_d": {
+          "name": "Drift Velocity",
+          "meaning": "Average velocity of electrons in the wire",
+          "units": "m/s",
+          "defined_in": "level_01"
+        },
+        "q": {
+          "name": "Electron Charge",
+          "meaning": "Charge of one electron (constant)",
+          "units": "1.6×10⁻¹⁹ Coulombs",
+          "defined_in": "level_01"
+        }
+      },
+      "meaning": "Current depends on carrier density, wire size, drift speed, and charge per carrier. Explains why metals with high n conduct well.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.4445em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.5945em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">d</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">q</span></span></span></span>"
+    },
+    "bjt_current_gain": {
+      "name": "BJT Current Gain",
+      "latex": "I_C = \\beta \\times I_B",
+      "origin_level": "level_02",
+      "category": "semiconductor",
+      "variables": {
+        "I_C": {
+          "name": "Collector Current",
+          "meaning": "Main controlled current through transistor",
+          "units": "Amperes (A)",
+          "defined_in": "level_02"
+        },
+        "β": {
+          "name": "Current Gain (Beta)",
+          "meaning": "Amplification factor (typically 50-300)",
+          "units": "dimensionless",
+          "defined_in": "level_02",
+          "also_known_as": [
+            "h_FE",
+            "h_fe"
+          ]
+        },
+        "I_B": {
+          "name": "Base Current",
+          "meaning": "Small control current into base terminal",
+          "units": "Amperes (A)",
+          "defined_in": "level_02"
+        }
+      },
+      "meaning": "A tiny base current controls a much larger collector current. This amplification makes transistors useful as switches and amplifiers.",
+      "rearrangements": [
+        "I_B= I_C / β",
+        "β = I_C / I_B"
+      ],
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07153em;\">C</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05278em;\">β</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05017em;\">B</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "mosfet_threshold": {
+      "name": "MOSFET Threshold Condition",
+      "latex": "I_D = 0 \\text{ when } V_{GS} < V_{th}",
+      "origin_level": "level_02",
+      "category": "semiconductor",
+      "variables": {
+        "I_D": {
+          "name": "Drain Current",
+          "meaning": "Current flowing from drain to source",
+          "units": "Amperes (A)",
+          "defined_in": "level_02"
+        },
+        "V_GS": {
+          "name": "Gate-to-Source Voltage",
+          "meaning": "Voltage between gate and source terminals",
+          "units": "Volts (V)",
+          "defined_in": "level_02"
+        },
+        "V_th": {
+          "name": "Threshold Voltage",
+          "meaning": "Minimum gate voltage to turn transistor ON",
+          "units": "Volts (typically 0.3-0.7V)",
+          "defined_in": "level_02"
+        }
+      },
+      "meaning": "A MOSFET acts as an open switch until gate voltage exceeds threshold. Then a conducting channel forms.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">D</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\">0</span><span class=\"mord text\"><span class=\"mord\"> when </span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05764em;\">GS</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&lt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">h</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "capacitance": {
+      "name": "Capacitance Definition",
+      "latex": "C = \\frac{Q}{V}",
+      "origin_level": "level_03",
+      "category": "physics_electrical",
+      "variables": {
+        "C": {
+          "name": "Capacitance",
+          "meaning": "Ability to store charge",
+          "units": "Farads (F)",
+          "defined_in": "level_03"
+        },
+        "Q": {
+          "name": "Charge",
+          "meaning": "Charge stored on capacitor",
+          "units": "Coulombs (C)",
+          "defined_in": "level_01"
+        },
+        "V": {
+          "name": "Voltage",
+          "meaning": "Voltage across capacitor",
+          "units": "Volts (V)",
+          "defined_in": "level_01"
+        }
+      },
+      "meaning": "Capacitance is charge stored per volt. Higher capacitance = more charge stored at same voltage.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2694em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9244em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.22222em;\">V</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.4461em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">Q</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+    },
+    "cmos_dynamic_power": {
+      "name": "CMOS Dynamic Power",
+      "latex": "P = C \\cdot V^2 \\cdot f",
+      "origin_level": "level_03",
+      "category": "power",
+      "variables": {
+        "P": {
+          "name": "Power",
+          "meaning": "Dynamic power dissipated during switching",
+          "units": "Watts (W)",
+          "defined_in": "level_03"
+        },
+        "C": {
+          "name": "Load Capacitance",
+          "meaning": "Total capacitance being charged/discharged (gate + wiring)",
+          "units": "Farads (F)",
+          "defined_in": "level_03"
+        },
+        "V": {
+          "name": "Supply Voltage",
+          "meaning": "VDD voltage level",
+          "units": "Volts (V)",
+          "defined_in": "level_03"
+        },
+        "f": {
+          "name": "Switching Frequency",
+          "meaning": "How often the gate switches per second",
+          "units": "Hertz (Hz)",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "Power scales with voltage SQUARED—halving voltage reduces power by 4×. Also scales linearly with frequency.",
+      "key_insight": "This is why modern CPUs use ~1V instead of 5V and why battery life improves with lower frequencies.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8141em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span></span></span></span>"
+    },
+    "frequency_period": {
+      "name": "Frequency-Period Relationship",
+      "latex": "f = \\frac{1}{T}",
+      "origin_level": "level_03",
+      "category": "timing",
+      "variables": {
+        "f": {
+          "name": "Frequency",
+          "meaning": "Number of cycles per second",
+          "units": "Hertz (Hz)",
+          "defined_in": "level_03"
+        },
+        "T": {
+          "name": "Period",
+          "meaning": "Time for one complete cycle",
+          "units": "Seconds (s)",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "Frequency and period are reciprocals. 1 GHz = 1 nanosecond period.",
+      "rearrangements": [
+        "T = 1 / f"
+      ],
+      "examples": [
+        "1 GHz = 10⁹ Hz → T = 1 ns",
+        "1 MHz = 10⁶ Hz → T = 1 μs"
+      ],
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.1901em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.13889em;\">T</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+    },
+    "noise_margin_high": {
+      "name": "Noise Margin (HIGH)",
+      "latex": "NM_H = V_{OH} - V_{IH}",
+      "origin_level": "level_03",
+      "category": "digital_logic",
+      "variables": {
+        "NM_H": {
+          "name": "Noise Margin HIGH",
+          "meaning": "Safety buffer for HIGH signals",
+          "units": "Volts (V)",
+          "defined_in": "level_03"
+        },
+        "V_OH": {
+          "name": "Output HIGH Voltage",
+          "meaning": "Minimum voltage a gate outputs for logic 1",
+          "units": "Volts (V)",
+          "defined_in": "level_03"
+        },
+        "V_IH": {
+          "name": "Input HIGH Threshold",
+          "meaning": "Minimum voltage recognized as logic 1 input",
+          "units": "Volts (V)",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "The gap between what we output and what the next gate needs. Noise up to this amount won't cause errors.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.08125em;\">H</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.08125em;\">H</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.08125em;\">H</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "noise_margin_low": {
+      "name": "Noise Margin (LOW)",
+      "latex": "NM_L = V_{IL} - V_{OL}",
+      "origin_level": "level_03",
+      "category": "digital_logic",
+      "variables": {
+        "NM_L": {
+          "name": "Noise Margin LOW",
+          "meaning": "Safety buffer for LOW signals",
+          "units": "Volts (V)",
+          "defined_in": "level_03"
+        },
+        "V_IL": {
+          "name": "Input LOW Threshold",
+          "meaning": "Maximum voltage recognized as logic 0 input",
+          "units": "Volts (V)",
+          "defined_in": "level_03"
+        },
+        "V_OL": {
+          "name": "Output LOW Voltage",
+          "meaning": "Maximum voltage a gate outputs for logic 0",
+          "units": "Volts (V)",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "The gap between what we output for LOW and what the next gate tolerates as LOW.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal mtight\">L</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal mtight\">L</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "boolean_and": {
+      "name": "Boolean AND Operation",
+      "latex": "Y = A \\cdot B",
+      "origin_level": "level_04",
+      "category": "boolean_logic",
+      "variables": {
+        "Y": {
+          "name": "Output",
+          "meaning": "Result of AND operation",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First input",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second input",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "Output is 1 only when ALL inputs are 1. Like multiplication: anything × 0 = 0.",
+      "truth_table": "00→0, 01→0, 10→0, 11→1",
+      "alternative_notations": [
+        "A ∧ B",
+        "A AND B"
+      ],
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+    },
+    "series_resistance": {
+      "name": "Series Resistance",
+      "latex": "R_{total} = R_1 + R_2 + R_3 + \\ldots",
+      "origin_level": "level_04",
+      "category": "circuit_topology",
+      "variables": {
+        "R_total": {
+          "name": "Total Resistance",
+          "meaning": "Combined resistance of series combination",
+          "units": "Ohms (Ω)",
+          "defined_in": "level_04"
+        },
+        "R₁, R₂, R₃": {
+          "name": "Individual Resistances",
+          "meaning": "Resistance of each component in series",
+          "units": "Ohms (Ω)",
+          "defined_in": "level_01"
+        }
+      },
+      "meaning": "In series, resistances ADD. More resistors = higher total resistance = harder for current to flow.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">3</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.123em;\"></span><span class=\"minner\">…</span></span></span></span>"
+    },
+    "propagation_delay": {
+      "name": "Propagation Delay (RC)",
+      "latex": "t_{pd} = R_{on} \\times C_{load}",
+      "origin_level": "level_04",
+      "category": "timing",
+      "variables": {
+        "t_pd": {
+          "name": "Propagation Delay",
+          "meaning": "Time for output to change after input changes",
+          "units": "Seconds (typically ps or ns)",
+          "defined_in": "level_04"
+        },
+        "R_on": {
+          "name": "On-Resistance",
+          "meaning": "Transistor resistance when conducting",
+          "units": "Ohms (Ω)",
+          "defined_in": "level_04"
+        },
+        "C_load": {
+          "name": "Load Capacitance",
+          "meaning": "Capacitance being charged/discharged",
+          "units": "Farads (F)",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "Delay is determined by RC time constant. Lower R or C = faster switching.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.9012em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">p</span><span class=\"mord mathnormal mtight\">d</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">n</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\">d</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "max_frequency": {
+      "name": "Maximum Operating Frequency",
+      "latex": "f_{max} = \\frac{1}{t_{pd}}",
+      "origin_level": "level_04",
+      "category": "timing",
+      "variables": {
+        "f_max": {
+          "name": "Maximum Frequency",
+          "meaning": "Fastest clock rate the circuit can handle",
+          "units": "Hertz (Hz)",
+          "defined_in": "level_04"
+        },
+        "t_pd": {
+          "name": "Propagation Delay",
+          "meaning": "Total delay through critical path",
+          "units": "Seconds",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "You can't clock faster than signals can propagate. The slowest path limits maximum frequency.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">ma</span><span class=\"mord mathnormal mtight\">x</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.3932em;vertical-align:-0.5481em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3488em;margin-left:0em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">p</span><span class=\"mord mathnormal mtight\">d</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2901em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5481em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+    },
+    "boolean_or": {
+      "name": "Boolean OR Operation",
+      "latex": "Y = A + B",
+      "origin_level": "level_05",
+      "category": "boolean_logic",
+      "variables": {
+        "Y": {
+          "name": "Output",
+          "meaning": "Result of OR operation",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_05"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First input",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second input",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "Output is 1 when AT LEAST ONE input is 1. Note: 1+1=1 in Boolean (not 2!).",
+      "truth_table": "00→0, 01→1, 10→1, 11→1",
+      "alternative_notations": [
+        "A ∨ B",
+        "A OR B"
+      ],
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+    },
+    "parallel_resistance": {
+      "name": "Parallel Resistance",
+      "latex": "\\frac{1}{R_{total}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\ldots",
+      "origin_level": "level_05",
+      "category": "circuit_topology",
+      "variables": {
+        "R_total": {
+          "name": "Total Resistance",
+          "meaning": "Combined resistance of parallel combination",
+          "units": "Ohms (Ω)",
+          "defined_in": "level_05"
+        },
+        "R₁, R₂": {
+          "name": "Individual Resistances",
+          "meaning": "Resistance of each parallel branch",
+          "units": "Ohms (Ω)",
+          "defined_in": "level_01"
+        }
+      },
+      "meaning": "In parallel, resistances combine reciprocally. Total is LESS than smallest individual resistor.",
+      "special_case": "Two equal resistors in parallel: R_total = R/2",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1.296em;vertical-align:-0.4509em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3488em;margin-left:-0.0077em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1512em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4509em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2902em;vertical-align:-0.4451em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3173em;\"><span style=\"top:-2.357em;margin-left:-0.0077em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.143em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4451em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2902em;vertical-align:-0.4451em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.00773em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3173em;\"><span style=\"top:-2.357em;margin-left:-0.0077em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.143em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4451em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.123em;\"></span><span class=\"minner\">…</span></span></span></span>"
+    },
+    "kcl": {
+      "name": "Kirchhoff's Current Law",
+      "latex": "\\sum I_{in} = \\sum I_{out}",
+      "origin_level": "level_05",
+      "category": "physics_electrical",
+      "variables": {
+        "ΣI_in": {
+          "name": "Sum of Currents In",
+          "meaning": "Total current entering a node",
+          "units": "Amperes (A)",
+          "defined_in": "level_05"
+        },
+        "ΣI_out": {
+          "name": "Sum of Currents Out",
+          "meaning": "Total current leaving a node",
+          "units": "Amperes (A)",
+          "defined_in": "level_05"
+        }
+      },
+      "meaning": "Current is conserved at every junction. What goes in must come out.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mop op-symbol small-op\" style=\"position:relative;top:0em;\">∑</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">in</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mop op-symbol small-op\" style=\"position:relative;top:0em;\">∑</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "fanout_delay": {
+      "name": "Delay with Fan-Out",
+      "latex": "t = t_0 + t_{load} \\times FO",
+      "origin_level": "level_05",
+      "category": "timing",
+      "variables": {
+        "t": {
+          "name": "Total Delay",
+          "meaning": "Actual propagation delay with loading",
+          "units": "Seconds",
+          "defined_in": "level_05"
+        },
+        "t₀": {
+          "name": "Intrinsic Delay",
+          "meaning": "Gate delay with zero fan-out",
+          "units": "Seconds",
+          "defined_in": "level_05"
+        },
+        "t_load": {
+          "name": "Load Delay",
+          "meaning": "Additional delay per unit load",
+          "units": "Seconds",
+          "defined_in": "level_05"
+        },
+        "FO": {
+          "name": "Fan-Out",
+          "meaning": "Number of gates being driven",
+          "units": "Count",
+          "defined_in": "level_05"
+        }
+      },
+      "meaning": "More loads = more capacitance = slower. Delay grows linearly with fan-out.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6151em;\"></span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\">d</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">FO</span></span></span></span>"
+    },
+    "nand_to_not": {
+      "name": "NOT from NAND",
+      "latex": "\\overline{A} = \\text{NAND}(A, A)",
+      "origin_level": "level_07",
+      "category": "boolean_logic",
+      "variables": {
+        "A": {
+          "name": "Input",
+          "meaning": "Signal to be inverted",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "Tying both NAND inputs together creates an inverter. First step in proving NAND universality.",
+      "proof": "NAND(A,A) = NOT(A AND A) = NOT(A)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord text\"><span class=\"mord\">NAND</span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span></span></span></span>"
+    },
+    "xor": {
+      "name": "Exclusive OR (XOR)",
+      "latex": "Y = A \\oplus B",
+      "origin_level": "level_08",
+      "category": "boolean_logic",
+      "variables": {
+        "Y": {
+          "name": "Output",
+          "meaning": "Result of XOR operation",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_08"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First input",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second input",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "Output is 1 when inputs DIFFER. Also performs modulo-2 addition (sum without carry).",
+      "truth_table": "00→0, 01→1, 10→1, 11→0",
+      "equivalent_forms": [
+        "(A·\\bar{B}) + (\\bar{A}·B)",
+        "(A+B)·(\\bar{A}+\\bar{B})"
+      ],
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+    },
+    "xor_self_inverse": {
+      "name": "XOR Self-Inverse Property",
+      "latex": "A \\oplus B\\oplus B= A",
+      "origin_level": "level_08",
+      "category": "boolean_logic",
+      "variables": {
+        "A": {
+          "name": "Original Value",
+          "meaning": "Data to be recovered",
+          "units": "Binary",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Key/Mask",
+          "meaning": "Value used for XOR operation",
+          "units": "Binary",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "XORing twice with the same value returns the original. Enables encryption, RAID recovery, and data swapping.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span></span></span></span>"
+    },
+    "parity": {
+      "name": "Parity Calculation",
+      "latex": "P = B_0 \\oplus B_1 \\oplus B_2 \\oplus \\ldots \\oplus B_n",
+      "origin_level": "level_08",
+      "category": "error_detection",
+      "variables": {
+        "P": {
+          "name": "Parity Bit",
+          "meaning": "Error detection bit",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_08"
+        },
+        "B₀...Bₙ": {
+          "name": "Data Bits",
+          "meaning": "Individual bits of data",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_08"
+        }
+      },
+      "meaning": "XOR all data bits to create a parity bit. If any single bit flips, the parity changes, detecting the error.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"minner\">…</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "de_morgan_1": {
+      "name": "De Morgan's First Theorem",
+      "latex": "\\overline{A \\cdot B} = \\bar{A} + \\bar{B}",
+      "origin_level": "level_09",
+      "category": "boolean_algebra",
+      "variables": {
+        "A": {
+          "name": "Input A",
+          "meaning": "First input variable",
+          "units": "Binary",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second input variable",
+          "units": "Binary",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "The complement of a product equals the sum of complements. AND becomes OR when you invert everything.",
+      "verbal": "NOT (A AND B) = (NOT A) OR (NOT B)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.9034em;vertical-align:-0.0833em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span></span></span></span>"
+    },
+    "de_morgan_2": {
+      "name": "De Morgan's Second Theorem",
+      "latex": "\\overline{A + B} = \\bar{A} \\cdot \\bar{B}",
+      "origin_level": "level_09",
+      "category": "boolean_algebra",
+      "variables": {
+        "A": {
+          "name": "Input A",
+          "meaning": "First input variable",
+          "units": "Binary",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second input variable",
+          "units": "Binary",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "The complement of a sum equals the product of complements. OR becomes AND when you invert everything.",
+      "verbal": "NOT (A OR B) = (NOT A) AND (NOT B)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.9667em;vertical-align:-0.0833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.0833em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span></span></span></span>"
+    },
+    "mux_2to1": {
+      "name": "2:1 Multiplexer",
+      "latex": "Out = (A \\cdot \\bar{S}) + (B\\cdot S)",
+      "origin_level": "level_10",
+      "category": "combinational_circuits",
+      "variables": {
+        "Out": {
+          "name": "Output",
+          "meaning": "Selected input value",
+          "units": "Binary",
+          "defined_in": "level_10"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First data input (selected when S=0)",
+          "units": "Binary",
+          "defined_in": "level_10"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second data input (selected when S=1)",
+          "units": "Binary",
+          "defined_in": "level_10"
+        },
+        "S": {
+          "name": "Select",
+          "meaning": "Control signal choosing which input",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_10"
+        }
+      },
+      "meaning": "When S=0, output equals A. When S=1, output equals B. The select signal 'switches' between inputs.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0701em;vertical-align:-0.25em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mclose\">)</span></span></span></span>"
+    },
+    "decoder_outputs": {
+      "name": "Decoder Output Count",
+      "latex": "Outputs = 2^n",
+      "origin_level": "level_11",
+      "category": "combinational_circuits",
+      "variables": {
+        "Outputs": {
+          "name": "Number of Outputs",
+          "meaning": "Total output lines from decoder",
+          "units": "Count",
+          "defined_in": "level_11"
+        },
+        "n": {
+          "name": "Input Bits",
+          "meaning": "Number of input/select lines",
+          "units": "Bits",
+          "defined_in": "level_11"
+        }
+      },
+      "meaning": "An n-bit decoder has 2ⁿ outputs. 2 bits → 4 outputs, 3 bits → 8 outputs, etc.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6644em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span></span></span>"
+    },
+    "msb_lsb_value": {
+      "name": "Binary Value from Bits",
+      "latex": "Value = MSB\\times 2^{n-1} + \\ldots + LSB\\times 2^0",
+      "origin_level": "level_11",
+      "category": "binary_representation",
+      "variables": {
+        "Value": {
+          "name": "Decimal Value",
+          "meaning": "Numeric value represented by binary",
+          "units": "Number",
+          "defined_in": "level_11"
+        },
+        "MSB": {
+          "name": "Most Significant Bit",
+          "meaning": "Leftmost bit (highest weight)",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_11"
+        },
+        "LSB": {
+          "name": "Least Significant Bit",
+          "meaning": "Rightmost bit (weight = 1)",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_11"
+        },
+        "n": {
+          "name": "Bit Width",
+          "meaning": "Number of bits",
+          "units": "Count",
+          "defined_in": "level_11"
+        }
+      },
+      "meaning": "Each bit position has a weight that is a power of 2. Sum all weighted bits to get decimal value.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">Va</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">e</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">MSB</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8974em;vertical-align:-0.0833em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"minner\">…</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">L</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">SB</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8141em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span></span></span></span></span></span></span></span>"
+    },
+    "half_adder_sum": {
+      "name": "Half Adder Sum",
+      "latex": "Sum = A \\oplus B",
+      "origin_level": "level_12",
+      "category": "arithmetic_circuits",
+      "variables": {
+        "Sum": {
+          "name": "Sum Output",
+          "meaning": "Result of single-bit addition (ones place)",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_12"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First bit to add",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second bit to add",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "XOR gives the sum bit. 0+0=0, 0+1=1, 1+0=1, 1+1=0 (with carry).",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">m</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+    },
+    "half_adder_carry": {
+      "name": "Half Adder Carry",
+      "latex": "Carry = A \\cdot B",
+      "origin_level": "level_12",
+      "category": "arithmetic_circuits",
+      "variables": {
+        "Carry": {
+          "name": "Carry Output",
+          "meaning": "Overflow to next bit position",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_12"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First bit to add",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second bit to add",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "AND gives the carry bit. Only 1+1 generates a carry.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">rry</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+    },
+    "full_adder_sum": {
+      "name": "Full Adder Sum",
+      "latex": "Sum = A \\oplus B\\oplus C_{in}",
+      "origin_level": "level_13",
+      "category": "arithmetic_circuits",
+      "variables": {
+        "Sum": {
+          "name": "Sum Output",
+          "meaning": "Result of 3-bit addition (ones place)",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_12"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First operand bit",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second operand bit",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "Cin": {
+          "name": "Carry In",
+          "meaning": "Carry from previous bit position",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_13"
+        }
+      },
+      "meaning": "XOR all three inputs to get the sum. Handles carry from previous stage.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">m</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">in</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "full_adder_carry": {
+      "name": "Full Adder Carry Out",
+      "latex": "C_{out} = (A \\cdot B) + (C_{in} \\cdot (A \\oplus B))",
+      "origin_level": "level_13",
+      "category": "arithmetic_circuits",
+      "variables": {
+        "Cout": {
+          "name": "Carry Out",
+          "meaning": "Carry to next bit position",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_13"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First operand bit",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second operand bit",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_04"
+        },
+        "Cin": {
+          "name": "Carry In",
+          "meaning": "Carry from previous stage",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_13"
+        }
+      },
+      "meaning": "Carry out if A·B(generate) OR if incoming carry propagates through.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">in</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mclose\">))</span></span></span></span>"
+    },
+    "generate": {
+      "name": "Carry Generate",
+      "latex": "G = A \\cdot B",
+      "origin_level": "level_13",
+      "category": "arithmetic_circuits",
+      "variables": {
+        "G": {
+          "name": "Generate",
+          "meaning": "Carry is produced regardless of Cin",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_13"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First operand bit",
+          "units": "Binary",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second operand bit",
+          "units": "Binary",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "If both inputs are 1, a carry is GENERATED regardless of incoming carry.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">G</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+    },
+    "propagate": {
+      "name": "Carry Propagate",
+      "latex": "P = A \\oplus B",
+      "origin_level": "level_13",
+      "category": "arithmetic_circuits",
+      "variables": {
+        "P": {
+          "name": "Propagate",
+          "meaning": "Incoming carry passes through",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_13"
+        },
+        "A": {
+          "name": "Input A",
+          "meaning": "First operand bit",
+          "units": "Binary",
+          "defined_in": "level_04"
+        },
+        "B": {
+          "name": "Input B",
+          "meaning": "Second operand bit",
+          "units": "Binary",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "If exactly one input is 1, an incoming carry PROPAGATES to the output.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+    },
+    "sr_latch": {
+      "name": "SR Latch (NOR implementation)",
+      "latex": "Q = \\text{NOR}(R, \\bar{Q})",
+      "origin_level": "level_14",
+      "category": "sequential_circuits",
+      "variables": {
+        "Q": {
+          "name": "Output Q",
+          "meaning": "Main output (stored bit)",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_14"
+        },
+        "Q̄": {
+          "name": "Output Q-bar",
+          "meaning": "Complement of Q",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_14"
+        },
+        "S": {
+          "name": "Set",
+          "meaning": "Sets Q to 1 when active",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_14"
+        },
+        "R": {
+          "name": "Reset",
+          "meaning": "Resets Q to 0 when active",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_14"
+        }
+      },
+      "meaning": "Cross-coupled NOR gates create bistable memory. S=1 sets, R=1 resets, both=0 holds state.",
+      "forbidden": "S=R=1 is invalid (outputs both go to 0, race condition when released)",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0701em;vertical-align:-0.25em;\"></span><span class=\"mord text\"><span class=\"mord\">NOR</span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord accent\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">Q</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1944em;\"><span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span>"
+    },
+    "dff": {
+      "name": "D Flip-Flop Behavior",
+      "latex": "Q_{next} = D \\text{ (at clock edge)}",
+      "origin_level": "level_15",
+      "category": "sequential_circuits",
+      "variables": {
+        "Q(next)": {
+          "name": "Next State",
+          "meaning": "Output after clock edge",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_15"
+        },
+        "D": {
+          "name": "Data Input",
+          "meaning": "Value to be captured",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_15"
+        }
+      },
+      "meaning": "Output Q becomes whatever D was at the moment of clock edge. Holds until next edge.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">Q</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span><span class=\"mord mathnormal mtight\">e</span><span class=\"mord mathnormal mtight\">x</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord text\"><span class=\"mord\"> (at clock edge)</span></span></span></span></span>"
+    },
+    "timing_max_freq": {
+      "name": "Maximum Clock Frequency",
+      "latex": "f_{max} = \\frac{1}{t_{clk-Q} + t_{comb} + t_{setup}}",
+      "origin_level": "level_15",
+      "category": "timing",
+      "variables": {
+        "f_max": {
+          "name": "Maximum Frequency",
+          "meaning": "Fastest safe clock rate",
+          "units": "Hertz (Hz)",
+          "defined_in": "level_04"
+        },
+        "t_clk-Q": {
+          "name": "Clock-to-Q Delay",
+          "meaning": "Time from clock edge to output change",
+          "units": "Seconds (typically ps)",
+          "defined_in": "level_15"
+        },
+        "t_comb": {
+          "name": "Combinational Delay",
+          "meaning": "Delay through logic between flip-flops",
+          "units": "Seconds",
+          "defined_in": "level_15"
+        },
+        "t_setup": {
+          "name": "Setup Time",
+          "meaning": "Time data must be stable before clock",
+          "units": "Seconds (typically ps)",
+          "defined_in": "level_15"
+        }
+      },
+      "meaning": "Clock period must be long enough for signal to propagate through FFs and combinational logic.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">ma</span><span class=\"mord mathnormal mtight\">x</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.3932em;vertical-align:-0.5481em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3488em;margin-left:0em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">c</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03148em;\">k</span><span class=\"mbin mtight\">−</span><span class=\"mord mathnormal mtight\">Q</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2901em;\"><span></span></span></span></span></span></span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3488em;margin-left:0em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">co</span><span class=\"mord mathnormal mtight\">mb</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1512em;\"><span></span></span></span></span></span></span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2963em;\"><span style=\"top:-2.357em;margin-left:0em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">se</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">p</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2819em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5481em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+    },
+    "t_flipflop": {
+      "name": "T Flip-Flop Toggle",
+      "latex": "Q_{next} = Q \\oplus T",
+      "origin_level": "level_16",
+      "category": "sequential_circuits",
+      "variables": {
+        "Q_next": {
+          "name": "Next State",
+          "meaning": "Output after clock edge",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_16"
+        },
+        "Q": {
+          "name": "Current State",
+          "meaning": "Current output value",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_14"
+        },
+        "T": {
+          "name": "Toggle Input",
+          "meaning": "When 1, flip-flop toggles",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_16"
+        }
+      },
+      "meaning": "When T=1, output toggles (flips). When T=0, output holds. Used for counters and frequency division.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">Q</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span><span class=\"mord mathnormal mtight\">e</span><span class=\"mord mathnormal mtight\">x</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span></span></span></span>"
+    },
+    "frequency_division": {
+      "name": "Frequency Division",
+      "latex": "f_{out} = \\frac{f_{in}}{2^n}",
+      "origin_level": "level_16",
+      "category": "timing",
+      "variables": {
+        "f_out": {
+          "name": "Output Frequency",
+          "meaning": "Divided frequency",
+          "units": "Hertz (Hz)",
+          "defined_in": "level_16"
+        },
+        "f_in": {
+          "name": "Input Frequency",
+          "meaning": "Original clock frequency",
+          "units": "Hertz (Hz)",
+          "defined_in": "level_03"
+        },
+        "n": {
+          "name": "Number of Stages",
+          "meaning": "Count of cascaded T flip-flops",
+          "units": "Count",
+          "defined_in": "level_16"
+        }
+      },
+      "meaning": "Each T flip-flop divides frequency by 2. Chain n stages for divide-by-2ⁿ.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.2772em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9322em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5935em;\"><span style=\"top:-2.786em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.4461em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.10764em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3281em;\"><span style=\"top:-2.357em;margin-left:-0.1076em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">in</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.143em;\"><span></span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+    },
+    "duty_cycle": {
+      "name": "Duty Cycle",
+      "latex": "Duty = \\frac{T_{high}}{T_{period}} \\times 100\\%",
+      "origin_level": "level_16",
+      "category": "timing",
+      "variables": {
+        "Duty": {
+          "name": "Duty Cycle",
+          "meaning": "Percentage of time signal is HIGH",
+          "units": "Percent (%)",
+          "defined_in": "level_16"
+        },
+        "T_high": {
+          "name": "High Time",
+          "meaning": "Duration signal is HIGH per cycle",
+          "units": "Seconds",
+          "defined_in": "level_16"
+        },
+        "T_period": {
+          "name": "Period",
+          "meaning": "Total cycle duration",
+          "units": "Seconds",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "50% duty cycle means signal is HIGH for exactly half the period.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.5395em;vertical-align:-0.5481em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9914em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.13889em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3488em;margin-left:-0.1389em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">p</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">er</span><span class=\"mord mathnormal mtight\">i</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">d</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2901em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.5131em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.13889em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3488em;margin-left:-0.1389em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">hi</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal mtight\">h</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2901em;\"><span></span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5481em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8056em;vertical-align:-0.0556em;\"></span><span class=\"mord\">100%</span></span></span></span>"
+    },
+    "counter_states": {
+      "name": "Counter States",
+      "latex": "States = 2^n",
+      "origin_level": "level_17",
+      "category": "sequential_circuits",
+      "variables": {
+        "States": {
+          "name": "Number of States",
+          "meaning": "How many different values counter can hold",
+          "units": "Count",
+          "defined_in": "level_17"
+        },
+        "n": {
+          "name": "Bit Width",
+          "meaning": "Number of flip-flops in counter",
+          "units": "Bits",
+          "defined_in": "level_17"
+        }
+      },
+      "meaning": "An n-bit counter counts from 0 to 2ⁿ-1, then rolls over to 0.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">es</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6644em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span></span></span>"
+    },
+    "ripple_delay": {
+      "name": "Ripple Counter Delay",
+      "latex": "Delay = n \\times t_{prop}",
+      "origin_level": "level_17",
+      "category": "timing",
+      "variables": {
+        "Delay": {
+          "name": "Total Delay",
+          "meaning": "Worst-case propagation time",
+          "units": "Seconds",
+          "defined_in": "level_17"
+        },
+        "n": {
+          "name": "Bit Width",
+          "meaning": "Number of counter stages",
+          "units": "Count",
+          "defined_in": "level_17"
+        },
+        "t_prop": {
+          "name": "Per-Stage Delay",
+          "meaning": "Propagation delay per flip-flop",
+          "units": "Seconds",
+          "defined_in": "level_04"
+        }
+      },
+      "meaning": "In ripple counters, delay accumulates through each stage. Limits maximum counting speed.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">De</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.9012em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">p</span><span class=\"mord mathnormal mtight\">ro</span><span class=\"mord mathnormal mtight\">p</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "fsm_state_bits": {
+      "name": "FSM State Bits (Binary Encoding)",
+      "latex": "Bits = \\lceil \\log_2(N) \\rceil",
+      "origin_level": "level_18",
+      "category": "sequential_circuits",
+      "variables": {
+        "Bits": {
+          "name": "Number of Flip-Flops",
+          "meaning": "Minimum FFs needed for binary encoding",
+          "units": "Count",
+          "defined_in": "level_18"
+        },
+        "N": {
+          "name": "Number of States",
+          "meaning": "Total states in the FSM",
+          "units": "Count",
+          "defined_in": "level_18"
+        }
+      },
+      "meaning": "Binary encoding uses minimum flip-flops but requires more combinational logic for decode.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">⌈</span><span class=\"mop\"><span class=\"mop\">lo<span style=\"margin-right:0.01389em;\">g</span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.207em;\"><span style=\"top:-2.4559em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2441em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mclose\">)⌉</span></span></span></span>"
+    },
+    "moore_output": {
+      "name": "Moore Machine Output",
+      "latex": "Output = f(State)",
+      "origin_level": "level_18",
+      "category": "sequential_circuits",
+      "variables": {
+        "Output": {
+          "name": "FSM Output",
+          "meaning": "Output signals from the machine",
+          "units": "Binary",
+          "defined_in": "level_18"
+        },
+        "State": {
+          "name": "Current State",
+          "meaning": "Current state of the FSM",
+          "units": "State encoding",
+          "defined_in": "level_18"
+        }
+      },
+      "meaning": "In Moore machines, output depends ONLY on current state, not on inputs. Glitch-free.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>"
+    },
+    "mealy_output": {
+      "name": "Mealy Machine Output",
+      "latex": "Output = f(State, Input)",
+      "origin_level": "level_18",
+      "category": "sequential_circuits",
+      "variables": {
+        "Output": {
+          "name": "FSM Output",
+          "meaning": "Output signals from the machine",
+          "units": "Binary",
+          "defined_in": "level_18"
+        },
+        "State": {
+          "name": "Current State",
+          "meaning": "Current state of the FSM",
+          "units": "State encoding",
+          "defined_in": "level_18"
+        },
+        "Input": {
+          "name": "Current Input",
+          "meaning": "Input signals to the FSM",
+          "units": "Binary",
+          "defined_in": "level_18"
+        }
+      },
+      "meaning": "In Mealy machines, output depends on both state AND inputs. Can respond faster but may glitch.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span></span></span></span>"
+    },
+    "twos_complement_subtraction": {
+      "name": "Two's Complement Subtraction",
+      "latex": "A - B = A + \\bar{B} + 1",
+      "origin_level": "level_19",
+      "category": "arithmetic",
+      "variables": {
+        "A": {
+          "name": "Minuend",
+          "meaning": "Number subtracted FROM",
+          "units": "Binary",
+          "defined_in": "level_19"
+        },
+        "B": {
+          "name": "Subtrahend",
+          "meaning": "Number being subtracted",
+          "units": "Binary",
+          "defined_in": "level_19"
+        },
+        "NOT(B)": {
+          "name": "Bitwise Complement",
+          "meaning": "All bits of B inverted",
+          "units": "Binary",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "Subtraction becomes addition of the two's complement. Uses same adder hardware for both + and -.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.9034em;vertical-align:-0.0833em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">1</span></span></span></span>"
+    },
+    "alu_zero_flag": {
+      "name": "ALU Zero Flag",
+      "latex": "Z = (Result = 0)",
+      "origin_level": "level_19",
+      "category": "computer_architecture",
+      "variables": {
+        "Z": {
+          "name": "Zero Flag",
+          "meaning": "Indicates if result is zero",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_19"
+        },
+        "Result": {
+          "name": "ALU Result",
+          "meaning": "Output of ALU operation",
+          "units": "Binary",
+          "defined_in": "level_19"
+        }
+      },
+      "meaning": "Z=1 when ALU output is all zeros. Used for equality comparisons and conditional branches.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">Z</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mord mathnormal\">es</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">lt</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">0</span><span class=\"mclose\">)</span></span></span></span>"
+    },
+    "alu_negative_flag": {
+      "name": "ALU Negative Flag",
+      "latex": "N = Result_{MSB}",
+      "origin_level": "level_19",
+      "category": "computer_architecture",
+      "variables": {
+        "N": {
+          "name": "Negative Flag",
+          "meaning": "Indicates if result is negative (signed)",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_19"
+        },
+        "Result[MSB]": {
+          "name": "Most Significant Bit of Result",
+          "meaning": "Sign bit in two's complement",
+          "units": "Binary (0 or 1)",
+          "defined_in": "level_11"
+        }
+      },
+      "meaning": "N=1 when MSB is 1 (negative in signed interpretation). Used for signed comparisons.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mord mathnormal\">es</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05017em;\">MSB</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+    },
+    "ipc": {
+      "name": "Instructions Per Cycle",
+      "latex": "IPC = \\frac{Instructions}{Cycles}",
+      "origin_level": "level_19",
+      "category": "computer_architecture",
+      "variables": {
+        "IPC": {
+          "name": "Instructions Per Cycle",
+          "meaning": "Average instructions completed per clock",
+          "units": "Instructions/cycle",
+          "defined_in": "level_19"
+        },
+        "Instructions": {
+          "name": "Instruction Count",
+          "meaning": "Total instructions executed",
+          "units": "Count",
+          "defined_in": "level_boss"
+        },
+        "Cycles": {
+          "name": "Clock Cycles",
+          "meaning": "Total clock cycles taken",
+          "units": "Count",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "IPC > 1 means superscalar execution (multiple instructions per cycle). Modern CPUs achieve IPC of 4-6.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.3534em;vertical-align:-0.4811em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8723em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal mtight\">yc</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\">es</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal mtight\">n</span><span class=\"mord mathnormal mtight\">s</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">c</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">i</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\">n</span><span class=\"mord mathnormal mtight\">s</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4811em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+    },
+    "cpu_performance": {
+      "name": "CPU Performance",
+      "latex": "Performance = IPC \\times f",
+      "origin_level": "level_boss",
+      "category": "computer_architecture",
+      "variables": {
+        "Performance": {
+          "name": "Performance",
+          "meaning": "Instructions executed per second",
+          "units": "Instructions/second",
+          "defined_in": "level_boss"
+        },
+        "IPC": {
+          "name": "Instructions Per Cycle",
+          "meaning": "Average instructions per clock",
+          "units": "Instructions/cycle",
+          "defined_in": "level_19"
+        },
+        "f": {
+          "name": "Clock Frequency",
+          "meaning": "Clock cycles per second",
+          "units": "Hertz (Hz)",
+          "defined_in": "level_03"
+        }
+      },
+      "meaning": "Performance is the product of IPC and frequency. Improving either improves overall speed.",
+      "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\">man</span><span class=\"mord mathnormal\">ce</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span></span></span></span>"
+    }
+  },
+  "by_level": {
+    "level_01": [
+      "ohms_law",
+      "charge_current_time",
+      "voltage_energy_charge",
+      "current_from_drift"
+    ],
+    "level_02": [
+      "bjt_current_gain",
+      "mosfet_threshold"
+    ],
+    "level_03": [
+      "capacitance",
+      "cmos_dynamic_power",
+      "frequency_period",
+      "noise_margin_high",
+      "noise_margin_low"
+    ],
+    "level_04": [
+      "boolean_and",
+      "series_resistance",
+      "propagation_delay",
+      "max_frequency"
+    ],
+    "level_05": [
+      "boolean_or",
+      "parallel_resistance",
+      "kcl",
+      "fanout_delay"
+    ],
+    "level_06": [],
+    "level_07": [
+      "nand_to_not"
+    ],
+    "level_08": [
+      "xor",
+      "xor_self_inverse",
+      "parity"
+    ],
+    "level_09": [
+      "de_morgan_1",
+      "de_morgan_2"
+    ],
+    "level_10": [
+      "mux_2to1"
+    ],
+    "level_11": [
+      "decoder_outputs",
+      "msb_lsb_value"
+    ],
+    "level_12": [
+      "half_adder_sum",
+      "half_adder_carry"
+    ],
+    "level_13": [
+      "full_adder_sum",
+      "full_adder_carry",
+      "generate",
+      "propagate"
+    ],
+    "level_14": [
+      "sr_latch"
+    ],
+    "level_15": [
+      "dff",
+      "timing_max_freq"
+    ],
+    "level_16": [
+      "t_flipflop",
+      "frequency_division",
+      "duty_cycle"
+    ],
+    "level_17": [
+      "counter_states",
+      "ripple_delay"
+    ],
+    "level_18": [
+      "fsm_state_bits",
+      "moore_output",
+      "mealy_output"
+    ],
+    "level_19": [
+      "twos_complement_subtraction",
+      "alu_zero_flag",
+      "alu_negative_flag",
+      "ipc"
+    ],
+    "level_boss": [
+      "cpu_performance"
+    ]
+  },
+  "by_category": {
+    "physics_electrical": [
+      "ohms_law",
+      "charge_current_time",
+      "voltage_energy_charge",
+      "current_from_drift",
+      "capacitance",
+      "kcl"
+    ],
+    "semiconductor": [
+      "bjt_current_gain",
+      "mosfet_threshold"
+    ],
+    "power": [
+      "cmos_dynamic_power"
+    ],
+    "digital_logic": [
+      "noise_margin_high",
+      "noise_margin_low"
+    ],
+    "boolean_logic": [
+      "boolean_and",
+      "boolean_or",
+      "nand_to_not",
+      "xor",
+      "xor_self_inverse"
+    ],
+    "boolean_algebra": [
+      "de_morgan_1",
+      "de_morgan_2"
+    ],
+    "circuit_topology": [
+      "series_resistance",
+      "parallel_resistance"
+    ],
+    "timing": [
+      "frequency_period",
+      "propagation_delay",
+      "max_frequency",
+      "fanout_delay",
+      "timing_max_freq",
+      "frequency_division",
+      "duty_cycle",
+      "ripple_delay"
+    ],
+    "error_detection": [
+      "parity"
+    ],
+    "combinational_circuits": [
+      "mux_2to1",
+      "decoder_outputs"
+    ],
+    "binary_representation": [
+      "msb_lsb_value"
+    ],
+    "arithmetic_circuits": [
+      "half_adder_sum",
+      "half_adder_carry",
+      "full_adder_sum",
+      "full_adder_carry",
+      "generate",
+      "propagate"
+    ],
+    "arithmetic": [
+      "twos_complement_subtraction"
+    ],
+    "sequential_circuits": [
+      "sr_latch",
+      "dff",
+      "t_flipflop",
+      "counter_states",
+      "fsm_state_bits",
+      "moore_output",
+      "mealy_output"
+    ],
+    "computer_architecture": [
+      "alu_zero_flag",
+      "alu_negative_flag",
+      "ipc",
+      "cpu_performance"
+    ]
+  }
+}

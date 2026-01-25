@@ -1,0 +1,54 @@
+{
+  "id": "level_07_hard",
+  "baseId": "level_07",
+  "variant": "hard",
+  "availableGates": [
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 75,
+  "hint": "Step 1: X = A NAND B. Step 2: Y = A NAND X. Step 3: Z = B NAND X. Step 4: Out = Y NAND Z. Total: 4 NANDs for perfect XOR.",
+  "title": "XOR from NAND Only",
+  "objective": "Build XOR using only NAND gates",
+  "description": "The classic 4-NAND XOR circuit. This is how XOR was built in early TTL chips and remains an important synthesis pattern.",
+  "physicsVisual": "nand_to_xor_4gate"
+}

@@ -1,0 +1,326 @@
+/* ==========================================
+   COMPONENTS - Reusable UI Components
+   ==========================================
+   
+   This file contains:
+   - Toolbox & gate items
+   - Tabs
+   - Badges & labels
+   - Form elements (selects)
+   - Miscellaneous UI components
+   ========================================== */
+
+
+/* ==========================================
+   ERROR STATES
+   ========================================== */
+.circuit-error {
+    animation: pulse-error 1s ease-in-out infinite;
+}
+
+@keyframes pulse-error {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+
+/* ==========================================
+   TOOLBOX
+   ========================================== */
+.toolbox {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.toolbox h3 {
+    padding: 15px;
+    margin: 0;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toolbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+.toolbox-body {
+    overflow-y: auto;
+    max-height: calc(100vh - 220px);
+    padding-right: 6px;
+    transition: box-shadow 0.2s ease;
+}
+
+.toolbox-body.has-scroll {
+    box-shadow: inset 0 -8px 12px -8px rgba(0, 0, 0, 0.6);
+}
+
+/* Scrollbar styling */
+.toolbox-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.toolbox-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.toolbox-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+}
+
+.toolbox-body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+@media (max-width: 480px) {
+    .toolbox-body {
+        max-height: calc(100vh - 260px);
+    }
+}
+
+
+/* ==========================================
+   GATE ITEMS (Draggable gates in toolbox)
+   ========================================== */
+.gate-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+}
+
+.gate-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: grab;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.gate-item:hover {
+    background: rgba(0, 122, 204, 0.2);
+    border-color: var(--accent-color);
+}
+
+.gate-item:active {
+    cursor: grabbing;
+}
+
+.gate-icon {
+    width: 40px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.gate-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.gate-name {
+    flex: 1;
+    color: var(--text-color);
+}
+
+/* Touch-friendly gate items */
+@media (pointer: coarse) {
+    .gate-item {
+        min-height: 54px;
+        padding: 12px;
+    }
+}
+
+
+/* ==========================================
+   TABS
+   ========================================== */
+.mode-tabs {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #aaa;
+    padding: 10px 12px;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.tab-btn.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Touch-friendly tabs */
+@media (pointer: coarse) {
+    .tab-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Hide tabs on mobile - use dropdown instead */
+@media (max-width: 768px) {
+    .mode-tabs {
+        display: none;
+    }
+}
+
+
+/* ==========================================
+   BADGES & LABELS
+   ========================================== */
+.xp-badge {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 4px 8px;
+    background: rgba(0, 122, 204, 0.1);
+    border-radius: 12px;
+}
+
+.difficulty-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-easy {
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    color: white;
+}
+
+.badge-medium {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: white;
+}
+
+.badge-hard {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    color: white;
+}
+
+.variant-badge {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color);
+}
+
+.difficulty-text {
+    font-weight: bold;
+}
+
+.difficulty-original { color: #4caf50; }
+.difficulty-easy { color: #ff9800; }
+.difficulty-hard { color: #f44336; }
+
+
+/* ==========================================
+   SELECTS / DROPDOWNS
+   ========================================== */
+.variant-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    min-width: 80px;
+    transition: border-color 0.2s;
+}
+
+.variant-select:hover {
+    border-color: var(--accent-color);
+}
+
+.variant-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+.variant-select option {
+    background: var(--panel-bg);
+    color: var(--text-color);
+}
+
+/* Colored variant selects (for navbar) */
+.variant-select.badge-easy {
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    border-color: #4caf50;
+    color: white;
+}
+
+.variant-select.badge-medium {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    border-color: #ff9800;
+    color: white;
+}
+
+.variant-select.badge-hard {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    border-color: #f44336;
+    color: white;
+}
+
+/* Inline variant (compact for navbar) */
+.variant-inline {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   HINTS & HELPERS
+   ========================================== */
+.hint {
+    color: #888;
+    font-style: italic;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.app-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+}

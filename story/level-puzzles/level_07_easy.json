@@ -1,0 +1,39 @@
+{
+  "id": "level_07_easy",
+  "baseId": "level_07",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor"
+  ],
+  "inputs": 1,
+  "targetTruthTable": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 40,
+  "hint": "Tie both inputs of a NAND gate together. NAND(A,A) = NOT(A). This proves NAND can build NOT!",
+  "title": "NOT from NAND",
+  "objective": "Build an inverter using only NAND",
+  "description": "Demonstrate NAND universality: create a NOT gate using a single NAND with tied inputs. NAND(A,A) = NOT(A AND A) = NOT(A).",
+  "physicsVisual": "nand_to_not"
+}

@@ -1,0 +1,132 @@
+{
+  "id": "level_boss_medium",
+  "baseId": "level_boss",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop",
+    "fullAdder"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Reset High"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Reset Low, Ready"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Clock 1: Fetch"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Hold"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Clock 2: Execute & Writeback"
+    }
+  ],
+  "xpReward": 1000,
+  "hint": "This is essentially a 2-to-4 decoder with additional logic. For each opcode, determine which control signals should be HIGH. ALU_op for arithmetic, RegWrite for register destination, MemRead/MemWrite for memory ops.",
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "desc": "ADD: ALU_Sub=0, RegWrite=1, MemRead=0, MemWrite=0"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "desc": "SUB: ALU_Sub=1, RegWrite=1, MemRead=0, MemWrite=0"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "desc": "LOAD: ALU_Sub=0, RegWrite=1, MemRead=1, MemWrite=0"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "desc": "STORE: ALU_Sub=0, RegWrite=0, MemRead=0, MemWrite=1"
+    }
+  ],
+  "maxGates": 8,
+  "title": "Instruction Decoder",
+  "objective": "Decode opcode to control signals",
+  "description": "Build an instruction decoder that converts a 2-bit opcode into control signals for ALU operation, register write enable, and memory access.",
+  "physicsVisual": "instruction_decoder"
+}

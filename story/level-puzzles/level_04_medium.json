@@ -1,0 +1,100 @@
+{
+  "id": "level_04_medium",
+  "baseId": "level_04",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 35,
+  "hint": "Chain two AND gates: first AND takes A and B, second AND takes that result and C. Total output is A·B·C.",
+  "title": "3-Input AND (Cascade)",
+  "objective": "All three inputs must be HIGH",
+  "description": "Build a 3-input AND gate using 2-input AND gates. Output is 1 only when A AND B AND C are all 1.",
+  "physicsVisual": "cascade_and"
+}

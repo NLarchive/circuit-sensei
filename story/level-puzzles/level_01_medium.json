@@ -1,0 +1,56 @@
+{
+  "id": "level_01_medium",
+  "baseId": "level_01",
+  "variant": "medium",
+  "availableGates": [],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 25,
+  "hint": "Create two separate connections. Wire 1: In_A → Out_A. Wire 2: In_B → Out_B. The signals must remain independent—this is how data buses work.",
+  "title": "Dual Wire Bus",
+  "objective": "Route two parallel signals",
+  "description": "Build two independent wire paths: connect Input A to Output A, and Input B to Output B simultaneously.",
+  "physicsVisual": "parallel_wires"
+}

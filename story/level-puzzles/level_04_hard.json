@@ -1,0 +1,60 @@
+{
+  "id": "level_04_hard",
+  "baseId": "level_04",
+  "variant": "hard",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "0 NAND 0 = 1"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "0 NAND 1 = 1"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "1 NAND 0 = 1"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "1 NAND 1 = 0 (the only 0 case)"
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 50,
+  "hint": "NAND = NOT(AND). First compute A AND B, then invert the result with NOT. The output is 0 only when BOTH inputs are 1.",
+  "title": "Build NAND Gate",
+  "objective": "Create NAND using AND and NOT",
+  "description": "NAND (NOT-AND) outputs 0 only when both inputs are 1. Build it by inverting an AND gate's output. This prepares you for Level 06 where you'll learn NAND is universal!",
+  "physicsVisual": "nand_construction"
+}

@@ -1,0 +1,115 @@
+{
+  "id": "level_18_easy",
+  "baseId": "level_18",
+  "variant": "easy",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 1,
+  "targetSequence": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "Initial State (Reset)"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "Tick 1: GREEN"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "Wait: GREEN"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "Tick 2: YELLOW"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "Wait: YELLOW"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "Tick 3: RED"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "Wait: RED"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "Tick 4: Back to GREEN"
+    }
+  ],
+  "maxGates": 10,
+  "xpReward": 200,
+  "hint": "FSM with 3 states: GREEN→YELLOW→RED→GREEN. Use 2 FFs for state storage, combinational logic for next-state and output.",
+  "title": "Traffic Light FSM",
+  "objective": "Cycle through GREEN→YELLOW→RED",
+  "description": "Build a finite state machine (FSM) that cycles through traffic light states. This is your first state machine!",
+  "physicsVisual": "fsm_traffic_light"
+}

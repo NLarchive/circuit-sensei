@@ -22,7 +22,8 @@ export class StoryLoader {
     static async loadIndex() {
         if (this._indexCache) return this._indexCache;
         try {
-            const response = await fetch('/story/levels-index.json');
+            const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
+            const response = await fetch(`${base}story/levels-index.json`);
             this._indexCache = await response.json();
             return this._indexCache;
         } catch (error) {
@@ -66,7 +67,8 @@ export class StoryLoader {
      */
     static async loadTiers() {
         try {
-            const response = await fetch('/story/tiers.json');
+            const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
+            const response = await fetch(`${base}story/tiers.json`);
             return await response.json();
         } catch (error) {
             console.error('Failed to load tiers:', error);
@@ -84,7 +86,8 @@ export class StoryLoader {
         }
         
         try {
-            const response = await fetch(`/story/level-theory/${levelId}.json`);
+            const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
+            const response = await fetch(`${base}story/level-theory/${levelId}.json`);
             const theory = await response.json();
             this._theoryCache.set(levelId, theory);
             return theory;
@@ -104,7 +107,8 @@ export class StoryLoader {
         }
         
         try {
-            const response = await fetch(`/story/level-puzzles/${puzzleId}.json`);
+            const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
+            const response = await fetch(`${base}story/level-puzzles/${puzzleId}.json`);
             const puzzle = await response.json();
             this._puzzleCache.set(puzzleId, puzzle);
             return puzzle;

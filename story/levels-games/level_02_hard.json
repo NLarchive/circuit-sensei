@@ -1,0 +1,280 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_02_hard",
+  "tier": "tier_1",
+  "title": "CMOS Logic: AND-OR-INVERT (AOI)",
+  "objective": "Build an AOI21 gate: OUT = NOT((A AND B) OR C)",
+  "description": "Implement a compound AOI (AND-OR-INVERT) gate using only transistors. This optimized CMOS structure is faster and smaller than using separate gates.",
+  "introText": "In real VLSI design, complex gates like AOI (AND-OR-INVERT) are built directly from transistors rather than cascading simpler gates. AOI21 means (A AND B) OR C, then INVERT. This single-stage design is faster than building it from separate gates because it has fewer transistor stages. Every CPU uses thousands of these optimized compound gates.",
+  "physicsVisual": "cmos_aoi",
+  "hint": "Build the function: OUT = NOT((A AND B) OR C). Chain transistors in series for AND, parallel for OR. Remember to invert at the end.",
+  "availableGates": [
+    "transistor"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 50,
+  "storyText": "You've built a controlled switch—the fundamental building block of ALL digital logic. Every gate (AND, OR, NOT) is made of transistors. A modern CPU contains over 100 billion of these tiny switches, each turning on and off billions of times per second. The jump from vacuum tubes (hot, large, power-hungry) to transistors (cool, tiny, efficient) enabled the digital revolution.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Valence Electrons",
+        "definition": "Electrons in the outermost shell of an atom that participate in chemical bonding. Silicon has 4 valence electrons, forming a crystal lattice.",
+        "why": "The number of valence electrons determines how atoms bond and whether a material conducts. Silicon's 4 electrons create a stable structure that can be modified by doping.",
+        "analogy": "Like hands available for handshakes. Silicon has 4 'hands', needing 4 partners to be stable."
+      },
+      {
+        "term": "Semiconductor",
+        "definition": "A material (like silicon) with conductivity between a conductor and insulator. Its conductivity can be precisely controlled by adding impurities (doping) or applying voltage.",
+        "why": "Semiconductors are the foundation of all modern electronics. Unlike metals (always conduct) or insulators (never conduct), we can control when semiconductors conduct—enabling switches.",
+        "analogy": "A semiconductor is like a door with an electronic lock. Unlike an open doorway (conductor) or a wall (insulator), you can control whether it's open or closed."
+      },
+      {
+        "term": "Doping (N-type and P-type)",
+        "definition": "Adding impurity atoms to pure silicon. N-type: add phosphorus (5 valence electrons) → excess free electrons (negative carriers). P-type: add boron (3 valence electrons) → electron vacancies called 'holes' (positive carriers).",
+        "why": "Doping creates regions with controllable amounts of mobile charge carriers. The boundary between N and P regions (the P-N junction) is where transistor magic happens.",
+        "analogy": "Imagine a parking lot. N-type = lots of extra cars (electrons) looking for spots. P-type = lots of empty parking spots (holes) waiting for cars.",
+        "visuals": [
+          {
+            "type": "semiconductor_doping",
+            "title": "Doping: N-type vs P-type"
+          }
+        ]
+      },
+      {
+        "term": "P-N Junction & Depletion Region",
+        "definition": "Where P-type and N-type silicon meet. Electrons diffuse from N to P, holes from P to N, leaving a 'depletion region' of immobile ions with a built-in electric field (~0.7V for silicon).",
+        "why": "The depletion region acts as a controllable barrier. Apply voltage one way → barrier shrinks → current flows (forward bias). Apply voltage the other way → barrier grows → no current (reverse bias).",
+        "analogy": "Like a one-way valve that opens only when you push hard enough in the right direction.",
+        "visuals": [
+          {
+            "type": "npn_transistor_detailed",
+            "title": "NPN Junctions & Carrier Injection"
+          }
+        ]
+      },
+      {
+        "term": "Transistor as a Switch",
+        "definition": "A transistor has three terminals: a control input (Base/Gate) and a current path (Collector-Emitter or Drain-Source). Small control signal → large current flow or blockage.",
+        "why": "This is how we compute! By controlling current flow with another electrical signal (not a mechanical switch), we can build circuits that control other circuits—the essence of logic.",
+        "analogy": "Like a water faucet: a small twist of your hand (control signal) controls a large water flow (main current). The hand does little work, but controls lots of water."
+      },
+      {
+        "term": "BJT (Bipolar Junction Transistor)",
+        "definition": "BJT is a current-controlled transistor. 'Bipolar' means it uses two types of charge carriers (electrons and holes). 'Junction' refers to the P-N boundaries between its three layers (Base, Collector, Emitter). A small current flowing into the Base controls a much larger current between Collector and Emitter.",
+        "why": "BJTs were the first mass-produced transistors. They provide high current gain and are very fast, but they consume more power than MOSFETs because the Base needs a continuous current to stay ON.",
+        "analogy": "Like a lever that requires you to keep pushing it (continuous current) to keep a heavy gate open."
+      },
+      {
+        "term": "MOSFET (Metal-Oxide-Semiconductor FET)",
+        "definition": "MOSFET is a voltage-controlled transistor. Its name describes its structure: a 'Metal' gate, an 'Oxide' insulator, and a 'Semiconductor' channel. The 'FET' (Field-Effect Transistor) part means an electric field from the gate controls current flow without needing any direct current to enter the gate itself.",
+        "why": "MOSFETs are the foundation of modern digital logic. Because the gate is insulated by an oxide layer, it draws almost zero power to stay ON—allowing us to put billions of them on a single chip without overheating.",
+        "analogy": "Like a light switch that stays in its position once you flip it, requiring no further energy to keep the lights on."
+      },
+      {
+        "term": "FET (Field-Effect Transistor)",
+        "definition": "A FET is a transistor in which an electric field controls the flow of current. It has three terminals: Gate (G), Source (S), and Drain (D). Applying a voltage to the Gate creates an electric field that modulates the conductivity between Source and Drain, allowing or blocking current flow.",
+        "why": "FETs are the most common type of transistor in digital logic. Unlike BJTs, which are controlled by current, FETs are controlled by voltage at the Gate, making them much more power-efficient. Understanding the role of each terminal is crucial for circuit design.",
+        "analogy": "Imagine a water pipe (Source to Drain) with a flexible wall. The Gate acts like a hand squeezing the pipe: when you press (apply voltage), you can stop or allow water (current) to flow.",
+        "terminals": {
+          "Gate (G)": "The control terminal. Voltage applied here creates an electric field that opens or closes the channel.",
+          "Source (S)": "Where carriers enter the channel. This is the reference terminal for the Gate voltage.",
+          "Drain (D)": "Where carriers leave the channel. Current flows from Source to Drain when the channel is open."
+        }
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "BJT Current Gain",
+        "variables": [
+          {
+            "symbol": "I_{C}",
+            "meaning": "Collector current (main controlled current)",
+            "units": "Amperes"
+          },
+          {
+            "symbol": "β",
+            "meaning": "Current gain (typically 50-300)",
+            "units": "dimensionless"
+          },
+          {
+            "symbol": "I_{B}",
+            "meaning": "Base current (small control current)",
+            "units": "Amperes"
+          }
+        ],
+        "meaning": "A tiny base current controls a much larger collector current. This 'amplification' is what makes transistors useful—small signals control large ones.",
+        "example": {
+          "problem": "A transistor has β = 100. If the base current is 0.1mA, what is the collector current?",
+          "given": [
+            "β = 100",
+            "I_B= 0.1mA = 0.0001A"
+          ],
+          "steps": [
+            "1. Convert to base units: I_{B} = 0.1mA = 0.1 \\times 10⁻³ A = 0.0001 A",
+            "2. Apply gain formula: I_{C} = β \\times I_{B}",
+            "3. Calculate: I_{C} = 100 \\times 0.0001 A = 0.01 A",
+            "4. Result in mA: 0.01 A = 10mA"
+          ],
+          "answer": "I_C = 10mA — the transistor amplifies the current by 100×"
+        },
+        "latex": "I_{C} = β \\times I_{B}",
+        "html": null
+      },
+      {
+        "name": "Base-Emitter Turn-On Voltage",
+        "variables": [
+          {
+            "symbol": "V_{BE}",
+            "meaning": "Voltage between Base and Emitter",
+            "units": "Volts"
+          }
+        ],
+        "meaning": "For a silicon BJT to turn ON (conduct), the base must be ~0.7V higher than the emitter. This is the P-N junction's built-in voltage that must be overcome.",
+        "derivation": "This 0.7V comes from the physics of the silicon P-N junction—the energy barrier that electrons must overcome to cross from N to P type material.",
+        "latex": "V_{BE} ≈ 0.7V (for silicon)",
+        "html": null
+      },
+      {
+        "name": "MOSFET Threshold Voltage",
+        "variables": [
+          {
+            "symbol": "I_{D}",
+            "meaning": "Drain current",
+            "units": "Amperes"
+          },
+          {
+            "symbol": "V_{GS}",
+            "meaning": "Gate-to-Source voltage",
+            "units": "Volts"
+          },
+          {
+            "symbol": "V_{th}",
+            "meaning": "Threshold voltage (~0.3-0.7V)",
+            "units": "Volts"
+          }
+        ],
+        "meaning": "A MOSFET acts as an open switch until gate voltage exceeds the threshold. Then a conducting channel forms and current can flow.",
+        "example": {
+          "problem": "A MOSFET has V_th = 0.5V. Will it conduct if V_GS = 0.3V? What about V_GS = 1.2V?",
+          "given": [
+            "V_th = 0.5V"
+          ],
+          "steps": [
+            "Compare V_{GS} to V_{th}",
+            "If V_{GS} = 0.3V: 0.3V < 0.5V → OFF (no conduction)",
+            "If V_{GS} = 1.2V: 1.2V > 0.5V → ON (conducts)"
+          ],
+          "answer": "V_GS = 0.3V → OFF; V_GS = 1.2V → ON"
+        },
+        "latex": "I_{D} = 0 when V_{GS} < V_{th}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">D</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\">0</span><span class=\"mord mathnormal\" style=\"margin-right:0.02691em;\">w</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">n</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05764em;\">GS</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&lt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">h</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "A transistor with β = 150 needs to supply 30mA to an LED. What minimum base current is required?",
+        "hint": "Rearrange I_C = β × I_B to find I_B",
+        "answer": "I_B = I_C / β = 30mA / 150 = 0.2mA"
+      },
+      {
+        "question": "Why does a MOSFET use almost zero power at its gate compared to a BJT's base?",
+        "hint": "Think about what the gate is separated by (oxide = insulator) vs the base (semiconductor junction)",
+        "answer": "The MOSFET gate is insulated by oxide—no DC current flows into it. The BJT base is a semiconductor junction that requires continuous current to stay ON. This makes MOSFETs ideal for low-power circuits with billions of transistors."
+      },
+      {
+        "question": "Why can't pure silicon be used as a practical switch material? What does doping accomplish?",
+        "hint": "How many free carriers does pure silicon have at room temperature?",
+        "answer": "Pure silicon has very few free carriers (~10¹⁰/cm³) so it's nearly an insulator. Doping adds ~10¹⁷ carriers/cm³—a million times more—making it conductive enough to carry useful current while still being controllable."
+      }
+    ],
+    "realWorld": {
+      "context": "Modern processors contain billions of transistors, each acting as a tiny switch that can turn on/off billions of times per second.",
+      "example": "Apple's M2 chip contains 20 billion transistors, each with features just 5 nanometers wide—about 10 atoms across. These transistors switch on/off 3 billion times per second.",
+      "numbers": "The first transistor (1947) was the size of a fingertip. Today's transistors are so small that 100 million fit on a pinhead. This miniaturization follows Moore's Law: transistor count doubles roughly every 2 years.",
+      "connection": "In this level, you're using a transistor as a simple switch: control input determines if signal passes through. This exact principle—repeated billions of times—powers every computer."
+    }
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_10_medium",
+  "tier": "tier_3",
+  "title": "MUX as Universal Gate",
+  "objective": "Implement AND using a 2:1 MUX",
+  "description": "Prove that a MUX can implement any Boolean function. Start by building an AND gate using only a 2:1 multiplexer.",
+  "introText": "SHANNON'S EXPANSION THEOREM proves that a MUX is universal: any function F(A,B,...) can be built by using one variable as the selector and the remaining functions as data inputs. For AND: if Sel=A, when A=0 output should be 0, when A=1 output should be B. Thus: MUX(0, B, A) = A AND B. FPGAs exploit this—their LUTs (Look-Up Tables) are just big multiplexers!",
+  "physicsVisual": "mux_as_and",
+  "hint": "Connect: Data0 = 0, Data1 = B, Sel = A. When A=0, output is Data0=0. When A=1, output is Data1=B. This is A AND B!",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 1,
+  "xpReward": 85,
+  "storyText": "MUX-BASED COMPUTATION: FPGAs use 4-input or 6-input LOOKUP TABLES (LUTs)—essentially MUXes—as their basic logic element. Any 4-variable Boolean function is stored in 16 SRAM cells connected to a 16:1 MUX.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Multiplexer (MUX)",
+        "definition": "A combinational circuit that selects one of N data inputs and routes it to the output, based on select lines.",
+        "why": "MUXes are the building blocks of data routing—used in CPUs, memory systems, and FPGAs.",
+        "analogy": "Like a railroad switch: one track in, select which of two tracks to continue on.",
+        "visuals": [
+          {
+            "type": "multiplexer_detailed",
+            "title": "MUX: Select One Data Path"
+          }
+        ],
+        "latex": "Out = (A \\cdot \\bar{S}) + (B\\cdot S)",
+        "html": null
+      },
+      {
+        "term": "Select Lines",
+        "definition": "Control inputs that determine which data input is passed to the output. n select lines can choose among 2ⁿ inputs.",
+        "why": "Binary encoding of selection is efficient—2 bits can select from 4 inputs, 3 bits from 8, etc.",
+        "analogy": "Like a TV remote: channel number (select) determines which signal (data) you see.",
+        "visuals": [
+          {
+            "type": "decoder",
+            "title": "Binary Selection Decoding"
+          }
+        ],
+        "latex": "Inputs = 2^{select lines}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8491em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8491em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">se</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\">ec</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">tl</span><span class=\"mord mathnormal mtight\">in</span><span class=\"mord mathnormal mtight\">es</span></span></span></span></span></span></span></span></span></span></span></span>"
+      },
+      {
+        "term": "Lookup Table (LUT)",
+        "definition": "A memory-based implementation where any Boolean function's truth table is stored and indexed by inputs.",
+        "why": "LUTs enable programmable logic—FPGAs use them to implement any function by just changing the stored values.",
+        "analogy": "Like a cheat sheet: instead of calculating, you look up pre-computed answers.",
+        "latex": "LUT size = 2ⁿ bits for n inputs",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">LU</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">ze</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">bi</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\">nin</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "series_circuit",
+            "title": "LUT Cell Array"
+          }
+        ]
+      },
+      {
+        "term": "Data Path vs Control Path",
+        "definition": "Data path moves and processes data (MUXes, ALU). Control path decides which operations to perform.",
+        "why": "Separating data and control simplifies design—MUXes are the connection between the two.",
+        "analogy": "Data path is the highway; control path is the traffic lights deciding which cars go where.",
+        "latex": null,
+        "html": null
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "2:1 MUX Boolean Equation",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "Data input 0 (selected when S=0)",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "B",
+            "meaning": "Data input 1 (selected when S=1)",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "S",
+            "meaning": "Select input",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\bar{S}",
+            "meaning": "NOT S (complement of select)",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "When S=0, the A·S̄ term passes A through. When S=1, the B·S term passes B through. Only one term is active at a time.",
+        "derivation": "When S=0: Out = (A·1) + (B·0) = A. When S=1: Out = (A·0) + (B·1) = B.",
+        "example": {
+          "problem": "What is the output when A=1, B=0, S=0?",
+          "given": [
+            "A = 1",
+            "B = 0",
+            "S = 0"
+          ],
+          "steps": [
+            "\\bar{S} = \\overline{0} = 1",
+            "A \\cdot \\bar{S} = 1 \\cdot 1 = 1",
+            "B \\cdot S = 0 \\cdot 0 = 0",
+            "Out = 1 + 0 = 1"
+          ],
+          "answer": "Out = 1 (input A is passed through when S=0)"
+        },
+        "latex": "Out = (A \\cdot \\bar{S}) + (B \\cdot S)",
+        "html": null
+      },
+      {
+        "name": "MUX Scaling Formula",
+        "variables": [
+          {
+            "symbol": "n",
+            "meaning": "Number of select lines",
+            "units": "count"
+          },
+          {
+            "symbol": "2^{n}",
+            "meaning": "Number of data inputs the MUX can select from",
+            "units": "count"
+          }
+        ],
+        "meaning": "Each additional select line doubles the number of inputs. 1 select → 2 inputs, 2 selects → 4 inputs, etc.",
+        "derivation": "Binary encoding: n bits can represent 2ⁿ unique values, each selecting a different input.",
+        "example": {
+          "problem": "How many select lines for a 16:1 MUX?",
+          "given": [
+            "Data inputs = 16",
+            "Data inputs = 2^n"
+          ],
+          "steps": [
+            "16 = 2^{n}",
+            "log_{2}(16) = n",
+            "n = 4"
+          ],
+          "answer": "4 select lines for a 16:1 MUX"
+        },
+        "latex": "Data Inputs = 2^{n}, where n = select lines",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02691em;\">w</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">ere</span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">se</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">ec</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">tl</span><span class=\"mord mathnormal\">in</span><span class=\"mord mathnormal\">es</span></span></span></span>"
+      },
+      {
+        "name": "Gate Count for 2:1 MUX",
+        "latex": "Gates = 2 AND + 1 OR + 1 NOT = 4 gates",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">G</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">es</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord\">2</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord\">1</span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">OR</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord\">1</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">NOT</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8389em;vertical-align:-0.1944em;\"></span><span class=\"mord\">4</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">es</span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "AND",
+            "meaning": "AND gates (one for each data input)",
+            "units": "count"
+          },
+          {
+            "symbol": "OR",
+            "meaning": "OR gate to combine the AND outputs",
+            "units": "count"
+          },
+          {
+            "symbol": "NOT",
+            "meaning": "Inverter for the select signal",
+            "units": "count"
+          }
+        ],
+        "meaning": "A 2:1 MUX requires 4 gates minimum. Larger MUXes can be built hierarchically.",
+        "derivation": "From the equation: (A AND NOT S) OR (B AND S) needs 1 AND for each term, 1 OR to combine, and 1 NOT for S̄.",
+        "example": {
+          "problem": "Transistor count for a 2:1 MUX using basic gates?",
+          "given": [
+            "AND = 6 transistors",
+            "OR = 6 transistors",
+            "NOT = 2 transistors"
+          ],
+          "steps": [
+            "2 ANDs = 2 \\times 6 = 12",
+            "1 OR = 6",
+            "1 NOT = 2",
+            "Total = 12 + 6 + 2 = 20"
+          ],
+          "answer": "20 transistors (transmission gate MUX uses only 4)"
+        }
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Complete the 2:1 MUX output for: A=0, B=1, S=1",
+        "hint": "When S=1, output follows B.",
+        "answer": "Out = (0·0) + (1·1) = 0 + 1 = 1 (B is selected)"
+      },
+      {
+        "question": "An 8:1 MUX has how many select lines and data inputs?",
+        "hint": "8 = 2^n, solve for n.",
+        "answer": "3 select lines, 8 data inputs (since 2³ = 8)"
+      },
+      {
+        "question": "To implement a 3-input Boolean function using a MUX, what size MUX is needed?",
+        "hint": "For n-input function, you need a 2^n:1 MUX with function outputs connected to data inputs.",
+        "answer": "An 8:1 MUX (2³ = 8). Connect the 8 truth table outputs to data inputs, and the 3 function inputs to select lines."
+      }
+    ],
+    "realWorld": {
+      "context": "MUXes are everywhere in digital systems—from simple data selection to implementing entire processors.",
+      "example": "FPGAs use 6-input LUTs (64:1 MUXes) as basic logic elements. A Xilinx Virtex UltraScale+ has 4 million LUTs.",
+      "numbers": "In a CPU, the register file read port is a 32:1 MUX (5 select bits choose 1 of 32 registers). ARM Cortex-A76 has 160+ MUXes just in the issue stage.",
+      "connection": "This level introduces data routing—the MUX pattern appears in every level of computer architecture."
+    }
+  }
+}

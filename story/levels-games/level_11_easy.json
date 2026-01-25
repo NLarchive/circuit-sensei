@@ -1,0 +1,285 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_11_easy",
+  "tier": "tier_3",
+  "title": "Decoder (2-to-4)",
+  "objective": "Activate 1 of 4 outputs",
+  "description": "Convert binary number to a specific line.",
+  "introText": "ADDRESS DECODING & MEMORY ARCHITECTURE: A decoder converts an n-bit binary number into one of 2ⁿ output lines.",
+  "physicsVisual": "decoder_detailed",
+  "hint": "00->Out0, 01->Out1, 10->Out2, 11->Out3",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "maxGates": 6,
+  "xpReward": 80,
+  "storyText": "MEMORY HIERARCHY & DECODERS: Your computer has a memory hierarchy: CPU Registers (32-64, addressed by 5-6 bits), L1 Cache (32KB, 15 bits), RAM (16GB, 34 bits). Each level uses decoders to select the right storage location.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "MSB and LSB",
+        "definition": "MSB (Most Significant Bit) = the leftmost bit, representing the largest value (2^(n-1)). LSB (Least Significant Bit) = the rightmost bit, representing the smallest value (2^0 = 1).",
+        "why": "Bit position matters! In 1010, MSB=1 (value 8), LSB=0 (value 0). Knowing MSB/LSB helps understand binary numbers and circuit bit ordering.",
+        "analogy": "Like decimal: in 1234, the '1' is most significant (thousands place), '4' is least significant (ones place).",
+        "latex": "Value = MSB \\times 2^{n-1} + \\ldots + LSB \\times 2^{0}",
+        "html": null
+      },
+      {
+        "term": "Decoder",
+        "definition": "A combinational circuit that converts an n-bit binary input into one of 2ⁿ output lines, activating exactly one output.",
+        "why": "Decoders translate binary addresses into physical selection signals—essential for memory and device access.",
+        "analogy": "Like a hotel elevator: you press floor 7 (binary input), and only the 7th floor light turns on (one-hot output).",
+        "latex": "n inputs → 2ⁿ outputs",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.854em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">nin</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8588em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "decoder_detailed",
+            "title": "Decoder: One-Hot Line Select"
+          }
+        ]
+      },
+      {
+        "term": "One-Hot Encoding",
+        "definition": "A representation where exactly one bit is '1' and all others are '0'. Each output line corresponds to one input combination.",
+        "why": "One-hot signals are easy to use as enable lines—no further decoding needed.",
+        "analogy": "Like a piano where only one key can be pressed at a time.",
+        "latex": "For value i: bit i = 1, all others = 0",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">F</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">i</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">bi</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">1</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">ll</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">ers</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">0</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "parallel_circuit",
+            "title": "One-Hot Parallel Lines"
+          }
+        ]
+      },
+      {
+        "term": "Minterm",
+        "definition": "A product (AND) of all input variables where each variable appears once, either complemented or uncomplemented.",
+        "why": "Each decoder output is a minterm of the inputs—this is the mathematical foundation of decoders.",
+        "analogy": "Like a combination lock: every dial must be in exactly the right position.",
+        "visuals": [
+          {
+            "type": "nand_universal",
+            "title": "Minterm Products"
+          }
+        ],
+        "latex": "m_{0} = \\bar{A}\\cdot\\bar{B}, m_{1} = \\bar{A}\\cdot B, m_{2} = A\\cdot\\bar{B}, m_{3} = A\\cdot B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.5806em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">0</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0701em;vertical-align:-0.25em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">3</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span></span>"
+      },
+      {
+        "term": "Address Decoding",
+        "definition": "The process of using binary address bits to select a specific memory location or peripheral device.",
+        "why": "CPUs generate addresses; decoders convert them to physical selection signals.",
+        "analogy": "Like a postal system: zip code (address) determines which post office (decoder output) handles your mail.",
+        "latex": null,
+        "html": null
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "2-to-4 Decoder Outputs",
+        "variables": [
+          {
+            "symbol": "A, B",
+            "meaning": "Input bits (A is MSB, B is LSB)",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "NOT A, NOT B",
+            "meaning": "Complements of A and B",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "Y_{0}-Y_{3}",
+            "meaning": "Output lines (exactly one is HIGH)",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "Each output is the AND of the input combination that selects it. Y₀ is selected by 00, Y₁ by 01, etc.",
+        "derivation": "For Y₂ (input=10): A must be 1 (use A), B must be 0 (use \\bar{B}). So Y₂ = A·\\bar{B}.",
+        "example": {
+          "problem": "Which output is active for input AB = 11?",
+          "given": [
+            "A = 1",
+            "B = 1"
+          ],
+          "steps": [
+            "Y_{0} = \\bar{A}\\cdot\\bar{B} = 0\\cdot0 = 0",
+            "Y_{1} = \\bar{A}\\cdot B = 0\\cdot1 = 0",
+            "Y_{2} = A\\cdot\\bar{B} = 1\\cdot0 = 0",
+            "Y_{3} = A\\cdot B = 1\\cdot1 = 1"
+          ],
+          "answer": "Y₃ is active (output = 0001 in [Y₀,Y₁,Y₂,Y₃] notation)"
+        },
+        "latex": "Y_{0} = \\bar{A}\\cdot\\bar{B}, Y_{1} = \\bar{A}\\cdot B, Y_{2} = A\\cdot\\bar{B}, Y_{3} = A\\cdot B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">0</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8201em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0701em;vertical-align:-0.25em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">A</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0145em;vertical-align:-0.1944em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.22222em;\">Y</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">3</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span></span>"
+      },
+      {
+        "name": "Decoder Scaling",
+        "latex": "Outputs = 2ⁿ, Gates = n NOT + 2ⁿ AND",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">tp</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">G</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">es</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">NOT</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6644em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "n",
+            "meaning": "Number of input bits",
+            "units": "count"
+          },
+          {
+            "symbol": "2ⁿ",
+            "meaning": "Number of output lines",
+            "units": "count"
+          },
+          {
+            "symbol": "NOT",
+            "meaning": "Inverters for each input",
+            "units": "gates"
+          },
+          {
+            "symbol": "AND",
+            "meaning": "One AND gate per output",
+            "units": "gates"
+          }
+        ],
+        "meaning": "A decoder with n inputs needs n inverters (for complements) and 2ⁿ AND gates (one per output).",
+        "derivation": "Each output is a unique minterm requiring all n variables in a specific form.",
+        "example": {
+          "problem": "How many gates for a 3-to-8 decoder?",
+          "given": [
+            "n = 3 inputs"
+          ],
+          "steps": [
+            "NOT gates = 3 (one per input)",
+            "AND gates = 2³ = 8 (one per output)",
+            "Total = 3 + 8 = 11 gates"
+          ],
+          "answer": "11 gates (3 NOT + 8 AND)"
+        }
+      },
+      {
+        "name": "Memory Address Decoding",
+        "variables": [
+          {
+            "symbol": "A_{high}",
+            "meaning": "High-order address bits (row selection)",
+            "units": "bits"
+          },
+          {
+            "symbol": "A_{low}",
+            "meaning": "Low-order address bits (column selection)",
+            "units": "bits"
+          },
+          {
+            "symbol": "Row Decoder",
+            "meaning": "Selects one of 2^k rows",
+            "units": ""
+          },
+          {
+            "symbol": "Column Decoder",
+            "meaning": "Selects one of 2^m columns",
+            "units": ""
+          }
+        ],
+        "meaning": "2D decoding splits the address into row and column parts, reducing decoder size from 2^(k+m) to 2^k + 2^m.",
+        "derivation": "Instead of one huge decoder, use two smaller ones and their outputs intersect at one cell.",
+        "example": {
+          "problem": "A 64KBSRAM uses 16-bit addresses. With 2D decoding (8 row bits, 8 column bits), how many decoder outputs total?",
+          "given": [
+            "16-bit address",
+            "8 row bits",
+            "8 column bits"
+          ],
+          "steps": [
+            "Row decoder: 2⁸ = 256 outputs",
+            "Column decoder: 2⁸ = 256 outputs",
+            "Total = 256 + 256 = 512 decoder outputs",
+            "Compare to 1D: 2¹⁶ = 65536 outputs!"
+          ],
+          "answer": "512 decoder outputs (vs 65536 for 1D decoding)"
+        },
+        "latex": "Cell Selected = Row Decoder(A_{high}) AND Column Decoder(A_{low})",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">llS</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">ec</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">d</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\" style=\"margin-right:0.02691em;\">w</span><span class=\"mord mathnormal\">Deco</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">hi</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal mtight\">h</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">mn</span><span class=\"mord mathnormal\">Deco</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\">o</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02691em;\">w</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "For a 2-to-4 decoder, write the Boolean expression for output Y₁.",
+        "hint": "Y₁ is active when input = 01 (A=0, B=1).",
+        "answer": "Y₁ = \\bar{A} · B (NOT-A AND B)"
+      },
+      {
+        "question": "How many outputs does a 4-to-16 decoder have? How many AND gates?",
+        "hint": "Outputs = 2^n. Each output needs one AND gate.",
+        "answer": "16 outputs, 16 AND gates (each is a 4-input AND)"
+      },
+      {
+        "question": "A 1MBSRAM has 20-bit addresses. With 10 row bits and 10 column bits, how many total decoder outputs?",
+        "hint": "Row decoder = 2^10, Column decoder = 2^10.",
+        "answer": "2^10 + 2^10 = 1024 + 1024 = 2048 total decoder outputs"
+      }
+    ],
+    "realWorld": {
+      "context": "Decoders are fundamental to memory systems—every byte you access requires address decoding.",
+      "example": "DDR5 memory uses hierarchical decoders: chip select → bank group → bank → row → column.",
+      "numbers": "A 64GBDDR5 module has 512 billion memory cells. Row decoders activate one of 65536 wordlines; column decoders select from 8192 columns per bank.",
+      "connection": "This level teaches address decoding—the circuit that turns binary addresses into physical selections in every memory system."
+    }
+  }
+}

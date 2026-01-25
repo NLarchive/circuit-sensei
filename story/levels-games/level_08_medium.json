@@ -1,0 +1,250 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_08_medium",
+  "tier": "tier_2",
+  "title": "XNOR: Equality Detector",
+  "objective": "Output 1 when inputs are equal",
+  "description": "XNOR (Exclusive NOR) outputs 1 when both inputs are the same (both 0 or both 1). It's the equality comparator.",
+  "introText": "XNOR is XOR's complement—it's true when inputs are EQUAL. This makes it a 1-bit equality comparator! Chaining multiple XNORs (one per bit) with an AND gate creates a multi-bit equality checker. CPUs use this pattern to compare register values and determine branch conditions.",
+  "physicsVisual": "xnor_equality",
+  "hint": "XNOR = NOT(XOR) = NOT((A AND NOT B) OR (NOT A AND B)). Alternatively: (A AND B) OR (NOT A AND NOT B).",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 60,
+  "storyText": "XOR IMPLEMENTATION OPTIONS: XOR can be built as (A·NOT(B)) + (NOT(A)·B) using 2 ANDs, 2 NOTs, 1 OR (5 gates, 14 transistors). Alternative: (A+B)·NOT(A·B) uses fewer gates. In CMOS, the optimal XOR uses 8-12 transistors depending on drive strength requirements.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Exclusive OR (XOR)",
+        "definition": "A logic gate that outputs 1 if and only if exactly one of its inputs is 1. Outputs 0 when inputs are the same.",
+        "why": "XOR detects difference between two bits—essential for comparison, error detection, and arithmetic.",
+        "analogy": "Like a disagreement detector: outputs TRUE when two people disagree, FALSE when they agree.",
+        "visuals": [
+          {
+            "type": "xor_gate_detailed",
+            "title": "XOR: Difference / Parity"
+          }
+        ],
+        "latex": "A \\oplus B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+      },
+      {
+        "term": "Modulo-2 Arithmetic",
+        "definition": "Addition where 1+1=0 (wraps around). XOR performs this naturally: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0.",
+        "why": "Forms the basis of binary addition (ignoring carry) and polynomial arithmetic in error detection.",
+        "analogy": "Like clock arithmetic: 11:00 + 2 hours = 1:00 (wraps around). Binary wraps at 2.",
+        "latex": "(a + b) mod 2",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">a</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">b</span><span class=\"mclose\">)</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">d</span><span class=\"mord\">2</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "half_adder",
+            "title": "XOR in Binary Addition"
+          }
+        ]
+      },
+      {
+        "term": "Self-Inverse Property",
+        "definition": "XOR is its own inverse: A ⊕ B ⊕ B = A. XORing twice with the same value returns the original.",
+        "why": "This property enables encryption (XOR with key), error correction, and data swapping without temp variable.",
+        "analogy": "Like a light switch: flip twice and you're back where you started.",
+        "latex": "A \\oplus B \\oplus B = A",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span></span></span></span>"
+      },
+      {
+        "term": "Parity Bit",
+        "definition": "A single bit added to data to make the total number of 1s even (even parity) or odd (odd parity).",
+        "why": "If a single bit flips during transmission, the parity changes, detecting the error.",
+        "analogy": "Like a checksum: add up all digits and check if the sum is even or odd.",
+        "visuals": [
+          {
+            "type": "counter_detailed",
+            "title": "Parity Bit Sweep"
+          }
+        ],
+        "latex": "Parity = B_{0} \\oplus B_{1} \\oplus B_{2} \\oplus \\ldots \\oplus B_{n}",
+        "html": null
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "XOR Boolean Expression (Sum of Products)",
+        "variables": [
+          {
+            "symbol": "A, B",
+            "meaning": "Input signals",
+            "units": "Logic level (0 or 1)"
+          },
+          {
+            "symbol": "\\bar{A}, \\bar{B}",
+            "meaning": "Complement (NOT) of A and B",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\cdot",
+            "meaning": "AND operation",
+            "units": ""
+          },
+          {
+            "symbol": "+",
+            "meaning": "OR operation",
+            "units": ""
+          }
+        ],
+        "meaning": "XOR is true when A is 1 and B is 0, OR when A is 0 and B is 1. Either one, but not both.",
+        "derivation": "From the definition: output 1 when inputs differ. Case 1: A=1, B=0 → A·\\bar{B}=1. Case 2: A=0, B=1 → \\bar{A}·B=1.",
+        "example": {
+          "problem": "Calculate 1 ⊕ 0 using the formula.",
+          "given": [
+            "A = 1",
+            "B = 0",
+            "A ⊕ B = (A · \\bar{B}) + (\\bar{A} · B)"
+          ],
+          "steps": [
+            "\\bar{B} = \\overline{0} = 1, \\bar{A} = \\overline{1} = 0",
+            "A \\cdot \\bar{B} = 1 \\cdot 1 = 1",
+            "\\bar{A} \\cdot B = 0 \\cdot 0 = 0",
+            "(A \\cdot \\bar{B}) + (\\bar{A} \\cdot B) = 1 + 0 = 1"
+          ],
+          "answer": "1 ⊕ 0 = 1"
+        },
+        "latex": "A \\oplus B = (A \\cdot \\bar{B}) + (\\bar{A} \\cdot B)",
+        "html": null
+      },
+      {
+        "name": "XOR Alternate Form (Product of Sums)",
+        "variables": [
+          {
+            "symbol": "A + B",
+            "meaning": "A OR B",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\bar{A} + \\bar{B}",
+            "meaning": "NOT-A OR NOT-B = NAND(A, B)",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "XOR is true when (A or B is true) AND (not both are true). Combines OR with NAND.",
+        "derivation": "De Morgan: (\\bar{A} + \\bar{B}) = NOT(A · B). So XOR = (A OR B) AND (NOT both true).",
+        "example": {
+          "problem": "Calculate 1 ⊕ 1 using the alternate form.",
+          "given": [
+            "A = 1",
+            "B = 1"
+          ],
+          "steps": [
+            "A + B = 1 + 1 = 1",
+            "\\bar{A} + \\bar{B} = 0 + 0 = 0",
+            "(A + B) \\cdot (\\bar{A} + \\bar{B}) = 1 \\cdot 0 = 0"
+          ],
+          "answer": "1 ⊕ 1 = 0 (same inputs → output 0)"
+        },
+        "latex": "A \\oplus B = (A + B) \\cdot (\\bar{A} + \\bar{B})",
+        "html": null
+      },
+      {
+        "name": "Gate Count Formula",
+        "variables": [
+          {
+            "symbol": "gates",
+            "meaning": "Number of each gate type",
+            "units": "count"
+          },
+          {
+            "symbol": "transistors_per_{gate}",
+            "meaning": "NOT=2, NAND/NOR=4, AND/OR=6",
+            "units": "count"
+          }
+        ],
+        "meaning": "Total transistor count determines chip area and cost. Fewer transistors = cheaper, smaller chip.",
+        "derivation": "Each gate type has a fixed transistor count in CMOS. Sum across all gates.",
+        "example": {
+          "problem": "XOR built with 2 ANDs, 2 NOTs, 1 OR. Total transistors?",
+          "given": [
+            "AND = 6 transistors",
+            "NOT = 2 transistors",
+            "OR = 6 transistors"
+          ],
+          "steps": [
+            "2 ANDs = 2 \\times 6 = 12 transistors",
+            "2 NOTs = 2 \\times 2 = 4 transistors",
+            "1 OR = 1 \\times 6 = 6 transistors",
+            "Total = 12 + 4 + 6 = 22 transistors"
+          ],
+          "answer": "22 transistors (note: dedicated XOR cell uses only 8-12)"
+        },
+        "latex": "Transistors = \\Sigma(gates \\times transistors_{per}_{gate})",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">an</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">ors</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">Σ</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">es</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">an</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord\"><span class=\"mord mathnormal\">s</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">p</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">e</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\">t</span><span class=\"mord mathnormal mtight\">e</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Complete the XOR truth table: 0⊕0=?, 0⊕1=?, 1⊕0=?, 1⊕1=?",
+        "hint": "Output 1 when inputs are different, 0 when same.",
+        "answer": "0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0"
+      },
+      {
+        "question": "If a message 1011 has even parity bit P = 1⊕0⊕1⊕1 = 1, and you receive 1001 with P=1, is there an error?",
+        "hint": "Recalculate parity of received data and compare.",
+        "answer": "Received parity: 1⊕0⊕0⊕1 = 0 ≠ 1. Error detected!"
+      },
+      {
+        "question": "Using XOR's self-inverse property, encrypt 'A' (binary 01000001) with key 11110000, then decrypt.",
+        "hint": "Encrypt: data ⊕ key. Decrypt: ciphertext ⊕ key.",
+        "answer": "Encrypt: 01000001 ⊕ 11110000 = 10110001. Decrypt: 10110001 ⊕ 11110000 = 01000001 = 'A'"
+      }
+    ],
+    "realWorld": {
+      "context": "XOR is the workhorse of data integrity and security systems worldwide.",
+      "example": "CRC (Cyclic Redundancy Check) in Ethernet, USB, and SSDs use XOR chains. RAID-5 uses XOR for parity: P = D₁ \\oplus D₂ \\oplus D₃.",
+      "numbers": "A 1 TB RAID-5 array with 4 disks stores 3 TB data + XOR parity. If any disk fails, data is recovered via XOR.",
+      "connection": "This level teaches XOR—the gate that enables error detection, encryption, and the binary adder you'll build soon."
+    }
+  }
+}

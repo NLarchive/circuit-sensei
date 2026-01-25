@@ -1,0 +1,206 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_06_medium",
+  "tier": "tier_2",
+  "title": "NOR: The Other Universal",
+  "objective": "Build NOR gate",
+  "description": "NOR (NOT OR) is the dual universal gate to NAND. Output is 1 only when both inputs are 0.",
+  "introText": "While NAND is famous, NOR is equally powerful as a universal gate. In fact, the Apollo Guidance Computer (1969) was built ENTIRELY from NOR gates! NOR outputs TRUE only when ALL inputs are FALSE. Like NAND, you can build any other gate from NOR alone—a different but equivalent path to computational universality.",
+  "physicsVisual": "nor_universal",
+  "hint": "NOR = NOT(A OR B). Output is 1 only when A=0 AND B=0. Build it from an OR gate followed by NOT.",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 55,
+  "storyText": "You've encountered the universal gate! The mathematical proof of NAND's universality revolutionized digital design. Instead of needing factories to make AND, OR, and NOT gates separately, we can make only NAND gates and combine them to build any function. This simplicity enabled the integrated circuit revolution.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Universal Gate",
+        "definition": "A gate type that can implement ANY Boolean function using only that gate type. NAND and NOR are the only two-input universal gates.",
+        "why": "Universality means one manufacturing process, one cell type, simpler design tools. This dramatically reduced the cost and complexity of chip production.",
+        "analogy": "Like having Lego blocks that can build anything—you don't need a separate factory for each shape.",
+        "visuals": [
+          {
+            "type": "nand_universal_detailed",
+            "title": "NAND is Universal"
+          }
+        ]
+      },
+      {
+        "term": "Functional Completeness",
+        "definition": "A set of operations is functionally complete if every possible Boolean function can be expressed using only those operations.",
+        "why": "Proving {NAND} is complete: build NOT with NAND(A,A), build AND with NAND(NAND(A,B),NAND(A,B)), build OR with NAND(NAND(A,A),NAND(B,B)). Since {AND,OR,NOT} is complete, NAND is complete.",
+        "visuals": [
+          {
+            "type": "nand_to_not",
+            "title": "Building NOT from NAND"
+          }
+        ],
+        "latex": "\\overline{A} = NAND(A,A)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span></span></span></span>"
+      },
+      {
+        "term": "CMOS NAND Implementation",
+        "definition": "A NAND gate uses 2 NMOS transistors in series (pull-down) + 2 PMOS transistors in parallel (pull-up). Only 4 transistors total.",
+        "why": "NAND requires FEWER transistors than AND (which needs NAND + inverter = 6 transistors). This efficiency is why synthesis tools prefer NAND-based implementations.",
+        "analogy": "Building an AND gate is like building a NAND and then immediately un-doing it with an inverter—wasteful.",
+        "visuals": [
+          {
+            "type": "cmos_inverter",
+            "title": "CMOS Transistor Structure"
+          }
+        ]
+      },
+      {
+        "term": "Standard Cell Library",
+        "definition": "A pre-designed collection of logic gates (NAND2, NAND3, NOR2, INV, etc.) that chip designers use as building blocks.",
+        "why": "Libraries are characterized for timing, power, and area. Synthesis tools automatically map designs to these cells, preferring NAND because it's fastest and smallest in CMOS.",
+        "analogy": "Like a catalog of pre-approved parts. Designers pick from the catalog rather than designing each transistor."
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "NAND Boolean Expression",
+        "variables": [
+          {
+            "symbol": "A, B",
+            "meaning": "Input signals (0 or 1)",
+            "units": "binary"
+          },
+          {
+            "symbol": "A, B",
+            "meaning": "Complements (inverted inputs)",
+            "units": "binary"
+          }
+        ],
+        "meaning": "NAND is 'NOT-AND': it outputs 0 only when both inputs are 1. By De Morgan's law, this equals OR of the inverted inputs.",
+        "example": {
+          "problem": "Verify NAND(1,1) using the Boolean expression",
+          "given": [
+            "A = 1",
+            "B = 1"
+          ],
+          "steps": [
+            "NAND(A, B) = \\overline{A AND B}",
+            "A AND B = 1 AND 1 = 1",
+            "\\overline{1} = 0"
+          ],
+          "answer": "NAND(1,1) = 0 ✓"
+        },
+        "latex": "NAND(A, B) = \\overline{A \\cdot B} = \\bar{A} + \\bar{B}",
+        "html": null
+      },
+      {
+        "name": "NOT from NAND",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "Input signal",
+            "units": "binary"
+          }
+        ],
+        "meaning": "Tie both NAND inputs together. NAND(A,A) = NOT(A AND A) = NOT(A). This is the simplest universality demonstration.",
+        "example": {
+          "problem": "Build NOT(1) using NAND",
+          "given": [
+            "A = 1"
+          ],
+          "steps": [
+            "NAND(1, 1) = \\overline{1 AND 1} = \\overline{1} = 0"
+          ],
+          "answer": "NOT(1) = 0 ✓"
+        },
+        "latex": "\\overline{A} = NAND(A, A)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span></span></span></span>"
+      },
+      {
+        "name": "Transistor Count Comparison",
+        "latex": "NAND = 4T, AND = 6T, OR = 6T, NOR = 4T",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\">4</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\">6</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">OR</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\">6</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">NOR</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord\">4</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "T",
+            "meaning": "Transistor count",
+            "units": "transistors"
+          }
+        ],
+        "meaning": "NAND and NOR are the smallest 2-input gates in CMOS (4 transistors each). AND and OR require an extra inverter stage (6 total). This is why synthesis prefers NAND/NOR.",
+        "derivation": "NAND: 2 NMOS series + 2 PMOS parallel = 4T. AND: NAND + INV = 4T + 2T = 6T."
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Complete the NAND truth table: A=0, B=0→? A=0, B=1→? A=1, B=0→? A=1, B=1→?",
+        "hint": "NAND is NOT(AND). First compute AND, then invert.",
+        "answer": "00→1, 01→1, 10→1, 11→0 (only 11 gives 0)"
+      },
+      {
+        "question": "How would you build an AND gate using only NAND gates?",
+        "hint": "AND = NOT(NAND). How do you build NOT from NAND?",
+        "answer": {
+          "steps": [
+            "First NAND: N1 = NAND(A, B).",
+            "Use NAND as an inverter by tying inputs: AND(A, B) = NAND(N1, N1)."
+          ],
+          "answer": "AND(A, B) = NAND(NAND(A, B), NAND(A, B))"
+        }
+      },
+      {
+        "question": "A chip needs 1 million AND gates. Using direct AND (6T each) vs NAND-based AND (8T with two NANDs), which uses fewer transistors overall? Consider that standalone NAND is 4T.",
+        "hint": "Direct AND = 6T. NAND-based AND = 4T + 4T = 8T. But what if you could optimize the NAND-based version?",
+        "answer": "Direct: 6M transistors. NAND-based: 8M. BUT synthesis tools optimize across gates, often eliminating redundant inversions when chaining, making NAND chains more efficient in practice."
+      }
+    ],
+    "realWorld": {
+      "context": "NAND gates are the foundation of NAND Flash memory, used in SSDs, USB drives, and smartphones.",
+      "example": "NAND Flash stores bits using floating-gate transistors connected in a NAND-like series configuration. A 1TB SSD contains about 8 trillion such cells.",
+      "numbers": "Modern 3D NAND stacks 128+ layers vertically. Each cell stores 3-4 bits (TLC/QLC) by distinguishing 8-16 voltage levels.",
+      "connection": "In this level, you're using a single NAND gate. This same gate type—scaled to trillions—stores all the data in your computer's SSD."
+    }
+  }
+}

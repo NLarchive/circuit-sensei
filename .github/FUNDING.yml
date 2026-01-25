@@ -1,0 +1,5 @@
+# GitHub supports standard platforms (github, patreon, etc.) plus custom URLs.
+# For crypto, use a public address link so visitors can verify/copy easily.
+
+custom:
+  - https://etherscan.io/address/0xdf64784E10325836c9c8050793E2Ec3C8F970e2c

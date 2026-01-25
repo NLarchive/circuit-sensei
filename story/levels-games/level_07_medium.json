@@ -1,0 +1,212 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_07_medium",
+  "tier": "tier_2",
+  "title": "AND from NAND",
+  "objective": "Build AND using only NAND gates",
+  "description": "Reconstruct the AND function using only NAND gates. This is the inverse operation: A NAND B, then invert.",
+  "introText": "AND from NAND is straightforward but important: NAND is NOT-AND, so AND is NOT-NAND. This 'double negation' pattern appears everywhere in synthesis. When you write Verilog code, the synthesis tool often maps your logic to NAND-based standard cells, performing exactly these transformations automatically.",
+  "physicsVisual": "nand_to_and",
+  "hint": "Use two NANDs: first computes A NAND B, second inverts it (NAND(X,X) = NOT X). Result: NOT(NOT(A AND B)) = A AND B.",
+  "availableGates": [
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ]
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 55,
+  "storyText": "SYNTHESIS OPTIMIZATION: Logic synthesis tools convert RTL (Register-Transfer Level) descriptions into optimized gate-level designs. This involves minimizing Boolean expressions, mapping to the most efficient gates available (like NAND/NOR), and performing timing analysis to ensure the circuit runs at its target frequency.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Logic Synthesis",
+        "definition": "The automated process of converting a high-level Hardware Description Language (HDL) like Verilog or VHDL into a gate-level netlist of physical transistors and logic gates.",
+        "why": "It allows designers to work at a high level of abstraction, managing complexity that would be impossible to handle by manually drawing billions of transistors.",
+        "analogy": "Like a compiler for hardware: it translates high-level code (like C++ or Python) into low-level machine instructions (gate netlists).",
+        "latex": null,
+        "html": null,
+        "visuals": [
+          {
+            "type": "nand_universal",
+            "title": "Logic Synthesis to NAND Gates"
+          }
+        ]
+      },
+      {
+        "term": "Technology Mapping",
+        "definition": "Converting technology-independent logic into specific cells from a foundry's standard cell library.",
+        "why": "Each foundry has different transistor characteristics. Mapping optimizes for the target process.",
+        "analogy": "Like choosing which LEGO pieces to use—same structure, different available bricks.",
+        "latex": null,
+        "html": null,
+        "visuals": [
+          {
+            "type": "cmos_inverter",
+            "title": "CMOS Technology Implementation"
+          }
+        ]
+      },
+      {
+        "term": "Universality Proof (NOT from NAND)",
+        "definition": "Demonstrating that NAND can create any logic function by first showing it can create NOT: NAND(A,A) = NOT(A).",
+        "why": "If we can build NOT, AND, and OR from NAND, we can build ANY Boolean function.",
+        "analogy": "Like proving you can cook any meal if you have salt, heat, and water—the fundamentals.",
+        "visuals": [
+          {
+            "type": "nand_to_not",
+            "title": "NOT from NAND (Tie Inputs)"
+          }
+        ],
+        "latex": "NAND(A,A) = \\overline{A AND A} = \\overline{A}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">AA</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">A</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span></span></span></span></span></span></span>"
+      },
+      {
+        "term": "Standard Cell Library",
+        "definition": "A collection of pre-designed, pre-characterized logic gates (NAND2, NOR3, INV, etc.) provided by the foundry.",
+        "why": "Each cell is optimized for the process and comes with timing, power, and area data.",
+        "analogy": "Like a catalog of pre-made furniture—you pick pieces that fit your design.",
+        "latex": null,
+        "html": null
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "NOT from NAND Identity",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "Input signal",
+            "units": "Logic level (0 or 1)"
+          },
+          {
+            "symbol": "NAND(A,A)",
+            "meaning": "NAND gate with both inputs tied together",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "When both inputs of a NAND gate receive the same signal, the output is the inverse of that signal.",
+        "derivation": "NAND(A,A) = NOT(A AND A) = NOT(A) since A AND A = A by idempotency.",
+        "example": {
+          "problem": "What is the output of NAND(1,1)?",
+          "given": [
+            "A = 1",
+            "NAND(A,A) = NOT(A AND A)"
+          ],
+          "steps": [
+            "NAND(1,1) = \\overline{1 AND 1}",
+            "1 AND 1 = 1",
+            "\\overline{1} = 0"
+          ],
+          "answer": "Output = 0 (matches NOT gate behavior: NOT(1) = 0)"
+        },
+        "latex": "\\overline{A} = NAND(A, A)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8833em;\"></span><span class=\"mord overline\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8833em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span></span></span><span style=\"top:-3.8033em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"overline-line\" style=\"border-bottom-width:0.04em;\"></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">N</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mclose\">)</span></span></span></span>"
+      },
+      {
+        "name": "Synthesis Area Cost",
+        "variables": [
+          {
+            "symbol": "Area",
+            "meaning": "Total chip area used by gates",
+            "units": "μm²"
+          },
+          {
+            "symbol": "W",
+            "meaning": "Transistor width",
+            "units": "μm"
+          },
+          {
+            "symbol": "L",
+            "meaning": "Transistor length (channel length)",
+            "units": "nm"
+          }
+        ],
+        "meaning": "Chip area is proportional to the sum of all transistor areas. Fewer, smaller transistors = cheaper chip.",
+        "derivation": "Each transistor occupies W×L area plus routing overhead. Total area sums all transistors.",
+        "example": {
+          "problem": "Compare area: NOT from NAND vs dedicated inverter.",
+          "given": [
+            "NAND gate = 4 transistors",
+            "Dedicated INV = 2 transistors",
+            "Same W and L"
+          ],
+          "steps": [
+            "NAND-as-inverter area = 4 \\times W \\times L",
+            "Dedicated inverter area = 2 \\times W \\times L",
+            "Ratio = \\frac{4}{2} = 2\\times"
+          ],
+          "answer": "NAND-as-inverter uses 2× the area of a dedicated inverter, but in NAND-only libraries this is the only option."
+        },
+        "latex": "Area ∝ \\Sigma(W \\times L)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\">re</span><span class=\"mord mathnormal\">a</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">∝</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">Σ</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">W</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">L</span><span class=\"mclose\">)</span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "If NAND(A,A) = NOT(A), what is NAND(0,0)?",
+        "hint": "Apply the identity: NAND(0,0) = NOT(0 AND 0) = NOT(0).",
+        "answer": "NAND(0,0) = NOT(0) = 1"
+      },
+      {
+        "question": "A synthesis tool reports your design uses 50 NAND2 gates (4 transistors each) and 20 inverters (2 transistors each). Total transistor count?",
+        "hint": "Multiply gates by transistors per gate, then add.",
+        "answer": {
+          "steps": [
+            "1. NAND transistors: 50 gates × 4T/gate = 200T.",
+            "2. NOT transistors: 20 gates × 2T/gate = 40T.",
+            "3. Total: 200T + 40T = 240 transistors."
+          ],
+          "answer": "240 transistors"
+        }
+      },
+      {
+        "question": "Why does the synthesis tool prefer NAND-based implementations over AND-based?",
+        "hint": "Think about transistor count: AND = NAND + inverter.",
+        "answer": "AND requires NAND + inverter (4+2=6 transistors), while NAND alone is 4 transistors. NAND is inherently more efficient in CMOS."
+      }
+    ],
+    "realWorld": {
+      "context": "Modern chip design relies entirely on automated synthesis and technology mapping.",
+      "example": "Synopsys Design Compiler, Cadence Genus, and open-source Yosys are synthesis tools used to convert RTL to gates.",
+      "numbers": "A modern CPU has 10-50 billion transistors. Synthesis tools process this in hours, optimizing for area, speed, and power.",
+      "connection": "This level teaches the first step of universality: building NOT from NAND—the foundation for all other logic."
+    }
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_12_hard",
+  "tier": "tier_3",
+  "title": "Apollo NOR Half Adder",
+  "objective": "Build Half Adder using NOR gates only",
+  "description": "The Apollo Guidance Computer used ONLY NOR gates. Build a Half Adder (Sum and Carry) using exclusively NOR gates.",
+  "introText": "The APOLLO GUIDANCE COMPUTER (AGC) that landed humans on the Moon contained about 5,600 NOR gates and NOTHING else. Engineers at MIT built every function—adders, registers, memory—from this single gate type. Now you'll recreate their work: build a Half Adder from NOR gates alone. This is living digital history!",
+  "physicsVisual": "apollo_nor_adder",
+  "hint": "Sum (XOR) from NOR needs 4-5 gates. Carry (AND) from NOR needs 3 gates. NOT X = X NOR X. Build NOT, then OR (by De Morgan), then work toward XOR and AND.",
+  "availableGates": [
+    "nor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    }
+  ],
+  "maxGates": 7,
+  "xpReward": 125,
+  "storyText": "HALF ADDER LIMITATIONS: The half adder only works for the LSB where there's no incoming carry. For bit position 1 and beyond, we need full adders. The critical path is through the XOR (typically 2 gate delays).",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Binary Addition",
+        "definition": "Addition in base-2 where each digit is 0 or 1. When sum exceeds 1, a carry is generated to the next bit position.",
+        "why": "All computer arithmetic ultimately reduces to binary addition. Understanding it is fundamental.",
+        "analogy": "Like decimal addition (0-9), but simpler: only 0 and 1. When you run out of digits, carry to the next column.",
+        "visuals": [
+          {
+            "type": "electron_flow",
+            "title": "Signal Addition"
+          }
+        ],
+        "latex": "1 + 1 = 10_{2} \\text{ (binary)} = 2_{10} \\text{ (decimal)}",
+        "html": null
+      },
+      {
+        "term": "Half Adder",
+        "definition": "A circuit that adds two single-bit inputs (A, B) and produces a Sum and a Carry output.",
+        "why": "The half adder is the building block—it handles the simplest case of binary addition.",
+        "analogy": "Like adding two single-digit numbers in decimal, getting a result and possibly a carry.",
+        "visuals": [
+          {
+            "type": "half_adder_detailed",
+            "title": "Half Adder: Sum & Carry"
+          }
+        ],
+        "latex": "Sum = A \\oplus B, Carry = A \\cdot B",
+        "html": null
+      },
+      {
+        "term": "Sum Output",
+        "definition": "The result of adding A and B in the current bit position (ignoring carry). Sum is 1 when inputs differ.",
+        "why": "The sum represents the 'ones place' of the addition result for this bit position.",
+        "analogy": "Like the rightmost digit when you add: 7+5=12, the sum digit is 2.",
+        "visuals": [
+          {
+            "type": "xor_gate",
+            "title": "XOR for Sum"
+          }
+        ],
+        "latex": "Sum = A \\oplus B \\text{ (XOR)}",
+        "html": null
+      },
+      {
+        "term": "Carry Output",
+        "definition": "A signal indicating the addition overflowed the current bit. Carry is 1 only when both inputs are 1.",
+        "why": "The carry must propagate to the next higher bit position to get the correct total.",
+        "analogy": "Like 'carrying the 1' in decimal: 7+5=12, carry the 1 to the tens place.",
+        "latex": "Carry = A \\cdot B \\text{ (AND)}",
+        "html": null
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "Half Adder Sum",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "First input bit",
+            "units": "Logic level (0 or 1)"
+          },
+          {
+            "symbol": "B",
+            "meaning": "Second input bit",
+            "units": "Logic level (0 or 1)"
+          },
+          {
+            "symbol": "Sum",
+            "meaning": "Result bit (before carry)",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\oplus",
+            "meaning": "XOR operation",
+            "units": ""
+          }
+        ],
+        "meaning": "Sum is 1 when exactly one input is 1. This matches modulo-2 addition: 1+1=0 (carry handled separately).",
+        "derivation": "From binary addition: 0+0=0, 0+1=1, 1+0=1, 1+1=0 (with carry). This is exactly XOR's truth table.",
+        "example": {
+          "problem": "Calculate Sum for A=1, B=1.",
+          "given": [
+            "A = 1",
+            "B = 1"
+          ],
+          "steps": [
+            "Sum = A \\oplus B",
+            "Sum = 1 \\oplus 1",
+            "Sum = 0 (XOR: same inputs → 0)"
+          ],
+          "answer": "Sum = 0 (the '0' in binary '10')"
+        },
+        "latex": "Sum = A \\oplus B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">m</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+      },
+      {
+        "name": "Half Adder Carry",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "First input bit",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "B",
+            "meaning": "Second input bit",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "Carry",
+            "meaning": "Overflow bit to next position",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "\\cdot",
+            "meaning": "AND operation",
+            "units": ""
+          }
+        ],
+        "meaning": "Carry is 1 only when both inputs are 1 (the only case where 1+1=2 overflows a single bit).",
+        "derivation": "Only 1+1 generates a carry. All other cases (0+0, 0+1, 1+0) fit in one bit.",
+        "example": {
+          "problem": "Calculate Carry for A=1, B=1.",
+          "given": [
+            "A = 1",
+            "B= 1"
+          ],
+          "steps": [
+            "Carry = A \\cdot B",
+            "Carry = 1 \\cdot 1",
+            "Carry = 1"
+          ],
+          "answer": "Carry = 1 (the '1' in binary '10')"
+        },
+        "latex": "Carry = A \\cdot B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">rry</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+      },
+      {
+        "name": "Binary Addition Result",
+        "variables": [
+          {
+            "symbol": "A, B",
+            "meaning": "Input bits",
+            "units": "0 or 1"
+          },
+          {
+            "symbol": "Carry",
+            "meaning": "High bit of result",
+            "units": "0 or 1"
+          },
+          {
+            "symbol": "Sum",
+            "meaning": "Low bit of result",
+            "units": "0 or 1"
+          }
+        ],
+        "meaning": "The complete result combines carry (worth 2) and sum (worth 1). Result ranges from 0 to 2.",
+        "derivation": "In a 2-bit result: Carry is bit 1 (value 2), Sum is bit 0 (value 1). Total = 2×Carry + Sum.",
+        "example": {
+          "problem": "Verify 1+1=2 using Sum and Carry.",
+          "given": [
+            "A = 1",
+            "B = 1",
+            "Sum = 0",
+            "Carry = 1"
+          ],
+          "steps": [
+            "Result = (Carry \\times 2) + Sum",
+            "Result = (1 \\times 2) + 0",
+            "Result = 2"
+          ],
+          "answer": "1 + 1 = 2 ✓ (binary: 10)"
+        },
+        "latex": "A + B = (Carry \\times 2) + Sum",
+        "html": null
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Complete the half adder outputs for A=0, B=1.",
+        "hint": "Sum = A \\oplus B, Carry = A \\cdot B.",
+        "answer": "Sum = 0 ⊕ 1 = 1, Carry = 0 · 1 = 0. Result: Sum=1, Carry=0"
+      },
+      {
+        "question": "How many gates does a half adder need? What types?",
+        "hint": "Look at the formulas: Sum uses XOR, Carry uses AND.",
+        "answer": "2 gates: 1 XOR gate (for Sum) + 1 AND gate (for Carry)"
+      },
+      {
+        "question": "Using half adders, can you add 3 bits (A, B, C)? Why or why not?",
+        "hint": "A half adder has no carry input. What happens to the carry from the first addition?",
+        "answer": "No—a half adder can't accept a carry input. To add A+B+C, you need a FULL adder that accepts carry-in. (Next level!)"
+      }
+    ],
+    "realWorld": {
+      "context": "The half adder is the first step toward building arithmetic circuits—the foundation of calculators and CPUs.",
+      "example": "A simple 4-function calculator uses adders for +, subtraction via two's complement (also addition), and multiplication (repeated addition).",
+      "numbers": "A half adder uses ~12 transistors (XOR≈8 + AND≈4). An 8-bit adder needs 8 full adder stages, totaling ~200 transistors.",
+      "connection": "This level introduces binary addition with the simplest circuit. Next, you'll build a full adder that chains to create multi-bit adders."
+    }
+  }
+}

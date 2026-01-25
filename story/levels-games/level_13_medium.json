@@ -1,0 +1,324 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_13_medium",
+  "tier": "tier_3",
+  "title": "Full Subtractor",
+  "objective": "Subtract with Borrow-in",
+  "description": "Build a Full Subtractor: compute A - B - Bin, outputting Difference and Borrow-out.",
+  "introText": "The FULL SUBTRACTOR handles borrowing from previous stages, just as the Full Adder handles carries. Difference = A XOR B XOR Bin. Borrow-out = ((NOT A) AND B) OR ((NOT A) AND Bin) OR (B AND Bin). This cascades to build multi-bit subtractors for signed arithmetic.",
+  "physicsVisual": "full_subtractor",
+  "hint": "Diff = A XOR B XOR Bin. Bout = ((NOT A) AND (B OR Bin)) OR (B AND Bin). Two XOR gates for Diff, then logic gates for Bout.",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ]
+    }
+  ],
+  "maxGates": 7,
+  "xpReward": 115,
+  "storyText": "ADDER ARCHITECTURES: (1) RIPPLE-CARRY: Simple, O(n) delay. (2) CARRY-LOOKAHEAD (CLA): Parallel carries, O(log n) delay. (3) CARRY-SELECT: Speculate both carry values, MUX the result. Modern CPUs use hybrid architectures balancing speed and area.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Full Adder",
+        "definition": "A circuit that adds three single-bit inputs (A, B, Carry-in) and produces Sum and Carry-out.",
+        "why": "Full adders can be chained to create n-bit adders—the carry-out of one stage becomes carry-in of the next.",
+        "analogy": "Like adding a column in multi-digit addition: you add the two digits PLUS any carry from the previous column.",
+        "visuals": [
+          {
+            "type": "full_adder_detailed",
+            "title": "Full Adder: Carry Propagate"
+          }
+        ],
+        "latex": "Sum = A \\oplus B \\oplus Cin, Cout = (A\\cdot B) + (Cin\\cdot (A\\oplus B))",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">m</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mclose\">))</span></span></span></span>"
+      },
+      {
+        "term": "Carry-In (Cin)",
+        "definition": "The carry bit from the previous (lower) bit position. This is what distinguishes a full adder from a half adder.",
+        "why": "In multi-bit addition, each bit position must account for overflow from the previous position.",
+        "analogy": "The '1' you wrote above the next column when doing longhand addition.",
+        "latex": "Cin comes from previous stage's Cout",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.9463em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span><span class=\"mord mathnormal\">co</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\">es</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\">ro</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">re</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">ss</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord\"><span class=\"mord mathnormal\">e</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7519em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">′</span></span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "half_adder",
+            "title": "Carry Chain"
+          }
+        ]
+      },
+      {
+        "term": "Generate (G)",
+        "definition": "A condition where a carry is produced regardless of the incoming carry. Occurs when both A and B are 1.",
+        "why": "Generate signals enable carry-lookahead: we can compute carries without waiting for ripple.",
+        "analogy": "Like two tall people standing together—they'll reach the ceiling regardless of what's below them.",
+        "visuals": [
+          {
+            "type": "parallel_circuit",
+            "title": "Generate: Both Inputs High"
+          }
+        ],
+        "latex": "G = A \\cdot B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">G</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+      },
+      {
+        "term": "Propagate (P)",
+        "definition": "A condition where an incoming carry passes through to the output. Occurs when exactly one of A or B is 1.",
+        "why": "Propagate signals determine whether a carry chain continues or stops at each stage.",
+        "analogy": "Like a relay runner—if you receive the baton (carry), you pass it on.",
+        "visuals": [
+          {
+            "type": "series_circuit",
+            "title": "Propagate: Carry Flow"
+          }
+        ],
+        "latex": "P = A \\oplus B",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span></span></span></span>"
+      },
+      {
+        "term": "Big O Notation",
+        "definition": "A mathematical notation describing how performance scales with input size n. O(n) = linear (doubles with n), O(log n) = logarithmic (grows slowly), O(1) = constant.",
+        "why": "Used to compare adder architectures: ripple-carry is O(n) delay (slow for large n), carry-lookahead is O(log n) (much faster).",
+        "analogy": "O(n): reading every page of a book. O(log n): using the index to find a topic. O(1): knowing exactly which page.",
+        "latex": "64-bit: O(n)=64 stages, O(log n)=6 stages",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.7278em;vertical-align:-0.0833em;\"></span><span class=\"mord\">64</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">bi</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">n</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">64</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">es</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">O</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">n</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8389em;vertical-align:-0.1944em;\"></span><span class=\"mord\">6</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">es</span></span></span></span>"
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "Full Adder Sum",
+        "variables": [
+          {
+            "symbol": "A",
+            "meaning": "First input bit",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "B",
+            "meaning": "Second input bit",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "Cin",
+            "meaning": "Carry-in from previous stage",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "Sum",
+            "meaning": "Result bit for this position",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "Sum is 1 when an odd number of inputs are 1. This is 3-input XOR (modulo-2 sum).",
+        "derivation": "Counting 1s: 0,2 ones → Sum=0; 1,3 ones → Sum=1. This matches XOR behavior.",
+        "example": {
+          "problem": "Calculate Sum for A=1, B=1, Cin=1.",
+          "given": [
+            "A = 1",
+            "B = 1",
+            "Cin = 1"
+          ],
+          "steps": [
+            "Sum = A \\oplus B \\oplus Cin",
+            "Sum = 1 \\oplus 1 \\oplus 1",
+            "Sum = 0 \\oplus 1 (first XOR)",
+            "Sum = 1"
+          ],
+          "answer": "Sum = 1 (three 1s sum to 11₂, the 1's place is 1)"
+        },
+        "latex": "Sum = A \\oplus B \\oplus Cin",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">S</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">m</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span></span></span></span>"
+      },
+      {
+        "name": "Full Adder Carry-Out",
+        "variables": [
+          {
+            "symbol": "A \\cdot B",
+            "meaning": "Generate term: carry created when both inputs are 1",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "A \\oplus B",
+            "meaning": "Propagate term: indicates carry can pass through",
+            "units": "Logic level"
+          },
+          {
+            "symbol": "Cin \\cdot (A \\oplus B)",
+            "meaning": "Carry propagated from input",
+            "units": "Logic level"
+          }
+        ],
+        "meaning": "Carry-out occurs if a carry is generated (A·B=1) OR if a carry is propagated (Cin=1 and A⊕B=1).",
+        "derivation": "Cout=1 when 2 or 3 inputs are 1: either both A,B are 1 (generate), or Cin=1 and exactly one of A,B is 1 (propagate).",
+        "example": {
+          "problem": "Calculate Cout for A=0, B=1, Cin=1.",
+          "given": [
+            "A = 0",
+            "B = 1",
+            "Cin = 1"
+          ],
+          "steps": [
+            "A \\cdot B = 0 \\cdot 1 = 0 (no generate)",
+            "A \\oplus B = 0 \\oplus 1 = 1 (propagate active)",
+            "Cin \\cdot (A \\oplus B) = 1 \\cdot 1 = 1 (carry propagates)",
+            "Cout = 0 + 1 = 1"
+          ],
+          "answer": "Cout = 1 (carry propagates through)"
+        },
+        "latex": "Cout = (A \\cdot B) + (Cin \\cdot (A \\oplus B))",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">in</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊕</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05017em;\">B</span><span class=\"mclose\">))</span></span></span></span>"
+      },
+      {
+        "name": "Ripple-Carry Adder Delay",
+        "variables": [
+          {
+            "symbol": "n",
+            "meaning": "Number of bits",
+            "units": "count"
+          },
+          {
+            "symbol": "t_{carry}",
+            "meaning": "Delay for carry to propagate through one full adder",
+            "units": "nanoseconds"
+          }
+        ],
+        "meaning": "In a ripple-carry adder, the worst case has the carry propagating through all n stages sequentially.",
+        "derivation": "Each stage must wait for the previous carry. Worst case: Cin propagates from bit 0 to bit n-1.",
+        "example": {
+          "problem": "What's the delay of a 64-bit ripple-carry adder if each carry takes 50ps?",
+          "given": [
+            "n = 64 bits",
+            "t_carry = 50ps = 50 × 10⁻¹² s"
+          ],
+          "steps": [
+            "1. Apply formula Delay = n \\times t_{carry}",
+            "2. Substitute: Delay = 64 \\times 50ps",
+            "3. Calculate: 64 \\times 50 = 3200ps",
+            "4. Convert to ns: 3200ps = 3.2ns (@ 1ns = 1000ps)"
+          ],
+          "answer": "3.2ns (too slow for modern 4GHz CPUs with 250ps cycle time!)"
+        },
+        "latex": "Delay = n \\times t_{carry}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">De</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.9012em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">c</span><span class=\"mord mathnormal mtight\">a</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">rry</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span></span></span></span>"
+      }
+    ],
+    "exercises": [
+      {
+        "question": "Complete the full adder outputs for A=1, B=0, Cin=1.",
+        "hint": "Sum = A ⊕ B ⊕ Cin. Cout = (A·B) + (Cin·(A⊕B)).",
+        "answer": "Sum = 1⊕0⊕1 = 0. Cout = (1·0) + (1·(1⊕0)) = 0 + 1·1 = 1. Result: Sum=0, Cout=1"
+      },
+      {
+        "question": "How many gates does a full adder need minimum? (Hint: 2 XOR, 2 AND, 1 OR)",
+        "hint": "Sum uses 2 XORs. Cout uses 2 ANDs and 1 OR.",
+        "answer": "5 gates: 2 XOR (for Sum) + 2 AND + 1 OR (for Cout)"
+      },
+      {
+        "question": "For an 8-bit ripple-carry adder, how many full adders are needed? What's the worst-case carry chain length?",
+        "hint": "One full adder per bit. Carry can ripple through all stages.",
+        "answer": "8 full adders. Worst case: carry ripples through all 8 stages (e.g., adding 11111111 + 00000001)."
+      }
+    ],
+    "realWorld": {
+      "context": "Full adders are the building blocks of all arithmetic in computers—from simple calculators to supercomputers.",
+      "example": "A 64-bit Intel Core ALU uses Kogge-Stone or Brent-Kung adders (parallel prefix) instead of ripple-carry for speed.",
+      "numbers": "Kogge-Stone achieves O(log₂64)=6 logic levels instead of 64 ripple stages. But it uses thousands of gates vs ~320 for ripple-carry.",
+      "connection": "This level completes the adder foundation. Chaining full adders creates the arithmetic unit that makes computers compute."
+    }
+  }
+}

@@ -10,11 +10,6 @@
     "status": "In Progress",
     "budget": 0
   },
-      "task_name": "Fuse wire/hand button",
-      "description": "Replace separate wire and hand (select) mode buttons with a single toggle button that switches between them.",
-      "status": "Completed",
-      "progress_percentage": 100,
-  },
   "categories": [
     { "name": "Core Engine", "parent_category_name": null },
     { "name": "UI/UX", "parent_category_name": null },
@@ -1738,7 +1733,7 @@
       "tags": ["audio", "music", "web-audio-api", "procedural", "ux", "ui"],
       "category_name": "UI/UX",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 109, "type": "FS", "lag_days": 0 }
+      "dependencies": [{ "predecessor_task_id": 109, "type": "FS", "lag_days": 0 }]
     },
     {
       "task_id": 111,
@@ -1756,6 +1751,40 @@
       "category_name": "UI/UX",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 109, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 112,
+      "task_name": "GitHub Funding Template (Crypto Wallet)",
+      "description": "Add a GitHub funding configuration so the repository shows a Sponsor/Donate link. Implemented .github/FUNDING.yml with a custom URL pointing to the Ethereum address (MetaMask-compatible): 0xdf64784E10325836c9c8050793E2Ec3C8F970e2c (Etherscan link for verification and easy copy).",
+      "start_date": "2026-01-25",
+      "end_date": "2026-01-25",
+      "priority": "Low",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.25,
+      "actual_hours": 0.25,
+      "is_critical_path": false,
+      "tags": ["github", "funding", "meta"],
+      "category_name": "Infrastructure",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": []
+    },
+    {
+      "task_id": 113,
+      "task_name": "GitHub Pages Deployment via Actions (No dist commit)",
+      "description": "Enable GitHub Pages deployment using GitHub Actions so the build output (dist/) does not need to be committed to the repository. Added a dedicated Pages workflow that runs npm ci + npm run build and deploys dist/ as a Pages artifact. Added Vite base path configuration for Pages subpath hosting and updated CI triggers to run on both master/main.",
+      "start_date": "2026-01-25",
+      "end_date": "2026-01-25",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.75,
+      "actual_hours": 0.75,
+      "is_critical_path": false,
+      "tags": ["github", "pages", "actions", "deploy", "vite"],
+      "category_name": "Infrastructure",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": []
     }
   ],
   "required_fields": [

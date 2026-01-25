@@ -1,0 +1,341 @@
+{
+  "$schema": "./level-game.schema.json",
+  "id": "level_boss_hard",
+  "tier": "tier_6",
+  "title": "2-Stage Pipeline",
+  "objective": "Fetch while Executing",
+  "description": "Build a simple 2-stage pipelined processor: Stage 1 fetches the next instruction while Stage 2 executes the current one. Double the throughput!",
+  "introText": "PIPELINING is the key to high-performance CPUs. Instead of completing one instruction before starting the next, we overlap them: while instruction N executes, instruction N+1 is being fetched. This doubles throughput (instructions per cycle) without increasing clock speed. Modern CPUs have 10-20+ pipeline stages! You'll build the simplest version: 2 stages with proper handshaking between Fetch and Execute units.",
+  "physicsVisual": "pipeline_2stage",
+  "hint": "Use two sets of registers: IR (Instruction Register) holds the fetched instruction, and a PC (Program Counter) tracks what to fetch next. On each clock: PC increments (fetch stage) while IR's instruction executes (execute stage). A MUX handles the initial fill of the pipeline.",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop",
+    "fullAdder"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Reset: Clear pipeline"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Ready: Pipeline empty"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK1: Fetch I1 (pipeline filling)"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Hold: I1 in IR"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK2: Execute I1, Fetch I2 (full pipeline)"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Hold: I2 in IR"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "CLK3: Execute I2, Fetch I3 (steady state)"
+    }
+  ],
+  "xpReward": 1500,
+  "storyText": "You have completed the journey from electrons to computation! From simple wires to a working processor, you now understand how transistors become logic, logic becomes circuits, and circuits become the computers that power our world.",
+  "physicsDetails": {
+    "conceptCards": [
+      {
+        "term": "Von Neumann Architecture",
+        "definition": "A computer architecture where program instructions and data share the same memory and bus, with sequential instruction execution.",
+        "why": "This is THE architecture of modern computers. The stored-program concept allows software to be as flexible as the hardware.",
+        "analogy": "Like a chef (CPU) following a recipe (program) stored in the same kitchen (memory) where ingredients (data) are kept.",
+        "latex": "Memory holds both Instructions and Data",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">ory</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">b</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">r</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">c</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">an</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "decoder",
+            "title": "Von Neumann: Address Decode to Memory"
+          }
+        ]
+      },
+      {
+        "term": "Datapath Components (PC, IR, RF)",
+        "definition": "The hardware that processes data. Key parts: PC (Program Counter) holds the current address; IR (Instruction Register) holds the current command; RF (Register File) stores temporary data; ALU performs calculations; and DM (Data Memory) stores program variables.",
+        "why": "The datapath is the 'body' of the CPU—it physically moves and transforms bits according to the control unit's instructions.",
+        "analogy": "Like a factory floor: the PC is the clipboard showing the next task, IR is the current task description, and RF are the workbenches where active parts are kept.",
+        "latex": "Datapath = {PC, IR, RF, ALU, DM}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">RF</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">LU</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span></span></span></span></span>",
+        "visuals": [
+          {
+            "type": "cpu_datapath_detailed",
+            "title": "CPU Datapath: Fetch → Decode → Execute"
+          }
+        ]
+      },
+      {
+        "term": "Control Unit",
+        "definition": "The FSM that decodes instructions and generates control signals to orchestrate datapath operations.",
+        "why": "The control unit is the 'brain' that tells the datapath what to do each cycle.",
+        "analogy": "Like a traffic controller: it doesn't move cars (data) itself but directs the flow.",
+        "latex": "Control Signals = f(Opcode)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">C</span><span class=\"mord mathnormal\">o</span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">ro</span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">lS</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">na</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">s</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">Op</span><span class=\"mord mathnormal\">co</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "traffic_light",
+            "title": "Control Unit FSM"
+          }
+        ]
+      },
+      {
+        "term": "Fetch-Decode-Execute Cycle",
+        "definition": "The fundamental operation of a CPU: (1) Fetch instruction from memory, (2) Decode opcode and operands, (3) Execute the operation.",
+        "why": "This cycle repeats billions of times per second in your computer, running every program.",
+        "analogy": "Like reading a recipe: (1) Read the next step, (2) Understand what it says, (3) Do it.",
+        "latex": "Loop: Fetch → Decode → Execute → (repeat)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">L</span><span class=\"mord mathnormal\">oo</span><span class=\"mord mathnormal\">p</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">:</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">F</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">c</span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">Deco</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">e</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.05764em;\">E</span><span class=\"mord mathnormal\">x</span><span class=\"mord mathnormal\">ec</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">e</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">→</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">re</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span></span></span></span>",
+        "visuals": [
+          {
+            "type": "counter_2bit",
+            "title": "Fetch-Decode-Execute Sequencing"
+          }
+        ]
+      },
+      {
+        "term": "Pipeline Hazards",
+        "definition": "Problems that prevent the next instruction from executing in its designated clock cycle. Types: Data hazard (need result not yet computed), Control hazard (branch destination unknown), Structural hazard (resource conflict).",
+        "why": "Hazards cause 'stalls' (pipeline bubbles) that reduce performance. Modern CPUs use forwarding, branch prediction, and out-of-order execution to mitigate them.",
+        "analogy": "Like an assembly line where a station must wait for parts from the previous station—the whole line slows down.",
+        "latex": "Stall cycles reduce effective IPC",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">St</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">ll</span><span class=\"mord mathnormal\">cyc</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">esre</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">cee</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">ff</span><span class=\"mord mathnormal\">ec</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">v</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span></span></span></span>"
+      },
+      {
+        "term": "IPC (Instructions Per Cycle)",
+        "definition": "The average number of instructions completed per clock cycle. IPC > 1 indicates superscalar execution; IPC < 1 indicates frequent stalls.",
+        "why": "Performance = IPC × Frequency. Improving IPC is as important as increasing clock speed.",
+        "analogy": "Like productivity: not just how fast you work (frequency), but how many tasks you complete per hour (IPC).",
+        "latex": "Performance = IPC \\times Clock_{Frequency}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">P</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">er</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\">man</span><span class=\"mord mathnormal\">ce</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.9805em;vertical-align:-0.2861em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">Cl</span><span class=\"mord mathnormal\">oc</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.03148em;\">k</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.13889em;\">F</span><span class=\"mord mathnormal mtight\">re</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">q</span><span class=\"mord mathnormal mtight\">u</span><span class=\"mord mathnormal mtight\">e</span><span class=\"mord mathnormal mtight\">n</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.03588em;\">cy</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span></span></span></span>"
+      }
+    ],
+    "formulaCards": [
+      {
+        "name": "Instruction Fetch",
+        "latex": "IR = Memory[PC]; PC = PC + 4",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal\" style=\"margin-right:0.00773em;\">R</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.10903em;\">M</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">ory</span><span class=\"mopen\">[</span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span><span class=\"mclose\">]</span><span class=\"mpunct\">;</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.07153em;\">PC</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">4</span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "IR",
+            "meaning": "Instruction Register (holds current instruction)",
+            "units": "32 bits"
+          },
+          {
+            "symbol": "PC",
+            "meaning": "Program Counter (address of next instruction)",
+            "units": "32-bit address"
+          },
+          {
+            "symbol": "Memory[PC]",
+            "meaning": "Instruction at address PC",
+            "units": "32-bit instruction"
+          }
+        ],
+        "meaning": "Fetch reads the instruction pointed to by PC into IR, then increments PC to point to the next instruction.",
+        "derivation": "Instructions are 4 bytes (32 bits), so PC increments by 4. Sequential execution fetches consecutive addresses.",
+        "example": {
+          "problem": "If PC=0x1000, what happens during fetch?",
+          "given": [
+            "PC = 0x1000",
+            "Memory[0x1000] = ADD R1, R2, R3"
+          ],
+          "steps": [
+            "IR = Memory[0x1000] = ADD R1, R2, R3",
+            "PC = 0x1000 + 4 = 0x1004",
+            "Ready for next fetch at 0x1004"
+          ],
+          "answer": "IR holds ADD instruction, PC now points to 0x1004"
+        }
+      },
+      {
+        "name": "Critical Path (Single-Cycle)",
+        "variables": [
+          {
+            "symbol": "T_{cycle}",
+            "meaning": "Clock period",
+            "units": "nanoseconds"
+          },
+          {
+            "symbol": "t_{PC}",
+            "meaning": "PC read time",
+            "units": "ns"
+          },
+          {
+            "symbol": "t_{IM}",
+            "meaning": "Instruction memory access",
+            "units": "ns"
+          },
+          {
+            "symbol": "t_{RF}",
+            "meaning": "Register file read",
+            "units": "ns"
+          },
+          {
+            "symbol": "t_{ALU}",
+            "meaning": "ALU computation",
+            "units": "ns"
+          },
+          {
+            "symbol": "t_{DM}",
+            "meaning": "Data memory access",
+            "units": "ns"
+          },
+          {
+            "symbol": "t_{WB}",
+            "meaning": "Writeback to register",
+            "units": "ns"
+          }
+        ],
+        "meaning": "In single-cycle design, the clock period must accommodate the longest instruction path (typically LOAD).",
+        "derivation": "LOAD uses all stages: PC→IM→RF→ALU(address)→DM→RF(writeback). Clock must be this slow.",
+        "example": {
+          "problem": "Calculate minimum cycle time: t_PC=0.1ns, t_IM=2ns, t_RF=1ns, t_ALU=2ns, t_DM=2ns, t_WB=1ns.",
+          "given": [
+            "All delay values in nanoseconds"
+          ],
+          "steps": [
+            "Sum = 0.1 + 2 + 1 + 2 + 2 + 1 = 8.1ns",
+            "T_{cycle} ≥ 8.1ns",
+            "f_{max} = \\frac{1}{8}.1ns ≈ 123MHz"
+          ],
+          "answer": "Minimum cycle = 8.1ns, max frequency ≈ 123MHz"
+        },
+        "latex": "T_{cycle} ≥ t_{PC} + t_{IM} + t_{RF} + t_{ALU} + t_{DM} + t_{WB}",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.9694em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.13889em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">cyc</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal mtight\">e</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≥</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07153em;\">PC</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.07847em;\">I</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.10903em;\">M</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.13889em;\">RF</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">A</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.10903em;\">LU</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.02778em;\">D</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.10903em;\">M</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:0.7651em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">t</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.13889em;\">W</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.05017em;\">B</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+      },
+      {
+        "name": "Pipeline Speedup",
+        "latex": "Speedup ≈ n (for n-stage pipeline)",
+        "html": "<span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">Sp</span><span class=\"mord mathnormal\">ee</span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">p</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≈</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.10764em;\">f</span><span class=\"mord mathnormal\" style=\"margin-right:0.02778em;\">or</span><span class=\"mord mathnormal\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">s</span><span class=\"mord mathnormal\">t</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\" style=\"margin-right:0.03588em;\">g</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">i</span><span class=\"mord mathnormal\">p</span><span class=\"mord mathnormal\">e</span><span class=\"mord mathnormal\" style=\"margin-right:0.01968em;\">l</span><span class=\"mord mathnormal\">in</span><span class=\"mord mathnormal\">e</span><span class=\"mclose\">)</span></span></span></span>",
+        "variables": [
+          {
+            "symbol": "n",
+            "meaning": "Number of pipeline stages",
+            "units": "count"
+          },
+          {
+            "symbol": "Speedup",
+            "meaning": "Throughput improvement vs single-cycle",
+            "units": "factor"
+          }
+        ],
+        "meaning": "An n-stage pipeline can ideally execute n instructions simultaneously, achieving n× throughput.",
+        "derivation": "Each stage is 1/n of the original cycle. After filling, one instruction completes per short cycle.",
+        "example": {
+          "problem": "A 5-stage pipeline (IF, ID, EX, MEM, WB) vs single-cycle. Theoretical speedup?",
+          "given": [
+            "n = 5 stages"
+          ],
+          "steps": [
+            "Single-cycle: 1 instruction per long cycle",
+            "Pipeline: 5 instructions in-flight simultaneously",
+            "After 5 cycles to fill, 1 completes each short cycle",
+            "Speedup ≈ 5×"
+          ],
+          "answer": "~5× throughput improvement (ideal case, ignoring stalls)"
+        }
+      }
+    ],
+    "exercises": [
+      {
+        "question": "List the 5 classic pipeline stages and what each does.",
+        "hint": "IF = Instruction Fetch, ID = ..., EX = ..., MEM = ..., WB = ...",
+        "answer": "IF: Fetch instruction. ID: Decode and read registers. EX: Execute ALU operation. MEM: Access data memory. WB: Write result to register."
+      },
+      {
+        "question": "Why can't you just make a 100-stage pipeline for 100× speedup?",
+        "hint": "Think about what happens with branches and data dependencies.",
+        "answer": "Hazards! Branch mispredictions flush the pipeline (wasting cycles). Data dependencies cause stalls. More stages = more vulnerability to these problems. Diminishing returns."
+      },
+      {
+        "question": "A CPU runs at 4GHz and achieves IPC=3.5 (instructions per cycle due to superscalar). How many instructions per second?",
+        "hint": "IPS = IPC × frequency. Remember 1 GHz = 10⁹ Hz (cycles per second).",
+        "answer": {
+          "steps": [
+            "1. Frequency: 4 GHz = 4 × 10⁹ cycles/sec.",
+            "2. Formula: IPS = 3.5 instructions/cycle × (4 × 10⁹ cycles/sec).",
+            "3. Calculate: 3.5 × 4 = 14.",
+            "4. Result: 14 × 10⁹ IPS = 14 Billion Instructions Per Second."
+          ],
+          "answer": "14 Billion Instructions Per Second"
+        }
+      }
+    ],
+    "realWorld": {
+      "context": "You now understand the architecture inside every computer—from your phone to data centers.",
+      "example": "Apple M2: 5nm, 20 Billion transistors, 8-core CPU + 10-core GPU, 8-wide decode, 600+ instruction reorder buffer.",
+      "numbers": "Intel Core i9-13900K: 5.8GHz, 24 cores, >14 pipeline stages, executes ~6 instructions/cycle/core.",
+      "connection": "🎉 CONGRATULATIONS! You've journeyed from silicon atoms to a working CPU. You now understand how electrons become apps, how physics becomes software, how gates become Google. The digital world is no longer magic—it's engineering you understand."
+    }
+  },
+  "maxGates": 15
+}

@@ -16,12 +16,17 @@ export class MusicController {
     static currentDifficulty = 'easy';
     static musicButton = null;
     static isInitialized = false;
+    static audioEnabled = false;
+    static pendingScreenChange = null;
 
     /**
      * Initialize music controller and create UI button
      */
     static init() {
         if (this.isInitialized) return;
+
+        // Load preferences early to set initial button state
+        MusicEngine.loadPreferences();
 
         // Create the music toggle button
         this.createMusicButton();
@@ -54,6 +59,10 @@ export class MusicController {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
+            // Ensure audio is enabled on first button click
+            if (!this.audioEnabled) {
+                this.enableAudio();
+            }
             this.toggleMusic();
         });
 
@@ -75,16 +84,7 @@ export class MusicController {
      */
     static setupFirstInteraction() {
         const enableAudio = () => {
-            MusicEngine.init();
-            MusicEngine.resume();
-            
-            // Start playing if on a screen
-            if (this.currentScreen === 'roadmap') {
-                this.playRoadmapMusic();
-            } else if (this.currentLevelId) {
-                this.playLevelMusic(this.currentLevelId, this.currentDifficulty);
-            }
-
+            this.enableAudio();
             // Remove listeners after first interaction
             document.removeEventListener('click', enableAudio);
             document.removeEventListener('keydown', enableAudio);
@@ -94,6 +94,33 @@ export class MusicController {
         document.addEventListener('click', enableAudio, { once: true });
         document.addEventListener('keydown', enableAudio, { once: true });
         document.addEventListener('touchstart', enableAudio, { once: true });
+    }
+
+    /**
+     * Enable audio context and start playing appropriate music
+     */
+    static enableAudio() {
+        if (this.audioEnabled) return;
+        
+        MusicEngine.init();
+        MusicEngine.resume();
+        this.audioEnabled = true;
+        
+        // Start playing if on a screen
+        if (this.currentScreen === 'roadmap') {
+            this.playRoadmapMusic();
+        } else if (this.currentLevelId) {
+            this.playLevelMusic(this.currentLevelId, this.currentDifficulty);
+        }
+        
+        // If there's a pending screen change, apply it now
+        if (this.pendingScreenChange) {
+            const { screen, levelId, difficulty } = this.pendingScreenChange;
+            this.onScreenChange(screen, levelId, difficulty);
+            this.pendingScreenChange = null;
+        }
+        
+        console.log('Audio enabled and music started');
     }
 
     /**
@@ -122,6 +149,12 @@ export class MusicController {
      * Toggle music on/off
      */
     static toggleMusic() {
+        // Ensure audio is enabled before toggling
+        if (!this.audioEnabled) {
+            this.enableAudio();
+            return; // The enableAudio will play the music, no need to toggle
+        }
+        
         const isMuted = MusicEngine.toggleMute();
         
         if (this.musicButton) {
@@ -136,8 +169,16 @@ export class MusicController {
      * Play roadmap/homepage music
      */
     static playRoadmapMusic() {
+        // Don't restart if already playing roadmap music
+        if (this.currentScreen === 'roadmap' && MusicEngine.isPlaying && !this.pendingScreenChange) {
+            return;
+        }
+
         this.currentScreen = 'roadmap';
         this.currentLevelId = null;
+        
+        // Only play if audio is enabled
+        if (!this.audioEnabled) return;
         
         const song = LEVEL_SONGS.roadmap;
         MusicEngine.play(song, 'easy'); // Roadmap always plays at base tempo
@@ -147,12 +188,26 @@ export class MusicController {
      * Play music for a specific level
      */
     static playLevelMusic(levelId, difficulty = 'easy') {
+        const diff = difficulty || 'easy';
+        
+        // Don't restart if same level and same difficulty
+        if (this.currentScreen === 'level' && 
+            this.currentLevelId === levelId && 
+            this.currentDifficulty === diff &&
+            MusicEngine.isPlaying && 
+            !this.pendingScreenChange) {
+            return;
+        }
+
         this.currentScreen = 'level';
         this.currentLevelId = levelId;
-        this.currentDifficulty = difficulty;
+        this.currentDifficulty = diff;
 
+        // Only play if audio is enabled
+        if (!this.audioEnabled) return;
+        
         const song = getSongForLevel(levelId);
-        MusicEngine.play(song, difficulty);
+        MusicEngine.play(song, diff);
     }
 
     /**
@@ -170,6 +225,12 @@ export class MusicController {
      * Handle screen transition
      */
     static onScreenChange(screen, levelId = null, difficulty = null) {
+        // Store pending change if audio not yet enabled
+        if (!this.audioEnabled) {
+            this.pendingScreenChange = { screen, levelId, difficulty };
+            return;
+        }
+        
         if (screen === 'roadmap') {
             this.playRoadmapMusic();
         } else if (screen === 'level' && levelId) {
@@ -192,6 +253,7 @@ export class MusicController {
             screen: this.currentScreen,
             levelId: this.currentLevelId,
             difficulty: this.currentDifficulty,
+            audioEnabled: this.audioEnabled,
             ...MusicEngine.getState()
         };
     }

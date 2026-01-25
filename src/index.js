@@ -45,6 +45,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Initialize music system
     MusicController.init();
+
+    // Setup music event listeners EARLY before gameManager.init()
+    globalEvents.on(Events.LEVEL_LOADED, (data) => {
+        // Extract level ID (e.g., "level_01" from level object)
+        const levelId = data.level?.id || 'level_01';
+        const difficulty = gameManager.currentVariant || 'easy';
+        MusicController.onScreenChange('level', levelId, difficulty);
+    });
+    
+    // Play roadmap music when returning to roadmap or initially showing it
+    globalEvents.on(Events.UI_OVERLAY_OPENED, (data) => {
+        if (data?.overlay === 'roadmap') {
+            MusicController.onScreenChange('roadmap');
+        }
+    });
+
+    // Restore level music when roadmap is closed
+    globalEvents.on(Events.UI_OVERLAY_CLOSED, (data) => {
+        if (data?.overlay === 'roadmap') {
+            if (gameManager.currentLevel) {
+                const levelId = gameManager.currentLevel.id;
+                const difficulty = gameManager.currentVariant || 'easy';
+                MusicController.onScreenChange('level', levelId, difficulty);
+            }
+        }
+    });
     
     // Preload data
     DataLoader.preload();
@@ -63,21 +89,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // App is initialized, remove loading class to reveal UI
         document.body.classList.remove('app-loading');
-
-        // Setup music event listeners
-        globalEvents.on(Events.LEVEL_LOADED, (data) => {
-            // Extract level ID (e.g., "level_01" from level object)
-            const levelId = data.level?.id || 'level_01';
-            const difficulty = gameManager.currentVariant || 'easy';
-            MusicController.onScreenChange('level', levelId, difficulty);
-        });
-        
-        // Play roadmap music when returning to roadmap
-        globalEvents.on(Events.UI_OVERLAY_OPENED, (data) => {
-            if (data?.overlay === 'roadmap' || document.getElementById('roadmap-overlay')?.classList.contains('hidden') === false) {
-                MusicController.onScreenChange('roadmap');
-            }
-        });
 
         // Start Render Loop
         renderer.start();

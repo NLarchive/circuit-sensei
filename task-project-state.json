@@ -1805,23 +1805,6 @@
     },
     {
       "task_id": 115,
-      "task_name": "Fix Pages Gates JSON Base Path",
-      "description": "Resolved 404 for data/gates.json on GitHub Pages by updating GameManager.loadGameData() to fetch gates.json using import.meta.env.BASE_URL. Ensures requests are scoped to /circuit-sensei/ instead of site root, allowing gate metadata to load and the roadmap/game to initialize correctly.",
-      "start_date": "2026-01-25",
-      "end_date": "2026-01-25",
-      "priority": "High",
-      "status": "Completed",
-      "progress_percentage": 100,
-      "estimated_hours": 0.5,
-      "actual_hours": 0.5,
-      "is_critical_path": false,
-      "tags": ["bugfix", "pages", "gates", "deploy"],
-      "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": []
-    },
-    {
-      "task_id": 115,
       "task_name": "Fix Audio System - Homepage & Button Interactions",
       "description": "Fixed critical audio initialization issues where music did not automatically start on homepage and music button did not respond on initial load. ROOT CAUSES: (1) MusicController.enableAudio() was only called after first user interaction, but screen transitions occurred before audio was enabled, (2) music button click handler did not trigger audio initialization, (3) roadmap music events were not properly handled on initial page load. SOLUTIONS & IMPROVEMENTS: (1) Added audioEnabled flag and pendingScreenChange queue, (2) Enabled audio on first interaction OR button click, (3) Added loadPreferences() to ensure button state is correct immediately on refresh, (4) Moved music listeners in index.js to early initialization, (5) Added roadmap closure restoration logic, (6) Prevented redundant song restarts in playRoadmapMusic/playLevelMusic. VERIFIED: Roadmap music starts on first click; button works instantly; level transitions are smooth; returning from level restores correct music; difficulty changes update tempo correctly. Comprehensive test suite updated to covered all 10+ interaction scenarios.",
       "start_date": "2026-01-25",

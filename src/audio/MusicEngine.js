@@ -50,22 +50,27 @@ export class MusicEngine {
     };
 
     /**
+     * Load saved preferences (can be called before init)
+     */
+    static loadPreferences() {
+        // Default to muted on every load/refresh to comply with autoplay restrictions.
+        this.isMuted = true;
+        const savedVolume = localStorage.getItem('music_volume');
+        if (savedVolume) this.volume = parseFloat(savedVolume);
+    }
+
+    /**
      * Initialize the audio context (must be called after user interaction)
      */
     static init() {
         if (this.audioContext) return;
 
         try {
+            this.loadPreferences();
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
             this.masterGain = this.audioContext.createGain();
             this.masterGain.connect(this.audioContext.destination);
-            this.masterGain.gain.value = this.volume;
             
-            // Load saved preferences
-            const savedMuted = localStorage.getItem('music_muted');
-            const savedVolume = localStorage.getItem('music_volume');
-            if (savedMuted === 'true') this.isMuted = true;
-            if (savedVolume) this.volume = parseFloat(savedVolume);
             this.masterGain.gain.value = this.isMuted ? 0 : this.volume;
             
             console.log('MusicEngine initialized');

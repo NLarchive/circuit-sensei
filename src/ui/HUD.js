@@ -565,6 +565,7 @@ export class HUD {
         // Close roadmap to continue playing
         document.getElementById('btn-close-roadmap').addEventListener('click', () => {
             document.getElementById('roadmap-overlay').classList.add('hidden');
+            globalEvents.emit(Events.UI_OVERLAY_CLOSED, { overlay: 'roadmap' });
         });
         
         // Roadmap level selection (supports variant selector if present)

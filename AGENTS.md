@@ -4,10 +4,6 @@ project structure :
 .playwright-mcp
 .scripts
 .vscode
-assets
-assets\audio
-assets\legacy
-assets\sprites
 config
 config\gameConfig.js
 curriculum-analysis

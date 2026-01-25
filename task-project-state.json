@@ -1785,6 +1785,23 @@
       "category_name": "Infrastructure",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": []
+    },
+    {
+      "task_id": 114,
+      "task_name": "Fix Pages JSON Serving & StoryLoader BASE handling",
+      "description": "Resolved 404/JSON load errors on GitHub Pages by (1) using import.meta.env.BASE_URL in StoryLoader fetch calls so resources are requested under the repo base path, and (2) copying story/ and data/ into dist/ during build using .scripts/post_build_copy.cjs so runtime JSON files are available without committing dist/. Verified Pages workflow deploys successfully and story JSON endpoints return 200. Roadmap and homepage JSON-driven content now load correctly.",
+      "start_date": "2026-01-25",
+      "end_date": "2026-01-25",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": ["bugfix", "pages", "story", "deploy"],
+      "category_name": "Infrastructure",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": []
     }
   ],
   "required_fields": [

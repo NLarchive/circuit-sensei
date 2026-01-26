@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "level-game.schema.json",
+  "title": "Level Game Variant Schema",
+  "description": "Schema for generated per-difficulty level files (easy/medium/hard)",
+  "type": "object",
+  "required": ["id", "tier", "title", "objective", "description", "introText", "inputs"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^level_(?:\\d{2}|boss)_(?:easy|medium|hard)$",
+      "description": "Unique id for this variant file"
+    },
+    "tier": { "type": "string", "enum": ["intro","tier_1","tier_2","tier_3","tier_4","tier_5","tier_6"] },
+    "title": { "type": "string" },
+    "objective": { "type": "string" },
+    "description": { "type": "string" },
+    "introText": { "type": "string" },
+    "hint": { "type": ["string", "null"] },
+    "physicsVisual": { "type": "string" },
+    "availableGates": { "type": "array", "items": { "type": "string" } },
+    "inputs": { "type": "integer", "minimum": 0 },
+    "targetTruthTable": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["in", "out"],
+        "properties": {
+          "in": { "type": "array", "items": { "type": "integer", "enum": [0,1] } },
+          "out": { "type": "array", "items": { "type": "integer", "enum": [0,1] } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "maxGates": { "type": "integer", "minimum": 0 },
+    "xpReward": { "type": "integer", "minimum": 0 },
+    "storyText": { "type": "string" },
+    "physicsDetails": { "type": "object" }
+  },
+  "additionalProperties": true
+}

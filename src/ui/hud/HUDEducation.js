@@ -8,8 +8,8 @@ export const HUDEducation = {
         const hasNewSchema = Array.isArray(details.conceptCards) || Array.isArray(details.formulaCards);
 
         if (hasNewSchema) {
-            const visuals = level ? this.getLevelVisualList(level) : [];
-            return this.renderDetailedPhysicsContent(details, visuals);
+            const visualsObj = level ? this.getLevelVisualList(level) : { global: [], concept: [] };
+            return this.renderDetailedPhysicsContent(details, visualsObj);
         }
 
         const concepts = Array.isArray(details.concepts) ? details.concepts : [];
@@ -54,9 +54,24 @@ export const HUDEducation = {
         `;
     },
 
-    renderDetailedPhysicsContent(details, visuals = []) {
+    renderDetailedPhysicsContent(details, visualsObj = { global: [], concept: [] }) {
         const sections = [];
-        const conceptVisuals = this.assignVisualsToConceptCards(details.conceptCards, visuals);
+
+        // Render global visuals first
+        if (visualsObj.global && visualsObj.global.length > 0) {
+            const globalVisualsHtml = visualsObj.global.map(v => {
+                const title = v.title ? `<div class="visual-caption">${HUDUtils.escapeHtml(v.title)}</div>` : '';
+                return `<div class="visual-item">${title}${HUDVisuals.generatePhysicsVisual(v.type)}</div>`;
+            }).join('');
+            sections.push(`
+                <div class="lesson-section">
+                    <h3 class="section-title">🎥 Level Visualizations</h3>
+                    <div class="visual-stack">${globalVisualsHtml}</div>
+                </div>
+            `);
+        }
+
+        const conceptVisuals = this.assignVisualsToConceptCards(details.conceptCards, visualsObj.concept || []);
 
         if (Array.isArray(details.conceptCards) && details.conceptCards.length > 0) {
             const cards = details.conceptCards.map((card, idx) => this.renderConceptCard(card, conceptVisuals[idx] || [])).join('');
@@ -104,13 +119,14 @@ export const HUDEducation = {
     },
 
     getLevelVisualList(level) {
-        const result = [];
+        const global = [];
+        const concept = [];
 
-        const pushUnique = (entry) => {
+        const pushUnique = (entry, target) => {
             if (!entry || !entry.type) return;
             const key = String(entry.type);
-            if (result.some(r => String(r.type) === key)) return;
-            result.push(entry);
+            if (target.some(r => String(r.type) === key)) return;
+            target.push(entry);
         };
 
         const titleByType = {
@@ -156,24 +172,30 @@ export const HUDEducation = {
             cpu_datapath_detailed: 'CPU Datapath: Fetch → Decode → Execute'
         };
 
-        // Allow: physicsVisual as string OR array OR physicsVisuals array
-        if (Array.isArray(level.physicsVisual)) {
-            level.physicsVisual.forEach(v => {
-                if (typeof v === 'string') pushUnique({ type: v, title: titleByType[v] || '' });
-                else if (v && typeof v === 'object' && v.type) pushUnique({ type: v.type, title: v.title || titleByType[v.type] || '' });
-            });
-        } else if (typeof level.physicsVisual === 'string' && level.physicsVisual.trim()) {
-            pushUnique({ type: level.physicsVisual, title: titleByType[level.physicsVisual] || '' });
-        }
+        // Global visuals
+        // NOTE: Global (level-wide) visuals are temporarily disabled to avoid duplicated
+        // animations when the same visualization is also provided on concept cards.
+        // If needed in the future, we can re-enable this and add logic to deduplicate
+        // based on visual type or prefer concept-level visuals over globals.
+        //
+        // Example of re-enabled behavior (commented out for now):
+        // if (Array.isArray(level.physicsVisual)) {
+        //     level.physicsVisual.forEach(v => {
+        //         if (typeof v === 'string') pushUnique({ type: v, title: titleByType[v] || '' }, global);
+        //         else if (v && typeof v === 'object' && v.type) pushUnique({ type: v.type, title: v.title || titleByType[v.type] || '' }, global);
+        //     });
+        // } else if (typeof level.physicsVisual === 'string' && level.physicsVisual.trim()) {
+        //     pushUnique({ type: level.physicsVisual, title: titleByType[level.physicsVisual] || '' }, global);
+        // }
 
-        if (Array.isArray(level.physicsVisuals)) {
-            level.physicsVisuals.forEach(v => {
-                if (typeof v === 'string') pushUnique({ type: v, title: titleByType[v] || '' });
-                else if (v && typeof v === 'object' && v.type) pushUnique({ type: v.type, title: v.title || titleByType[v.type] || '' });
-            });
-        }
+        // if (Array.isArray(level.physicsVisuals)) {
+        //     level.physicsVisuals.forEach(v => {
+        //         if (typeof v === 'string') pushUnique({ type: v, title: titleByType[v] || '' }, global);
+        //         else if (v && typeof v === 'object' && v.type) pushUnique({ type: v.type, title: v.title || titleByType[v.type] || '' }, global);
+        //     });
+        // }
 
-        // Also allow visuals to be declared directly on concept cards
+        // Concept card visuals
         if (level.physicsDetails && Array.isArray(level.physicsDetails.conceptCards)) {
             level.physicsDetails.conceptCards.forEach(card => {
                 if (!card || typeof card !== 'object') return;
@@ -186,17 +208,17 @@ export const HUDEducation = {
                 entries.forEach(entry => {
                     if (!entry) return;
                     if (typeof entry === 'string') {
-                        pushUnique({ type: entry, title: titleByType[entry] || '' });
+                        pushUnique({ type: entry, title: titleByType[entry] || '' }, concept);
                     } else if (entry && typeof entry === 'object') {
                         const type = entry.type || entry.visual || entry.physicsVisual;
                         if (!type) return;
-                        pushUnique({ type, title: entry.title || titleByType[type] || '' });
+                        pushUnique({ type, title: entry.title || titleByType[type] || '' }, concept);
                     }
                 });
             });
         }
 
-        return result;
+        return { global, concept };
     },
 
     assignVisualsToConceptCards(conceptCards, visuals) {

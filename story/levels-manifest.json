@@ -475,11 +475,11 @@
             "analogy": "Imagine a tube completely filled with marbles. Push one marble in at one end, and a marble instantly pops out the other end—even though no single marble traveled the full length.",
             "visuals": [
               {
-                "type": "electron_flow_detailed",
+                "type": "drift_velocity_animation",
                 "title": "Charge Carriers in a Conductor"
               }
             ]
-          },
+          }
           {
             "term": "Signal Propagation Speed",
             "definition": "The speed at which an electromagnetic disturbance (the 'signal') travels along a wire—typically 50-99% the speed of light.",

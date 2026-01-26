@@ -927,8 +927,8 @@ export class HUD {
     /**
      * Render the new detailed physics content schema with full explanations
      */
-    renderDetailedPhysicsContent(details, visuals = []) {
-        return HUDEducation.renderDetailedPhysicsContent(details, visuals);
+    renderDetailedPhysicsContent(details, visualsObj = { global: [], concept: [] }) {
+        return HUDEducation.renderDetailedPhysicsContent(details, visualsObj);
     }
 
     renderCurriculumOverview(level) {

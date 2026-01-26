@@ -16,13 +16,14 @@ function addPrefixToIds(svg, prefix) {
 
 export const HUDVisuals = {
     getLevelVisualList(level) {
-        const result = [];
+        const global = [];
+        const concept = [];
 
-        const pushUnique = (entry) => {
+        const pushUnique = (entry, target) => {
             if (!entry || !entry.type) return;
             const key = String(entry.type);
-            if (result.some(r => String(r.type) === key)) return;
-            result.push(entry);
+            if (target.some(r => String(r.type) === key)) return;
+            target.push(entry);
         };
 
         const titleByType = {
@@ -147,18 +148,18 @@ export const HUDVisuals = {
             return null;
         };
 
-        // Allow: physicsVisual as string OR array OR physicsVisuals array
-        if (Array.isArray(level?.physicsVisual)) {
-            level.physicsVisual.map(normalizeEntry).filter(Boolean).forEach(pushUnique);
-        } else if (typeof level?.physicsVisual === 'string' && level.physicsVisual.trim()) {
-            pushUnique({ type: level.physicsVisual, title: titleByType[level.physicsVisual] || '' });
-        }
+        // Global visuals - disabled to avoid duplication
+        // if (Array.isArray(level?.physicsVisual)) {
+        //     level.physicsVisual.map(normalizeEntry).filter(Boolean).forEach(entry => pushUnique(entry, global));
+        // } else if (typeof level?.physicsVisual === 'string' && level.physicsVisual.trim()) {
+        //     pushUnique({ type: level.physicsVisual, title: titleByType[level.physicsVisual] || '' }, global);
+        // }
 
-        if (Array.isArray(level?.physicsVisuals)) {
-            level.physicsVisuals.map(normalizeEntry).filter(Boolean).forEach(pushUnique);
-        }
+        // if (Array.isArray(level?.physicsVisuals)) {
+        //     level.physicsVisuals.map(normalizeEntry).filter(Boolean).forEach(entry => pushUnique(entry, global));
+        // }
 
-        // Also allow visuals to be declared directly on concept cards
+        // Concept card visuals
         if (level?.physicsDetails && Array.isArray(level.physicsDetails.conceptCards)) {
             level.physicsDetails.conceptCards.forEach(card => {
                 if (!card || typeof card !== 'object') return;
@@ -166,15 +167,16 @@ export const HUDVisuals = {
                 if (Array.isArray(card.visuals)) entries.push(...card.visuals);
                 if (card.visual) entries.push(card.visual);
                 if (card.physicsVisual) entries.push(card.physicsVisual);
-                entries.map(normalizeEntry).filter(Boolean).forEach(pushUnique);
+                entries.map(normalizeEntry).filter(Boolean).forEach(entry => pushUnique(entry, concept));
             });
         }
 
-        return result;
+        return { global, concept };
     },
 
     generateLevelVisuals(level) {
-        const visuals = this.getLevelVisualList(level);
+        const visualsObj = this.getLevelVisualList(level);
+        const visuals = [...visualsObj.global, ...visualsObj.concept];
         if (!visuals.length) return this.generateLevelVisual(level);
 
         return `

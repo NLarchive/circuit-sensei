@@ -308,6 +308,9 @@ export const HUDVisuals = {
             signal_propagation: 'electron_flow',
             parallel_wires_detailed: 'electron_flow',
             fan_out_tree: 'electron_flow',
+            // Aliases for drift-specific animations (maps to electron_flow visualization)
+            drift_velocity_animation: 'electron_flow',
+            drift_velocity: 'electron_flow',
             transmission_gate: 'npn_transistor',
             cmos_aoi: 'cmos_inverter',
             not_gate_detailed: 'cmos_inverter',

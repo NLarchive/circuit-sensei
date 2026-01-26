@@ -18,7 +18,7 @@ describe('Level Data Integrity', () => {
         'nand_universal', 'xor_gate', 'half_adder', 'full_adder', 'multiplexer', 
         'sr_latch', 'alu', 'de_morgan', 'decoder', 't_flipflop', 'counter_2bit', 
         'traffic_light', 'cpu_datapath', 'cmos_inverter', 'nand_to_not', 'dff_timing',
-        'counter_detailed', 'fsm_traffic'
+        'counter_detailed', 'fsm_traffic', 'drift_velocity_animation', 'drift_velocity'
     ];
 
     const gateCatalogIds = Object.keys(gates).map(id => id.toLowerCase());

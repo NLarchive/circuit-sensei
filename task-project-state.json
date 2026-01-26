@@ -1836,6 +1836,23 @@
       "category_name": "Content",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 115, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 117,
+      "task_name": "Fix: Drift Velocity Concept Visual",
+      "description": "Add aliases for drift visuals ('drift_velocity_animation', 'drift_velocity') to map to the electron_flow visual and verify Level 01 shows both the Electric Field and Drift Velocity animations.",
+      "start_date": "2026-01-26",
+      "end_date": "2026-01-26",
+      "priority": "Low",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.5,
+      "actual_hours": 0.5,
+      "is_critical_path": false,
+      "tags": ["content", "animation", "bugfix"],
+      "category_name": "UI/UX",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": []
     }
   ],
   "required_fields": [

@@ -244,11 +244,20 @@ class CompletionModalClass {
             HUDRoadmap.showRoadmap();
         });
 
-        // Next button: proceed to the next level immediately
+        // Next button: proceed to the next level, picking the lowest uncompleted difficulty for that level
         document.getElementById('btn-completion-next')?.addEventListener('click', (ev) => {
             ev.preventDefault();
-            this.hide();
-            gameManager.nextLevel();
+            // Compute next level index and choose the lowest uncompleted variant
+            const nextIndex = gameManager.currentLevelIndex + 1;
+            if (nextIndex < gameManager.levels.length) {
+                const nextLevelId = gameManager.levels[nextIndex].id;
+                const variant = gameManager.getLowestUncompletedVariant(nextLevelId) || (gameManager.currentVariant || 'easy');
+                this.hide();
+                // Load next level's intro for the chosen variant
+                gameManager.loadLevel(nextIndex, variant, { showIntro: true });
+            } else {
+                this.hide();
+            }
         });
 
         // Play selected difficulty button

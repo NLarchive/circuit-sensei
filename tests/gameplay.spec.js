@@ -259,6 +259,57 @@ test.describe("Story Roadmap Navigation", () => {
     await expect(page.locator('#completion-modal')).toHaveClass(/hidden/);
   });
 
+  test("when completing a variant, Next loads the lowest uncompleted difficulty on the next level", async ({ page }) => {
+    // Start Level 1 (first playable level)
+    const level1 = page.locator('.roadmap-level').nth(1);
+    await level1.locator('.level-left').click();
+    await startLevelFromIntro(page);
+
+    // Compute expected lowest uncompleted variant for the next level before completing
+    const expected = await page.evaluate(() => {
+      const gm = window.gameManager;
+      const nextIdx = gm.currentLevelIndex + 1;
+      const nextId = gm.levels[nextIdx].id;
+      const variants = (gm.levelVariants && gm.levelVariants[nextId]) || {};
+      const completed = (gm.progress.completedLevels && gm.progress.completedLevels[nextId]) || {};
+      const order = ['easy','medium','hard'];
+      for (const v of order) if (variants[v] && !completed[v]) return v;
+      for (const v of order) if (variants[v]) return v;
+      return 'easy';
+    });
+
+    // Trigger completion programmatically
+    await page.evaluate(() => window.gameManager.completeLevel(100));
+
+    // Wait for completion modal then click Next (completion modal Next uses chooser logic)
+    await expect(page.locator('#completion-modal')).not.toHaveClass(/hidden/);
+    await page.click('#btn-completion-next');
+
+    // Wait for next level to load
+    await page.waitForFunction(() => window.gameManager && window.gameManager.currentLevelIndex > 0, { timeout: 5000 });
+
+    // Verify variant matches expected
+    const currentVariant = await page.evaluate(() => window.gameManager.currentVariant);
+    expect(currentVariant).toBe(expected);
+
+    // Now check HUD Next button behavior: go back a level and use HUD Next to advance
+    await page.evaluate(() => window.gameManager.loadLevel(window.gameManager.currentLevelIndex - 1, 'easy', { showIntro: true }));
+    // Complete the previous level again so HUD Next becomes enabled
+    await page.evaluate(() => window.gameManager.completeLevel(100));
+    // Ensure HUD Next enabled
+    await expect(page.locator('#btn-next')).toBeEnabled({ timeout: 5000 });
+
+    // Click HUD Next
+    await page.click('#btn-next');
+
+    // Wait for level to advance
+    await page.waitForFunction((prevIndex) => window.gameManager && window.gameManager.currentLevelIndex > prevIndex, {}, await page.evaluate(() => window.gameManager.currentLevelIndex - 1));
+
+    // Verify current variant equals expected
+    const hudVariant = await page.evaluate(() => window.gameManager.currentVariant);
+    expect(hudVariant).toBe(expected);
+  });
+
   test("should show info overlay for regular levels before gameplay", async ({ page }) => {
     // Find Level 1 - it should be the second button (first is Level 00)
     const allLevels = page.locator('.roadmap-level');

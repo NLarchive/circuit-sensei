@@ -612,7 +612,13 @@ export class HUD {
             if (gameManager.mode === 'ENDLESS') {
                 gameManager.nextEndlessChallenge();
             } else {
-                gameManager.nextLevel();
+                // When advancing via HUD Next, pick the lowest uncompleted variant for the next level
+                const nextIndex = gameManager.currentLevelIndex + 1;
+                if (nextIndex < gameManager.levels.length) {
+                    const nextLevelId = gameManager.levels[nextIndex].id;
+                    const variant = gameManager.getLowestUncompletedVariant(nextLevelId) || (gameManager.currentVariant || 'easy');
+                    gameManager.loadLevel(nextIndex, variant, { showIntro: true });
+                }
             }
         });
 

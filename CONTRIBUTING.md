@@ -13,24 +13,27 @@ We're glad you're interested in contributing to Logic Architect!
 
 ### Manifest-Based Level System
 
-Level content uses a **manifest + inheritance** system:
+Level content uses a **separated content** system:
 
-- **Base levels** (`story/levels/level_XX.json`) contain educational content (introText, storyText, physicsDetails)
-- **Manifest** (`story/levels-manifest.json`) defines variant overrides (easy/medium/hard)
-- **Generated files** (`story/levels-games/`) are produced by the generator script
+- **Theory files** (`story/level-theory/level_XX.json`) contain educational content (introText, storyText, physicsDetails)
+- **Puzzle files** (`story/level-puzzles/level_XX_variant.json`) contain gameplay mechanics (availableGates, targetTruthTable, maxGates, xpReward)
+- **Index** (`story/levels-index.json`) provides lightweight metadata and file references
 
 ### Editing Levels
 
-**To modify level content:**
-1. Edit the base level in `story/levels/`
-2. Run `npm run migrate` to update the manifest
-3. Run `npm run generate` to regenerate variant files
-4. Commit all changes (manifest + generated files)
+**To modify educational content:**
+1. Edit the theory file in `story/level-theory/level_XX.json`
+2. Test changes with `npm run dev`
 
-**To modify variant-specific constraints (gates, XP, etc.):**
-1. Edit `story/levels-manifest.json` directly
-2. Run `npm run generate`
-3. Commit all changes
+**To modify puzzle mechanics:**
+1. Edit the puzzle file in `story/level-puzzles/level_XX_variant.json`
+2. Test changes with `npm run dev`
+
+**To add a new level:**
+1. Create theory file: `story/level-theory/level_XX.json`
+2. Create puzzle files: `story/level-puzzles/level_XX_easy.json`, etc.
+3. Update `story/levels-index.json` with the new level entry
+4. Test with `npm run dev`
 
 ### Manifest Structure
 

@@ -73,7 +73,7 @@
     }
   ],
   "maxGates": 6,
-  "xpReward": 210,
+  "xpReward": 220,
   "hint": "Connect D-FFs in a ring: Q0→D1, Q1→D2, Q2→D0. Initialize so only one FF starts as 1. The 1 bit 'shifts' around the ring on each clock edge.",
   "title": "Ring Counter",
   "objective": "Rotating one-hot pattern",

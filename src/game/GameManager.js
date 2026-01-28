@@ -26,7 +26,9 @@ export class GameManager {
             completedLevels: {}, // { levelId: { easy: false, medium: false, hard: false } }
             unlockedTiers: ['intro', 'tier_1'],
             achievements: [],
-            highScores: {}
+            highScores: {},
+            // Persist last selected variant per level: { levelId: 'easy' }
+            selectedVariants: {}
         };
 
         // Current session tracked data for achievements/stats
@@ -435,6 +437,11 @@ export class GameManager {
             if (typeof this.progress.completedLevels !== 'object' || Array.isArray(this.progress.completedLevels)) {
                 this.progress.completedLevels = {};
             }
+
+            // Ensure selectedVariants exists (migrate older saves)
+            if (!this.progress.selectedVariants || typeof this.progress.selectedVariants !== 'object') {
+                this.progress.selectedVariants = {};
+            }
             
             // Retroactive fix: 'intro' and 'tier_1' should ALWAYS be unlocked
             if (Array.isArray(this.progress.unlockedTiers)) {
@@ -461,7 +468,8 @@ export class GameManager {
             completedLevels: {},
             unlockedTiers: ['tier_1'],
             achievements: [],
-            highScores: {}
+            highScores: {},
+            selectedVariants: {}
         };
         this.saveProgress();
     }

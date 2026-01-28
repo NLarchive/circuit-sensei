@@ -194,6 +194,12 @@
     }
 }
 
+/* Hide simulation controls that are not useful */
+#btn-sim-toggle,
+#btn-sim-step {
+    display: none !important;
+}
+
 
 /* ==========================================
    MUSIC TOGGLE BUTTON

@@ -13,7 +13,7 @@
         0
       ],
       "out": [
-        0
+        1
       ]
     },
     {
@@ -22,7 +22,7 @@
         1
       ],
       "out": [
-        0
+        1
       ]
     },
     {
@@ -31,7 +31,7 @@
         0
       ],
       "out": [
-        0
+        1
       ]
     },
     {
@@ -40,15 +40,15 @@
         1
       ],
       "out": [
-        1
+        0
       ]
     }
   ],
   "maxGates": 2,
   "xpReward": 30,
-  "hint": "When Enable=1, output should equal Data input. When Enable=0, output is 0 (disconnected state in simulation). Use transistors strategically.",
-  "title": "Pass Gate Logic",
-  "objective": "Build a bidirectional switch",
-  "description": "Create a transmission gate that can pass signals in either direction when enabled. Connect data through when control is HIGH, block when LOW.",
-  "physicsVisual": "transmission_gate"
+  "hint": "Build a NAND gate using transistors. NAND is NOT(AND), so output is 1 unless both inputs are 1. Use transistors in series for AND, then invert.",
+  "title": "NAND from Transistors",
+  "objective": "Build NAND gate using transistors",
+  "description": "Create a NAND gate (NOT AND) using only transistors. This demonstrates how logic gates emerge from transistor circuits.",
+  "physicsVisual": "nand_from_transistors"
 }

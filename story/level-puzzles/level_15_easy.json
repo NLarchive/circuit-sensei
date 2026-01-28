@@ -72,7 +72,7 @@
       "desc": "Clock Rise: Sample D=0"
     }
   ],
-  "xpReward": 120,
+  "xpReward": 130,
   "hint": "D Flip-Flop samples input D only on the rising edge of CLK (0→1). Between edges, output holds its value.",
   "maxGates": 1,
   "title": "D Flip-Flop",

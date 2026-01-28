@@ -6,6 +6,7 @@
 import { globalEvents, Events } from '../../game/EventBus.js';
 import { gameManager } from '../../game/GameManager.js';
 import { OverlayManager } from '../overlays/OverlayManager.js';
+import { HUDRoadmap } from '../hud/HUDRoadmap.js';
 
 class CompletionModalClass {
     constructor() {
@@ -239,22 +240,15 @@ class CompletionModalClass {
         // Button handlers
         document.getElementById('btn-completion-roadmap')?.addEventListener('click', () => {
             this.hide();
-            document.getElementById('roadmap-overlay')?.classList.remove('hidden');
+            // Always refresh roadmap when showing it to ensure latest progress
+            HUDRoadmap.showRoadmap();
         });
 
-        // Next button now asks about next difficulty before skipping levels
+        // Next button: proceed to the next level immediately
         document.getElementById('btn-completion-next')?.addEventListener('click', (ev) => {
             ev.preventDefault();
-            // If there is a next uncompleted difficulty, show the difficulty chooser
-            const level = gameManager.currentLevel;
-            const nextVariant = this.getNextUncompletedVariant(level?.id);
-            if (nextVariant) {
-                this.showDifficultyChooser(level, nextVariant);
-            } else {
-                // No more difficulties for this level - proceed to next level
-                this.hide();
-                gameManager.nextLevel();
-            }
+            this.hide();
+            gameManager.nextLevel();
         });
 
         // Play selected difficulty button
@@ -297,14 +291,9 @@ class CompletionModalClass {
         const summaryEl = document.getElementById('completion-summary');
         summaryEl.innerHTML = this.generateSummary(level);
 
-        // Populate difficulty selector / chooser state
+        // Populate difficulty selector (chooser will not auto-show)
         const nextVariant = this.getNextUncompletedVariant(level?.id);
         this.populateDifficultyOptions(level?.id, nextVariant);
-        
-        // Show difficulty chooser if there are uncompleted variants
-        if (nextVariant) {
-            this.showDifficultyChooser(level, nextVariant);
-        }
 
         // Show modal
         OverlayManager.show(this.modalId);

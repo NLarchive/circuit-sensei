@@ -50,11 +50,11 @@
       ]
     }
   ],
-  "maxGates": 4,
-  "xpReward": 50,
-  "hint": "XOR = (A OR B) AND NOT(A AND B). Output is 1 when inputs are different, 0 when inputs are the same.",
+  "maxGates": 1,
+  "xpReward": 45,
+  "hint": "Connect both inputs to the XOR gate. XOR outputs 1 when the inputs are different (one 0, one 1).",
   "title": "The XOR Gate",
-  "objective": "Output 1 when inputs are different",
-  "description": "Build an XOR (Exclusive OR) gate using basic gates. XOR is the 'difference detector' - essential for addition and parity checking.",
+  "objective": "Output 1 when inputs differ",
+  "description": "Use the XOR gate to detect differences. XOR is essential for addition, subtraction, and error detection.",
   "physicsVisual": "xor_gate_basic"
 }

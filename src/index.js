@@ -81,16 +81,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.analytics = analytics;
     window.MusicController = MusicController;
     
-    window.interactionMode = 'select';
+    // Default interaction mode: prefer connector (wire) at startup
+    window.interactionMode = 'wire';
     
-    // Start Game
+    // Show loading roadmap immediately for better perceived performance
+    hud.showLoadingRoadmap();
+    
+    // Start Game (async loading)
     try {
-        await gameManager.init();
+        const initPromise = gameManager.init();
         
-        // App is initialized, remove loading class to reveal UI
+        // Wait for game data to load
+        await initPromise;
+        
+        // Data loaded - now show full UI and start simulation
         document.body.classList.remove('app-loading');
 
-        // Start Render Loop
+        // Ensure canvas is properly sized now that it's visible
+        renderer.resize();
+        
+        // Start Render Loop after UI is visible
         renderer.start();
         
         // Start Simulation Loop (Physics/Timing)

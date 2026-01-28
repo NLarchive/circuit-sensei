@@ -11,7 +11,22 @@ export const HUDRoadmap = {
         if (!tiersContainer || !overlay) return;
 
         // Update XP
-        if (xpDisplay) xpDisplay.innerText = gameManager.progress.xp;
+        if (xpDisplay) {
+            // Calculate total available XP across all levels and variants
+            const totalAvailableXP = gameManager.levels.reduce((total, level) => {
+                const variants = (gameManager.levelVariants && gameManager.levelVariants[level.id]) || {};
+                if (Object.keys(variants).length > 0) {
+                    // Sum XP from all variants for this level
+                    return total + Object.values(variants).reduce((levelTotal, variant) => 
+                        levelTotal + (variant.xpReward || 0), 0);
+                } else {
+                    // Fallback to base level XP if no variants
+                    return total + (level.xpReward || 0);
+                }
+            }, 0);
+            
+            xpDisplay.innerText = `${gameManager.progress.xp}/${totalAvailableXP}`;
+        }
         
         // Group levels by tier
         const tierGroups = {};
@@ -66,9 +81,10 @@ export const HUDRoadmap = {
         const hasVariants = Object.keys(variants).length > 0;
 
         const availableVariants = Object.keys(variants);
-        const selectedForThisLevel = (gameManager.currentLevel && gameManager.currentLevel.id === level.id && gameManager.currentVariant && variants[gameManager.currentVariant]) 
-            ? gameManager.currentVariant 
-            : (variants.easy ? 'easy' : availableVariants[0]);
+        const savedSelected = (gameManager.progress.selectedVariants && gameManager.progress.selectedVariants[level.id]) || null;
+        const selectedForThisLevel = (gameManager.currentLevel && gameManager.currentLevel.id === level.id && gameManager.currentVariant && variants[gameManager.currentVariant])
+            ? gameManager.currentVariant
+            : (savedSelected && variants[savedSelected] ? savedSelected : (variants.easy ? 'easy' : availableVariants[0]));
         
         const variantSelect = hasVariants ? `
             <select class="variant-select badge-${selectedForThisLevel}" data-level-index="${level.index}" title="Select difficulty" aria-label="Difficulty for ${level.title}">
@@ -79,6 +95,12 @@ export const HUDRoadmap = {
         const stars = hasVariants ? ['easy', 'medium', 'hard'].map(variant => 
             `<span class="difficulty-star ${variantsCompleted[variant] ? 'filled' : 'empty'}" title="${DIFFICULTY_LABELS[variant] || variant} ${variantsCompleted[variant] ? 'completed' : 'not completed'}" aria-label="${DIFFICULTY_LABELS[variant]} ${variantsCompleted[variant] ? 'completed' : 'not completed'}">${variantsCompleted[variant] ? '★' : '☆'}</span>`
         ).join('') : '';
+
+        // Calculate total earned XP from completed variants
+        const totalEarnedXP = hasVariants ? 
+            Object.keys(variants).reduce((total, variant) => {
+                return variantsCompleted[variant] ? total + (variants[variant].xpReward || 0) : total;
+            }, 0) : 0;
 
         return `
             <button class="roadmap-level ${isLocked ? 'locked' : ''}" 
@@ -92,7 +114,7 @@ export const HUDRoadmap = {
                 <div class="level-right">
                     ${variantSelect}
                     <div class="difficulty-stars" role="group" aria-label="Completion status">${stars}</div>
-                    <span class="level-xp">+${level.xpReward || 0} XP</span>
+                    <span class="level-xp">+${totalEarnedXP} XP</span>
                 </div>
             </button>
         `;
@@ -108,8 +130,15 @@ export const HUDRoadmap = {
                 s.classList.add(`badge-${val}`);
 
                 const idx = parseInt(s.dataset.levelIndex);
+                
+                // Persist selected variant for this level so the roadmap remembers it
+                const levelId = gameManager.levels[idx].id;
+                gameManager.progress.selectedVariants = gameManager.progress.selectedVariants || {};
+                gameManager.progress.selectedVariants[levelId] = val;
+                gameManager.saveProgress();
+
                 if (idx === gameManager.currentLevelIndex) {
-                    const navSel = document.getElementById('nav-variant-select');
+                    const navSel = document.getElementById('nav-variant-select-inline');
                     if (navSel) {
                         navSel.value = val;
                         navSel.classList.remove('badge-easy','badge-medium','badge-hard');
@@ -121,3 +150,11 @@ export const HUDRoadmap = {
         });
     }
 };
+
+// Listen for level completion to refresh roadmap UI if currently visible
+globalEvents.on(Events.LEVEL_COMPLETE, () => {
+    const overlay = document.getElementById('roadmap-overlay');
+    if (overlay && !overlay.classList.contains('hidden')) {
+        HUDRoadmap.showRoadmap();
+    }
+});

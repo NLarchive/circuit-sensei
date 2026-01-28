@@ -60,7 +60,7 @@
       "desc": "HOLD: S=0, R=0"
     }
   ],
-  "xpReward": 100,
+  "xpReward": 110,
   "hint": "SR Latch: S=1,R=0 sets Q=1. S=0,R=1 resets Q=0. S=R=0 holds previous state. Memory is born!",
   "maxGates": 1,
   "title": "SR Latch",

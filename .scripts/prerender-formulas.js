@@ -16,7 +16,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.join(__dirname, '..');
 const storyDir = path.join(projectRoot, 'story');
 const manifestPath = path.join(storyDir, 'levels-manifest.json');
-const levelsGamesDir = path.join(storyDir, 'levels-games');
 const levelTheoryDir = path.join(storyDir, 'level-theory');
 const levelPuzzlesDir = path.join(storyDir, 'level-puzzles');
 
@@ -128,24 +127,6 @@ function processLevelFiles() {
     const processed = processObject(data);
     fs.writeFileSync(manifestPath, JSON.stringify(processed, null, 2), 'utf-8');
     console.log(`✓ Updated levels-manifest.json`);
-  }
-
-  // Process generated game files in levels-games folder (legacy)
-  if (fs.existsSync(levelsGamesDir)) {
-    const files = fs.readdirSync(levelsGamesDir).filter(f => f.endsWith('.json') && !f.includes('schema'));
-    
-    for (const file of files) {
-      const filePath = path.join(levelsGamesDir, file);
-      console.log(`Processing ${file}...`);
-      
-      const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-      
-      // Process entire level object recursively (covers formulas in physicsDetails, exercises, etc.)
-      const processed = processObject(data);
-      
-      fs.writeFileSync(filePath, JSON.stringify(processed, null, 2), 'utf-8');
-      console.log(`✓ Updated ${file}`);
-    }
   }
 
   // Process new level-theory folder

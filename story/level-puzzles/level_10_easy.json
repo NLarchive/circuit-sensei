@@ -9,8 +9,7 @@
     "or",
     "nand",
     "nor",
-    "xor",
-    "mux2to1"
+    "xor"
   ],
   "inputs": 3,
   "targetTruthTable": [
@@ -100,6 +99,6 @@
   "hint": "MUX equation: Y = (A AND NOT S) OR (B AND S). When S=0, output A. When S=1, output B.",
   "title": "2:1 Multiplexer",
   "objective": "Select between two inputs",
-  "description": "Build a 2-to-1 multiplexer (MUX). The selector input S chooses which data input (A or B) passes to the output.",
+  "description": "Build a 2-to-1 multiplexer (MUX) from basic gates. The selector input S chooses which data input (A or B) passes to the output.",
   "physicsVisual": "mux_2to1_basic"
 }

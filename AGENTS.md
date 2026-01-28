@@ -144,11 +144,8 @@ story\level-theory\level_17.json
 story\level-theory\level_18.json
 story\level-theory\level_19.json
 story\level-theory\level_boss.json
-story\levels-games
 story\formulas.json
 story\glossary.json
-story\levels-difficulty-index.json
-story\levels-difficulty-index.schema.json
 story\levels-index.json
 story\levels-index.schema.json
 story\levels-manifest.json

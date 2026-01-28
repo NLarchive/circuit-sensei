@@ -233,7 +233,6 @@
 
 ### Schema Files
 - [story/levels-manifest.schema.json](story/levels-manifest.schema.json) - Manifest JSON Schema
-- [story/levels-difficulty-index.schema.json](story/levels-difficulty-index.schema.json) - Difficulty index schema
 
 ---
 

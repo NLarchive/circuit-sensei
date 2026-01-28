@@ -49,7 +49,7 @@ export class HUD {
                 </div>
                 <div class="nav-right-group">
                     <div class="mode-toggle">
-                        <button id="btn-mode-toggle" class="btn-mode active" title="Select/Move Mode">✋</button>
+                        <button id="btn-mode-toggle" class="btn-mode active" title="Wire Connection Mode">🔌</button>
                     </div>
                     <div class="zoom-controls desktop-only">
                         <button id="btn-zoom-out" class="btn secondary btn-small">−</button>
@@ -435,7 +435,7 @@ export class HUD {
 
         // Mode Toggle
         // Fused Mode Toggle (Hand/Wire)
-        let currentMode = 'select';
+        let currentMode = 'wire';
         const modeToggleBtn = document.getElementById('btn-mode-toggle');
         const modeIcons = { select: '✋', wire: '🔌' };
         const modeTitles = { select: 'Select/Move Mode', wire: 'Wire Connection Mode' };
@@ -449,8 +449,11 @@ export class HUD {
             updateModeButton();
             globalEvents.emit('INTERACTION_MODE_CHANGED', { mode: currentMode });
         });
-        // Set initial state
+        // Set initial state (default to connector/wire mode)
         updateModeButton();
+        window.interactionMode = currentMode;
+        // Notify listeners so InputHandler, CanvasRenderer, etc. sync to the initial mode
+        globalEvents.emit('INTERACTION_MODE_CHANGED', { mode: currentMode });
 
         // Help Button - show level intro/help for current mode
         document.getElementById('btn-help').addEventListener('click', () => {
@@ -648,7 +651,8 @@ export class HUD {
                 nextBtn.disabled = true;
                 nextBtn.style.display = data.level.targetTruthTable ? '' : 'none';
             } else {
-                nextBtn.disabled = true;
+                // STORY mode: enable only if current level/variant is completed
+                this.updateNextButtonState();
                 nextBtn.style.display = '';
                 nextBtn.innerText = 'Next';
             }
@@ -687,8 +691,8 @@ export class HUD {
                     this.showMessage(`Custom puzzle solved! Score: ${data.score}%`, 'success');
                     nextBtn.disabled = false;
                 } else {
+                    // STORY mode: don't enable next button on verification, only on completion
                     this.showMessage(`Success! Score: ${data.score}%`, 'success');
-                    nextBtn.disabled = false;
                 }
             } else {
                 this.showMessage(`Failed. ${data.failedCases.length} incorrect cases.`, 'error');
@@ -696,7 +700,7 @@ export class HUD {
         });
         
         globalEvents.on(Events.LEVEL_COMPLETE, () => {
-             document.getElementById('btn-next').disabled = false;
+            this.updateNextButtonState();
         });
 
         globalEvents.on(Events.ZOOM_CHANGED, (data) => {
@@ -755,6 +759,7 @@ export class HUD {
                     inlineSel.classList.remove('badge-easy','badge-medium','badge-hard');
                     inlineSel.classList.add(`badge-${v}`);
                     gameManager.loadLevel(gameManager.currentLevelIndex, v, { showIntro: false });
+                    this.updateNextButtonState();
                 };
             }
         } else {
@@ -770,6 +775,22 @@ export class HUD {
         if (this.navbar) {
             document.documentElement.style.setProperty('--navbar-height', `${this.navbar.offsetHeight}px`);
         }
+    }
+
+    /**
+     * Update the next button enabled state based on current variant completion
+     */
+    updateNextButtonState() {
+        const nextBtn = document.getElementById('btn-next');
+        if (!nextBtn || gameManager.mode === 'SANDBOX') return;
+
+        const level = gameManager.currentLevel;
+        if (!level) return;
+
+        const completedLevels = gameManager.progress.completedLevels[level.id] || {};
+        const isCompleted = completedLevels[gameManager.currentVariant] === true;
+
+        nextBtn.disabled = !isCompleted;
     }
 
     updateToolbox(gates) {
@@ -1179,6 +1200,33 @@ export class HUD {
         return category
             .replace(/_/g, ' ')
             .replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    /**
+     * Show roadmap with loading message during initial load
+     */
+    showLoadingRoadmap() {
+        const overlay = document.getElementById('roadmap-overlay');
+        const tiersContainer = document.getElementById('roadmap-tiers');
+        const xpDisplay = document.getElementById('roadmap-xp');
+        
+        if (!overlay || !tiersContainer) return;
+        
+        // Show loading content
+        tiersContainer.innerHTML = `
+            <div class="loading-roadmap">
+                <div class="loading-spinner"></div>
+                <h2>Loading Logic Architect...</h2>
+                <p>Preparing your journey through digital logic</p>
+            </div>
+        `;
+        
+        if (xpDisplay) {
+            xpDisplay.innerText = 'Loading...';
+        }
+        
+        // Show the overlay
+        overlay.classList.remove('hidden');
     }
 
     /**

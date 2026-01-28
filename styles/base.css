@@ -46,19 +46,50 @@ body.app-loading #sidebar {
   transition: opacity 200ms ease-in-out;
 }
 
-/* Optional: show a simple static roadmap placeholder while loading */
-body.app-loading .roadmap-placeholder {
-  display: block;
+/* Show roadmap overlay during loading to provide immediate visual feedback */
+body.app-loading #roadmap-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
-.roadmap-placeholder {
+/* Hide canvas during loading to prioritize text content */
+body.app-loading #circuit-canvas {
   display: none;
-  position: fixed;
-  inset: 0;
-  background: var(--bg-color);
+}
+
+/* Loading roadmap styles */
+.loading-roadmap {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-roadmap h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-color);
+}
+
+.loading-roadmap p {
+  margin: 0;
   color: var(--text-muted);
-  font-size: 1.125rem;
 }

@@ -72,7 +72,7 @@
     }
   ],
   "maxGates": 2,
-  "xpReward": 145,
+  "xpReward": 155,
   "hint": "Connect Q_NOT back to D to make a toggle flip-flop. Output Q changes state on every clock edge, producing a half-frequency signal.",
   "title": "Frequency Divider",
   "objective": "Divide clock by 2",

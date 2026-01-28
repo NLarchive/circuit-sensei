@@ -11,7 +11,7 @@
     "migrate": "node .scripts/migrate_to_manifest.js",
     "validate:manifest": "node .scripts/validate_generated.js",
     "dev": "vite --no-open --clearScreen false",
-    "build": "npm run generate && npm run prerender && vite build && node .scripts/post_build_copy.cjs",
+    "build": "npm run prerender && vite build && node .scripts/post_build_copy.cjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",

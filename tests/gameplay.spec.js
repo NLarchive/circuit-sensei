@@ -409,7 +409,7 @@ test.describe("Level Intro + Physics Overlays", () => {
     // Check that level metadata declares a visual so we know this level should have a visualization
     const hasVisualDeclared = await page.evaluate(async () => {
       try {
-        const resp = await fetch('/story/levels-games/level_01_medium.json');
+        const resp = await fetch('/story/level-theory/level_01.json');
         if (!resp.ok) return false;
         const level = await resp.json();
         if (!level) return false;
@@ -593,6 +593,28 @@ test.describe("Verify/Next Progression", () => {
     // Second level should now be unlocked
     const secondLevel = page.locator(".roadmap-level").nth(2);
     await expect(secondLevel).not.toHaveClass(/locked/);
+  });
+
+  test("returning to roadmap via completion modal shows updated progress", async ({ page }) => {
+    // Solve level 1 and wait for completion modal
+    await page.locator('.roadmap-level').nth(1).locator('.level-left').click();
+    await startLevelFromIntro(page);
+
+    await page.evaluate(() => window.gameManager.completeLevel(100));
+
+    // Completion modal should appear
+    await expect(page.locator('#completion-modal')).not.toHaveClass(/hidden/);
+
+    // Click back to roadmap from the modal
+    await page.click('#btn-completion-roadmap');
+
+    // Roadmap should reappear and reflect progress (XP > 0 and filled star)
+    await expect(page.locator('#roadmap-overlay')).not.toHaveClass(/hidden/);
+    const xpText = await page.locator('#roadmap-xp').textContent();
+    expect(parseInt(xpText || '0')).toBeGreaterThan(0);
+
+    const firstLevel = page.locator('.roadmap-level').nth(1);
+    await expect(firstLevel.locator('.difficulty-star.filled')).toHaveCount(1);
   });
 });
 

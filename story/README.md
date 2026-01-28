@@ -26,13 +26,8 @@ story/
 │   ├── level_01_hard.json        # Wire puzzle (hard)
 │   └── ...                       # 60 puzzle files (3 per level × 20 levels)
 │
-├── level-media/                  # 🎵 Media assets (future: music, backgrounds)
-│   └── (empty - reserved)
-│
-├── levels-games/                 # Legacy: Generated variant files (from manifest)
-│   └── level_XX_variant.json     # Used by old StoryLoader
-│
-└── levels-difficulty-index.json  # XP totals per difficulty
+└── level-media/                  # 🎵 Media assets (future: music, backgrounds)
+    └── (empty - reserved)
 ```
 
 ## Separation of Concerns

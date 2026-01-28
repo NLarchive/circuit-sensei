@@ -524,7 +524,9 @@ export class HUD {
             // Keep the overlay up and swap to Level 1 intro after loading.
             if (gameManager.currentLevelIndex === 0) {
                 gameManager.completeLevel(100);
-                gameManager.loadLevel(1);
+                const levelId = gameManager.levels[1].id;
+                const variant = gameManager.getLowestUncompletedVariant(levelId) || 'easy';
+                gameManager.loadLevel(1, variant);
                 return;
             }
 
@@ -579,9 +581,13 @@ export class HUD {
             const levelBtn = e.target.closest('.roadmap-level');
             if (levelBtn && !levelBtn.classList.contains('locked')) {
                 const levelIndex = parseInt(levelBtn.dataset.levelIndex);
-                // Determine selected variant (if any)
+                // Determine lowest uncompleted variant for this level
+                const levelId = gameManager.levels[levelIndex].id;
+                const variant = gameManager.getLowestUncompletedVariant(levelId) || 'easy';
+
+                // Update the select to reflect the chosen variant
                 const select = levelBtn.querySelector('.variant-select');
-                const variant = select ? select.value : 'easy';
+                if (select) select.value = variant;
 
                 // Show the intro overlay immediately, before loading the level
                 const introOverlay = document.getElementById('level-intro-overlay');

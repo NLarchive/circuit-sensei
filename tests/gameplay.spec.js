@@ -259,6 +259,35 @@ test.describe("Story Roadmap Navigation", () => {
     await expect(page.locator('#completion-modal')).toHaveClass(/hidden/);
   });
 
+  test("clicking a level from roadmap loads the lowest uncompleted difficulty variant", async ({ page }) => {
+    // Click on Level 1 from roadmap
+    const level1 = page.locator('.roadmap-level').nth(1);
+    await level1.locator('.level-left').click();
+
+    // Wait for level to load
+    await page.waitForFunction(() => window.gameManager && window.gameManager.currentLevelIndex === 1, { timeout: 5000 });
+
+    // Check that the loaded variant is the lowest uncompleted (should be 'easy' since none completed)
+    const currentVariant = await page.evaluate(() => window.gameManager.currentVariant);
+    expect(currentVariant).toBe('easy'); // Assuming no progress, easy is lowest
+
+    // Now complete easy, then click on level 1 again to see if it loads medium
+    await page.evaluate(() => window.gameManager.completeLevel(100));
+
+    // Go back to roadmap
+    await page.click('#btn-back-to-roadmap');
+
+    // Click Level 1 again
+    await level1.locator('.level-left').click();
+
+    // Wait for level to load
+    await page.waitForFunction(() => window.gameManager && window.gameManager.currentLevelIndex === 1, { timeout: 5000 });
+
+    // Now should load 'medium' as lowest uncompleted
+    const newVariant = await page.evaluate(() => window.gameManager.currentVariant);
+    expect(newVariant).toBe('medium');
+  });
+
   test("when completing a variant, Next loads the lowest uncompleted difficulty on the next level", async ({ page }) => {
     // Start Level 1 (first playable level)
     const level1 = page.locator('.roadmap-level').nth(1);
@@ -298,6 +327,16 @@ test.describe("Story Roadmap Navigation", () => {
     await page.evaluate(() => window.gameManager.completeLevel(100));
     // Ensure HUD Next enabled
     await expect(page.locator('#btn-next')).toBeEnabled({ timeout: 5000 });
+
+    // Close/hide completion modal if it's open (it can intercept pointer events)
+    const closeBtn = page.locator('#btn-completion-roadmap');
+    if (await closeBtn.count() > 0) {
+      await closeBtn.click();
+    } else {
+      // Fallback: click backdrop
+      await page.click('#completion-modal');
+    }
+    await expect(page.locator('#completion-modal')).toHaveClass(/hidden/);
 
     // Click HUD Next
     await page.click('#btn-next');

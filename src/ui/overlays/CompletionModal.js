@@ -270,6 +270,13 @@ class CompletionModalClass {
         this.init();
 
         const level = gameManager.currentLevel;
+
+        // Do not show completion modal for the introductory landing level (level_00)
+        if (level && level.id === 'level_00') {
+            // Silently ignore showing a completion popup for the intro index page
+            return;
+        }
+
         const score = data.score || 100;
         const xp = data.xp || level?.xpReward || 0;
         

@@ -86,23 +86,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Show loading roadmap immediately for better perceived performance
     hud.showLoadingRoadmap();
-    
+
+    // Ensure canvas has a usable buffer early
+    renderer.ensureReady && renderer.ensureReady();
+
     // Start Game (async loading)
     try {
         const initPromise = gameManager.init();
         
         // Wait for game data to load
         await initPromise;
-        
-        // Data loaded - now show full UI and start simulation
+
+        // Populate roadmap with real data
+        hud.showRoadmap && hud.showRoadmap();
+
+
+
+        // Reveal navbar and main UI skeleton (roadmap/intro overlays remain visible)
         document.body.classList.remove('app-loading');
 
-        // Ensure canvas is properly sized now that it's visible
+        // Resize canvas now layout is visible and start renderer
         renderer.resize();
-        
-        // Start Render Loop after UI is visible
         renderer.start();
-        
+
         // Start Simulation Loop (Physics/Timing)
         let simulationPaused = false;
         globalEvents.on(Events.SIMULATION_PAUSED, () => {

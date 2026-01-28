@@ -53,9 +53,11 @@ body.app-loading #roadmap-overlay {
   pointer-events: auto;
 }
 
-/* Hide canvas during loading to prioritize text content */
+/* Ensure canvas remains available during loading so it can be sized (avoid 0x0) */
 body.app-loading #circuit-canvas {
-  display: none;
+  /* Keep canvas present and measurable; overlay sits on top during loading */
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Loading roadmap styles */

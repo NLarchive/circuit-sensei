@@ -1771,6 +1771,23 @@
     },
     {
       "task_id": 113,
+      "task_name": "Hide Completion Modal for Intro Level 00",
+      "description": "Prevent the level completion modal from appearing when the user completes or triggers completion on the introductory index/landing level (level_00). This ensures the intro landing page does not show a completion popup.",
+      "start_date": "2026-01-28",
+      "end_date": "2026-01-28",
+      "priority": "Low",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.25,
+      "actual_hours": 0.25,
+      "is_critical_path": false,
+      "tags": ["ui", "bugfix", "levels"],
+      "category_name": "UI/UX",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": []
+    },
+    {
+      "task_id": 113,
       "task_name": "GitHub Pages Deployment via Actions (No dist commit)",
       "description": "Enable GitHub Pages deployment using GitHub Actions so the build output (dist/) does not need to be committed to the repository. Added a dedicated Pages workflow that runs npm ci + npm run build and deploys dist/ as a Pages artifact. Added Vite base path configuration for Pages subpath hosting and updated CI triggers to run on both master/main.",
       "start_date": "2026-01-25",
@@ -1972,6 +1989,23 @@
       "category_name": "Infrastructure",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 123, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 125,
+      "task_name": "Enforce loading sequence: roadmap → navbar → main-view (no auto intro)",
+      "description": "Ensure the app renders in the order roadmap, then reveals the main UI (navbar and main-view). Removed automatic level intro auto-show on homepage (intro now requires explicit user interaction). Implemented CSS fix to keep canvas measurable during loading, added CanvasRenderer.ensureReady(), reset transform in setupCanvas, removed auto-show code from index.js, and updated tests/tests/loading-order.spec.js to assert no auto intro and validate canvas sizing.",
+      "start_date": "2026-01-28",
+      "end_date": "2026-01-28",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": ["ux", "loading", "testing"],
+      "category_name": "UI/UX",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": [{ "predecessor_task_id": 124, "type": "FS", "lag_days": 0 }]
     }
   ],
   "required_fields": [

@@ -58,12 +58,27 @@ export class CanvasRenderer {
         this.width = rect.width;
         this.height = rect.height;
         
-        this.canvas.width = rect.width * dpr;
-        this.canvas.height = rect.height * dpr;
+        this.canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        this.canvas.height = Math.max(1, Math.round(rect.height * dpr));
+        // Reset transform to avoid cumulative scaling on repeated calls
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.ctx.scale(dpr, dpr);
         
         this.canvas.style.width = rect.width + 'px';
         this.canvas.style.height = rect.height + 'px';
+    }
+
+    /**
+     * Ensure canvas has been initialized and drawn once (safe, idempotent)
+     */
+    ensureReady() {
+        try {
+            this.setupCanvas();
+            // One-off clear to initialize backing buffer
+            this.clear();
+        } catch (err) {
+            console.warn('CanvasRenderer.ensureReady failed', err);
+        }
     }
 
     /**

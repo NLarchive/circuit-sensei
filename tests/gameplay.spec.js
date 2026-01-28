@@ -238,6 +238,27 @@ test.describe("Story Roadmap Navigation", () => {
     expect(newStartBtnText).not.toContain("Go to Level 1");
   });
 
+  test("should not show completion modal when completing Level 00 (intro)", async ({ page }) => {
+    // Click first level (Level 00)
+    const firstLevel = page.locator('.roadmap-level').first();
+    await expect(firstLevel).toBeVisible({ timeout: 10000 });
+    await firstLevel.locator('.level-left').click();
+
+    // Wait for intro overlay to appear
+    await expect(page.locator('#level-intro-overlay')).not.toHaveClass(/hidden/, { timeout: 5000 });
+
+    // Ensure current level is level_00
+    const currentLevelId = await page.evaluate(() => window.gameManager?.currentLevel?.id);
+    expect(currentLevelId).toBe('level_00');
+
+    // Trigger completion programmatically
+    await page.evaluate(() => window.gameManager.completeLevel(100));
+
+    // Completion modal should NOT appear for level_00
+    await page.waitForTimeout(200); // allow any UI handlers to run
+    await expect(page.locator('#completion-modal')).toHaveClass(/hidden/);
+  });
+
   test("should show info overlay for regular levels before gameplay", async ({ page }) => {
     // Find Level 1 - it should be the second button (first is Level 00)
     const allLevels = page.locator('.roadmap-level');

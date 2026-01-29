@@ -69,7 +69,7 @@ export class GameManager {
             const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
             const [gatesRes, storyData] = await Promise.all([
                 fetch(`${base}data/gates.json`),
-                StoryLoader.loadStoryData()
+                StoryLoader.loadStoryData(false, false)
             ]);
 
             this.gates = await gatesRes.json();
@@ -177,7 +177,7 @@ export class GameManager {
      * Load a level by index or ID and optionally select a variant (original|easy|hard)
      * options: { showIntro: true|false }
      */
-    loadLevel(levelIdOrIndex, variant = 'easy', options = {}) {
+    async loadLevel(levelIdOrIndex, variant = 'easy', options = {}) {
         let baseLevel;
 
         if (typeof levelIdOrIndex === 'number') {
@@ -191,6 +191,20 @@ export class GameManager {
         if (!baseLevel) {
             console.error('Level not found:', levelIdOrIndex);
             return false;
+        }
+
+        // Load theory if not already loaded
+        if (!baseLevel.introText) {
+            const fullLevel = await StoryLoader.loadLevel(baseLevel.id, true);
+            if (fullLevel) {
+                // Merge theory into baseLevel
+                Object.assign(baseLevel, fullLevel);
+                // Update in this.levels
+                const index = this.levels.indexOf(baseLevel);
+                if (index >= 0) {
+                    this.levels[index] = baseLevel;
+                }
+            }
         }
 
         // If variant available, merge it on top of the base level.

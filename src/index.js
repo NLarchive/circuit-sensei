@@ -8,6 +8,7 @@ import { analytics } from './utils/Analytics.js';
 import { KeyboardManager } from './ui/controls/KeyboardManager.js';
 import { CompletionModal } from './ui/overlays/CompletionModal.js';
 import { DataLoader } from './utils/DataLoader.js';
+import { StoryLoader } from './utils/StoryLoader.js';
 import { MusicController } from './audio/MusicController.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -99,6 +100,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Populate roadmap with real data
         hud.showRoadmap && hud.showRoadmap();
+
+        // Load level variants in background for XP calculation
+        StoryLoader.loadAllVariants().then(variants => {
+            gameManager.levelVariants = variants;
+            // Update roadmap XP if needed
+            hud.showRoadmap && hud.showRoadmap();
+        }).catch(e => console.warn('Failed to load variants:', e));
 
 
 

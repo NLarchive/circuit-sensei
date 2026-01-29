@@ -123,13 +123,17 @@ export class StoryLoader {
      * Returns merged theory + base puzzle data
      * @param {string} levelId - Base level ID (e.g., 'level_01')
      */
-    static async loadLevel(levelId) {
+    static async loadLevel(levelId, loadTheory = true) {
         try {
             const index = await this.loadIndex();
             if (!index) return null;
             
             const entry = index.levels.find(l => l.id === levelId);
             if (!entry) return null;
+            
+            if (!loadTheory) {
+                return entry;
+            }
             
             // Load theory
             const theory = await this.loadTheory(levelId);
@@ -155,14 +159,14 @@ export class StoryLoader {
      * Load all levels (in order) from the index
      * Returns full level data (index + theory)
      */
-    static async loadAllLevels() {
+    static async loadAllLevels(loadTheory = true) {
         try {
             const index = await this.loadIndex();
             if (!index) return [];
             
             // Load all levels with their theory
             const levels = await Promise.all(
-                index.levels.map(entry => this.loadLevel(entry.id))
+                index.levels.map(entry => this.loadLevel(entry.id, loadTheory))
             );
             
             return levels.filter(l => l !== null);
@@ -275,18 +279,20 @@ export class StoryLoader {
     /**
      * Load complete story data (tiers + levels + variants)
      */
-    static async loadStoryData() {
+    static async loadStoryData(loadTheory = true, loadVariants = true) {
         const [tiers, levels] = await Promise.all([
             this.loadTiers(),
-            this.loadAllLevels()
+            this.loadAllLevels(loadTheory)
         ]);
 
-        // Extract variants for each level
-        const variants = {};
-        for (const lvl of levels) {
-            if (!lvl || !lvl.id) continue;
-            const v = await this.loadLevelVariants(lvl.id);
-            if (v && Object.keys(v).length) variants[lvl.id] = v;
+        let variants = {};
+        if (loadVariants) {
+            // Extract variants for each level
+            for (const lvl of levels) {
+                if (!lvl || !lvl.id) continue;
+                const v = await this.loadLevelVariants(lvl.id);
+                if (v && Object.keys(v).length) variants[lvl.id] = v;
+            }
         }
 
         return { tiers, levels, variants };
@@ -306,12 +312,18 @@ export class StoryLoader {
     }
 
     /**
-     * Clear all caches (useful for hot-reloading during development)
+     * Load all level variants (for deferred loading)
      */
-    static clearCache() {
-        this._indexCache = null;
-        this._theoryCache.clear();
-        this._puzzleCache.clear();
-        this._manifestCache = null;
+    static async loadAllVariants() {
+        const index = await this.loadIndex();
+        if (!index) return {};
+
+        const variants = {};
+        for (const entry of index.levels) {
+            if (!entry.puzzleFiles) continue;
+            const v = await this.loadLevelVariants(entry.id);
+            if (v && Object.keys(v).length) variants[entry.id] = v;
+        }
+        return variants;
     }
 }

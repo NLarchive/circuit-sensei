@@ -364,6 +364,26 @@ export class GameManager {
     }
 
     /**
+     * Get the lowest (easiest) uncompleted variant for a base level id.
+     * If all variants are completed, returns the highest available variant.
+     */
+    getLowestUncompletedVariant(levelId) {
+        if (!levelId || !this.levelVariants) return 'easy';
+        const variants = this.levelVariants[levelId] || {};
+        const completed = (this.progress.completedLevels && this.progress.completedLevels[levelId]) || {};
+        const order = ['easy','medium','hard'];
+        for (const v of order) {
+            if (variants[v] && !completed[v]) return v;
+        }
+        // All variants completed - return highest available variant
+        const reverseOrder = ['hard','medium','easy'];
+        for (const v of reverseOrder) {
+            if (variants[v]) return v;
+        }
+        return 'easy';
+    }
+
+    /**
      * Restart current level
      */
     restartLevel() {

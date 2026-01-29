@@ -524,9 +524,7 @@ export class HUD {
             // Keep the overlay up and swap to Level 1 intro after loading.
             if (gameManager.currentLevelIndex === 0) {
                 gameManager.completeLevel(100);
-                const levelId = gameManager.levels[1].id;
-                const variant = gameManager.getLowestUncompletedVariant(levelId) || 'easy';
-                gameManager.loadLevel(1, variant);
+                gameManager.loadLevel(1);
                 return;
             }
 
@@ -581,13 +579,9 @@ export class HUD {
             const levelBtn = e.target.closest('.roadmap-level');
             if (levelBtn && !levelBtn.classList.contains('locked')) {
                 const levelIndex = parseInt(levelBtn.dataset.levelIndex);
-                // Determine lowest uncompleted variant for this level
-                const levelId = gameManager.levels[levelIndex].id;
-                const variant = gameManager.getLowestUncompletedVariant(levelId) || 'easy';
-
-                // Update the select to reflect the chosen variant
+                // Determine selected variant (if any)
                 const select = levelBtn.querySelector('.variant-select');
-                if (select) select.value = variant;
+                const variant = select ? select.value : 'easy';
 
                 // Show the intro overlay immediately, before loading the level
                 const introOverlay = document.getElementById('level-intro-overlay');
@@ -618,13 +612,7 @@ export class HUD {
             if (gameManager.mode === 'ENDLESS') {
                 gameManager.nextEndlessChallenge();
             } else {
-                // When advancing via HUD Next, pick the lowest uncompleted variant for the next level
-                const nextIndex = gameManager.currentLevelIndex + 1;
-                if (nextIndex < gameManager.levels.length) {
-                    const nextLevelId = gameManager.levels[nextIndex].id;
-                    const variant = gameManager.getLowestUncompletedVariant(nextLevelId) || (gameManager.currentVariant || 'easy');
-                    gameManager.loadLevel(nextIndex, variant, { showIntro: true });
-                }
+                gameManager.nextLevel();
             }
         });
 

@@ -274,6 +274,15 @@ test.describe("Story Roadmap Navigation", () => {
     // Now complete easy, then click on level 1 again to see if it loads medium
     await page.evaluate(() => window.gameManager.completeLevel(100));
 
+    // Close completion modal
+    const closeBtn = page.locator('#btn-completion-roadmap');
+    if (await closeBtn.count() > 0) {
+      await closeBtn.click();
+    } else {
+      await page.click('#completion-modal');
+    }
+    await expect(page.locator('#completion-modal')).toHaveClass(/hidden/);
+
     // Go back to roadmap
     await page.click('#btn-back-to-roadmap');
 
@@ -879,5 +888,59 @@ test.describe("Mode Switching", () => {
     });
     await expect(page.locator("#roadmap-overlay")).not.toHaveClass(/hidden/);
     await expect(page.locator('.tab-btn[data-mode="STORY"]')).toHaveClass(/active/);
+  });
+
+  test("roadmap variant-select pre-selects lowest uncompleted difficulty variant", async ({ page }) => {
+    // Ensure roadmap is visible
+    await expect(page.locator("#roadmap-overlay")).not.toHaveClass(/hidden/);
+    
+    // Get the first level with variants (level 1)
+    const level1 = page.locator('.roadmap-level').nth(1);
+    const variantSelect = level1.locator('.variant-select');
+    
+    // Check that variant-select exists and has 'easy' selected (since no progress)
+    await expect(variantSelect).toBeVisible();
+    await expect(variantSelect).toHaveValue('easy');
+    
+    // Simulate completing easy variant for level 1
+    await page.evaluate(() => {
+      const gm = window.gameManager;
+      gm.progress.completedLevels = gm.progress.completedLevels || {};
+      gm.progress.completedLevels['level_01'] = gm.progress.completedLevels['level_01'] || {};
+      gm.progress.completedLevels['level_01'].easy = true;
+      gm.saveProgress();
+    });
+    
+    // Refresh roadmap
+    await page.evaluate(() => window.HUDRoadmap.showRoadmap());
+    
+    // Now variant-select should have 'medium' selected
+    await expect(variantSelect).toHaveValue('medium');
+    
+    // Complete medium too
+    await page.evaluate(() => {
+      const gm = window.gameManager;
+      gm.progress.completedLevels['level_01'].medium = true;
+      gm.saveProgress();
+    });
+    
+    // Refresh roadmap
+    await page.evaluate(() => window.HUDRoadmap.showRoadmap());
+    
+    // Now should have 'hard' selected
+    await expect(variantSelect).toHaveValue('hard');
+    
+    // Complete hard too
+    await page.evaluate(() => {
+      const gm = window.gameManager;
+      gm.progress.completedLevels['level_01'].hard = true;
+      gm.saveProgress();
+    });
+    
+    // Refresh roadmap
+    await page.evaluate(() => window.HUDRoadmap.showRoadmap());
+    
+    // Now all completed, should select 'hard' (highest)
+    await expect(variantSelect).toHaveValue('hard');
   });
 });

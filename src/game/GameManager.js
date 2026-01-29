@@ -355,32 +355,12 @@ export class GameManager {
     /**
      * Go to next level (preserves current difficulty variant)
      */
-    nextLevel(nextVariant = null) {
+    nextLevel() {
         if (this.currentLevelIndex < this.levels.length - 1) {
-            const variantToUse = nextVariant || this.currentVariant || 'original';
-            this.loadLevel(this.currentLevelIndex + 1, variantToUse);
+            this.loadLevel(this.currentLevelIndex + 1, this.currentVariant || 'original');
             return true;
         }
         return false;
-    }
-
-    /**
-     * Get the lowest (easiest) uncompleted variant for a base level id.
-     * Falls back to the first available variant or 'easy' if none found.
-     */
-    getLowestUncompletedVariant(levelId) {
-        if (!levelId || !this.levelVariants) return 'easy';
-        const variants = this.levelVariants[levelId] || {};
-        const completed = (this.progress.completedLevels && this.progress.completedLevels[levelId]) || {};
-        const order = ['easy','medium','hard'];
-        for (const v of order) {
-            if (variants[v] && !completed[v]) return v;
-        }
-        // No uncompleted variants found - return first available variant
-        for (const v of order) {
-            if (variants[v]) return v;
-        }
-        return 'easy';
     }
 
     /**

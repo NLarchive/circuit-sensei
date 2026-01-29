@@ -81,10 +81,7 @@ export const HUDRoadmap = {
         const hasVariants = Object.keys(variants).length > 0;
 
         const availableVariants = Object.keys(variants);
-        const savedSelected = (gameManager.progress.selectedVariants && gameManager.progress.selectedVariants[level.id]) || null;
-        const selectedForThisLevel = (gameManager.currentLevel && gameManager.currentLevel.id === level.id && gameManager.currentVariant && variants[gameManager.currentVariant])
-            ? gameManager.currentVariant
-            : (savedSelected && variants[savedSelected] ? savedSelected : (variants.easy ? 'easy' : availableVariants[0]));
+        const selectedForThisLevel = gameManager.getLowestUncompletedVariant(level.id);
         
         const variantSelect = hasVariants ? `
             <select class="variant-select badge-${selectedForThisLevel}" data-level-index="${level.index}" title="Select difficulty" aria-label="Difficulty for ${level.title}">

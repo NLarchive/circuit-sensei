@@ -8,5 +8,17 @@ export default defineConfig(() => {
     // GitHub Pages is hosted at https://<owner>.github.io/<repo>/
     // so assets must be built with that base path.
     base: isGitHubActions && repoName ? `/${repoName}/` : '/',
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            ui: ['src/ui/HUD.js', 'src/ui/CanvasRenderer.js', 'src/ui/InputHandler.js'],
+            core: ['src/core/Circuit.js', 'src/core/Gates.js'],
+            game: ['src/game/GameManager.js', 'src/game/EventBus.js'],
+            utils: ['src/utils/DataLoader.js', 'src/utils/StoryLoader.js', 'src/utils/Analytics.js']
+          }
+        }
+      }
+    }
   };
 });

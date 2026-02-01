@@ -18,7 +18,8 @@
       "description": "Welcome to Logic Architect - build a computer from first principles.",
       "isIndex": true,
       "theoryFile": "level-theory/level_00.json",
-      "puzzleFiles": null
+      "puzzleFiles": null,
+      "xpReward": 0
     },
     {
       "id": "level_01",
@@ -31,7 +32,8 @@
         "easy": "level-puzzles/level_01_easy.json",
         "medium": "level-puzzles/level_01_medium.json",
         "hard": "level-puzzles/level_01_hard.json"
-      }
+      },
+      "xpReward": 75
     },
     {
       "id": "level_02",
@@ -44,7 +46,8 @@
         "easy": "level-puzzles/level_02_easy.json",
         "medium": "level-puzzles/level_02_medium.json",
         "hard": "level-puzzles/level_02_hard.json"
-      }
+      },
+      "xpReward": 95
     },
     {
       "id": "level_03",
@@ -57,7 +60,8 @@
         "easy": "level-puzzles/level_03_easy.json",
         "medium": "level-puzzles/level_03_medium.json",
         "hard": "level-puzzles/level_03_hard.json"
-      }
+      },
+      "xpReward": 100
     },
     {
       "id": "level_04",
@@ -70,7 +74,8 @@
         "easy": "level-puzzles/level_04_easy.json",
         "medium": "level-puzzles/level_04_medium.json",
         "hard": "level-puzzles/level_04_hard.json"
-      }
+      },
+      "xpReward": 110
     },
     {
       "id": "level_05",
@@ -83,7 +88,8 @@
         "easy": "level-puzzles/level_05_easy.json",
         "medium": "level-puzzles/level_05_medium.json",
         "hard": "level-puzzles/level_05_hard.json"
-      }
+      },
+      "xpReward": 120
     },
     {
       "id": "level_06",
@@ -96,7 +102,8 @@
         "easy": "level-puzzles/level_06_easy.json",
         "medium": "level-puzzles/level_06_medium.json",
         "hard": "level-puzzles/level_06_hard.json"
-      }
+      },
+      "xpReward": 170
     },
     {
       "id": "level_07",
@@ -109,7 +116,8 @@
         "easy": "level-puzzles/level_07_easy.json",
         "medium": "level-puzzles/level_07_medium.json",
         "hard": "level-puzzles/level_07_hard.json"
-      }
+      },
+      "xpReward": 170
     },
     {
       "id": "level_08",
@@ -122,7 +130,8 @@
         "easy": "level-puzzles/level_08_easy.json",
         "medium": "level-puzzles/level_08_medium.json",
         "hard": "level-puzzles/level_08_hard.json"
-      }
+      },
+      "xpReward": 180
     },
     {
       "id": "level_09",
@@ -135,7 +144,8 @@
         "easy": "level-puzzles/level_09_easy.json",
         "medium": "level-puzzles/level_09_medium.json",
         "hard": "level-puzzles/level_09_hard.json"
-      }
+      },
+      "xpReward": 220
     },
     {
       "id": "level_10",
@@ -148,7 +158,8 @@
         "easy": "level-puzzles/level_10_easy.json",
         "medium": "level-puzzles/level_10_medium.json",
         "hard": "level-puzzles/level_10_hard.json"
-      }
+      },
+      "xpReward": 255
     },
     {
       "id": "level_11",
@@ -161,7 +172,8 @@
         "easy": "level-puzzles/level_11_easy.json",
         "medium": "level-puzzles/level_11_medium.json",
         "hard": "level-puzzles/level_11_hard.json"
-      }
+      },
+      "xpReward": 290
     },
     {
       "id": "level_12",
@@ -174,7 +186,8 @@
         "easy": "level-puzzles/level_12_easy.json",
         "medium": "level-puzzles/level_12_medium.json",
         "hard": "level-puzzles/level_12_hard.json"
-      }
+      },
+      "xpReward": 315
     },
     {
       "id": "level_13",
@@ -187,7 +200,8 @@
         "easy": "level-puzzles/level_13_easy.json",
         "medium": "level-puzzles/level_13_medium.json",
         "hard": "level-puzzles/level_13_hard.json"
-      }
+      },
+      "xpReward": 350
     },
     {
       "id": "level_14",
@@ -200,7 +214,8 @@
         "easy": "level-puzzles/level_14_easy.json",
         "medium": "level-puzzles/level_14_medium.json",
         "hard": "level-puzzles/level_14_hard.json"
-      }
+      },
+      "xpReward": 360
     },
     {
       "id": "level_15",
@@ -213,7 +228,8 @@
         "easy": "level-puzzles/level_15_easy.json",
         "medium": "level-puzzles/level_15_medium.json",
         "hard": "level-puzzles/level_15_hard.json"
-      }
+      },
+      "xpReward": 420
     },
     {
       "id": "level_16",
@@ -226,7 +242,8 @@
         "easy": "level-puzzles/level_16_easy.json",
         "medium": "level-puzzles/level_16_medium.json",
         "hard": "level-puzzles/level_16_hard.json"
-      }
+      },
+      "xpReward": 465
     },
     {
       "id": "level_17",
@@ -239,7 +256,8 @@
         "easy": "level-puzzles/level_17_easy.json",
         "medium": "level-puzzles/level_17_medium.json",
         "hard": "level-puzzles/level_17_hard.json"
-      }
+      },
+      "xpReward": 525
     },
     {
       "id": "level_18",
@@ -252,7 +270,8 @@
         "easy": "level-puzzles/level_18_easy.json",
         "medium": "level-puzzles/level_18_medium.json",
         "hard": "level-puzzles/level_18_hard.json"
-      }
+      },
+      "xpReward": 670
     },
     {
       "id": "level_19",
@@ -265,7 +284,8 @@
         "easy": "level-puzzles/level_19_easy.json",
         "medium": "level-puzzles/level_19_medium.json",
         "hard": "level-puzzles/level_19_hard.json"
-      }
+      },
+      "xpReward": 1000
     },
     {
       "id": "level_boss",
@@ -278,7 +298,8 @@
         "easy": "level-puzzles/level_boss_easy.json",
         "medium": "level-puzzles/level_boss_medium.json",
         "hard": "level-puzzles/level_boss_hard.json"
-      }
+      },
+      "xpReward": 3000
     }
   ]
 }

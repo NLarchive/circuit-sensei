@@ -147,6 +147,7 @@ function processLevelFiles() {
   }
 
   // Process new level-puzzles folder
+  let _variantsSummary = {};
   if (fs.existsSync(levelPuzzlesDir)) {
     console.log(`\nProcessing level-puzzles folder...`);
     const files = fs.readdirSync(levelPuzzlesDir).filter(f => f.endsWith('.json'));
@@ -160,6 +161,30 @@ function processLevelFiles() {
       
       fs.writeFileSync(filePath, JSON.stringify(processed, null, 2), 'utf-8');
       console.log(`✓ Updated ${file}`);
+
+      // Collect variants summary (group by baseId from filename or baseId field)
+      try {
+        const baseId = processed.baseId || (processed.id && processed.id.split('_')[0]);
+        const variant = processed.variant || (processed.id && processed.id.split('_').slice(-1)[0]);
+        if (baseId && variant) {
+          if (!_variantsSummary[baseId]) _variantsSummary[baseId] = {};
+          _variantsSummary[baseId][variant] = {
+            xpReward: processed.xpReward || 0,
+            title: processed.title || null
+          };
+        }
+      } catch (e) {
+        // ignore malformed puzzle files
+      }
+    }
+
+    // Write the summary file (lightweight, used by roadmap)
+    try {
+      const summaryPath = path.join(storyDir, 'variants-summary.json');
+      fs.writeFileSync(summaryPath, JSON.stringify(_variantsSummary, null, 2), 'utf-8');
+      console.log(`\n✓ Generated variants summary: ${summaryPath}`);
+    } catch (err) {
+      console.warn('Could not write variants-summary.json:', err.message);
     }
   }
 }

@@ -1,0 +1,282 @@
+{
+  "level_01": {
+    "easy": {
+      "xpReward": 10,
+      "title": "The Simple Wire"
+    },
+    "hard": {
+      "xpReward": 40,
+      "title": "Signal Fan-Out"
+    },
+    "medium": {
+      "xpReward": 25,
+      "title": "Dual Wire Bus"
+    }
+  },
+  "level_02": {
+    "easy": {
+      "xpReward": 15,
+      "title": "Transistor as Switch"
+    },
+    "hard": {
+      "xpReward": 50,
+      "title": "CMOS Logic: AND-OR-INVERT (AOI)"
+    },
+    "medium": {
+      "xpReward": 30,
+      "title": "NAND from Transistors"
+    }
+  },
+  "level_03": {
+    "easy": {
+      "xpReward": 20,
+      "title": "The Inverter (NOT Gate)"
+    },
+    "hard": {
+      "xpReward": 50,
+      "title": "Controlled Inverter"
+    },
+    "medium": {
+      "xpReward": 30,
+      "title": "Double Negation"
+    }
+  },
+  "level_04": {
+    "easy": {
+      "xpReward": 25,
+      "title": "The AND Gate"
+    },
+    "hard": {
+      "xpReward": 50,
+      "title": "Build NAND Gate"
+    },
+    "medium": {
+      "xpReward": 35,
+      "title": "3-Input AND (Cascade)"
+    }
+  },
+  "level_05": {
+    "easy": {
+      "xpReward": 25,
+      "title": "The OR Gate"
+    },
+    "hard": {
+      "xpReward": 60,
+      "title": "Majority Gate (2-of-3 Voting)"
+    },
+    "medium": {
+      "xpReward": 35,
+      "title": "3-Input OR (Cascade)"
+    }
+  },
+  "level_06": {
+    "easy": {
+      "xpReward": 30,
+      "title": "The NAND Gate"
+    },
+    "hard": {
+      "xpReward": 85,
+      "title": "NAND Universality Proof"
+    },
+    "medium": {
+      "xpReward": 55,
+      "title": "NOR: The Other Universal"
+    }
+  },
+  "level_07": {
+    "easy": {
+      "xpReward": 40,
+      "title": "NOT from NAND"
+    },
+    "hard": {
+      "xpReward": 75,
+      "title": "XOR from NAND Only"
+    },
+    "medium": {
+      "xpReward": 55,
+      "title": "AND from NAND"
+    }
+  },
+  "level_08": {
+    "easy": {
+      "xpReward": 45,
+      "title": "The XOR Gate"
+    },
+    "hard": {
+      "xpReward": 75,
+      "title": "Parity Generator (3-bit)"
+    },
+    "medium": {
+      "xpReward": 60,
+      "title": "XNOR: Equality Detector"
+    }
+  },
+  "level_09": {
+    "easy": {
+      "xpReward": 60,
+      "title": "De Morgan's Theorem"
+    },
+    "hard": {
+      "xpReward": 90,
+      "title": "3-Variable De Morgan"
+    },
+    "medium": {
+      "xpReward": 70,
+      "title": "De Morgan: NOR to AND"
+    }
+  },
+  "level_10": {
+    "easy": {
+      "xpReward": 70,
+      "title": "2:1 Multiplexer"
+    },
+    "hard": {
+      "xpReward": 100,
+      "title": "4:1 MUX from 2:1 MUXes"
+    },
+    "medium": {
+      "xpReward": 85,
+      "title": "MUX as Universal Gate"
+    }
+  },
+  "level_11": {
+    "easy": {
+      "xpReward": 80,
+      "title": "2-to-4 Decoder"
+    },
+    "hard": {
+      "xpReward": 115,
+      "title": "Priority Encoder"
+    },
+    "medium": {
+      "xpReward": 95,
+      "title": "Decoder with Enable"
+    }
+  },
+  "level_12": {
+    "easy": {
+      "xpReward": 90,
+      "title": "Half Adder"
+    },
+    "hard": {
+      "xpReward": 125,
+      "title": "Apollo NOR Half Adder"
+    },
+    "medium": {
+      "xpReward": 100,
+      "title": "Half Subtractor"
+    }
+  },
+  "level_13": {
+    "easy": {
+      "xpReward": 100,
+      "title": "Full Adder"
+    },
+    "hard": {
+      "xpReward": 135,
+      "title": "2-Bit Ripple Carry Adder"
+    },
+    "medium": {
+      "xpReward": 115,
+      "title": "Full Subtractor"
+    }
+  },
+  "level_14": {
+    "easy": {
+      "xpReward": 110,
+      "title": "SR Latch"
+    },
+    "hard": {
+      "xpReward": 135,
+      "title": "D Latch from Gates"
+    },
+    "medium": {
+      "xpReward": 115,
+      "title": "Gated SR Latch"
+    }
+  },
+  "level_15": {
+    "easy": {
+      "xpReward": 130,
+      "title": "D Flip-Flop"
+    },
+    "hard": {
+      "xpReward": 155,
+      "title": "Rising Edge Detector"
+    },
+    "medium": {
+      "xpReward": 135,
+      "title": "D Flip-Flop with Enable"
+    }
+  },
+  "level_16": {
+    "easy": {
+      "xpReward": 140,
+      "title": "T Flip-Flop (Toggle)"
+    },
+    "hard": {
+      "xpReward": 170,
+      "title": "JK Flip-Flop"
+    },
+    "medium": {
+      "xpReward": 155,
+      "title": "Frequency Divider"
+    }
+  },
+  "level_17": {
+    "easy": {
+      "xpReward": 160,
+      "title": "2-Bit Ripple Counter"
+    },
+    "hard": {
+      "xpReward": 190,
+      "title": "Synchronous 2-Bit Counter"
+    },
+    "medium": {
+      "xpReward": 175,
+      "title": "Gray Code Counter"
+    }
+  },
+  "level_18": {
+    "easy": {
+      "xpReward": 200,
+      "title": "Traffic Light FSM"
+    },
+    "hard": {
+      "xpReward": 250,
+      "title": "Sequence Detector (101)"
+    },
+    "medium": {
+      "xpReward": 220,
+      "title": "Ring Counter"
+    }
+  },
+  "level_19": {
+    "easy": {
+      "xpReward": 300,
+      "title": "Simple ALU"
+    },
+    "hard": {
+      "xpReward": 380,
+      "title": "Magnitude Comparator"
+    },
+    "medium": {
+      "xpReward": 320,
+      "title": "ALU with Logic Operations"
+    }
+  },
+  "level_boss": {
+    "easy": {
+      "xpReward": 500,
+      "title": "Microprocessor Core"
+    },
+    "hard": {
+      "xpReward": 1500,
+      "title": "2-Stage Pipeline"
+    },
+    "medium": {
+      "xpReward": 1000,
+      "title": "Instruction Decoder"
+    }
+  }
+}

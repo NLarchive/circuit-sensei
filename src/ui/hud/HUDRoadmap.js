@@ -12,19 +12,20 @@ export const HUDRoadmap = {
 
         // Update XP
         if (xpDisplay) {
-            // Calculate total available XP across all levels and variants
+            // Calculate total available XP across all levels (prefer full variants, fall back to summary)
             const totalAvailableXP = gameManager.levels.reduce((total, level) => {
-                const variants = (gameManager.levelVariants && gameManager.levelVariants[level.id]) || {};
-                if (Object.keys(variants).length > 0) {
-                    // Sum XP from all variants for this level
-                    return total + Object.values(variants).reduce((levelTotal, variant) => 
-                        levelTotal + (variant.xpReward || 0), 0);
+                const fullVariants = gameManager.levelVariants && gameManager.levelVariants[level.id];
+                const summaryVariants = gameManager.levelVariantsSummary && gameManager.levelVariantsSummary[level.id];
+
+                if (fullVariants && Object.keys(fullVariants).length > 0) {
+                    return total + Object.values(fullVariants).reduce((levelTotal, variant) => levelTotal + (variant.xpReward || 0), 0);
+                } else if (summaryVariants && Object.keys(summaryVariants).length > 0) {
+                    return total + Object.values(summaryVariants).reduce((levelTotal, variant) => levelTotal + (variant.xpReward || 0), 0);
                 } else {
-                    // Fallback to base level XP if no variants
                     return total + (level.xpReward || 0);
                 }
             }, 0);
-            
+
             xpDisplay.innerText = `${gameManager.progress.xp}/${totalAvailableXP}`;
         }
         
@@ -77,8 +78,10 @@ export const HUDRoadmap = {
     renderLevelCard(level, isUnlocked) {
         const variantsCompleted = gameManager.progress.completedLevels[level.id] || {};
         const isLocked = !isUnlocked;
-        const variants = (gameManager.levelVariants && gameManager.levelVariants[level.id]) || {};
+        // Prefer full variants but fall back to the lightweight summary so roadmap can render immediately
+        const variants = gameManager.getVariantsForLevel(level.id) || {};
         const hasVariants = Object.keys(variants).length > 0;
+        const hasFullVariants = !!(gameManager.levelVariants && gameManager.levelVariants[level.id]);
 
         const availableVariants = Object.keys(variants);
         const selectedForThisLevel = gameManager.getLowestUncompletedVariant(level.id);
@@ -87,6 +90,7 @@ export const HUDRoadmap = {
             <select class="variant-select badge-${selectedForThisLevel}" data-level-index="${level.index}" title="Select difficulty" aria-label="Difficulty for ${level.title}">
                 ${['easy','medium','hard'].map(v => variants[v] ? `<option value="${v}" ${v === selectedForThisLevel ? 'selected' : ''}>${DIFFICULTY_LABELS[v] || v}</option>` : '').join('')}
             </select>
+            ${!hasFullVariants ? '<span class="variant-loading" title="Loading full variant data">⏳</span>' : ''}
         ` : '';
 
         const stars = hasVariants ? ['easy', 'medium', 'hard'].map(variant => 

@@ -43,6 +43,31 @@ export class GameManager {
         
         // Initialize systems
         this.achievementSystem = new AchievementSystem(this);
+
+        // Lightweight summary of variants used for roadmap rendering
+        this.levelVariantsSummary = {};
+    }
+
+    /**
+     * Return the best available variant info for roadmap (full variants if available, otherwise summary)
+     */
+    getVariantsForLevel(levelId) {
+        if (this.levelVariants && this.levelVariants[levelId]) return this.levelVariants[levelId];
+        if (this.levelVariantsSummary && this.levelVariantsSummary[levelId]) return this.levelVariantsSummary[levelId];
+
+        // Fallback: use lightweight info available on the level index entry (puzzleFiles)
+        if (this.levels && Array.isArray(this.levels)) {
+            const entry = this.levels.find(l => l.id === levelId);
+            if (entry && entry.puzzleFiles) {
+                const res = {};
+                for (const v of Object.keys(entry.puzzleFiles)) {
+                    res[v] = { xpReward: entry.xpReward || 0 };
+                }
+                return res;
+            }
+        }
+
+        return {};
     }
 
     /**
@@ -77,6 +102,14 @@ export class GameManager {
             this.levels = storyData.levels;
             this.tiers = storyData.tiers;
             this.levelVariants = storyData.variants || {}; // { levelId: {original, easy, hard} }
+
+            // Load lightweight variants summary (fast, used by roadmap)
+            try {
+                const summary = await StoryLoader.loadVariantsSummary();
+                this.levelVariantsSummary = summary || {};
+            } catch (e) {
+                console.warn('Failed to load level variants summary:', e);
+            }
 
             console.log('Game data loaded:', {
                 gates: Object.keys(this.gates).length,

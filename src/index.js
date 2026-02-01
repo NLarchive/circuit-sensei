@@ -101,12 +101,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Populate roadmap with real data
         hud.showRoadmap && hud.showRoadmap();
 
-        // Load level variants in background for XP calculation
-        StoryLoader.loadAllVariants().then(variants => {
-            gameManager.levelVariants = variants;
-            // Update roadmap XP if needed
-            hud.showRoadmap && hud.showRoadmap();
-        }).catch(e => console.warn('Failed to load variants:', e));
+        // Schedule low-priority, rate-limited prefetch for full variant data
+        (function scheduleVariantPrefetch() {
+            const levelIds = gameManager.levels.map(l => l.id);
+            let idx = 0;
+            const batchSize = 2; // fetch 2 levels per idle callback to avoid network saturation
+
+            const rc = window.requestIdleCallback || function(cb) { return setTimeout(() => cb({ timeRemaining: () => 0 }), 200); };
+            const schedule = () => rc((deadline) => {
+                let fetched = 0;
+                while (idx < levelIds.length && fetched < batchSize) {
+                    const id = levelIds[idx++];
+                    StoryLoader.loadLevelVariants(id).then(v => {
+                        if (v && Object.keys(v).length) {
+                            gameManager.levelVariants = gameManager.levelVariants || {};
+                            gameManager.levelVariants[id] = v;
+                        }
+                    }).catch(() => {});
+                    fetched++;
+                }
+
+                // Refresh roadmap occasionally to show updates without janking
+                hud.showRoadmap && hud.showRoadmap();
+
+                if (idx < levelIds.length) schedule();
+            }, { timeout: 2000 });
+
+            // Start prefetch after a short delay so the roadmap can render first
+            setTimeout(schedule, 1000);
+        })();
 
 
 

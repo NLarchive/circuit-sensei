@@ -326,4 +326,21 @@ export class StoryLoader {
         }
         return variants;
     }
+
+    /**
+     * Load lightweight variants summary generated at build-time
+     */
+    static async loadVariantsSummary() {
+        if (this._variantsSummaryCache) return this._variantsSummaryCache;
+        try {
+            const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
+            const response = await fetch(`${base}story/variants-summary.json`);
+            if (!response.ok) throw new Error('Failed to load variants summary');
+            this._variantsSummaryCache = await response.json();
+            return this._variantsSummaryCache;
+        } catch (error) {
+            console.warn('Failed to load variants summary:', error);
+            return {};
+        }
+    }
 }

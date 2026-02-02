@@ -2057,6 +2057,23 @@
       "category_name": "Core Engine",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 128, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 130,
+      "task_name": "Fix GitHub Actions Failures: Separate vitest and playwright test suites",
+      "description": "Fixed CI/Pages workflow failures caused by test framework conflicts. PROBLEM: GitHub Actions CI and Pages deployments were failing with 'Cannot redefine property: Symbol($$jest-matchers-object)' error. Root cause: audio_interactions.spec.js was a vitest unit test but incorrectly named with .spec.js extension, which caused playwright to try to run it alongside browser tests. This created a conflict between vitest's and playwright's expect() functions in the same Node process. SOLUTION: (1) Renamed tests/audio_interactions.spec.js → tests/audio_interactions.test.js to separate vitest tests (.test.js) from playwright E2E tests (.spec.js). (2) Updated vitest.config.js exclude/include patterns were already correct but vitest was properly skipping .spec files. (3) Verified both test suites run independently: 'npm test' runs 508 unit tests successfully, 'npm run test:e2e' now runs playwright tests without expect() conflicts. RESULTS: GitHub Actions CI/Pages workflows no longer fail due to test framework conflicts. Local testing confirmed separation works: unit tests pass with vitest, e2e tests run with playwright in isolated environments.",
+      "start_date": "2026-02-02",
+      "end_date": "2026-02-02",
+      "priority": "Critical",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1,
+      "actual_hours": 1,
+      "is_critical_path": true,
+      "tags": ["bugfix", "ci", "testing", "github-actions", "infrastructure"],
+      "category_name": "Infrastructure",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": [{ "predecessor_task_id": 129, "type": "FS", "lag_days": 0 }]
     }
   ],
   "required_fields": [

@@ -541,7 +541,7 @@ export class HUD {
 
             // Queue game screen load as normal priority (5)
             // This allows subsequent user clicks to interrupt if they click another level
-            asyncQueue.add(async (signal) => {
+            asyncQueue.add(async () => {
                 try {
                     // Emit event to signal game screen should be prepared
                     globalEvents.emit(Events.GAME_START_REQUESTED, {
@@ -594,6 +594,13 @@ export class HUD {
 
             // Expose a small helper for updateToolbox to trigger check
             document._updateToolboxOverflow = updateOverflow;
+        })();
+
+        // Close roadmap to continue playing
+        document.getElementById('btn-close-roadmap').addEventListener('click', () => {
+            document.getElementById('roadmap-overlay').classList.add('hidden');
+            globalEvents.emit(Events.UI_OVERLAY_CLOSED, { overlay: 'roadmap' });
+        });
         
         // Roadmap level selection with priority queue for user interactions
         // This ensures clicked levels load with high priority, interrupting background tasks
@@ -610,9 +617,7 @@ export class HUD {
 
                 // Queue level load as HIGH priority (10) - user interaction
                 // This will interrupt any low-priority background tasks
-                asyncQueue.add(async (signal) => {
-                    const levelTitle = gameManager.levels[levelIndex]?.title || `Level ${levelIndex}`;
-                    
+                asyncQueue.add(async () => {
                     try {
                         // Load level data (theory, variants, etc) - no loading screen yet
                         // This shows intro immediately when complete
@@ -622,7 +627,10 @@ export class HUD {
                     }
                 }, 10); // Priority 10 = user interaction (highest)
             }
-        }); 
+        });
+
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            this.circuit.reset();
             gameManager.restartLevel();
         });
 

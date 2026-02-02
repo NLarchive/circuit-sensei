@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const batchSize = 2; // fetch 2 levels per idle callback to avoid network saturation
 
             const rc = window.requestIdleCallback || function(cb) { return setTimeout(() => cb({ timeRemaining: () => 0 }), 200); };
-            const schedule = () => rc((deadline) => {
+            const schedule = () => rc(() => {
                 // Queue prefetch as LOW priority (1) so user interactions take precedence
                 asyncQueue.add(async (signal) => {
                     let fetched = 0;

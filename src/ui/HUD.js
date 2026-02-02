@@ -556,7 +556,7 @@ export class HUD {
                 } finally {
                     LoadingScreen.hide();
                 }
-            }, 5); // Priority 5 = normal gameplay
+            }, 5).catch(() => {}); // Catch cancellations to avoid unhandled promise rejections
         });
 
         // Back to roadmap (from intro)
@@ -615,27 +615,23 @@ export class HUD {
                 // Hide roadmap immediately for better UX
                 document.getElementById('roadmap-overlay').classList.add('hidden');
 
-                // Interrupt background tasks (prefetch) to prioritize user action
-                asyncQueue.abortCurrentIf(1);
-                asyncQueue.clearPending(1);
-
-                // Cancel any previous roadmap load so the latest click wins
-                if (this.currentRoadmapAbortController) {
-                    this.currentRoadmapAbortController.abort();
-                }
-                this.currentRoadmapAbortController = new AbortController();
-                const requestId = `roadmap-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-
-                try {
-                    // Load level data (theory, variants, etc) - no loading screen yet
-                    // This shows intro immediately when complete
-                    gameManager.loadLevel(levelIndex, variant, {
-                        requestId,
-                        signal: this.currentRoadmapAbortController.signal
-                    });
-                } catch (err) {
-                    console.error('Failed to load level:', err);
-                }
+                // Queue level load as HIGH priority (10) - user interaction
+                // This will interrupt any low-priority background tasks and any previous roadmap loads
+                asyncQueue.add(async (signal) => {
+                    const requestId = `roadmap-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+                    try {
+                        // Load level data (theory, variants, etc) - no loading screen yet
+                        // This shows intro immediately when complete
+                        await gameManager.loadLevel(levelIndex, variant, {
+                            requestId,
+                            signal
+                        });
+                    } catch (err) {
+                        if (err.name !== 'AbortError' && err.message !== 'Queue cleared') {
+                            console.error('Failed to load level:', err);
+                        }
+                    }
+                }, 10);
             }
         });
 

@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
 
                     if (idx < levelIds.length) schedule();
-                }, 1); // Priority 1 = background tasks (lowest priority, easily interrupted)
+                }, 1).catch(() => {}); // Priority 1 = background tasks (lowest priority, easily interrupted)
             }, { timeout: 2000 });
 
             // Start prefetch after a short delay so the roadmap can render first

@@ -37,10 +37,13 @@ export class AsyncPriorityQueue {
                 this.tasks.splice(insertIndex, 0, task);
             }
 
-            // If a lower priority task is running, abort it
-            if (this.currentTask && this.currentTask.priority < priority) {
-                console.debug(`[AsyncQueue] Aborting priority ${this.currentTask.priority} task for priority ${priority}`);
-                this.currentTask.abortController.abort();
+            // If a lower or equal priority task is running, and it's high priority, abort it
+            // This ensures new user clicks (priority 10) supersede previous ones immediately
+            if (this.currentTask && (this.currentTask.priority < priority || (this.currentTask.priority === priority && priority >= 10))) {
+                console.debug(`[AsyncQueue] Interrupting priority ${this.currentTask.priority} task for priority ${priority}`);
+                if (this.currentTask.abortController) {
+                    this.currentTask.abortController.abort();
+                }
                 this.currentTask.reject(new Error('Task cancelled by higher priority task'));
                 this.currentTask = null;
             }
@@ -89,7 +92,9 @@ export class AsyncPriorityQueue {
 
         for (const task of this.tasks) {
             if (task.priority <= maxPriority) {
-                task.abortController.abort();
+                if (task.abortController) {
+                    task.abortController.abort();
+                }
                 task.reject(new Error('Queue cleared'));
                 cancelled.push(task.priority);
             } else {
@@ -109,7 +114,9 @@ export class AsyncPriorityQueue {
         if (!this.currentTask) return false;
         if (this.currentTask.priority > maxPriority) return false;
 
-        this.currentTask.abortController.abort();
+        if (this.currentTask.abortController) {
+            this.currentTask.abortController.abort();
+        }
         this.currentTask.reject(new Error('Task cancelled by higher priority action'));
         this.currentTask = null;
         return true;

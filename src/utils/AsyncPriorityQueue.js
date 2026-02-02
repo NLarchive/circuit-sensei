@@ -102,6 +102,20 @@ export class AsyncPriorityQueue {
     }
 
     /**
+     * Abort the currently running task if its priority is at or below maxPriority
+     * Useful to interrupt background tasks when user interacts.
+     */
+    abortCurrentIf(maxPriority = Infinity) {
+        if (!this.currentTask) return false;
+        if (this.currentTask.priority > maxPriority) return false;
+
+        this.currentTask.abortController.abort();
+        this.currentTask.reject(new Error('Task cancelled by higher priority action'));
+        this.currentTask = null;
+        return true;
+    }
+
+    /**
      * Get queue status for debugging
      */
     getStatus() {

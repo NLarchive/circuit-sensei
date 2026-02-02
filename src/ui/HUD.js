@@ -602,8 +602,8 @@ export class HUD {
             globalEvents.emit(Events.UI_OVERLAY_CLOSED, { overlay: 'roadmap' });
         });
         
-        // Roadmap level selection with priority queue for user interactions
-        // This ensures clicked levels load with high priority, interrupting background tasks
+        // Roadmap level selection with priority for user interactions
+        // User clicks interrupt background prefetch and supersede earlier clicks
         document.getElementById('roadmap-tiers').addEventListener('click', (e) => {
             const levelBtn = e.target.closest('.roadmap-level');
             if (levelBtn && !levelBtn.classList.contains('locked')) {
@@ -615,17 +615,27 @@ export class HUD {
                 // Hide roadmap immediately for better UX
                 document.getElementById('roadmap-overlay').classList.add('hidden');
 
-                // Queue level load as HIGH priority (10) - user interaction
-                // This will interrupt any low-priority background tasks
-                asyncQueue.add(async () => {
-                    try {
-                        // Load level data (theory, variants, etc) - no loading screen yet
-                        // This shows intro immediately when complete
-                        await gameManager.loadLevel(levelIndex, variant);
-                    } catch (err) {
-                        console.error('Failed to load level:', err);
-                    }
-                }, 10); // Priority 10 = user interaction (highest)
+                // Interrupt background tasks (prefetch) to prioritize user action
+                asyncQueue.abortCurrentIf(1);
+                asyncQueue.clearPending(1);
+
+                // Cancel any previous roadmap load so the latest click wins
+                if (this.currentRoadmapAbortController) {
+                    this.currentRoadmapAbortController.abort();
+                }
+                this.currentRoadmapAbortController = new AbortController();
+                const requestId = `roadmap-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+
+                try {
+                    // Load level data (theory, variants, etc) - no loading screen yet
+                    // This shows intro immediately when complete
+                    gameManager.loadLevel(levelIndex, variant, {
+                        requestId,
+                        signal: this.currentRoadmapAbortController.signal
+                    });
+                } catch (err) {
+                    console.error('Failed to load level:', err);
+                }
             }
         });
 

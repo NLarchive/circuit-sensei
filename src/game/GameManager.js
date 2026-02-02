@@ -211,6 +211,9 @@ export class GameManager {
      * options: { showIntro: true|false }
      */
     async loadLevel(levelIdOrIndex, variant = 'easy', options = {}) {
+        const requestId = options.requestId || `load-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+        const signal = options.signal;
+        this.activeLoadRequestId = requestId;
         let baseLevel;
 
         if (typeof levelIdOrIndex === 'number') {
@@ -227,8 +230,12 @@ export class GameManager {
         }
 
         // Load theory if not already loaded
+        if (signal && signal.aborted) return false;
+
         if (!baseLevel.introText) {
             const fullLevel = await StoryLoader.loadLevel(baseLevel.id, true);
+            if (signal && signal.aborted) return false;
+            if (this.activeLoadRequestId !== requestId) return false;
             if (fullLevel) {
                 // Merge theory into baseLevel
                 Object.assign(baseLevel, fullLevel);
@@ -243,6 +250,9 @@ export class GameManager {
         // If variant available, merge it on top of the base level.
         // Variants are intended to change gameplay constraints (gate limits, available gates, XP),
         // while preserving educational content (introText, storyText, physicsDetails, visuals).
+        if (signal && signal.aborted) return false;
+        if (this.activeLoadRequestId !== requestId) return false;
+
         const variantsForLevel = this.levelVariants && this.levelVariants[baseLevel.id];
         let levelToLoad = baseLevel;
         if (variantsForLevel && variantsForLevel[variant]) {
@@ -268,11 +278,17 @@ export class GameManager {
             levelToLoad = merged;
         }
 
+        if (signal && signal.aborted) return false;
+        if (this.activeLoadRequestId !== requestId) return false;
+
         this.currentLevel = levelToLoad;
         this.currentVariant = variant; // Track current variant
         this.state = 'PLAYING';
 
         const showIntro = options && options.showIntro === false ? false : true;
+
+        if (signal && signal.aborted) return false;
+        if (this.activeLoadRequestId !== requestId) return false;
 
         globalEvents.emit(Events.LEVEL_LOADED, {
             level: levelToLoad,

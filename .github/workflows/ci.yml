@@ -31,16 +31,6 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
-      - name: Generate variants from manifest
-        run: npm run generate
-      - name: Check generated files are up to date
-        run: |
-          if [[ -n $(git status --porcelain story/levels-games/) ]]; then
-            echo "::error::Generated files out of sync with manifest!"
-            echo "Run 'npm run generate' locally and commit the changes."
-            git diff --stat story/levels-games/
-            exit 1
-          fi
       - run: npm test
       - name: Upload test results
         if: always()

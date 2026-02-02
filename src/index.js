@@ -11,6 +11,7 @@ import { DataLoader } from './utils/DataLoader.js';
 import { StoryLoader } from './utils/StoryLoader.js';
 import { MusicController } from './audio/MusicController.js';
 import { LoadingScreen } from './ui/overlays/LoadingScreen.js';
+import { asyncQueue } from './utils/AsyncPriorityQueue.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const canvas = document.getElementById('circuit-canvas');
@@ -104,7 +105,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Populate roadmap with real data
         hud.showRoadmap && hud.showRoadmap();
 
-        // Schedule low-priority, rate-limited prefetch for full variant data
+        // Schedule low-priority background prefetch for full variant data
+        // Uses asyncQueue with priority 1 (lowest) so user interactions interrupt immediately
         (function scheduleVariantPrefetch() {
             const levelIds = gameManager.levels.map(l => l.id);
             let idx = 0;
@@ -112,25 +114,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const rc = window.requestIdleCallback || function(cb) { return setTimeout(() => cb({ timeRemaining: () => 0 }), 200); };
             const schedule = () => rc((deadline) => {
-                let fetched = 0;
-                while (idx < levelIds.length && fetched < batchSize) {
-                    const id = levelIds[idx++];
-                    StoryLoader.loadLevelVariants(id).then(v => {
-                        if (v && Object.keys(v).length) {
-                            gameManager.levelVariants = gameManager.levelVariants || {};
-                            gameManager.levelVariants[id] = v;
+                // Queue prefetch as LOW priority (1) so user interactions take precedence
+                asyncQueue.add(async (signal) => {
+                    let fetched = 0;
+                    while (idx < levelIds.length && fetched < batchSize && !signal.aborted) {
+                        const id = levelIds[idx++];
+                        try {
+                            const v = await StoryLoader.loadLevelVariants(id);
+                            if (v && Object.keys(v).length) {
+                                gameManager.levelVariants = gameManager.levelVariants || {};
+                                gameManager.levelVariants[id] = v;
+                            }
+                        } catch (err) {
+                            // Silently fail on network errors during background prefetch
                         }
-                    }).catch(() => {});
-                    fetched++;
-                }
+                        fetched++;
+                        
+                        // Check if signal was aborted (user interaction started)
+                        if (signal.aborted) break;
+                    }
 
-                // Refresh roadmap contents if it's currently visible (don't re-show if hidden)
-                const roadmapOverlay = document.getElementById('roadmap-overlay');
-                if (roadmapOverlay && !roadmapOverlay.classList.contains('hidden')) {
-                    hud.showRoadmap && hud.showRoadmap();
-                }
+                    // Refresh roadmap contents if it's currently visible (don't re-show if hidden)
+                    if (!signal.aborted) {
+                        const roadmapOverlay = document.getElementById('roadmap-overlay');
+                        if (roadmapOverlay && !roadmapOverlay.classList.contains('hidden')) {
+                            hud.showRoadmap && hud.showRoadmap();
+                        }
+                    }
 
-                if (idx < levelIds.length) schedule();
+                    if (idx < levelIds.length) schedule();
+                }, 1); // Priority 1 = background tasks (lowest priority, easily interrupted)
             }, { timeout: 2000 });
 
             // Start prefetch after a short delay so the roadmap can render first

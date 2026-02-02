@@ -2040,6 +2040,23 @@
       "category_name": "UI/UX",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 127, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 129,
+      "task_name": "Implement Priority Queue for Async Task Management",
+      "description": "Fixed navigation flow timing issues and added intelligent priority-based async task management. PROBLEM: The loading screen was appearing too early (before intro content), and background variant prefetch had no way to be interrupted by user interactions, causing delays in level loading. SOLUTION: (1) Created src/utils/AsyncPriorityQueue.js - A priority queue system for async operations with AbortController support. Priority levels: 10=User interactions (highest), 5=Normal gameplay, 1=Background tasks (lowest). Higher priority tasks automatically abort and interrupt lower priority ones. (2) Updated HUD.js roadmap level selection to use asyncQueue with priority 10 for immediate execution of clicked levels, interrupting any background prefetch tasks. (3) Updated btn-start-level handler to show loading screen AFTER intro is displayed, not before. Shows loading screen when user clicks 'Start Level', queues game screen preparation at priority 5. (4) Updated index.js variant prefetch to use asyncQueue priority 1, respecting abort signals so prefetch can be interrupted without network waste. (5) Added GAME_START_REQUESTED event to EventBus for future extensibility. RESULTS: User clicks are now instant and take priority, game loading doesn't block background tasks, variant prefetch completes only when user is idle.",
+      "start_date": "2026-02-02",
+      "end_date": "2026-02-02",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 4,
+      "actual_hours": 4,
+      "is_critical_path": false,
+      "tags": ["feature", "async", "priority-queue", "performance", "ux"],
+      "category_name": "Core Engine",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": [{ "predecessor_task_id": 128, "type": "FS", "lag_days": 0 }]
     }
   ],
   "required_fields": [

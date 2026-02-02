@@ -10,6 +10,7 @@ import { MessageDisplay } from './feedback/MessageDisplay.js';
 import { SidebarController } from './sidebar/SidebarController.js';
 import { KeyboardManager } from './controls/KeyboardManager.js';
 import { LoadingScreen } from './overlays/LoadingScreen.js';
+import { asyncQueue } from '../utils/AsyncPriorityQueue.js';
 
 export class HUD {
     constructor(uiLayerId, sidebarId, navbarId, circuit) {
@@ -519,7 +520,7 @@ export class HUD {
             document.getElementById('instruction-overlay').classList.add('hidden');
         });
 
-        // Start Level (from intro)
+        // Start Level (from intro) - Show loading screen when user clicks to start game
         document.getElementById('btn-start-level').addEventListener('click', () => {
             // If intro level (index 0), it's an info-only page.
             // Keep the overlay up and swap to Level 1 intro after loading.
@@ -529,7 +530,33 @@ export class HUD {
                 return;
             }
 
+            // Hide intro overlay and show loading screen while game screen loads
             document.getElementById('level-intro-overlay').classList.add('hidden');
+            
+            const levelTitle = gameManager.currentLevel?.title || `Level ${gameManager.currentLevelIndex}`;
+            LoadingScreen.show({
+                message: `Loading ${levelTitle}...`,
+                hint: 'Preparing game screen'
+            });
+
+            // Queue game screen load as normal priority (5)
+            // This allows subsequent user clicks to interrupt if they click another level
+            asyncQueue.add(async (signal) => {
+                try {
+                    // Emit event to signal game screen should be prepared
+                    globalEvents.emit(Events.GAME_START_REQUESTED, {
+                        level: gameManager.currentLevel,
+                        index: gameManager.currentLevelIndex
+                    });
+                    
+                    // Give renderer time to set up
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                } catch (err) {
+                    console.error('Failed to prepare game screen:', err);
+                } finally {
+                    LoadingScreen.hide();
+                }
+            }, 5); // Priority 5 = normal gameplay
         });
 
         // Back to roadmap (from intro)
@@ -567,16 +594,10 @@ export class HUD {
 
             // Expose a small helper for updateToolbox to trigger check
             document._updateToolboxOverflow = updateOverflow;
-        })();
-
-        // Close roadmap to continue playing
-        document.getElementById('btn-close-roadmap').addEventListener('click', () => {
-            document.getElementById('roadmap-overlay').classList.add('hidden');
-            globalEvents.emit(Events.UI_OVERLAY_CLOSED, { overlay: 'roadmap' });
-        });
         
-        // Roadmap level selection (supports variant selector if present)
-        document.getElementById('roadmap-tiers').addEventListener('click', async (e) => {
+        // Roadmap level selection with priority queue for user interactions
+        // This ensures clicked levels load with high priority, interrupting background tasks
+        document.getElementById('roadmap-tiers').addEventListener('click', (e) => {
             const levelBtn = e.target.closest('.roadmap-level');
             if (levelBtn && !levelBtn.classList.contains('locked')) {
                 const levelIndex = parseInt(levelBtn.dataset.levelIndex);
@@ -584,30 +605,24 @@ export class HUD {
                 const select = levelBtn.querySelector('.variant-select');
                 const variant = select ? select.value : 'easy';
 
-                // Hide roadmap and show loading screen as transition
+                // Hide roadmap immediately for better UX
                 document.getElementById('roadmap-overlay').classList.add('hidden');
-                
-                // Show loading screen while level loads (prevents clicking "Start" before ready)
-                const levelTitle = gameManager.levels[levelIndex]?.title || `Level ${levelIndex}`;
-                LoadingScreen.show({ 
-                    message: `Loading ${levelTitle}...`,
-                    hint: 'Preparing level content'
-                });
 
-                try {
-                    // Wait for level to fully load
-                    await gameManager.loadLevel(levelIndex, variant);
-                } catch (err) {
-                    console.error('Failed to load level:', err);
-                }
-                
-                // Hide loading screen - LEVEL_LOADED event will show intro overlay
-                LoadingScreen.hide();
+                // Queue level load as HIGH priority (10) - user interaction
+                // This will interrupt any low-priority background tasks
+                asyncQueue.add(async (signal) => {
+                    const levelTitle = gameManager.levels[levelIndex]?.title || `Level ${levelIndex}`;
+                    
+                    try {
+                        // Load level data (theory, variants, etc) - no loading screen yet
+                        // This shows intro immediately when complete
+                        await gameManager.loadLevel(levelIndex, variant);
+                    } catch (err) {
+                        console.error('Failed to load level:', err);
+                    }
+                }, 10); // Priority 10 = user interaction (highest)
             }
-        });
-
-        document.getElementById('btn-reset').addEventListener('click', () => {
-            this.circuit.reset(); 
+        }); 
             gameManager.restartLevel();
         });
 

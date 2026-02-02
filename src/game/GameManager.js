@@ -413,10 +413,15 @@ export class GameManager {
     /**
      * Get the lowest (easiest) uncompleted variant for a base level id.
      * If all variants are completed, returns the highest available variant.
+     * Uses same fallback chain as getVariantsForLevel() for consistency.
      */
     getLowestUncompletedVariant(levelId) {
-        if (!levelId || !this.levelVariants) return 'easy';
-        const variants = this.levelVariants[levelId] || {};
+        if (!levelId) return 'easy';
+        
+        // Use the same fallback chain as getVariantsForLevel() for consistency
+        const variants = this.getVariantsForLevel(levelId);
+        if (!variants || Object.keys(variants).length === 0) return 'easy';
+        
         const completed = (this.progress.completedLevels && this.progress.completedLevels[levelId]) || {};
         const order = ['easy','medium','hard'];
         for (const v of order) {

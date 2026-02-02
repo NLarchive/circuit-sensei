@@ -4,7 +4,12 @@ import { test, expect } from "@playwright/test";
  * Test the loading sequence: minimal HUD (roadmap) shows immediately,
  * then full UI appears after gameManager.init() resolves
  */
+import { clearBrowserState } from './helpers/clear_browser_state.js';
+
 test.describe("Loading Sequence", () => {
+  test.beforeEach(async ({ page }) => {
+    await clearBrowserState(page);
+  });
   test("should show roadmap immediately, then complete UI after data loads", async ({ page, baseURL }) => {
     // Start navigation and immediately check for loading roadmap
     const url = (baseURL || '/') + '?t=' + Date.now();

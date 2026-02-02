@@ -10,6 +10,9 @@ export const HUDRoadmap = {
         
         if (!tiersContainer || !overlay) return;
 
+        // Track if overlay was already visible (for refresh vs show)
+        const wasVisible = !overlay.classList.contains('hidden');
+
         // Update XP
         if (xpDisplay) {
             // Calculate total available XP across all levels (prefer full variants, fall back to summary)
@@ -67,10 +70,13 @@ export const HUDRoadmap = {
         });
         
         tiersContainer.innerHTML = html;
-        overlay.classList.remove('hidden');
-
-        // Emit event for music controller
-        globalEvents.emit(Events.UI_OVERLAY_OPENED, { overlay: 'roadmap' });
+        
+        // Only show overlay if it wasn't already visible (prevent re-showing during refresh)
+        if (!wasVisible) {
+            overlay.classList.remove('hidden');
+            // Emit event for music controller only when actually showing
+            globalEvents.emit(Events.UI_OVERLAY_OPENED, { overlay: 'roadmap' });
+        }
 
         this.bindVariantSelectors();
     },
@@ -78,10 +84,9 @@ export const HUDRoadmap = {
     renderLevelCard(level, isUnlocked) {
         const variantsCompleted = gameManager.progress.completedLevels[level.id] || {};
         const isLocked = !isUnlocked;
-        // Prefer full variants but fall back to the lightweight summary so roadmap can render immediately
+        // Use getVariantsForLevel() for consistent 3-tier fallback (full → summary → puzzleFiles)
         const variants = gameManager.getVariantsForLevel(level.id) || {};
         const hasVariants = Object.keys(variants).length > 0;
-        const hasFullVariants = !!(gameManager.levelVariants && gameManager.levelVariants[level.id]);
 
         const availableVariants = Object.keys(variants);
         const selectedForThisLevel = gameManager.getLowestUncompletedVariant(level.id);
@@ -90,7 +95,6 @@ export const HUDRoadmap = {
             <select class="variant-select badge-${selectedForThisLevel}" data-level-index="${level.index}" title="Select difficulty" aria-label="Difficulty for ${level.title}">
                 ${['easy','medium','hard'].map(v => variants[v] ? `<option value="${v}" ${v === selectedForThisLevel ? 'selected' : ''}>${DIFFICULTY_LABELS[v] || v}</option>` : '').join('')}
             </select>
-            ${!hasFullVariants ? '<span class="variant-loading" title="Loading full variant data">⏳</span>' : ''}
         ` : '';
 
         const stars = hasVariants ? ['easy', 'medium', 'hard'].map(variant => 

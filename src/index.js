@@ -10,6 +10,7 @@ import { CompletionModal } from './ui/overlays/CompletionModal.js';
 import { DataLoader } from './utils/DataLoader.js';
 import { StoryLoader } from './utils/StoryLoader.js';
 import { MusicController } from './audio/MusicController.js';
+import { LoadingScreen } from './ui/overlays/LoadingScreen.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const canvas = document.getElementById('circuit-canvas');
@@ -81,6 +82,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.globalEvents = globalEvents;
     window.analytics = analytics;
     window.MusicController = MusicController;
+    window.LoadingScreen = LoadingScreen;
+    window.HUDRoadmap = (await import('./ui/hud/HUDRoadmap.js')).HUDRoadmap;
     
     // Default interaction mode: prefer connector (wire) at startup
     window.interactionMode = 'wire';
@@ -121,8 +124,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     fetched++;
                 }
 
-                // Refresh roadmap occasionally to show updates without janking
-                hud.showRoadmap && hud.showRoadmap();
+                // Refresh roadmap contents if it's currently visible (don't re-show if hidden)
+                const roadmapOverlay = document.getElementById('roadmap-overlay');
+                if (roadmapOverlay && !roadmapOverlay.classList.contains('hidden')) {
+                    hud.showRoadmap && hud.showRoadmap();
+                }
 
                 if (idx < levelIds.length) schedule();
             }, { timeout: 2000 });

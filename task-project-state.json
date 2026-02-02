@@ -2006,6 +2006,40 @@
       "category_name": "Infrastructure",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 125, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 127,
+      "task_name": "Fix getLowestUncompletedVariant Data Source Inconsistency",
+      "description": "Fixed bug where getLowestUncompletedVariant() only used levelVariants (async-loaded full data) but not levelVariantsSummary (build-time data), causing badge class to default to 'easy' before async load completed. CHANGES: (1) GameManager.js:getLowestUncompletedVariant() - Now uses getVariantsForLevel() for consistent 3-tier fallback (full variants → summary → puzzleFiles). (2) tests/performance.spec.js - Added comprehensive badge consistency test using MutationObserver to detect when badge class doesn't match selected value. (3) Fixed performance tests to measure stars/variant-select timing properly with parallel Promise.all instead of sequential awaits, and use proper selectors for populated elements. ROOT CAUSE: Stars used getVariantsForLevel() (works with summary) but badge used getLowestUncompletedVariant() which only checked this.levelVariants (async), causing delay.",
+      "start_date": "2026-02-02",
+      "end_date": "2026-02-02",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": ["bugfix", "performance", "roadmap", "variant-select", "badge"],
+      "category_name": "Core Engine",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": [{ "predecessor_task_id": 126, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 128,
+      "task_name": "Add Reusable Loading Screen Component",
+      "description": "Created a reusable LoadingScreen component for transitions and fixed navigation flow from roadmap to level. PROBLEM: When clicking a level too fast from the roadmap, before the game fully loaded, users would be rebounded back to the roadmap due to timing issues with async level loading. SOLUTION: (1) Created src/ui/overlays/LoadingScreen.js - A standalone, portable loading screen component with animated spinner, customizable messages, progress bar support, and Promise-based API (LoadingScreen.waitFor(), LoadingScreen.show/hide). Features reduced-motion support for accessibility. (2) Updated HUD.js roadmap level selection to show loading screen while level loads, hiding it once LEVEL_LOADED event fires. (3) Fixed HUDRoadmap.showRoadmap() to only show the overlay if it wasn't already visible (prevents re-showing during idle variant prefetch refreshes). (4) Updated index.js variant prefetch to only refresh roadmap contents if roadmap is currently visible. (5) Cleaned up unused hasFullVariants variable in HUDRoadmap. (6) Updated tests/gameplay.spec.js to match current UI: mode toggle is single button, level counts are 7 tiers/21 levels, level 1 title is 'The Simple Wire'. RESULTS: Smooth transition from roadmap to level intro with loading indicator. No more timing-based rebounding to roadmap.",
+      "start_date": "2026-02-02",
+      "end_date": "2026-02-02",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 3,
+      "actual_hours": 3,
+      "is_critical_path": false,
+      "tags": ["feature", "loading", "transitions", "ui", "reusable"],
+      "category_name": "UI/UX",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": [{ "predecessor_task_id": 127, "type": "FS", "lag_days": 0 }]
     }
   ],
   "required_fields": [

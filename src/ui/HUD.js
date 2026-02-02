@@ -9,6 +9,7 @@ import { DIFFICULTY_LABELS } from './constants/UIConstants.js';
 import { MessageDisplay } from './feedback/MessageDisplay.js';
 import { SidebarController } from './sidebar/SidebarController.js';
 import { KeyboardManager } from './controls/KeyboardManager.js';
+import { LoadingScreen } from './overlays/LoadingScreen.js';
 
 export class HUD {
     constructor(uiLayerId, sidebarId, navbarId, circuit) {
@@ -575,7 +576,7 @@ export class HUD {
         });
         
         // Roadmap level selection (supports variant selector if present)
-        document.getElementById('roadmap-tiers').addEventListener('click', (e) => {
+        document.getElementById('roadmap-tiers').addEventListener('click', async (e) => {
             const levelBtn = e.target.closest('.roadmap-level');
             if (levelBtn && !levelBtn.classList.contains('locked')) {
                 const levelIndex = parseInt(levelBtn.dataset.levelIndex);
@@ -583,13 +584,25 @@ export class HUD {
                 const select = levelBtn.querySelector('.variant-select');
                 const variant = select ? select.value : 'easy';
 
-                // Show the intro overlay immediately, before loading the level
-                const introOverlay = document.getElementById('level-intro-overlay');
-                if (introOverlay) {
-                    introOverlay.classList.remove('hidden');
-                }
+                // Hide roadmap and show loading screen as transition
                 document.getElementById('roadmap-overlay').classList.add('hidden');
-                gameManager.loadLevel(levelIndex, variant);
+                
+                // Show loading screen while level loads (prevents clicking "Start" before ready)
+                const levelTitle = gameManager.levels[levelIndex]?.title || `Level ${levelIndex}`;
+                LoadingScreen.show({ 
+                    message: `Loading ${levelTitle}...`,
+                    hint: 'Preparing level content'
+                });
+
+                try {
+                    // Wait for level to fully load
+                    await gameManager.loadLevel(levelIndex, variant);
+                } catch (err) {
+                    console.error('Failed to load level:', err);
+                }
+                
+                // Hide loading screen - LEVEL_LOADED event will show intro overlay
+                LoadingScreen.hide();
             }
         });
 

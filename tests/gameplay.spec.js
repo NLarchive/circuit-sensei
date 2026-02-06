@@ -246,10 +246,10 @@ test.describe("Story Roadmap Navigation", () => {
     // Intro overlay should still be visible (showing Level 1's intro now)
     await expect(page.locator("#level-intro-overlay")).not.toHaveClass(/hidden/, { timeout: 5000 });
     
-    // Title should now be Level 1
+    // Title should now be Level 1 (The Simple Wire)
     const levelTitle = page.locator("#intro-level-title");
     const titleText = await levelTitle.textContent();
-    expect(titleText).toContain("Level 1");
+    expect(titleText).toContain("Simple Wire");
     
     // Button should now say "Start Level →" (not "Go to Level 1")
     const newStartBtnText = await page.locator("#btn-start-level").textContent();

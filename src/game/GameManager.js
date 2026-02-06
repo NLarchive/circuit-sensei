@@ -100,6 +100,11 @@ export class GameManager {
             this.gates = await gatesRes.json();
             this.buildGateIndex();
             this.levels = storyData.levels;
+            this.levels.forEach(level => {
+                if (level && !level.baseTitle) {
+                    level.baseTitle = level.title;
+                }
+            });
             this.tiers = storyData.tiers;
             this.levelVariants = storyData.variants || {}; // { levelId: {original, easy, hard} }
 
@@ -229,6 +234,10 @@ export class GameManager {
             return false;
         }
 
+        if (!baseLevel.baseTitle) {
+            baseLevel.baseTitle = baseLevel.title;
+        }
+
         // Load theory if not already loaded
         if (signal && signal.aborted) return false;
 
@@ -262,6 +271,7 @@ export class GameManager {
             // Preserve base identifiers and educational content if not specifically overridden by variant
             merged.id = baseLevel.id;
             merged.tier = baseLevel.tier;
+            merged.baseTitle = baseLevel.baseTitle; // Keep track of base title for UI consistency
             
             // Allow variant to override these if provided, otherwise fall back to base
             merged.title = variantLevel.title || baseLevel.title;

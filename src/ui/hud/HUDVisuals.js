@@ -1026,9 +1026,11 @@ export const HUDVisuals = {
                         ${[35, 55, 75, 95].map((y, idx) => `
                             <line x1="150" y1="${y}" x2="220" y2="${y}" stroke="#666" stroke-width="2">
                                 <animate attributeName="stroke" dur="4s" repeatCount="indefinite"
-                                    values="#0ff;#666;#666;#666;#0ff" keyTimes="${idx * 0.2};${idx * 0.2 + 0.05};${(idx + 1) * 0.2};${(idx + 1) * 0.2 + 0.05};1"/>
+                                    values="#0ff;#666;#666;#666;#0ff" 
+                                    keyTimes="${(idx * 0.2).toFixed(2)};${(idx * 0.2 + 0.05).toFixed(2)};${((idx + 1) * 0.2).toFixed(2)};${((idx + 1) * 0.2 + 0.05).toFixed(2)};1"/>
                                 <animate attributeName="stroke-width" dur="4s" repeatCount="indefinite"
-                                    values="4;2;2;2;4" keyTimes="${idx * 0.2};${idx * 0.2 + 0.05};${(idx + 1) * 0.2};${(idx + 1) * 0.2 + 0.05};1"/>
+                                    values="4;2;2;2;4" 
+                                    keyTimes="${(idx * 0.2).toFixed(2)};${(idx * 0.2 + 0.05).toFixed(2)};${((idx + 1) * 0.2).toFixed(2)};${((idx + 1) * 0.2 + 0.05).toFixed(2)};1"/>
                             </line>
                             <text x="232" y="${y + 3}" fill="#0ff" font-size="8" text-anchor="end">Y${idx}</text>
                         `).join('')}

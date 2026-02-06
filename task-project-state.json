@@ -2091,6 +2091,23 @@
       "category_name": "Infrastructure",
       "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
       "dependencies": [{ "predecessor_task_id": 130, "type": "FS", "lag_days": 0 }]
+    },
+    {
+      "task_id": 132,
+      "task_name": "UI/UX Title Consistency and SVG Animation Fixes",
+      "description": "Resolved user issues regarding level intro content and console errors. (1) Removed redundant 'Level X: ' prefix from intro titles in HUD.js for cleaner look. (2) Implemented baseTitle persistence in GameManager.js to ensure the core concept name (e.g., 'Simple Wire') is shown in the intro even when a harder variant (e.g., 'Signal Fan-Out') is loaded, meeting user expectations. (3) Fixed SVG <animate> keyTimes invalid value error in HUDVisuals.js by rounding calculated values to 2 decimal places, preventing floating-point precision issues in browsers. Updated e2e tests to verify new title patterns. All 62 e2e tests pass.",
+      "start_date": "2026-02-05",
+      "end_date": "2026-02-05",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": ["ui", "svg", "bugfix", "ux"],
+      "category_name": "UI/UX",
+      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "dependencies": [{ "predecessor_task_id": 131, "type": "FS", "lag_days": 0 }]
     }
   ],
   "required_fields": [

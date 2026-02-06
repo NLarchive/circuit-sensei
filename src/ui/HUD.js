@@ -922,7 +922,7 @@ export class HUD {
         } else {
             // Story mode
             tierTitle = isFirstInTier ? `New Chapter: ${tierInfo.name || ''}` : (tierInfo.name || '');
-            levelTitle = index === 0 ? level.title : `Level ${index}: ${level.title}`;
+            levelTitle = level.baseTitle || level.title;
         }
         
         document.getElementById('intro-tier-title').innerText = tierTitle;

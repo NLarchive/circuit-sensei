@@ -32,6 +32,8 @@
     flex-direction: column;
     gap: 8px;
     padding: 8px;
+    flex: 1;
+    min-height: 0;
 }
 
 .toolbox h3 {
@@ -51,7 +53,8 @@
 
 .toolbox-body {
     overflow-y: auto;
-    max-height: calc(100vh - 220px);
+    flex: 1;
+    min-height: 0;
     padding-right: 6px;
     transition: box-shadow 0.2s ease;
 }
@@ -77,12 +80,6 @@
 .toolbox-body {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
-}
-
-@media (max-width: 480px) {
-    .toolbox-body {
-        max-height: calc(100vh - 260px);
-    }
 }
 
 

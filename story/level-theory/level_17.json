@@ -2,7 +2,7 @@
   "id": "level_17",
   "tier": "tier_5",
   "title": "2-Bit Counter",
-  "introText": "BINARY COUNTERS & STATE MACHINES: A counter is a Finite State Machine (FSM) that sequences through states. An n-bit counter has 2ⁿ states. Counters are everywhere: program counters in CPUs, timers, address generators, and event trackers.",
+  "introText": "BINARY COUNTERS & SEQUENTIAL LOGIC: A counter is a circuit that remembers its current value and steps to the next on each clock edge. An n-bit counter cycles through 2ⁿ states (a 2-bit counter: 00→01→10→11→00). Counters are everywhere: the program counter in a CPU steps through instructions, timers measure duration, and address generators scan through memory.",
   "storyText": "BINARY COUNTER ARCHITECTURE: A 2-bit counter requires 2 flip-flops. The LSB toggles every clock; the next bit toggles when LSB falls. This ripple counter is simple but has accumulated delay. Synchronous counters clock all FFs together for faster operation.",
   "physicsVisual": "counter_detailed",
   "physicsDetails": {

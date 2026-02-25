@@ -693,22 +693,16 @@
     letter-spacing: 0.5px;
 }
 
-.mode-badge.sandbox {
-    background: rgba(156, 39, 176, 0.2);
-    border: 1px solid rgba(156, 39, 176, 0.5);
-    color: #bb86fc;
+.mode-badge.designer {
+    background: rgba(0, 150, 136, 0.2);
+    border: 1px solid rgba(0, 150, 136, 0.5);
+    color: #4db6ac;
 }
 
 .mode-badge.endless {
     background: rgba(255, 152, 0, 0.2);
     border: 1px solid rgba(255, 152, 0, 0.5);
     color: #ffb74d;
-}
-
-.mode-badge.custom {
-    background: rgba(0, 188, 212, 0.2);
-    border: 1px solid rgba(0, 188, 212, 0.5);
-    color: #4dd0e1;
 }
 
 /* Difficulty indicator */
@@ -774,28 +768,28 @@
     color: #ffc107;
 }
 
-/* Sandbox features list */
-.sandbox-features {
-    background: rgba(156, 39, 176, 0.08);
-    border: 1px solid rgba(156, 39, 176, 0.3);
+/* Designer features list */
+.designer-features {
+    background: rgba(0, 150, 136, 0.08);
+    border: 1px solid rgba(0, 150, 136, 0.3);
     border-radius: 8px;
     padding: 14px 16px;
     margin-top: 16px;
 }
 
-.sandbox-features h4 {
-    color: #bb86fc;
+.designer-features h4 {
+    color: #4db6ac;
     margin: 0 0 10px 0;
     font-size: 1rem;
 }
 
-.sandbox-features ul {
+.designer-features ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.sandbox-features li {
+.designer-features li {
     padding: 6px 0;
     color: #ccc;
     font-size: 0.95rem;
@@ -828,19 +822,19 @@
     color: #7dcfff;
 }
 
-/* Sandbox mode note (for custom mode without target) */
-.sandbox-mode-note {
-    background: rgba(156, 39, 176, 0.08);
-    border: 1px solid rgba(156, 39, 176, 0.3);
+/* Designer mode note (free build, no target) */
+.designer-mode-note {
+    background: rgba(0, 150, 136, 0.08);
+    border: 1px solid rgba(0, 150, 136, 0.3);
     border-radius: 8px;
     padding: 12px 16px;
     margin: 16px 0;
     text-align: center;
 }
 
-.sandbox-mode-note p {
+.designer-mode-note p {
     margin: 0;
-    color: #bb86fc;
+    color: #4db6ac;
     font-style: italic;
 }
 
@@ -929,19 +923,15 @@
 }
 
 /* Mode intro variations */
-.sandbox-intro {
-    border-left: 3px solid rgba(156, 39, 176, 0.5);
+.designer-intro {
+    border-left: 3px solid rgba(0, 150, 136, 0.5);
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
 }
 
 .endless-intro {
     border-left: 3px solid rgba(255, 152, 0, 0.5);
-}
-
-.custom-intro {
-    border-left: 3px solid rgba(0, 188, 212, 0.5);
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
 }
 
 .current-level-previous summary:hover {

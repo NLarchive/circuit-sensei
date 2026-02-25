@@ -205,6 +205,8 @@ export class Circuit {
         wire.toGate.inputWires = wire.toGate.inputWires.filter(w => w.id !== wireId);
 
         this.wires.delete(wireId);
+        // Re-evaluate circuit so disconnected paths propagate correctly
+        this.simulate();
         globalEvents.emit(Events.WIRE_DISCONNECTED, { wireId });
         return true;
     }
@@ -370,7 +372,7 @@ export class Circuit {
                 for (let i = 0; i < gate.inputCount; i++) {
                     const wires = pinGroupedWires[i] || [];
                     if (wires.length === 0) {
-                        inputValues[i] = 0; // Floating defaults to 0
+                        inputValues[i] = Signal.HIZ; // Floating defaults to HiZ (physics: open circuit)
                     } else if (wires.length === 1) {
                         inputValues[i] = wires[0].signal;
                     } else {
@@ -382,24 +384,24 @@ export class Circuit {
                         hasMetastableInput = true;
                     }
 
-                    // For gates not designed for HiZ, treat it as 0 (weak pull-down)
-                    if (inputValues[i] === Signal.HIZ) {
-                        inputValues[i] = 0;
-                    }
+                    // Only coerce HiZ to 0 for gates that explicitly don't support it 
+                    // This is handled inside gate.compute() in modern logic modeling
                 }
 
                 // Compute gate output
-                if (gate.inputWires.length > 0 || gate.inputCount === 0) {
+                if (gate.inputCount === 0) {
+                    // Source nodes (InputNode, Clock): outputs are self-determined
+                    if (!(gate instanceof InputNode)) {
+                        gate.outputs = gate.compute();
+                    }
+                } else {
+                    // Gates with inputs: use collected inputValues
+                    // (defaults to 0 for unconnected pins)
                     gate.setInputs(inputValues);
                     
                     // For combinational gates, metastable input = metastable output
                     if (hasMetastableInput && !['srlatch', 'dflipflop'].includes(gate.type)) {
                         gate.isMetastable = true;
-                    }
-                } else {
-                    // For source nodes (inputs), outputs are set via setInputs() or are constant
-                    if (!(gate instanceof InputNode)) {
-                        gate.outputs = gate.compute();
                     }
                 }
 

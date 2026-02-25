@@ -202,6 +202,7 @@ export class InputHandler {
             const gate = this.renderer.getGateAtPosition(pos.x, pos.y);
             if (gate) {
                 this.circuit.removeGate(gate.id);
+                this.circuit.simulate();
                 this.renderer.draw();
                 return;
             }
@@ -209,6 +210,7 @@ export class InputHandler {
             const wire = this.getWireAtPosition(pos.x, pos.y);
             if (wire) {
                 this.circuit.removeWire(wire.id);
+                this.circuit.simulate();
                 this.renderer.draw();
                 return;
             }

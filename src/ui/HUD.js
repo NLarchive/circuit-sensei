@@ -96,17 +96,15 @@ export class HUD {
         this.sidebar.innerHTML = `
             <div class="mode-tabs">
                 <button class="tab-btn active" data-mode="STORY">Story</button>
-                <button class="tab-btn" data-mode="SANDBOX">Sandbox</button>
+                <button class="tab-btn" data-mode="DESIGNER">Designer</button>
                 <button class="tab-btn" data-mode="ENDLESS">Endless</button>
-                <button class="tab-btn" data-mode="CUSTOM">Custom</button>
             </div>
             <div class="mode-select-wrap">
                 <label class="mode-select-label" for="mode-select-mobile">Mode</label>
                 <select id="mode-select-mobile" class="mode-select-mobile" aria-label="Game mode">
                     <option value="STORY">Story</option>
-                    <option value="SANDBOX">Sandbox</option>
+                    <option value="DESIGNER">Designer</option>
                     <option value="ENDLESS">Endless</option>
-                    <option value="CUSTOM">Custom</option>
                 </select>
             </div>
             <div class="toolbox">
@@ -165,6 +163,8 @@ export class HUD {
                 <div class="overlay-content">
                     <h3 id="instruction-title">Instructions</h3>
                     <div id="instruction-text"></div>
+                    <button id="btn-show-hint" class="btn secondary">Hint</button>
+                    <div id="instruction-hint" class="hint-box hidden"></div>
                     <button id="btn-close-instructions" class="btn primary">Got it!</button>
                 </div>
             </div>
@@ -174,10 +174,11 @@ export class HUD {
                 <div class="glossary-content">
                     <div class="glossary-header">
                         <h1>📖 Reference Guide</h1>
-                        <p class="subtitle">Definitions, Acronyms & Formulas</p>
+                        <p class="subtitle">Definitions, Acronyms, Symbols & Formulas</p>
                         <div class="glossary-tabs">
                             <button class="glossary-tab active" data-tab="acronyms">Acronyms</button>
                             <button class="glossary-tab" data-tab="terms">Terms</button>
+                            <button class="glossary-tab" data-tab="symbols">Symbols</button>
                             <button class="glossary-tab" data-tab="formulas">Formulas</button>
                             <button class="glossary-tab" data-tab="current">This Level</button>
                         </div>
@@ -520,6 +521,15 @@ export class HUD {
             document.getElementById('instruction-overlay').classList.add('hidden');
         });
 
+        // Hint button inside instructions overlay
+        document.getElementById('btn-show-hint').addEventListener('click', () => {
+            const hintDiv = document.getElementById('instruction-hint');
+            const level = gameManager.currentLevel || {};
+            const hintText = level.hint || 'No hint available for this level.';
+            hintDiv.innerHTML = HUDUtils.formatStoryText(hintText);
+            hintDiv.classList.remove('hidden');
+        });
+
         // Start Level (from intro) - Show loading screen when user clicks to start game
         document.getElementById('btn-start-level').addEventListener('click', () => {
             // If intro level (index 0), it's an info-only page.
@@ -612,8 +622,8 @@ export class HUD {
                 const select = levelBtn.querySelector('.variant-select');
                 const variant = select ? select.value : 'easy';
 
-                // Hide roadmap immediately for better UX
-                document.getElementById('roadmap-overlay').classList.add('hidden');
+                // Roadmap stays visible until LEVEL_LOADED shows the intro overlay
+                // (avoids flash of bare puzzle canvas during async load)
 
                 // Queue level load as HIGH priority (10) - user interaction
                 // This will interrupt any low-priority background tasks and any previous roadmap loads
@@ -682,16 +692,13 @@ export class HUD {
             
             // Next button logic depends on mode
             const nextBtn = document.getElementById('btn-next');
-            if (gameManager.mode === 'SANDBOX') {
+            if (gameManager.mode === 'DESIGNER') {
                 nextBtn.disabled = true;
-                nextBtn.style.display = 'none';
+                nextBtn.style.display = data.level.targetTruthTable ? '' : 'none';
             } else if (gameManager.mode === 'ENDLESS') {
                 nextBtn.disabled = true;
                 nextBtn.style.display = '';
                 nextBtn.innerText = 'Next Challenge';
-            } else if (gameManager.mode === 'CUSTOM') {
-                nextBtn.disabled = true;
-                nextBtn.style.display = data.level.targetTruthTable ? '' : 'none';
             } else {
                 // STORY mode: enable only if current level/variant is completed
                 this.updateNextButtonState();
@@ -704,6 +711,8 @@ export class HUD {
             if (shouldShowIntro) {
                 this.showLevelIntro(data.level, data.index);
             }
+            // Hide roadmap now that intro (or level) is ready – no flash
+            document.getElementById('roadmap-overlay').classList.add('hidden');
         });
         
         globalEvents.on(Events.MODE_CHANGED, (data) => {
@@ -724,13 +733,11 @@ export class HUD {
             const nextBtn = document.getElementById('btn-next');
             if (data.valid) {
                 const mode = gameManager.mode;
-                if (mode === 'SANDBOX') {
+                if (mode === 'DESIGNER') {
                     this.showMessage(`Circuit verified! Score: ${data.score}%`, 'success');
+                    if (gameManager.currentLevel.targetTruthTable) nextBtn.disabled = false;
                 } else if (mode === 'ENDLESS') {
                     this.showMessage(`Challenge Complete! Score: ${data.score}% - Ready for next challenge!`, 'success');
-                    nextBtn.disabled = false;
-                } else if (mode === 'CUSTOM') {
-                    this.showMessage(`Custom puzzle solved! Score: ${data.score}%`, 'success');
                     nextBtn.disabled = false;
                 } else {
                     // STORY mode: don't enable next button on verification, only on completion
@@ -824,7 +831,7 @@ export class HUD {
      */
     updateNextButtonState() {
         const nextBtn = document.getElementById('btn-next');
-        if (!nextBtn || gameManager.mode === 'SANDBOX') return;
+        if (!nextBtn || gameManager.mode === 'DESIGNER') return;
 
         const level = gameManager.currentLevel;
         if (!level) return;
@@ -894,6 +901,12 @@ export class HUD {
         const cleanTitle = level.title.replace(/\s*\(.*?\)$/, '');
         document.getElementById('instruction-title').innerHTML = `${cleanTitle} - <span class="difficulty-text difficulty-${difficulty}">${difficulty.toUpperCase()} Mode</span>`;
         document.getElementById('instruction-text').innerHTML = HUDEducation.getInstructionsHtml(level, difficulty);
+        // Hide and clear hint box every time instructions are shown (fixes hint persisting across difficulty changes)
+        const hintDiv = document.getElementById('instruction-hint');
+        if (hintDiv) {
+            hintDiv.classList.add('hidden');
+            hintDiv.innerHTML = '';
+        }
         document.getElementById('instruction-overlay').classList.remove('hidden');
 
     }
@@ -910,15 +923,12 @@ export class HUD {
         let tierTitle = '';
         let levelTitle = '';
         
-        if (mode === 'SANDBOX') {
-            tierTitle = '🧪 Sandbox Mode';
-            levelTitle = 'Free Experimentation';
+        if (mode === 'DESIGNER') {
+            tierTitle = '🛠️ Circuit Designer';
+            levelTitle = level.title || 'Circuit Designer';
         } else if (mode === 'ENDLESS') {
             tierTitle = '🔄 Endless Mode';
             levelTitle = level.title || `Challenge Level ${level.difficulty || 1}`;
-        } else if (mode === 'CUSTOM') {
-            tierTitle = '🎯 Custom Mode';
-            levelTitle = level.title || 'Custom Circuit';
         } else {
             // Story mode
             tierTitle = isFirstInTier ? `New Chapter: ${tierInfo.name || ''}` : (tierInfo.name || '');
@@ -935,14 +945,11 @@ export class HUD {
         const backBtn = document.getElementById('btn-back-to-roadmap');
         
         // Mode-specific button labels
-        if (mode === 'SANDBOX') {
-            startBtn.innerText = 'Start Building →';
+        if (mode === 'DESIGNER') {
+            startBtn.innerText = 'Open Workbench →';
             backBtn.style.display = 'none';
         } else if (mode === 'ENDLESS') {
             startBtn.innerText = 'Accept Challenge →';
-            backBtn.style.display = 'none';
-        } else if (mode === 'CUSTOM') {
-            startBtn.innerText = 'Begin →';
             backBtn.style.display = 'none';
         } else {
             // Story mode
@@ -1090,23 +1097,23 @@ export class HUD {
         }
 
         if (exercise.hint) {
-            html += `<details class="exercise-hint"><summary>Hint</summary>${this.escapeHtml(exercise.hint)}</details>`;
+            html += `<details class="exercise-hint"><summary>Hint</summary>${this.formatEquation(exercise.hint)}</details>`;
         }
 
         if (exercise.answer) {
             let answerHtml = '<details class="exercise-answer"><summary>Answer</summary>';
             if (typeof exercise.answer === 'string') {
-                answerHtml += this.escapeHtml(exercise.answer);
+                answerHtml += this.formatEquation(exercise.answer);
             } else if (typeof exercise.answer === 'object' && exercise.answer.steps) {
                 if (exercise.answer.steps.length > 0) {
-                    answerHtml += '<ol>';
+                    answerHtml += '<ol class="solution-steps">';
                     exercise.answer.steps.forEach(step => {
-                        answerHtml += `<li>${this.escapeHtml(step)}</li>`;
+                        answerHtml += `<li>${this.formatEquation(HUDUtils.normalizeStepText(step))}</li>`;
                     });
                     answerHtml += '</ol>';
                 }
                 if (exercise.answer.answer) {
-                    answerHtml += `<p><strong>Final Answer:</strong> ${this.escapeHtml(exercise.answer.answer)}</p>`;
+                    answerHtml += `<p><strong>Final Answer:</strong> ${this.formatEquation(exercise.answer.answer)}</p>`;
                 }
             } else {
                 answerHtml += this.escapeHtml(JSON.stringify(exercise.answer));
@@ -1168,29 +1175,37 @@ export class HUD {
     }
 
     /**
-     * DEV MODE: Unlock all tiers and levels for testing
+     * DEV MODE: Toggle lock / unlock all tiers for testing
      */
     devUnlockAll() {
-        // Unlock all tiers
-        gameManager.progress.unlockedTiers = ['intro', 'tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'tier_6'];
-        
-        // Grant enough XP to satisfy any requirements
-        gameManager.progress.xp = 9999;
-        
-        // Save progress
-        gameManager.saveProgress();
-        
-        // Show confirmation
+        const allTiers = ['intro', 'tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'tier_6'];
         const btn = document.getElementById('btn-dev-unlock');
-        btn.textContent = '✅';
-        btn.title = 'All Levels Unlocked!';
-        
+        const isFullyUnlocked = allTiers.every(t => gameManager.progress.unlockedTiers.includes(t));
+
+        if (isFullyUnlocked) {
+            // Lock back to defaults
+            gameManager.progress.unlockedTiers = ['intro', 'tier_1'];
+            gameManager.progress.xp = 0;
+            gameManager.saveProgress();
+
+            btn.textContent = '🔒';
+            btn.title = 'Levels Locked (default)';
+            console.log('🔒 DEV MODE: Tiers locked back to defaults');
+        } else {
+            // Unlock all tiers
+            gameManager.progress.unlockedTiers = allTiers;
+            gameManager.progress.xp = 9999;
+            gameManager.saveProgress();
+
+            btn.textContent = '🔓';
+            btn.title = 'All Levels Unlocked!';
+            console.log('🔓 DEV MODE: All tiers unlocked, XP set to 9999');
+        }
+
         // Refresh roadmap if visible
         if (!document.getElementById('roadmap-overlay').classList.contains('hidden')) {
             this.showRoadmap();
         }
-        
-        console.log('🔓 DEV MODE: All tiers unlocked, XP set to 9999');
     }
 
     /**

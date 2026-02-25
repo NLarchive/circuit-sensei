@@ -2,8 +2,8 @@
   "id": "level_08",
   "tier": "tier_2",
   "title": "XOR (Exclusive OR)",
-  "introText": "EXCLUSIVE OR & MODULO-2 ARITHMETIC: XOR performs addition modulo 2: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0 (no carry). This makes XOR the heart of binary addition and the foundation of error detection, cryptography, and data recovery.",
-  "storyText": "XOR IMPLEMENTATION OPTIONS: XOR can be built as (A·NOT(B)) + (NOT(A)·B) using 2 ANDs, 2 NOTs, 1 OR (5 gates, 14 transistors). Alternative: (A+B)·NOT(A·B) uses fewer gates. In CMOS, the optimal XOR uses 8-12 transistors depending on drive strength requirements.",
+  "introText": "XOR & MODULO-2 ARITHMETIC: XOR (Exclusive OR) outputs 1 only when its inputs differ—one HIGH, one LOW. When both inputs match (both 0 or both 1), output is 0. This is binary addition without carry: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0. That single property makes XOR the core of binary adders, parity error detection, and XOR-cipher cryptography.",
+  "storyText": "XOR ARCHITECTURE: XOR built from 2 ANDs + 2 NOTs + 1 OR uses 22 transistors in CMOS. A smarter 4-NAND arrangement cuts that to 16. Specialized CMOS pass-transistor logic reaches 8–12 transistors—the compact form used for Sum bits inside ALUs and parity checkers in real CPUs. Fewer transistors = smaller chip area and lower power.",
   "physicsVisual": "xor_gate_detailed",
   "physicsDetails": {
     "conceptCards": [
@@ -11,7 +11,7 @@
         "term": "Exclusive OR (XOR)",
         "definition": "A logic gate that outputs 1 if and only if exactly one of its inputs is 1. Outputs 0 when inputs are the same.",
         "why": "XOR detects difference between two bits—essential for comparison, error detection, and arithmetic.",
-        "analogy": "Like a disagreement detector: outputs TRUE when two people disagree, FALSE when they agree.",
+        "analogy": "Like a coin: heads or tails, but never both the same side.",
         "visuals": [
           {
             "type": "xor_gate_detailed",

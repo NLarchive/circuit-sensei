@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.analytics = analytics;
     window.MusicController = MusicController;
     window.LoadingScreen = LoadingScreen;
+    window.circuit = circuit;
     window.HUDRoadmap = (await import('./ui/hud/HUDRoadmap.js')).HUDRoadmap;
     
     // Default interaction mode: prefer connector (wire) at startup

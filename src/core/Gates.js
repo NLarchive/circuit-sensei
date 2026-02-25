@@ -227,9 +227,10 @@ export class Transistor extends Gate {
     }
 
     compute() {
-        const control = this.inputs[0] || 0;
-        const supply = this.inputs[1] || 0;
-        return [(control && supply) ? 1 : 0];
+        const control = this.inputs[0];
+        const supply = this.inputs[1];
+        if (control === Signal.HIZ && supply === Signal.HIZ) return [Signal.HIZ];
+        return [(control === 1 && supply === 1) ? 1 : 0];
     }
 }
 
@@ -244,9 +245,10 @@ export class NotGate extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
+        const a = this.inputs[0];
+        if (a === undefined || a === Signal.HIZ) return [Signal.HIZ];
         if (Signal.isMetastable(a)) return [Signal.METASTABLE];
-        return [a ? 0 : 1];
+        return [a === 1 ? 0 : 1];
     }
 }
 
@@ -286,9 +288,10 @@ export class AndGate extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        return [(a && b) ? 1 : 0];
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        return [(a === 1 && b === 1) ? 1 : 0];
     }
 }
 
@@ -303,9 +306,10 @@ export class OrGate extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        return [(a || b) ? 1 : 0];
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        return [(a === 1 || b === 1) ? 1 : 0];
     }
 }
 
@@ -320,9 +324,10 @@ export class NandGate extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        return [(a && b) ? 0 : 1];
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        return [(a === 1 && b === 1) ? 0 : 1];
     }
 }
 
@@ -337,9 +342,10 @@ export class NorGate extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        return [(a || b) ? 0 : 1];
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        return [(a === 1 || b === 1) ? 0 : 1];
     }
 }
 
@@ -354,9 +360,10 @@ export class XorGate extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        return [(a !== b) ? 1 : 0];
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        return [(a === 1 !== (b === 1)) ? 1 : 0];
     }
 }
 
@@ -371,9 +378,10 @@ export class XnorGate extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        return [(a === b) ? 1 : 0];
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        return [(a === 1 === (b === 1)) ? 1 : 0];
     }
 }
 
@@ -389,10 +397,11 @@ export class HalfAdder extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        const sum = a ^ b;
-        const carry = a & b;
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ, Signal.HIZ];
+        const sum = ((a === 1) ^ (b === 1)) ? 1 : 0;
+        const carry = ((a === 1) && (b === 1)) ? 1 : 0;
         return [sum, carry];
     }
 }
@@ -409,11 +418,15 @@ export class FullAdder extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        const cin = this.inputs[2] || 0;
-        const sum = a ^ b ^ cin;
-        const carry = (a & b) | (cin & (a ^ b));
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        const cin = this.inputs[2];
+        if (a === Signal.HIZ && b === Signal.HIZ && cin === Signal.HIZ) return [Signal.HIZ, Signal.HIZ];
+        const va = (a === 1);
+        const vb = (b === 1);
+        const vc = (cin === 1);
+        const sum = (va ^ vb ^ vc) ? 1 : 0;
+        const carry = ((va && vb) || (vc && (va ^ vb))) ? 1 : 0;
         return [sum, carry];
     }
 }
@@ -429,10 +442,11 @@ export class Mux2to1 extends Gate {
     }
 
     compute() {
-        const a = this.inputs[0] || 0;
-        const b = this.inputs[1] || 0;
-        const sel = this.inputs[2] || 0;
-        return [sel ? b : a];
+        const a = this.inputs[0];
+        const b = this.inputs[1];
+        const sel = this.inputs[2];
+        if (a === Signal.HIZ && b === Signal.HIZ && sel === Signal.HIZ) return [Signal.HIZ];
+        return [sel === 1 ? (b === 1 ? 1 : 0) : (a === 1 ? 1 : 0)];
     }
 }
 
@@ -455,8 +469,8 @@ export class SRLatch extends Gate {
     }
 
     compute() {
-        const s = this.inputs[0] || 0;
-        const r = this.inputs[1] || 0;
+        const s = this.inputs[0] === 1;
+        const r = this.inputs[1] === 1;
         let [q, qNot] = this.outputs;
 
         if (s && !r) {
@@ -547,8 +561,8 @@ export class DFlipFlop extends Gate {
                 qNot = Signal.METASTABLE;
                 this.isMetastable = true;
             } else {
-                q = d ? 1 : 0;
-                qNot = d ? 0 : 1;
+                q = (d === 1) ? 1 : 0;
+                qNot = (d === 1) ? 0 : 1;
                 this.isMetastable = false;
             }
         }
@@ -686,11 +700,11 @@ export class JKFlipFlop extends Gate {
                     qNot = 0;
                 } else {
                     // Toggle (J=K=1)
-                    const newQ = q ? 0 : 1;
+                    const newQ = q === 1 ? 0 : 1;
                     q = newQ;
-                    qNot = newQ ? 0 : 1;
+                    qNot = newQ === 1 ? 0 : 1;
+                    this.isMetastable = false;
                 }
-                this.isMetastable = false;
             }
         }
         

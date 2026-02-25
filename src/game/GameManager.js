@@ -17,7 +17,7 @@ export class GameManager {
         this.gates = {};
         this.gatesIndexLower = new Map();
         this.state = 'MENU'; // MENU, PLAYING, PAUSED, COMPLETE
-        this.mode = 'STORY'; // STORY, SANDBOX, ENDLESS, CUSTOM
+        this.mode = 'STORY'; // STORY, DESIGNER, ENDLESS
         this.difficulty = 1;
         
         // Player progress
@@ -181,29 +181,30 @@ export class GameManager {
             // Story mode is roadmap-driven: do not auto-load a level here.
             // Loading the "next uncompleted" level caused Story to jump ahead
             // (e.g., landing on Level 2 info) instead of showing the roadmap.
-        } else if (mode === 'SANDBOX') {
-            this.startSandbox();
+        } else if (mode === 'DESIGNER') {
+            this.startDesigner();
         } else if (mode === 'ENDLESS') {
             this.startEndless();
-        } else if (mode === 'CUSTOM') {
-            this.startCustom();
         }
 
         globalEvents.emit(Events.MODE_CHANGED, { mode });
     }
 
     /**
-     * Start custom mode (Level Editor / Custom Puzzle)
+     * Start designer mode (professional circuit design workbench)
      */
-    startCustom(config = {}) {
-        this.currentLevel = LevelGenerator.generateCustomLevel({
+    startDesigner(config = {}) {
+        this.currentLevel = LevelGenerator.generateDesignerLevel({
             ...config,
             gates: config.gates || Object.keys(this.gates)
         });
 
+        // Ensure all gates are available
+        this.currentLevel.availableGates = Object.keys(this.gates);
+
         globalEvents.emit(Events.LEVEL_LOADED, {
             level: this.currentLevel,
-            mode: 'CUSTOM',
+            mode: 'DESIGNER',
             showIntro: true
         });
     }
@@ -379,21 +380,7 @@ export class GameManager {
         });
     }
 
-    /**
-     * Start sandbox mode (free play)
-     */
-    startSandbox() {
-        const sandboxLevel = LevelGenerator.generateSandboxLevel();
-        // Populate available gates with all gates
-        sandboxLevel.availableGates = Object.keys(this.gates);
-        this.currentLevel = sandboxLevel;
 
-        globalEvents.emit(Events.LEVEL_LOADED, {
-            level: this.currentLevel,
-            mode: 'SANDBOX',
-            showIntro: true
-        });
-    }
 
     /**
      * Start endless mode

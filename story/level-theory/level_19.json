@@ -111,14 +111,14 @@
           "problem": "Calculate 5 - 3 using two's complement (4-bit).",
           "given": [
             "A = 5 = 0101",
-            "B= 3 = 0011"
+            "B = 3 = 0011"
           ],
           "steps": [
             "\\overline{B} = \\overline{0011} = 1100",
-            "A + \\overline{B} = 0101 + 1100 = 10001",
-            "Add carry-in (+1): already included in sum",
-            "Result (4 bits): 0010 = 2",
-            "Carry out = 1 (ignore for subtraction)"
+            "Set carry-in = 1 (this adds the +1 for two's complement)",
+            "Adder computes: A + \\overline{B} + 1 = 0101 + 1100 + 1 = 10010",
+            "Result (lower 4 bits): 0010 = 2",
+            "Carry out = 1 (indicates no borrow—result is positive)"
           ],
           "answer": "5 - 3 = 2 (0010 in binary)"
         },

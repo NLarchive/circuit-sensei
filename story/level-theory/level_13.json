@@ -3,7 +3,7 @@
   "tier": "tier_3",
   "title": "Full Adder",
   "introText": "FULL ADDER & CARRY PROPAGATION: A Full Adder accepts three inputs (A, B, Carry_in) and produces Sum and Carry_out. This enables chaining adders to build multi-bit arithmetic units—the foundation of every CPU's ALU.",
-  "storyText": "ADDER ARCHITECTURES: (1) RIPPLE-CARRY: Simple, O(n) delay. (2) CARRY-LOOKAHEAD (CLA): Parallel carries, O(log n) delay. (3) CARRY-SELECT: Speculate both carry values, MUX the result. Modern CPUs use hybrid architectures balancing speed and area.",
+  "storyText": "ADDER ARCHITECTURES: (1) RIPPLE-CARRY: Simple—each bit waits for the carry from the previous, so a 64-bit adder takes 64 gate delays. (2) CARRY-LOOKAHEAD (CLA): Computes all carries in parallel, shrinking 64 delays to just ~6 (logarithmic). (3) CARRY-SELECT: Pre-computes both possible results (carry=0 and carry=1), then MUXes the correct answer once the real carry arrives. Modern CPUs mix all three for best speed-vs-area trade-off.",
   "physicsVisual": "full_adder_detailed",
   "physicsDetails": {
     "conceptCards": [

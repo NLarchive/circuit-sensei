@@ -39,6 +39,9 @@ export const HUDGlossary = {
             case 'terms':
                 html = this.renderTermsList(glossary?.terms || {});
                 break;
+            case 'symbols':
+                html = this.renderSymbolsList(glossary?.symbols || {});
+                break;
             case 'formulas':
                 html = this.renderFormulasList(formulas?.formulas || {});
                 break;
@@ -124,6 +127,39 @@ export const HUDGlossary = {
                 </div>
             </div>
         `).join('');
+    },
+
+    renderSymbolsList(symbols) {
+        const sorted = Object.entries(symbols).sort((a, b) => a[0].localeCompare(b[0]));
+
+        if (sorted.length === 0) {
+            return '<p class="glossary-empty">No symbols found.</p>';
+        }
+
+        return `
+            <div class="glossary-section">
+                <h3>Symbols (${sorted.length})</h3>
+                <div class="glossary-items">
+                    ${sorted.map(([symbol, data]) => `
+                        <div class="glossary-item" data-key="${HUDUtils.escapeHtml(`${String(symbol).toLowerCase()} ${(data.name || '').toLowerCase()}`)}">
+                            <div class="glossary-item-header">
+                                <span class="glossary-term">${HUDUtils.escapeHtml(symbol)}</span>
+                                <span class="glossary-expansion">${HUDUtils.escapeHtml(data.name || '')}</span>
+                            </div>
+                            <div class="glossary-item-body">
+                                <p class="glossary-definition">${HUDUtils.escapeHtml(data.description || '')}</p>
+                                ${Array.isArray(data.aliases) && data.aliases.length > 0
+                                    ? `<p class="glossary-why"><strong>Aliases:</strong> ${HUDUtils.escapeHtml(data.aliases.join(', '))}</p>`
+                                    : ''}
+                                ${data.example
+                                    ? `<p class="glossary-formula"><strong>Example:</strong> <code>${HUDUtils.escapeHtml(data.example)}</code></p>`
+                                    : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
     },
 
     renderFormulasList(formulas) {

@@ -3,7 +3,7 @@
   "tier": "tier_3",
   "title": "Decoder (2-to-4)",
   "introText": "ADDRESS DECODING & MEMORY ARCHITECTURE: A decoder converts an n-bit binary number into one of 2ⁿ output lines. Only ONE output is active at a time—this is one-hot encoding. In memory systems, decoders select which cell to read or write.",
-  "storyText": "MEMORY HIERARCHY & DECODERS: Your computer has a memory hierarchy: CPU Registers (32-64, addressed by 5-6 bits), L1 Cache (32KB, 15 bits), RAM (16GB, 34 bits). Each level uses decoders to select the right storage location.",
+  "storyText": "MEMORY HIERARCHY & DECODERS: Every memory level uses decoders for location selection. CPU registers: 32–64 registers need only 5–6 address bits. L1 Cache: 32KB of storage needs a 15-bit address (2¹⁵ = 32,768 bytes). Main RAM: 16GB needs a 34-bit address (2³⁴ ≈ 16 billion bytes). Bigger memory = wider decoder—same circuit, just more AND gates.",
   "physicsVisual": "decoder_detailed",
   "physicsDetails": {
     "conceptCards": [

@@ -928,12 +928,10 @@ export const HUDEducation = {
         const mode = level.mode || 'STORY';
         
         // Mode-specific introduction content
-        if (mode === 'SANDBOX') {
-            return this.getSandboxIntroHtml(level);
+        if (mode === 'DESIGNER') {
+            return this.getDesignerIntroHtml(level);
         } else if (mode === 'ENDLESS') {
             return this.getEndlessIntroHtml(level);
-        } else if (mode === 'CUSTOM') {
-            return this.getCustomIntroHtml(level);
         }
         
         // Story mode (original behavior)
@@ -951,25 +949,35 @@ export const HUDEducation = {
         </div>`;
     },
     
-    getSandboxIntroHtml(level) {
+    getDesignerIntroHtml(level) {
         const introHtml = HUDUtils.formatStoryText(level.introText || '');
         const storyHtml = level.storyText ? `<div class="story-content">${HUDUtils.formatStoryText(level.storyText)}</div>` : '';
         const hintHtml = level.hint ? `<div class="hint-box"><strong>💡 Tip:</strong> ${HUDUtils.escapeHtml(level.hint)}</div>` : '';
+        const truthTableHtml = level.targetTruthTable ? this.renderTruthTablePreview(level.targetTruthTable, level.inputs) : '';
         
-        return `<div class="chapter-intro sandbox-intro">
-            <div class="mode-badge sandbox">🧪 Free Play</div>
+        return `<div class="chapter-intro designer-intro">
+            <div class="mode-badge designer">🛠️ Circuit Designer</div>
             ${introHtml}
-            ${storyHtml}
-            ${hintHtml}
-            <div class="sandbox-features">
-                <h4>Available Features:</h4>
+            ${truthTableHtml}
+            ${level.targetTruthTable ? `
+                <div class="challenge-constraints">
+                    <p><strong>🎯 Goal:</strong> ${HUDUtils.escapeHtml(level.objective || 'Match the truth table.')}</p>
+                    ${level.maxGates && level.maxGates !== Infinity ? `<p><strong>📏 Gate Limit:</strong> ${level.maxGates} gates maximum</p>` : ''}
+                </div>
+            ` : ''}
+            <div class="designer-features">
+                <h4>Designer Workbench Features:</h4>
                 <ul>
-                    <li>✓ All gates unlocked</li>
+                    <li>✓ All gates unlocked (AND, OR, NOT, NAND, NOR, XOR, XNOR, MUX…)</li>
                     <li>✓ Unlimited components</li>
                     <li>✓ No time limit</li>
-                    <li>✓ Verify to test any circuit</li>
+                    <li>✓ Built-in truth-table verification</li>
+                    <li>✓ Custom truth table targets (optional)</li>
+                    <li>✓ Real-time simulation</li>
                 </ul>
             </div>
+            ${hintHtml}
+            ${storyHtml}
         </div>`;
     },
     
@@ -997,31 +1005,6 @@ export const HUDEducation = {
                 ${level.maxGates && level.maxGates !== Infinity ? `<p><strong>📏 Gate Limit:</strong> ${level.maxGates} gates maximum</p>` : ''}
                 ${level.xpReward ? `<p><strong>⭐ Reward:</strong> ${level.xpReward} XP</p>` : ''}
             </div>
-            ${hintHtml}
-            ${storyHtml}
-        </div>`;
-    },
-    
-    getCustomIntroHtml(level) {
-        const introHtml = HUDUtils.formatStoryText(level.introText || '');
-        const storyHtml = level.storyText ? `<div class="story-content">${HUDUtils.formatStoryText(level.storyText)}</div>` : '';
-        const hintHtml = level.hint ? `<div class="hint-box"><strong>💡 Hint:</strong> ${HUDUtils.escapeHtml(level.hint)}</div>` : '';
-        const truthTableHtml = level.targetTruthTable ? this.renderTruthTablePreview(level.targetTruthTable, level.inputs) : '';
-        
-        return `<div class="chapter-intro custom-intro">
-            <div class="mode-badge custom">🎯 Custom Challenge</div>
-            ${introHtml}
-            ${truthTableHtml}
-            ${level.targetTruthTable ? `
-                <div class="challenge-constraints">
-                    <p><strong>🎯 Goal:</strong> ${HUDUtils.escapeHtml(level.objective || 'Match the truth table.')}</p>
-                    ${level.maxGates && level.maxGates !== Infinity ? `<p><strong>📏 Gate Limit:</strong> ${level.maxGates} gates maximum</p>` : ''}
-                </div>
-            ` : `
-                <div class="sandbox-mode-note">
-                    <p>No target defined - build freely!</p>
-                </div>
-            `}
             ${hintHtml}
             ${storyHtml}
         </div>`;

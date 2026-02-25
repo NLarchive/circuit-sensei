@@ -3,7 +3,7 @@
   "tier": "tier_6",
   "title": "The CPU Datapath",
   "introText": "VON NEUMANN ARCHITECTURE & THE CPU DATAPATH: John von Neumann (1945) defined the stored-program computer: instructions and data share memory, fetched and executed sequentially. This is the architecture inside every computer you've ever used.",
-  "storyText": "You have completed the journey from electrons to computation! From simple wires to a working processor, you now understand how transistors become logic, logic becomes circuits, and circuits become the computers that power our world.",
+  "storyText": "CPU DATAPATH: THE FULL PICTURE: Everything connects here—XOR and AND gates (levels 8–9) build the ALU (level 19). The half adder and full adder (levels 12–13) compute arithmetic. D flip-flops (level 15) hold registers and the program counter. The decoder (level 11) selects instructions. The MUX (level 10) routes data. The FSM (level 18) controls sequencing. You started with a single transistor. You now understand every layer of the machine that runs your code.",
   "physicsVisual": "cpu_datapath_detailed",
   "physicsDetails": {
     "conceptCards": [

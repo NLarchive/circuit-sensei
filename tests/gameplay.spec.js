@@ -432,17 +432,17 @@ test.describe("Story Roadmap Navigation", () => {
     await expect(tier2Level).toHaveClass(/locked/);
   });
 
-  test("should navigate between Story and Sandbox modes", async ({ page }) => {
+  test("should navigate between Story and Designer modes", async ({ page }) => {
     // Close roadmap first to access sidebar tabs
     await page.click("#btn-close-roadmap");
     // Wait for roadmap to be hidden
     await expect(page.locator("#roadmap-overlay")).toHaveClass(/hidden/);
     
-    // Click Sandbox tab - using evaluate to bypass overlay issues
+    // Click Designer tab - using evaluate to bypass overlay issues
     await page.evaluate(() => {
-      document.querySelector('.tab-btn[data-mode="SANDBOX"]').click();
+      document.querySelector('.tab-btn[data-mode="DESIGNER"]').click();
     });
-    await expect(page.locator('.tab-btn[data-mode="SANDBOX"]')).toHaveClass(/active/);
+    await expect(page.locator('.tab-btn[data-mode="DESIGNER"]')).toHaveClass(/active/);
     
     // Click Story tab to return - use evaluate since roadmap appears and covers tabs
     await page.evaluate(() => {
@@ -861,14 +861,14 @@ test.describe("Mode Switching", () => {
     await expect(page.locator("#roadmap-overlay")).toHaveClass(/hidden/, { timeout: 10000 });
   });
 
-  test("should switch to Sandbox mode", async ({ page }) => {
+  test("should switch to Designer mode", async ({ page }) => {
     // Use evaluate to click, avoiding potential overlay interception
     await page.evaluate(() => {
-      document.querySelector('.tab-btn[data-mode="SANDBOX"]').click();
+      document.querySelector('.tab-btn[data-mode="DESIGNER"]').click();
     });
     
-    // Sandbox tab should be active
-    await expect(page.locator('.tab-btn[data-mode="SANDBOX"]')).toHaveClass(/active/);
+    // Designer tab should be active
+    await expect(page.locator('.tab-btn[data-mode="DESIGNER"]')).toHaveClass(/active/);
   });
 
   test("should switch to Endless mode", async ({ page }) => {
@@ -880,9 +880,9 @@ test.describe("Mode Switching", () => {
   });
 
   test("should return to Story mode and show roadmap", async ({ page }) => {
-    // First go to sandbox
-    await page.click('.tab-btn[data-mode="SANDBOX"]');
-    await expect(page.locator('.tab-btn[data-mode="SANDBOX"]')).toHaveClass(/active/);
+    // First go to designer
+    await page.click('.tab-btn[data-mode="DESIGNER"]');
+    await expect(page.locator('.tab-btn[data-mode="DESIGNER"]')).toHaveClass(/active/);
     
     // Return to story - use evaluate since roadmap appears immediately and may cover tab
     await page.evaluate(() => {

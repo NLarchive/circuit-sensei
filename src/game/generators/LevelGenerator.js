@@ -257,55 +257,45 @@ export class LevelGenerator {
     }
 
     /**
-     * Generate Sandbox mode level data
+     * Generate Designer mode level data
+     * Merges old Sandbox + Custom into a professional circuit design workbench.
+     * @param {Object} config - Optional designer configuration
+     * @param {string} config.title - Custom title
+     * @param {string} config.description - Custom description
+     * @param {string} config.introText - Custom intro text
+     * @param {string} config.objective - Custom objective
+     * @param {number} config.inputs - Number of inputs (default 4)
+     * @param {number} config.maxGates - Gate limit (default Infinity)
+     * @param {Array}  config.gates - Array of allowed gate IDs (null = all)
+     * @param {Array}  config.targetTruthTable - Optional target truth table
+     * @param {string} config.hint - Custom hint text
      */
-    static generateSandboxLevel() {
-        return {
-            id: 'sandbox',
-            tier: 'sandbox',
-            title: 'Sandbox Mode',
-            description: 'Free experimentation area. Build any circuit you want with unlimited components. No objectives - just explore and learn!',
-            introText: `Welcome to Sandbox Mode!\n\nThis is your digital playground. There are no goals, no limits, and no wrong answers. Use this space to:\n\n• Experiment with different gate combinations\n• Test your understanding of Boolean logic\n• Build practice circuits before tackling challenges\n• Create your own custom logic functions\n\nAll gates are available. Place them by dragging from the toolbox or clicking to select and tapping on the canvas.`,
-            objective: 'Explore freely! Build anything you want.',
-            storyText: 'Sandbox mode mirrors how real engineers prototype. Before committing to silicon, designers simulate circuits in EDA tools, testing ideas without risk. This iterative process is how every chip from Arduino to Apple Silicon begins.',
-            availableGates: null, // null means all gates
-            inputs: 4,
-            maxGates: Infinity,
-            hint: 'Try building basic gates from other gates. For example: AND from NANDs, or XOR from basic gates.',
-            mode: 'SANDBOX',
-            isGenerated: false
-        };
-    }
-
-    /**
-     * Generate Custom mode level data
-     */
-    static generateCustomLevel(config = {}) {
-        const inputs = config.inputs || 2;
+    static generateDesignerLevel(config = {}) {
+        const inputs = config.inputs || 4;
         const hasTarget = config.targetTruthTable && config.targetTruthTable.length > 0;
-        
+
         return {
-            id: 'custom',
-            tier: 'custom',
-            title: config.title || 'Custom Circuit',
-            description: config.description || (hasTarget 
-                ? 'Design a circuit to match the provided truth table.'
-                : 'Design your own logic system. Set your own goals!'),
-            introText: config.introText || `Custom Mode lets you define your own challenges.\n\n${hasTarget 
+            id: 'designer',
+            tier: 'designer',
+            title: config.title || 'Circuit Designer',
+            description: config.description || (hasTarget
+                ? 'Design a circuit to match the provided truth table using professional-grade tools.'
+                : 'Professional circuit design workbench. All gates, unlimited components, full simulation — design anything you can imagine.'),
+            introText: config.introText || `Welcome to the Circuit Designer!\n\nThis is your professional-grade digital logic workbench — the same kind of environment real chip designers use every day. ${hasTarget
                 ? 'A target truth table has been provided. Your goal is to build a circuit that produces the correct output for every input combination.'
-                : 'No target is set - use this mode to prototype ideas or create your own puzzles to share with others.'}`,
-            objective: config.objective || (hasTarget 
+                : 'There are no restrictions. Use this space to:\n\n• Prototype and test any circuit idea\n• Experiment with all gate types (AND, OR, NOT, NAND, NOR, XOR, XNOR, MUX…)\n• Build complex multi-gate systems\n• Verify your designs with the built-in truth-table checker\n• Create custom challenges and share them\n• Practice for Story and Endless modes'}`,
+            objective: config.objective || (hasTarget
                 ? 'Build a circuit matching the truth table.'
-                : 'Design a custom logic system.'),
-            storyText: 'Custom challenges represent the real work of digital designers: translating specifications into working circuits. Every chip starts as a requirement that someone had to implement.',
-            availableGates: config.gates || null,
+                : 'Design, simulate, and verify any circuit — no limits.'),
+            storyText: 'The designer workbench mirrors how real engineers prototype. Before committing to silicon, designers simulate circuits in EDA tools, testing ideas without risk. This iterative process is how every chip — from Arduino to Apple Silicon — begins. Translating specifications into working circuits is the core skill of digital design.',
+            availableGates: config.gates || null, // null = all gates
             inputs: inputs,
             maxGates: config.maxGates || Infinity,
             targetTruthTable: config.targetTruthTable || null,
-            hint: config.hint || (hasTarget 
-                ? 'Analyze the truth table for patterns. Count the 1s in the output column - this suggests the minimum complexity.'
-                : 'Build incrementally. Start simple and add complexity.'),
-            mode: 'CUSTOM',
+            hint: config.hint || (hasTarget
+                ? 'Analyze the truth table for patterns. Count the 1s in the output column — this suggests the minimum complexity.'
+                : 'Try building basic gates from other gates (AND from NANDs, XOR from basic gates). Build incrementally — start simple and add complexity.'),
+            mode: 'DESIGNER',
             isGenerated: false
         };
     }

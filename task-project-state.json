@@ -11,17 +11,33 @@
     "budget": 0
   },
   "categories": [
-    { "name": "Core Engine", "parent_category_name": null },
-    { "name": "UI/UX", "parent_category_name": null },
-    { "name": "Content", "parent_category_name": null },
-    { "name": "Infrastructure", "parent_category_name": null }
+    {
+      "name": "Core Engine",
+      "parent_category_name": null
+    },
+    {
+      "name": "UI/UX",
+      "parent_category_name": null
+    },
+    {
+      "name": "Content",
+      "parent_category_name": null
+    },
+    {
+      "name": "Infrastructure",
+      "parent_category_name": null
+    }
   ],
   "workers": [
     {
       "name": "Lead Developer",
       "email": "dev@logicarchitect.com",
       "role": "Full Stack Developer",
-      "skills": ["JavaScript", "Canvas API", "Vite"],
+      "skills": [
+        "JavaScript",
+        "Canvas API",
+        "Vite"
+      ],
       "hourly_rate": 0
     }
   ],
@@ -38,9 +54,17 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["setup"],
+      "tags": [
+        "setup"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -55,10 +79,18 @@
       "estimated_hours": 4,
       "actual_hours": 4,
       "is_critical_path": true,
-      "tags": ["data"],
+      "tags": [
+        "data"
+      ],
       "category_name": "Core Engine",
       "assigned_workers": [],
-      "dependencies": [{ "predecessor_task_id": 1, "type": "FS", "lag_days": 0 }]
+      "dependencies": [
+        {
+          "predecessor_task_id": 1,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 3,
@@ -72,10 +104,18 @@
       "estimated_hours": 40,
       "actual_hours": 40,
       "is_critical_path": true,
-      "tags": ["engine"],
+      "tags": [
+        "engine"
+      ],
       "category_name": "Core Engine",
       "assigned_workers": [],
-      "dependencies": [{ "predecessor_task_id": 2, "type": "FS", "lag_days": 0 }]
+      "dependencies": [
+        {
+          "predecessor_task_id": 2,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 4,
@@ -89,10 +129,18 @@
       "estimated_hours": 20,
       "actual_hours": 20,
       "is_critical_path": true,
-      "tags": ["logic"],
+      "tags": [
+        "logic"
+      ],
       "category_name": "Core Engine",
       "assigned_workers": [],
-      "dependencies": [{ "predecessor_task_id": 3, "type": "FS", "lag_days": 0 }]
+      "dependencies": [
+        {
+          "predecessor_task_id": 3,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 5,
@@ -106,10 +154,18 @@
       "estimated_hours": 24,
       "actual_hours": 24,
       "is_critical_path": false,
-      "tags": ["graphics"],
+      "tags": [
+        "graphics"
+      ],
       "category_name": "Core Engine",
       "assigned_workers": [],
-      "dependencies": [{ "predecessor_task_id": 1, "type": "FS", "lag_days": 0 }]
+      "dependencies": [
+        {
+          "predecessor_task_id": 1,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 6,
@@ -123,10 +179,18 @@
       "estimated_hours": 16,
       "actual_hours": 16,
       "is_critical_path": true,
-      "tags": ["input"],
+      "tags": [
+        "input"
+      ],
       "category_name": "Core Engine",
       "assigned_workers": [],
-      "dependencies": [{ "predecessor_task_id": 5, "type": "FS", "lag_days": 0 }]
+      "dependencies": [
+        {
+          "predecessor_task_id": 5,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 7,
@@ -140,7 +204,9 @@
       "estimated_hours": 16,
       "actual_hours": 16,
       "is_critical_path": false,
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "category_name": "UI/UX",
       "assigned_workers": [],
       "dependencies": []
@@ -157,10 +223,18 @@
       "estimated_hours": 20,
       "actual_hours": 20,
       "is_critical_path": true,
-      "tags": ["content"],
+      "tags": [
+        "content"
+      ],
       "category_name": "Content",
       "assigned_workers": [],
-      "dependencies": [{ "predecessor_task_id": 3, "type": "FS", "lag_days": 0 }]
+      "dependencies": [
+        {
+          "predecessor_task_id": 3,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 18,
@@ -174,7 +248,9 @@
       "estimated_hours": 8,
       "actual_hours": 8,
       "is_critical_path": false,
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "category_name": "UI/UX",
       "assigned_workers": [],
       "dependencies": []
@@ -191,7 +267,10 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["logic", "progression"],
+      "tags": [
+        "logic",
+        "progression"
+      ],
       "category_name": "Core Engine",
       "assigned_workers": [],
       "dependencies": []
@@ -208,10 +287,19 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["content", "narrative"],
+      "tags": [
+        "content",
+        "narrative"
+      ],
       "category_name": "Content",
       "assigned_workers": [],
-      "dependencies": [{ "predecessor_task_id": 15, "type": "FS", "lag_days": 0 }]
+      "dependencies": [
+        {
+          "predecessor_task_id": 15,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 21,
@@ -225,7 +313,10 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["infrastructure", "testing"],
+      "tags": [
+        "infrastructure",
+        "testing"
+      ],
       "category_name": "Infrastructure",
       "assigned_workers": [],
       "dependencies": []
@@ -242,9 +333,18 @@
       "estimated_hours": 4,
       "actual_hours": 4,
       "is_critical_path": true,
-      "tags": ["content", "curriculum"],
+      "tags": [
+        "content",
+        "curriculum"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -259,10 +359,26 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["content", "education", "physics"],
+      "tags": [
+        "content",
+        "education",
+        "physics"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 22, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 22,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 24,
@@ -276,10 +392,30 @@
       "estimated_hours": 8,
       "actual_hours": 8,
       "is_critical_path": true,
-      "tags": ["content", "education", "masters-level", "physics", "semiconductor", "CMOS", "CPU-architecture"],
+      "tags": [
+        "content",
+        "education",
+        "masters-level",
+        "physics",
+        "semiconductor",
+        "CMOS",
+        "CPU-architecture"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 23, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 23,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 25,
@@ -293,10 +429,28 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["ui", "education", "animation", "svg", "content"],
+      "tags": [
+        "ui",
+        "education",
+        "animation",
+        "svg",
+        "content"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 24, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 24,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 26,
@@ -310,10 +464,28 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["ui", "education", "animation", "svg", "ux"],
+      "tags": [
+        "ui",
+        "education",
+        "animation",
+        "svg",
+        "ux"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 25, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 25,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 27,
@@ -327,10 +499,27 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["integration", "curriculum", "testing", "quality"],
+      "tags": [
+        "integration",
+        "curriculum",
+        "testing",
+        "quality"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 26, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 26,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 28,
@@ -344,10 +533,27 @@
       "estimated_hours": 10,
       "actual_hours": 3,
       "is_critical_path": true,
-      "tags": ["core", "wiring", "ux", "sequential"],
+      "tags": [
+        "core",
+        "wiring",
+        "ux",
+        "sequential"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 27, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 27,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 29,
@@ -361,10 +567,28 @@
       "estimated_hours": 12,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["ui", "education", "animation", "svg", "physics"],
+      "tags": [
+        "ui",
+        "education",
+        "animation",
+        "svg",
+        "physics"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 26, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 26,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 30,
@@ -378,10 +602,27 @@
       "estimated_hours": 12,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["content", "education", "physics", "quality"],
+      "tags": [
+        "content",
+        "education",
+        "physics",
+        "quality"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 24, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 24,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 31,
@@ -395,10 +636,26 @@
       "estimated_hours": 6,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["infrastructure", "testing", "data"],
+      "tags": [
+        "infrastructure",
+        "testing",
+        "data"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 27, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 27,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 32,
@@ -412,10 +669,26 @@
       "estimated_hours": 8,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["testing", "e2e", "quality"],
+      "tags": [
+        "testing",
+        "e2e",
+        "quality"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 27, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 27,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 33,
@@ -429,10 +702,26 @@
       "estimated_hours": 10,
       "actual_hours": 7,
       "is_critical_path": true,
-      "tags": ["engine", "sequential", "stability"],
+      "tags": [
+        "engine",
+        "sequential",
+        "stability"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 28, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 28,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 34,
@@ -446,12 +735,30 @@
       "estimated_hours": 8,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["ci", "build", "release"],
+      "tags": [
+        "ci",
+        "build",
+        "release"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": [
-        { "predecessor_task_id": 32, "type": "FS", "lag_days": 0 },
-        { "predecessor_task_id": 33, "type": "FS", "lag_days": 0 }
+        {
+          "predecessor_task_id": 32,
+          "type": "FS",
+          "lag_days": 0
+        },
+        {
+          "predecessor_task_id": 33,
+          "type": "FS",
+          "lag_days": 0
+        }
       ]
     },
     {
@@ -466,10 +773,26 @@
       "estimated_hours": 12,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ux", "docs", "education"],
+      "tags": [
+        "ux",
+        "docs",
+        "education"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 34, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 34,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 36,
@@ -483,12 +806,31 @@
       "estimated_hours": 10,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["content", "physics", "data", "ui"],
+      "tags": [
+        "content",
+        "physics",
+        "data",
+        "ui"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": [
-        { "predecessor_task_id": 27, "type": "FS", "lag_days": 0 },
-        { "predecessor_task_id": 29, "type": "FS", "lag_days": 0 }
+        {
+          "predecessor_task_id": 27,
+          "type": "FS",
+          "lag_days": 0
+        },
+        {
+          "predecessor_task_id": 29,
+          "type": "FS",
+          "lag_days": 0
+        }
       ]
     },
     {
@@ -503,10 +845,27 @@
       "estimated_hours": 10,
       "actual_hours": 0,
       "is_critical_path": false,
-      "tags": ["ux", "education", "timing", "debug"],
+      "tags": [
+        "ux",
+        "education",
+        "timing",
+        "debug"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 28, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 28,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 38,
@@ -520,10 +879,27 @@
       "estimated_hours": 8,
       "actual_hours": 4,
       "is_critical_path": true,
-      "tags": ["engine", "sequential", "ux", "education"],
+      "tags": [
+        "engine",
+        "sequential",
+        "ux",
+        "education"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 33, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 33,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 39,
@@ -537,10 +913,26 @@
       "estimated_hours": 10,
       "actual_hours": 3,
       "is_critical_path": true,
-      "tags": ["performance", "stability", "production"],
+      "tags": [
+        "performance",
+        "stability",
+        "production"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 33, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 33,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 40,
@@ -554,10 +946,26 @@
       "estimated_hours": 8,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["ux", "accessibility", "mobile"],
+      "tags": [
+        "ux",
+        "accessibility",
+        "mobile"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 35, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 35,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 41,
@@ -571,12 +979,32 @@
       "estimated_hours": 8,
       "actual_hours": 4,
       "is_critical_path": true,
-      "tags": ["engine", "validator", "sequential", "timing", "data"],
+      "tags": [
+        "engine",
+        "validator",
+        "sequential",
+        "timing",
+        "data"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": [
-        { "predecessor_task_id": 31, "type": "FS", "lag_days": 0 },
-        { "predecessor_task_id": 38, "type": "FS", "lag_days": 0 }
+        {
+          "predecessor_task_id": 31,
+          "type": "FS",
+          "lag_days": 0
+        },
+        {
+          "predecessor_task_id": 38,
+          "type": "FS",
+          "lag_days": 0
+        }
       ]
     },
     {
@@ -591,10 +1019,27 @@
       "estimated_hours": 3,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["engine", "gates", "sequential", "sandbox"],
+      "tags": [
+        "engine",
+        "gates",
+        "sequential",
+        "sandbox"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 33, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 33,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 43,
@@ -608,10 +1053,28 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ui", "animation", "physics", "education", "sequential"],
+      "tags": [
+        "ui",
+        "animation",
+        "physics",
+        "education",
+        "sequential"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 29, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 29,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 44,
@@ -625,10 +1088,27 @@
       "estimated_hours": 10,
       "actual_hours": 3,
       "is_critical_path": true,
-      "tags": ["engine", "timing", "physics", "stability"],
+      "tags": [
+        "engine",
+        "timing",
+        "physics",
+        "stability"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 33, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 33,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 45,
@@ -642,10 +1122,27 @@
       "estimated_hours": 10,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["engine", "gates", "physics", "architecture"],
+      "tags": [
+        "engine",
+        "gates",
+        "physics",
+        "architecture"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 33, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 33,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 46,
@@ -659,10 +1156,26 @@
       "estimated_hours": 12,
       "actual_hours": 0,
       "is_critical_path": false,
-      "tags": ["engine", "physics", "education"],
+      "tags": [
+        "engine",
+        "physics",
+        "education"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 44, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 44,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 47,
@@ -676,10 +1189,26 @@
       "estimated_hours": 8,
       "actual_hours": 0,
       "is_critical_path": false,
-      "tags": ["engine", "physics", "ui"],
+      "tags": [
+        "engine",
+        "physics",
+        "ui"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 33, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 33,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 48,
@@ -693,10 +1222,26 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ui", "education", "ux"],
+      "tags": [
+        "ui",
+        "education",
+        "ux"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 24, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 24,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 49,
@@ -710,10 +1255,26 @@
       "estimated_hours": 6,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["ux", "interaction", "logic"],
+      "tags": [
+        "ux",
+        "interaction",
+        "logic"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 40, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 40,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 50,
@@ -727,10 +1288,27 @@
       "estimated_hours": 14,
       "actual_hours": 10,
       "is_critical_path": false,
-      "tags": ["content", "education", "ux", "curriculum"],
+      "tags": [
+        "content",
+        "education",
+        "ux",
+        "curriculum"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 48, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 48,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 51,
@@ -744,10 +1322,27 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ux", "ui", "education", "toolbox"],
+      "tags": [
+        "ux",
+        "ui",
+        "education",
+        "toolbox"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 50, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 50,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 52,
@@ -761,10 +1356,28 @@
       "estimated_hours": 3,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["content", "education", "ux", "schema", "visuals"],
+      "tags": [
+        "content",
+        "education",
+        "ux",
+        "schema",
+        "visuals"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 51, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 51,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 53,
@@ -778,10 +1391,28 @@
       "estimated_hours": 2,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["content", "education", "ux", "schema", "visuals"],
+      "tags": [
+        "content",
+        "education",
+        "ux",
+        "schema",
+        "visuals"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 52, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 52,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 54,
@@ -795,10 +1426,29 @@
       "estimated_hours": 4,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["content", "education", "ux", "animations", "visuals", "course-design"],
+      "tags": [
+        "content",
+        "education",
+        "ux",
+        "animations",
+        "visuals",
+        "course-design"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 53, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 53,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 55,
@@ -812,10 +1462,26 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["content", "quality", "automation"],
+      "tags": [
+        "content",
+        "quality",
+        "automation"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 54, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 54,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 56,
@@ -829,10 +1495,26 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["content", "ux", "roadmap"],
+      "tags": [
+        "content",
+        "ux",
+        "roadmap"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 55, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 55,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 57,
@@ -846,10 +1528,25 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["testing", "quality"],
+      "tags": [
+        "testing",
+        "quality"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 56, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 56,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 58,
@@ -863,10 +1560,27 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["content", "quality", "education", "animations"],
+      "tags": [
+        "content",
+        "quality",
+        "education",
+        "animations"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 57, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 57,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 59,
@@ -880,10 +1594,26 @@
       "estimated_hours": 0.5,
       "actual_hours": 0.5,
       "is_critical_path": false,
-      "tags": ["ui", "bugfix", "display"],
+      "tags": [
+        "ui",
+        "bugfix",
+        "display"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 58, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 58,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 60,
@@ -897,10 +1627,28 @@
       "estimated_hours": 3,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["content", "education", "quality", "curriculum", "definitions"],
+      "tags": [
+        "content",
+        "education",
+        "quality",
+        "curriculum",
+        "definitions"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 59, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 59,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 61,
@@ -914,10 +1662,30 @@
       "estimated_hours": 4,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["content", "education", "data", "curriculum", "glossary", "formulas", "tooltips"],
+      "tags": [
+        "content",
+        "education",
+        "data",
+        "curriculum",
+        "glossary",
+        "formulas",
+        "tooltips"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 60, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 60,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 62,
@@ -931,10 +1699,29 @@
       "estimated_hours": 4,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["ui", "education", "glossary", "formulas", "tooltips", "accessibility"],
+      "tags": [
+        "ui",
+        "education",
+        "glossary",
+        "formulas",
+        "tooltips",
+        "accessibility"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 61, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 61,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 63,
@@ -948,9 +1735,20 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["content", "education", "curriculum", "truth-tables"],
+      "tags": [
+        "content",
+        "education",
+        "curriculum",
+        "truth-tables"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -965,9 +1763,20 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["content", "education", "bit-masking", "bitwise-operations"],
+      "tags": [
+        "content",
+        "education",
+        "bit-masking",
+        "bitwise-operations"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -982,9 +1791,21 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ui", "ux", "refactor", "education", "css"],
+      "tags": [
+        "ui",
+        "ux",
+        "refactor",
+        "education",
+        "css"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -999,9 +1820,20 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["content", "education", "exercises", "formatting"],
+      "tags": [
+        "content",
+        "education",
+        "exercises",
+        "formatting"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1016,10 +1848,28 @@
       "estimated_hours": 3,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ui", "education", "formulas", "rendering", "static-site"],
+      "tags": [
+        "ui",
+        "education",
+        "formulas",
+        "rendering",
+        "static-site"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 65, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 65,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 68,
@@ -1033,10 +1883,30 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["ui", "education", "formulas", "katex", "build-time", "static-site", "performance"],
+      "tags": [
+        "ui",
+        "education",
+        "formulas",
+        "katex",
+        "build-time",
+        "static-site",
+        "performance"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 67, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 67,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 69,
@@ -1050,10 +1920,27 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ui", "education", "formulas", "quality"],
+      "tags": [
+        "ui",
+        "education",
+        "formulas",
+        "quality"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 68, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 68,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 71,
@@ -1067,10 +1954,29 @@
       "estimated_hours": 3,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["content", "quality", "latex", "formulas", "text-fixes", "curriculum"],
+      "tags": [
+        "content",
+        "quality",
+        "latex",
+        "formulas",
+        "text-fixes",
+        "curriculum"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 70, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 70,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 72,
@@ -1084,10 +1990,26 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": true,
-      "tags": ["content", "quality", "final-polish"],
+      "tags": [
+        "content",
+        "quality",
+        "final-polish"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 71, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 71,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 73,
@@ -1101,10 +2023,27 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["content", "quality", "formulas", "final-polish"],
+      "tags": [
+        "content",
+        "quality",
+        "formulas",
+        "final-polish"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 72, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 72,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 74,
@@ -1118,10 +2057,27 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["audit", "content", "quality", "latex"],
+      "tags": [
+        "audit",
+        "content",
+        "quality",
+        "latex"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 73, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 73,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 75,
@@ -1135,10 +2091,28 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": true,
-      "tags": ["fix", "content", "quality", "ui", "latex"],
+      "tags": [
+        "fix",
+        "content",
+        "quality",
+        "ui",
+        "latex"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 74, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 74,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 76,
@@ -1152,10 +2126,25 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["quality", "final-polish"],
+      "tags": [
+        "quality",
+        "final-polish"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 75, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 75,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 77,
@@ -1169,10 +2158,26 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["quality", "text-fixes", "sequential"],
+      "tags": [
+        "quality",
+        "text-fixes",
+        "sequential"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 76, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 76,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 78,
@@ -1186,10 +2191,25 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["quality", "text-fixes"],
+      "tags": [
+        "quality",
+        "text-fixes"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 77, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 77,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 79,
@@ -1203,10 +2223,25 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["quality", "final-audit"],
+      "tags": [
+        "quality",
+        "final-audit"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 78, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 78,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 80,
@@ -1220,10 +2255,25 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["ui", "latex"],
+      "tags": [
+        "ui",
+        "latex"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 79, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 79,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 81,
@@ -1237,10 +2287,25 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["documentation", "standardization"],
+      "tags": [
+        "documentation",
+        "standardization"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 80, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 80,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 82,
@@ -1254,10 +2319,26 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["audit", "ui", "logic"],
+      "tags": [
+        "audit",
+        "ui",
+        "logic"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 81, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 81,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 83,
@@ -1271,10 +2352,26 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["polish", "standards", "ui"],
+      "tags": [
+        "polish",
+        "standards",
+        "ui"
+      ],
       "category_name": "General",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 82, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 82,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 84,
@@ -1288,10 +2385,25 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["metadata", "curriculum"],
+      "tags": [
+        "metadata",
+        "curriculum"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 83, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 83,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 85,
@@ -1305,10 +2417,26 @@
       "estimated_hours": 4,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["content", "game-levels", "difficulty"],
+      "tags": [
+        "content",
+        "game-levels",
+        "difficulty"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 84, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 84,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 86,
@@ -1322,10 +2450,29 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["ui", "ux", "mobile", "difficulty", "testing", "playwright"],
+      "tags": [
+        "ui",
+        "ux",
+        "mobile",
+        "difficulty",
+        "testing",
+        "playwright"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 85, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 85,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 87,
@@ -1339,10 +2486,26 @@
       "estimated_hours": 2,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["mobile", "ui", "ux"],
+      "tags": [
+        "mobile",
+        "ui",
+        "ux"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 86, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 86,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 88,
@@ -1356,10 +2519,27 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["mobile", "ui", "ux", "roadmap"],
+      "tags": [
+        "mobile",
+        "ui",
+        "ux",
+        "roadmap"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 87, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 87,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 89,
@@ -1373,10 +2553,28 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["mobile", "ui", "ux", "touch", "analytics"],
+      "tags": [
+        "mobile",
+        "ui",
+        "ux",
+        "touch",
+        "analytics"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 88, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 88,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 90,
@@ -1390,10 +2588,29 @@
       "estimated_hours": 6,
       "actual_hours": 5,
       "is_critical_path": true,
-      "tags": ["content", "game-levels", "difficulty", "curriculum", "redesign", "education"],
+      "tags": [
+        "content",
+        "game-levels",
+        "difficulty",
+        "curriculum",
+        "redesign",
+        "education"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 85, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 85,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 91,
@@ -1407,10 +2624,29 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["content", "game-levels", "gates", "curriculum", "audit", "fix"],
+      "tags": [
+        "content",
+        "game-levels",
+        "gates",
+        "curriculum",
+        "audit",
+        "fix"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 90, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 90,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 92,
@@ -1424,10 +2660,28 @@
       "estimated_hours": 3,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["content", "game-levels", "validation", "truth-tables", "quality"],
+      "tags": [
+        "content",
+        "game-levels",
+        "validation",
+        "truth-tables",
+        "quality"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 91, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 91,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 93,
@@ -1441,10 +2695,31 @@
       "estimated_hours": 3,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["content", "game-levels", "gates", "curriculum", "fix", "testing", "validation", "famous-circuits"],
+      "tags": [
+        "content",
+        "game-levels",
+        "gates",
+        "curriculum",
+        "fix",
+        "testing",
+        "validation",
+        "famous-circuits"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 92, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 92,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 94,
@@ -1458,10 +2733,29 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["content", "game-levels", "gates", "curriculum", "verification", "quality"],
+      "tags": [
+        "content",
+        "game-levels",
+        "gates",
+        "curriculum",
+        "verification",
+        "quality"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 93, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 93,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 95,
@@ -1475,10 +2769,27 @@
       "estimated_hours": 8,
       "actual_hours": 3,
       "is_critical_path": true,
-      "tags": ["content", "automation", "manifest", "generator"],
+      "tags": [
+        "content",
+        "automation",
+        "manifest",
+        "generator"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 94, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 94,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 96,
@@ -1492,10 +2803,26 @@
       "estimated_hours": 4,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["migration", "automation", "data"],
+      "tags": [
+        "migration",
+        "automation",
+        "data"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 95, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 95,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 97,
@@ -1509,10 +2836,32 @@
       "estimated_hours": 6,
       "actual_hours": 0.5,
       "is_critical_path": true,
-      "tags": ["engine", "integration", "ui", "manifest"],
+      "tags": [
+        "engine",
+        "integration",
+        "ui",
+        "manifest"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 95, "type": "FS", "lag_days": 0 }, { "predecessor_task_id": 96, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 95,
+          "type": "FS",
+          "lag_days": 0
+        },
+        {
+          "predecessor_task_id": 96,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 98,
@@ -1524,12 +2873,39 @@
       "status": "Completed",
       "progress_percentage": 100,
       "estimated_hours": 4,
-      "actual_hours": 3.0,
+      "actual_hours": 3,
       "is_critical_path": true,
-      "tags": ["testing", "ci", "validation", "manifest"],
+      "tags": [
+        "testing",
+        "ci",
+        "validation",
+        "manifest"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 95, "type": "FS", "lag_days": 0 }, { "predecessor_task_id": 96, "type": "FS", "lag_days": 0 }, { "predecessor_task_id": 97, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 95,
+          "type": "FS",
+          "lag_days": 0
+        },
+        {
+          "predecessor_task_id": 96,
+          "type": "FS",
+          "lag_days": 0
+        },
+        {
+          "predecessor_task_id": 97,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 99,
@@ -1543,10 +2919,26 @@
       "estimated_hours": 3,
       "actual_hours": 0.5,
       "is_critical_path": false,
-      "tags": ["docs", "release", "github"],
+      "tags": [
+        "docs",
+        "release",
+        "github"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 98, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 98,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 100,
@@ -1558,12 +2950,27 @@
       "status": "Completed",
       "progress_percentage": 100,
       "estimated_hours": 0.5,
-      "actual_hours": 1.0,
+      "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["cleanup", "migration"],
+      "tags": [
+        "cleanup",
+        "migration"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 99, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 99,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 101,
@@ -1577,10 +2984,26 @@
       "estimated_hours": 2,
       "actual_hours": 1.5,
       "is_critical_path": true,
-      "tags": ["migration", "cleanup", "testing"],
+      "tags": [
+        "migration",
+        "cleanup",
+        "testing"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 100, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 100,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 102,
@@ -1594,10 +3017,28 @@
       "estimated_hours": 2,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["schema", "validation", "automation", "difficulty", "index"],
+      "tags": [
+        "schema",
+        "validation",
+        "automation",
+        "difficulty",
+        "index"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 101, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 101,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 103,
@@ -1611,10 +3052,27 @@
       "estimated_hours": 2,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["refactor", "manifest", "runtime", "testing"],
+      "tags": [
+        "refactor",
+        "manifest",
+        "runtime",
+        "testing"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 102, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 102,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 104,
@@ -1628,10 +3086,28 @@
       "estimated_hours": 12,
       "actual_hours": 0,
       "is_critical_path": true,
-      "tags": ["ui", "responsive", "mobile", "touch", "ux"],
+      "tags": [
+        "ui",
+        "responsive",
+        "mobile",
+        "touch",
+        "ux"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 103, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 103,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 105,
@@ -1645,10 +3121,28 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["ui", "css", "regression", "hud", "e2e"],
+      "tags": [
+        "ui",
+        "css",
+        "regression",
+        "hud",
+        "e2e"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 83, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 83,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 106,
@@ -1662,10 +3156,27 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["testing", "e2e", "ui", "regression"],
+      "tags": [
+        "testing",
+        "e2e",
+        "ui",
+        "regression"
+      ],
       "category_name": "Testing",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 105, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 105,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 107,
@@ -1679,10 +3190,29 @@
       "estimated_hours": 2,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["verification", "migration", "refactoring", "modular", "hud", "quality-assurance"],
+      "tags": [
+        "verification",
+        "migration",
+        "refactoring",
+        "modular",
+        "hud",
+        "quality-assurance"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 106, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 106,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 108,
@@ -1696,10 +3226,32 @@
       "estimated_hours": 6,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["ui", "ux", "refactoring", "architecture", "modular", "accessibility", "deduplication", "best-practices", "css"],
+      "tags": [
+        "ui",
+        "ux",
+        "refactoring",
+        "architecture",
+        "modular",
+        "accessibility",
+        "deduplication",
+        "best-practices",
+        "css"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 107, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 107,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 109,
@@ -1713,10 +3265,31 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": true,
-      "tags": ["refactoring", "architecture", "levels", "content-separation", "theory", "puzzles", "migration", "storyloader"],
+      "tags": [
+        "refactoring",
+        "architecture",
+        "levels",
+        "content-separation",
+        "theory",
+        "puzzles",
+        "migration",
+        "storyloader"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 108, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 108,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 110,
@@ -1730,10 +3303,29 @@
       "estimated_hours": 4,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["audio", "music", "web-audio-api", "procedural", "ux", "ui"],
+      "tags": [
+        "audio",
+        "music",
+        "web-audio-api",
+        "procedural",
+        "ux",
+        "ui"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 109, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 109,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 111,
@@ -1742,15 +3334,33 @@
       "start_date": "2026-01-24",
       "end_date": "2026-01-24",
       "priority": "Medium",
-      "status": "Completed", 
+      "status": "Completed",
       "progress_percentage": 100,
       "estimated_hours": 1,
       "actual_hours": 0.5,
       "is_critical_path": false,
-      "tags": ["ui", "ux", "levels", "completion", "difficulty"],
+      "tags": [
+        "ui",
+        "ux",
+        "levels",
+        "completion",
+        "difficulty"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 109, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 109,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 112,
@@ -1764,9 +3374,19 @@
       "estimated_hours": 0.25,
       "actual_hours": 0.25,
       "is_critical_path": false,
-      "tags": ["github", "funding", "meta"],
+      "tags": [
+        "github",
+        "funding",
+        "meta"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1781,9 +3401,21 @@
       "estimated_hours": 0.75,
       "actual_hours": 0.75,
       "is_critical_path": false,
-      "tags": ["github", "pages", "actions", "deploy", "vite"],
+      "tags": [
+        "github",
+        "pages",
+        "actions",
+        "deploy",
+        "vite"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1798,9 +3430,20 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["bugfix", "pages", "story", "deploy"],
+      "tags": [
+        "bugfix",
+        "pages",
+        "story",
+        "deploy"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1815,10 +3458,27 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["bugfix", "audio", "ux", "interactions"],
+      "tags": [
+        "bugfix",
+        "audio",
+        "ux",
+        "interactions"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 111, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 111,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 116,
@@ -1832,10 +3492,30 @@
       "estimated_hours": 4,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["modes", "endless", "sandbox", "custom", "educational", "ui", "procedural"],
+      "tags": [
+        "modes",
+        "endless",
+        "sandbox",
+        "custom",
+        "educational",
+        "ui",
+        "procedural"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 115, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 115,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 117,
@@ -1849,9 +3529,19 @@
       "estimated_hours": 0.5,
       "actual_hours": 0.5,
       "is_critical_path": false,
-      "tags": ["content", "animation", "bugfix"],
+      "tags": [
+        "content",
+        "animation",
+        "bugfix"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1866,9 +3556,18 @@
       "estimated_hours": 0.25,
       "actual_hours": 0.25,
       "is_critical_path": false,
-      "tags": ["ui", "bugfix"],
+      "tags": [
+        "ui",
+        "bugfix"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1883,10 +3582,26 @@
       "estimated_hours": 0.25,
       "actual_hours": 0.25,
       "is_critical_path": false,
-      "tags": ["ui", "bugfix", "sync"],
+      "tags": [
+        "ui",
+        "bugfix",
+        "sync"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 118, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 118,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 120,
@@ -1900,9 +3615,20 @@
       "estimated_hours": 0.5,
       "actual_hours": 0.5,
       "is_critical_path": false,
-      "tags": ["bugfix", "roadmap", "ui", "e2e"],
+      "tags": [
+        "bugfix",
+        "roadmap",
+        "ui",
+        "e2e"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1917,10 +3643,27 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["cleanup", "legacy", "build", "documentation"],
+      "tags": [
+        "cleanup",
+        "legacy",
+        "build",
+        "documentation"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 103, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 103,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 122,
@@ -1934,9 +3677,20 @@
       "estimated_hours": 4,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["content", "puzzles", "progression", "audit"],
+      "tags": [
+        "content",
+        "puzzles",
+        "progression",
+        "audit"
+      ],
       "category_name": "Content",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1951,9 +3705,20 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ux", "loading", "performance", "roadmap"],
+      "tags": [
+        "ux",
+        "loading",
+        "performance",
+        "roadmap"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
       "dependencies": []
     },
     {
@@ -1968,10 +3733,27 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": false,
-      "tags": ["testing", "e2e", "loading", "ux"],
+      "tags": [
+        "testing",
+        "e2e",
+        "loading",
+        "ux"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 123, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 123,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 125,
@@ -1985,10 +3767,26 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ux", "loading", "testing"],
+      "tags": [
+        "ux",
+        "loading",
+        "testing"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 124, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 124,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 126,
@@ -2002,10 +3800,28 @@
       "estimated_hours": 4,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["performance", "loading", "roadmap", "prefetch", "build-time"],
+      "tags": [
+        "performance",
+        "loading",
+        "roadmap",
+        "prefetch",
+        "build-time"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 125, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 125,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 127,
@@ -2019,10 +3835,28 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["bugfix", "performance", "roadmap", "variant-select", "badge"],
+      "tags": [
+        "bugfix",
+        "performance",
+        "roadmap",
+        "variant-select",
+        "badge"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 126, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 126,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 128,
@@ -2036,10 +3870,28 @@
       "estimated_hours": 3,
       "actual_hours": 3,
       "is_critical_path": false,
-      "tags": ["feature", "loading", "transitions", "ui", "reusable"],
+      "tags": [
+        "feature",
+        "loading",
+        "transitions",
+        "ui",
+        "reusable"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 127, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 127,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 129,
@@ -2053,10 +3905,28 @@
       "estimated_hours": 4,
       "actual_hours": 4,
       "is_critical_path": false,
-      "tags": ["feature", "async", "priority-queue", "performance", "ux"],
+      "tags": [
+        "feature",
+        "async",
+        "priority-queue",
+        "performance",
+        "ux"
+      ],
       "category_name": "Core Engine",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 128, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 128,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 130,
@@ -2070,10 +3940,28 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["bugfix", "ci", "testing", "github-actions", "infrastructure"],
+      "tags": [
+        "bugfix",
+        "ci",
+        "testing",
+        "github-actions",
+        "infrastructure"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 129, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 129,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 131,
@@ -2087,10 +3975,28 @@
       "estimated_hours": 1,
       "actual_hours": 1,
       "is_critical_path": true,
-      "tags": ["bugfix", "ci", "github-actions", "infrastructure", "cleanup"],
+      "tags": [
+        "bugfix",
+        "ci",
+        "github-actions",
+        "infrastructure",
+        "cleanup"
+      ],
       "category_name": "Infrastructure",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 130, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 130,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
     },
     {
       "task_id": 132,
@@ -2104,10 +4010,742 @@
       "estimated_hours": 2,
       "actual_hours": 2,
       "is_critical_path": false,
-      "tags": ["ui", "svg", "bugfix", "ux"],
+      "tags": [
+        "ui",
+        "svg",
+        "bugfix",
+        "ux"
+      ],
       "category_name": "UI/UX",
-      "assigned_workers": [{ "name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer" }],
-      "dependencies": [{ "predecessor_task_id": 131, "type": "FS", "lag_days": 0 }]
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 131,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
+    },
+    {
+      "task_id": 133,
+      "task_name": "Audio Engine Quality Pass: Anti-Distortion, Modular Mix Pipeline",
+      "description": "Performed a deep audio-quality review and refactor to remove intermittent distortion artifacts and improve long-term reusability. ROOT CAUSES ADDRESSED: output bus clipping under stacked voices (melody+bass+chords+drums), abrupt gain/value transitions causing clicks, and tightly coupled scheduling logic that reduced maintainability. IMPLEMENTED: (1) Added reusable output pipeline in MusicEngine.js: musicBus -> compressor -> limiter -> masterGain -> destination for cleaner headroom and transient control. (2) Refined note envelope shaping with safer exponential ramps, release guards, and stop tail smoothing to reduce pops. (3) Refined drum synthesis with reusable cached noise buffer, lower noise amplitude, preset-based drum profiles (kick/snare/hihat), and safer gain decay ramps. (4) Refactored scheduling into modular sections (scheduleMelody/scheduleBass/scheduleChords/scheduleDrums) with centralized configurable mix levels. (5) Added configuration and normalization helpers (configure, normalizeSong, defaults) so the engine can be reused in other projects with minimal wiring and predictable behavior. (6) Hardened tempo and preference handling with clamping and finite checks for stability. VERIFIED: ESLint clean on src/audio/*.js and tests/audio_interactions.test.js passes (11 passed, 3 skipped).",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 3,
+      "actual_hours": 3,
+      "is_critical_path": false,
+      "tags": [
+        "audio",
+        "music",
+        "quality",
+        "refactor",
+        "web-audio-api",
+        "modular",
+        "maintainability"
+      ],
+      "category_name": "Core Engine",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 132,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
+    },
+    {
+      "task_id": 134,
+      "task_name": "Cross-Device Audio Stability Hardening (Random Distortion Mitigation)",
+      "description": "Implemented a second-pass hardening focused on intermittent/random distortion heard on some devices and speakers. ROOT CAUSES ADDRESSED: (1) scheduler catch-up bursts after timing drift causing audible overload, (2) high-frequency aliasing/harsh harmonics on square/sawtooth voices across different sample rates, (3) low-end/DC artifacts and device-specific tonal imbalance. IMPLEMENTED IN MusicEngine.js: (a) Scheduler drift protection with max drift threshold, max notes per tick guard, and recovery offset to prevent burst scheduling spikes. (b) Frequency safety clamps with waveform-aware ceilings and Nyquist-safe limits for better playback on varied DAC/speaker paths. (c) Added output conditioning filters: DC blocker high-pass and adaptive low-pass tuned to device profile/sample rate before compression/limiting. (d) Kept existing compressor+limiter chain for headroom control and integrated safeguards into same modular architecture. VERIFIED: ESLint clean on src/audio/*.js; audio_interactions.test.js passes (11 passed, 3 skipped); file diagnostics report no errors.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": [
+        "audio",
+        "music",
+        "stability",
+        "cross-device",
+        "distortion",
+        "web-audio-api",
+        "quality"
+      ],
+      "category_name": "Core Engine",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 133,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
+    },
+    {
+      "task_id": 135,
+      "task_name": "Enable selectable text across UI",
+      "description": "Allow users to select and copy text across all screens (remove global user-select: none); keep controls intentionally non-selectable.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "Low",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.5,
+      "actual_hours": 0.5,
+      "is_critical_path": false,
+      "tags": [
+        "ux",
+        "accessibility",
+        "a11y"
+      ],
+      "category_name": "UI/UX",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 136,
+      "task_name": "Selected Reliability Strategy: Adaptive Native Audio Engine (No External Runtime)",
+      "description": "Evaluated reliability options and selected the best fit for this project: keep a native Web Audio engine and harden it adaptively instead of introducing an external runtime dependency. RATIONALE: maximum compatibility on static deployment, low integration risk with existing game flow, and better maintainability with current API surface. IMPLEMENTED: (1) adaptive polyphony guard via active voice counting and max voice allocation limits, (2) voice-aware dynamic headroom compensation to reduce clipping when simultaneous layers increase, (3) voice lifecycle tracking reset on stop for deterministic state recovery. OUTCOME: lower probability of random distortion on lower-end devices while preserving existing MusicController and content contracts. VERIFIED: ESLint clean on src/audio/*.js; tests/audio_interactions.test.js passes (11 passed, 3 skipped); diagnostics show no file errors.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1.5,
+      "actual_hours": 1.5,
+      "is_critical_path": false,
+      "tags": [
+        "audio",
+        "music",
+        "reliability",
+        "architecture",
+        "web-audio-api",
+        "maintainability"
+      ],
+      "category_name": "Core Engine",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [
+        {
+          "predecessor_task_id": 134,
+          "type": "FS",
+          "lag_days": 0
+        }
+      ]
+    },
+    {
+      "task_id": 137,
+      "task_name": "Formula Rendering Hardening + Empty HUD Folder Cleanup",
+      "description": "Removed accidental empty test folders (tests/hud, tests/hudUtils, tests/unit). Hardened HUD formula fallback rendering with brace-aware \\frac parsing and expanded equation formatting coverage for exercise hints/answers/solution steps in both HUDEducation and HUD wrappers. Corrected malformed fraction expressions in level_15, level_16, level_19, and level_boss to consistent LaTeX best practices. Validated all level-theory JSON files and full test suite.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "ui",
+        "formulas",
+        "cleanup",
+        "quality"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 138,
+      "task_name": "Level Formula Consistency Review (All Theory Levels)",
+      "description": "Performed full automated consistency audit over all story/level-theory formulas and formula-bearing steps/hints/answers. Fixed 7 issues: mixed plain division with LaTeX, unicode superscripts in LaTeX expressions, and one invalid double-subscript pattern. Updated affected files (level_01, level_04, level_08, level_16), re-ran KaTeX pre-rendering to synchronize latex/html fields, and validated with full test suite.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "formulas",
+        "quality",
+        "review"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 139,
+      "task_name": "Chapter 05-to-Boss Theory & Exercise Coherence Review",
+      "description": "Reviewed levels 05 through boss for pedagogical and technical coherence with prior curriculum. Applied targeted fixes in levels 06, 07, 08, 10, 14, 15, 16, 19, and boss: corrected inverted-variable notation, aligned intro/story scope with level objective, fixed transistor-count claim, clarified transmission-gate assumptions, refined SR latch forbidden-state wording, filled missing exercise final answer, corrected T-FF general-vs-special construction wording, fixed two's-complement worked steps, and reconciled datapath memory wording with Von Neumann framing. Verified edited chapter set is JSON-valid and issue-free under automated consistency checks.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "curriculum",
+        "coherence",
+        "review",
+        "theory",
+        "exercises"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 140,
+      "task_name": "Solution Formula Alignment and Step Rendering Cleanup",
+      "description": "Comprehensive overhaul of solution/exercise step rendering and CSS to fix formula desalignment across all levels and devices. (1) Removed fragile colon-split two-column layout (step-label/step-formula) that caused inconsistent column widths. (2) Moved normalizeStepText into HUDUtils as a shared recursive utility that strips all redundant numbering prefixes ('Step N:', '1.', '**Step N:**', and nested combos). (3) Simplified HUDEducation.renderWorkedExample, HUDEducation.renderExerciseItem, and HUD.renderExerciseItem to render steps uniformly as <li>formatEquation(text)</li> inside <ol class='solution-steps'>. (4) Consolidated duplicate CSS rules for .exercise-hint/.exercise-answer. (5) Created unified .solution-steps CSS with consistent padding, line-height 1.7, word-wrap protection. (6) Fixed .fraction CSS in visuals.css: changed vertical-align from 'middle' to 'baseline', removed translateY transform that disrupted line rhythm. (7) Added overflow-x: auto for scrollable formula containers. (8) Added responsive media queries for mobile (max-width: 600px) covering solution steps, formula cards, grids, and tier cards.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": [
+        "ui",
+        "ux",
+        "formulas",
+        "alignment",
+        "content"
+      ],
+      "category_name": "UI/UX",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 141,
+      "task_name": "Enhance Level 2 Transistor Knowledge Explanations",
+      "description": "Improve level 2 puzzles and theory to better explain transistor-based logic for learners. Added 'Building Logic Gates from Transistors' concept card to level_02.json explaining how NOT, AND, OR, NAND gates are constructed from transistors. Updated puzzle hints in level_02_medium.json and level_02_hard.json to provide clearer guidance on combining transistors for logic operations.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.5,
+      "actual_hours": 0.5,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "education",
+        "transistors",
+        "logic gates"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 142,
+      "task_name": "Level 2 Content Progression and Puzzle Pedagogy Review",
+      "description": "Reviewed and updated Level 2 educational content for clarity, progression, and relevance. Refined the 'Building Logic Gates from Transistors' concept card to use visible fields and technically accurate beginner framing. Added a puzzle-aligned NAND reasoning exercise in level_02 theory. Improved easy/medium/hard Level 2 puzzle hints, objectives, and descriptions to reduce premature jargon and provide stepwise guidance. Synced level metadata in levels-index.json and variants-summary.json to match revised puzzle naming and learner-facing goals.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "education",
+        "curriculum",
+        "puzzles",
+        "transistors"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 143,
+      "task_name": "Puzzle Solvability QC Tests from Level 01 to Boss",
+      "description": "Implemented end-to-end puzzle quality control for all variants (easy/medium/hard) from level_01 through boss by adding automated tests in tests/puzzle_solvability.test.js. The suite validates learner-facing text quality fields, validates truth-table and sequence constraint coherence, supports single-gate sequence feedback checks (for flip-flop style tasks), and includes wire-only level handling. Updated Level 2 medium/hard puzzle constraints and hints to align with engine-solvable conditions. Verified by running: npx vitest run tests/puzzle_solvability.test.js (60/60 pass), plus npx vitest run tests/level_data.test.js tests/game_levels.test.js tests/curriculum_logic.test.js (481/481 pass).",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": [
+        "tests",
+        "quality-control",
+        "puzzles",
+        "curriculum",
+        "solvability"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 144,
+      "task_name": "Puzzle Gate Progression Policy Enforcement",
+      "description": "Reviewed and corrected gate progression across all puzzle difficulties from level_01 to boss. Enforced strict cumulative policy for medium/hard variants (all unlocked gates from previous/current levels, excluding core input/output/clock), no-future-gates rule for all variants, and level 2 transistor-only medium/hard redesign. Updated unlock progression (NOT restored to level 3; MUX2to1 level 10; DFlipFlop level 15), normalized medium/hard availableGates across all puzzle files, and redesigned level_02 medium/hard into classical transistor-chain AND challenges. Updated policy tests in tests/puzzle_gate_progression.test.js and validated with full suite: 661/661 tests passed.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": [
+        "curriculum",
+        "gates",
+        "progression",
+        "difficulty",
+        "tests"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 145,
+      "task_name": "Puzzle Content Pedagogy Upgrade and Validation",
+      "description": "Upgraded educational quality and technical precision of recently edited level puzzle variants (from transistor foundations through ALU/comparator/FSM content), including objective/hint/description refinements for stronger formal reasoning and corrected wording where text conflicted with available gate constraints. Added explicit edge-case guidance in hints to provide multi-example reasoning inside each puzzle narrative. Validated all puzzle variants via gate progression, solvability, and data/curriculum suites: 661/661 tests passed.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "education",
+        "curriculum",
+        "quality-control",
+        "validation"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": []
+    },
+    {
+      "task_id": 146,
+      "task_name": "PhD-Level Text Upgrade – Full Pass (All 60 Puzzle Variants)",
+      "description": "Systematic upgrade of hint, objective, and description text across all 60 level-puzzle JSON files (level_01 through level_boss, easy/medium/hard) to PhD-level academic rigor. Replaced casual language with formal Boolean algebra notation (¬, ∧, ∨, ⊕), explicit verification strategies with contrastive test vectors, and connections to VLSI/computer architecture concepts (De Morgan duals, Karnaugh minimization, von Neumann execution model, clock-domain crossing, prescaler topology, etc.). Three passes executed: Pass 1 (~25 files), Passes 2A-2C (24 files), Pass 3A-3B (12 files). All 661/661 tests pass after upgrade.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 3,
+      "actual_hours": 3,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "education",
+        "curriculum",
+        "quality-control",
+        "phd-level"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [145]
+    },
+    {
+      "task_id": 147,
+      "task_name": "Game Logic Audit – Truth Tables, Sequences, maxGates, and Puzzle Redesign",
+      "description": "Comprehensive PhD-level game logic audit of all 60 puzzle files. CRITICAL FIXES: (1) level_09_easy truth table corrected from OR [0,1,1,1] to NAND [1,1,1,0] matching De Morgan's ¬A∨¬B, gates restricted to [not,or] to enforce constructive proof. (2) level_07_easy redesigned from 'NOT from NAND' to 'The NOR Gate' (gates=[nor], NOR truth table) since level 07 introduces NOR. (3) level_07_medium changed from trivially-solvable AND to XNOR synthesis (NOR+AND+OR in 3 gates). (4) level_17_medium Gray code counter and level_18_medium ring counter fixed: added proper CLK=0 hold states between edges (consecutive CLK=1 steps prevented edge detection). (5) level_18_hard sequence detector 101 completely redesigned with proper alternating clock pattern, correct data values at each edge, and Moore machine output semantics. (6) level_boss_medium: removed vestigial targetSequence (duplicate of boss_easy) leaving only the combinational targetTruthTable for the Instruction Decoder. maxGates TIGHTENED: level_08_medium 5→2, level_10_easy 4→1, level_12_easy 2→1, level_13_easy 5→1. All 661/661 tests pass.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "Critical",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 3,
+      "actual_hours": 3,
+      "is_critical_path": true,
+      "tags": [
+        "game-logic",
+        "truth-tables",
+        "sequences",
+        "quality-control",
+        "bug-fix",
+        "redesign"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [146]
+    },
+    {
+      "task_id": 148,
+      "task_name": "Full Puzzle–Theory Cross-Reference Audit & Gate Restriction Fixes",
+      "description": "Comprehensive audit of all 60 puzzle files against 21 theory files. Verified every puzzle's truth table correctness, gate availability compliance (no future-level gates), difficulty progression (easy→medium→hard), and educational content quality. Created automated analysis script tmp/analyze_levels.cjs. FIXES APPLIED: (1) level_02_medium truth table reordered to standard binary (was grouped non-sequentially). (2) level_03_hard truth table reordered to standard binary. (3) level_06_hard availableGates restricted from [transistor,not,and,or,nand] to [nand] — 'NAND Universality Proof' was bypassed by providing the gates it's supposed to synthesize. (4) level_09_medium availableGates restricted from all gates to [nor] — 'De Morgan NOR-to-AND' was bypassed by providing AND directly. (5) level_12_hard availableGates restricted from all gates to [nor] — 'Apollo NOR Half Adder' was bypassed by providing halfAdder/xor/and directly. All truth tables manually verified correct. All 60 puzzles rated excellent for pedagogical quality, real-world relevance, and difficulty scaling.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 3,
+      "actual_hours": 3,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "game-logic",
+        "truth-tables",
+        "gate-restrictions",
+        "quality-control",
+        "cross-reference-audit"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [147]
+    },
+    {
+      "task_id": 149,
+      "task_name": "Gate Progression Sync & Remaining Data Fixes",
+      "description": "Synced gate_progression.json with gates.json unlockLevels — added all missing gates to correct levels: xnor (L9+), halfAdder & mux2to1 (L10+), fullAdder (L12+), clock & dFlipFlop (L15+), tflipflop (L16+), jkflipflop (L17+), tristate (L18+). Removed stale level_19 new_gate:fullAdder (now at L12). Updated special_gate_restrictions to match redesigned L07 medium/hard puzzles and L09 medium. Fixed gates.json SR Latch outputLabels from duplicate ['Q','Q'] to ['Q','Q̄']. Fixed level_02_hard hint 'four-stage'→'three-stage' (maxGates=3). Fixed level_02_medium and level_02_hard physicsVisual from 'nand_from_transistors' to 'transistor_cascade'.",
+      "start_date": "2026-02-13",
+      "end_date": "2026-02-13",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 1,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": [
+        "content",
+        "gate-progression",
+        "data-sync",
+        "bug-fix",
+        "quality-control"
+      ],
+      "category_name": "Content",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [148]
+    },
+    {
+      "task_id": 150,
+      "task_name": "Glossary Symbols Tab from Puzzle/Theory",
+      "description": "Searched puzzle and theory JSON content for all circuit/logic symbols in use, added a dedicated Symbols tab in the glossary UI, and stored symbol descriptions in story/glossary.json for in-app reference.",
+      "start_date": "2026-02-24",
+      "end_date": "2026-02-24",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": false,
+      "tags": [
+        "ui",
+        "content",
+        "glossary",
+        "symbols"
+      ],
+      "category_name": "UI/UX",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [149]
+    },
+    {
+      "task_id": 151,
+      "task_name": "Merge Sandbox & Custom into Designer Mode",
+      "description": "Merged the redundant Sandbox and Custom game modes into a single unified 'Designer' mode — a professional circuit design workbench. CHANGES: (1) LevelGenerator: replaced generateSandboxLevel() and generateCustomLevel() with generateDesignerLevel(config) — combines free-build and custom-target capabilities. (2) GameManager: replaced startSandbox() and startCustom() with startDesigner(config), updated mode constant from SANDBOX/CUSTOM to DESIGNER. (3) HUD.js: merged two sidebar tabs into one 'Designer' tab/option, updated all mode conditionals (level-loaded, puzzle-verified, intro, next-button logic). (4) HUDEducation.js: merged getSandboxIntroHtml and getCustomIntroHtml into getDesignerIntroHtml with unified feature list. (5) content.css: replaced .sandbox-*/custom-* CSS classes with .designer-* equivalents (teal-green theme). (6) Tests: updated all Playwright E2E tests from SANDBOX/CUSTOM selectors to DESIGNER. All 519 unit tests and 62 E2E tests pass.",
+      "start_date": "2026-02-24",
+      "end_date": "2026-02-24",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 1,
+      "is_critical_path": false,
+      "tags": [
+        "refactor",
+        "modes",
+        "ui",
+        "designer",
+        "cleanup"
+      ],
+      "category_name": "UI/UX",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [150]
+    },
+    {
+      "task_id": 152,
+      "task_name": "Fix Sidebar Gate List Clipping on Desktop",
+      "description": "Resolved an issue where the last gate in the sidebar toolbox was half-visible on desktop displays when the list was full. Migrated the sidebar and toolbox from fixed height calculations (calc(100vh - 220px)) to a robust flexbox-based layout. (1) layout.css: Added flex-filler properties to #toolbox-container. (2) components.css: Converted .toolbox and .toolbox-body into flex-grow containers with overflow-y: auto and min-height: 0. This ensures the gate list always fills precisely the available space between the navbar and the bottom of the screen, providing perfect scrolling on all resolutions.",
+      "start_date": "2026-02-24",
+      "end_date": "2026-02-24",
+      "priority": "Low",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.5,
+      "actual_hours": 0.5,
+      "is_critical_path": false,
+      "tags": [
+        "ui",
+        "ux",
+        "css",
+        "bug-fix",
+        "layout"
+      ],
+      "category_name": "UI/UX",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [151]
+    },
+    {
+      "task_id": 153,
+      "task_name": "Fix Wire Disconnect Not Updating Outputs",
+      "description": "Fixed a critical bug where disconnecting wires (right-click delete) did not update circuit outputs — outputs stayed 'on' even with no wire connected. Two root causes: (1) InputHandler.js: removeWire/removeGate only called renderer.draw() but never circuit.simulate(), leaving stale output values. Fix: added circuit.simulate() before draw() in both wire and gate deletion handlers. (2) Circuit.js simulate(): gates with inputCount > 0 but no inputWires were skipped by setInputs() due to the condition 'gate.inputWires.length > 0 || gate.inputCount === 0'. This meant disconnected gates kept their last computed outputs. Fix: restructured to check inputCount === 0 (source nodes) vs inputCount > 0 (all other gates, always call setInputs with defaults of 0 for unconnected pins). Also exposed window.circuit in index.js for E2E test access. Created comprehensive Playwright test suite (tests/wire_disconnect.spec.js) with 13 tests covering: mouse wire draw/delete, input toggle, connect/disconnect cycles, and programmatic tests for NOT/AND/OR/NAND/XOR gate disconnect behavior. All 519 unit tests and 13 new E2E tests pass.",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "priority": "Critical",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 2,
+      "actual_hours": 2,
+      "is_critical_path": true,
+      "tags": [
+        "bug-fix",
+        "circuit",
+        "wire",
+        "simulation",
+        "e2e-test"
+      ],
+      "category_name": "Core Engine",
+      "assigned_workers": [
+        {
+          "name": "Lead Developer",
+          "email": "dev@logicarchitect.com",
+          "role": "Full Stack Developer"
+        }
+      ],
+      "dependencies": [152]
+    },
+    {
+      "task_id": 154,
+      "task_name": "Harden Wire Disconnect Propagation (multi-hop)",
+      "description": "Moved circuit.simulate() into Circuit.removeWire() itself so that disconnecting any wire — even several hops before the output — immediately re-evaluates the whole circuit. Previously simulate() was only called by InputHandler after deletion; embedding it in removeWire() is a belt-and-suspenders safeguard. All 16 wire_disconnect E2E tests (incl. deep chain, 3-gate chain, mid-chain) and 519 unit tests pass.",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.3,
+      "actual_hours": 0.3,
+      "is_critical_path": true,
+      "tags": ["bug-fix", "circuit", "wire", "simulation"],
+      "category_name": "Core Engine",
+      "assigned_workers": [{"name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer"}],
+      "dependencies": [153]
+    },
+    {
+      "task_id": 155,
+      "task_name": "Dev Unlock Button Toggle (Lock/Unlock)",
+      "description": "Changed btn-dev-unlock from a one-way permanent unlock to a toggle. devUnlockAll() now checks whether all tiers are already unlocked; if so it locks back to defaults (unlockedTiers = ['intro','tier_1'], xp = 0) with a 🔒 icon, otherwise unlocks everything (all 7 tiers, xp = 9999) with a 🔓 icon. Roadmap is refreshed if visible.",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.3,
+      "actual_hours": 0.3,
+      "is_critical_path": false,
+      "tags": ["ui", "dev-tools", "feature"],
+      "category_name": "UI/UX",
+      "assigned_workers": [{"name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer"}],
+      "dependencies": [153]
+    },
+    {
+      "task_id": 156,
+      "task_name": "Fix Roadmap-to-Level Flash of Puzzle Screen",
+      "description": "Eliminated the brief flash of the bare puzzle canvas that appeared between clicking a roadmap level and the level-intro overlay showing. Root cause: the roadmap overlay was hidden immediately on click (line 629 of HUD.js), then the async loadLevel ran, and only after LEVEL_LOADED fired was the intro overlay shown — leaving a visible gap. Fix: removed the immediate roadmap hide in the click handler and moved it into the LEVEL_LOADED event handler, right after showLevelIntro() is called. The roadmap now stays visible until the intro overlay is ready.",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "priority": "Medium",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.3,
+      "actual_hours": 0.3,
+      "is_critical_path": false,
+      "tags": ["bug-fix", "ui", "ux", "overlay"],
+      "category_name": "UI/UX",
+      "assigned_workers": [{"name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer"}],
+      "dependencies": [153]
+    },
+    {
+      "task_id": 157,
+      "task_name": "Implement No-Signal (HiZ) Propagation for Floating Inputs",
+      "description": "Resolved an issue where gates like NOT, NAND, and NOR would produce a HIGH output (starting a signal from nowhere) when their inputs were not connected to anything. (1) Circuit.js: Changed the default for floating/unconnected inputs from 0 (LOW) to Signal.HIZ (2). (2) Gates.js: Updated all gate compute() methods to be 'signal-aware'. All gates now output Signal.HIZ if all their inputs are HIZ, ensuring a 'no-input = no-output' behavior that matches the educational model of signal flow starting from InputNodes. Gates also now use strict HIGH (=== 1) checking for logic truthiness, ensuring HIZ is treated as LOW for functional logic (0) but remains distinguishable for propagation. All 521 unit tests pass.",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 0.5,
+      "actual_hours": 0.5,
+      "is_critical_path": true,
+      "tags": ["bug-fix", "circuit", "simulation", "physics"],
+      "category_name": "Core Engine",
+      "assigned_workers": [{"name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer"}],
+      "dependencies": [156]
+    },
+    {
+      "task_id": 158,
+      "task_name": "Deep Content & Glossary Corruption Fix",
+      "description": "Deep iteration through all theory files (level_08-boss) and supporting files (glossary.json, formulas.json, levels-index.json, tiers.json) for PhD-level course quality. (1) Fixed systematic glossary.json corruption: a prior script had replaced plain 'B' with '\\bar{B}' throughout, affecting 35+ string values — key names (Bolean OR, Bolean NOT, Bstable, Bnary Counter, Parity Bt), definitions (Bse→Base, Blow→Below, Bolean→Boolean, Bnary→Binary, Bt→Bit, Bses→Buses), LaTeX formulas, and category names. Created .scripts/fix_glossary_corruption.cjs to systematically fix all instances, then restored legitimate \\bar{B} in De Morgan theorems and Minterm formulas. (2) Fixed level_19 two's complement subtraction example (was missing carry-in step). (3) Fixed level_16 frequency division formula: Unicode ⁿ → proper LaTeX ^n in \\frac{f_{in}}{2^n}. (4) Regenerated all pre-rendered HTML via prerender-formulas.js. (5) Previously in same review cycle: improved introText/storyText in levels 08, 10, 11, 13, 15, 17, boss; fixed XOR analogy to 'coin'. All 519 unit tests pass.",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "priority": "High",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "estimated_hours": 4,
+      "actual_hours": 4,
+      "is_critical_path": false,
+      "tags": ["content", "glossary", "bug-fix", "educational", "latex"],
+      "category_name": "Content",
+      "assigned_workers": [{"name": "Lead Developer", "email": "dev@logicarchitect.com", "role": "Full Stack Developer"}],
+      "dependencies": [157]
     }
   ],
   "required_fields": [

@@ -3,7 +3,7 @@
   "tier": "tier_4",
   "title": "D Flip-Flop",
   "introText": "EDGE-TRIGGERED FLIP-FLOPS & SYNCHRONOUS DESIGN: The D Flip-Flop samples input D only on the clock edge. This makes digital design predictable: all changes happen at defined moments, synchronized across the entire chip.",
-  "storyText": "CLOCK DISTRIBUTION: A modern CPU clock must reach billions of flip-flops within picoseconds of each other. PLLs (Phase-Locked Loops) are used to multiply low-frequency reference oscillators up to the multi-GHz clock speeds used by modern processors.",
+  "storyText": "CLOCK DISTRIBUTION: A modern CPU clock must reach billions of flip-flops within picoseconds of each other. A PLL (Phase-Locked Loop) takes a stable low-frequency reference crystal (e.g., 100 MHz) and multiplies it up to the CPU's operating speed (e.g., 3–5 GHz). The resulting clock signal fans out through a carefully balanced 'clock tree'—branching metal traces designed so every flip-flop sees the same edge at the same time.",
   "physicsVisual": "dff_timing",
   "physicsDetails": {
     "conceptCards": [

@@ -6,6 +6,8 @@
     overflow-y: auto;
     color: var(--text-color);
     padding: 0 20px 0 20px;
+    user-select: text;
+    -webkit-user-select: text;
 }
 
 .roadmap-header {
@@ -27,6 +29,8 @@
 
 .roadmap-body {
     margin-bottom: 30px;
+    user-select: text;
+    -webkit-user-select: text;
 }
 
 .roadmap-tiers {

@@ -3,7 +3,7 @@
   "tier": "tier_3",
   "title": "Multiplexer (MUX)",
   "introText": "MULTIPLEXERS & DATA ROUTING: A 2:1 MUX selects between 2 data inputs using 1 select line. MUXes are data routers—they choose which input to pass through without modifying the data. In CPUs, MUXes select which register feeds the ALU.",
-  "storyText": "MUX-BASED COMPUTATION: FPGAs use 4-input or 6-input LOOKUP TABLES (LUTs)—essentially MUXes—as their basic logic element. Any 4-variable Boolean function is stored in 16 SRAM cells connected to a 16:1 MUX.",
+  "storyText": "MUX-BASED COMPUTATION: FPGAs (field-programmable chips) use LOOKUP TABLES (LUTs) as their basic reconfigurable element—each LUT is essentially a large MUX. A 4-input LUT stores all 16 possible output values of any 4-variable Boolean function in tiny SRAM cells, then a 16:1 MUX selects the right output based on the live inputs. This is how FPGAs implement any logic function without fixed hardware.",
   "physicsVisual": "multiplexer_detailed",
   "physicsDetails": {
     "conceptCards": [

@@ -47,6 +47,13 @@
     z-index: 10;
 }
 
+#toolbox-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
 /* Mobile sidebar - slides in from left */
 @media (max-width: 768px) {
     #app {

@@ -1,0 +1,52 @@
+// @ts-check
+import { test, expect } from '@playwright/test';
+import { solvePuzzle } from './puzzle-helpers.js';
+
+test.describe('Level 03 – The Inverter (NOT)', () => {
+  test('Easy: NOT gate', async ({ page, baseURL }) => {
+    // 1 input → NOT → 1 output
+    await solvePuzzle(page, baseURL, 'level_03', 'easy',
+      [{ type: 'not', x: 400, y: 150 }],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },
+        { from: 'gate_0', fromPin: 0, to: 'output_0', toPin: 0 },
+      ],
+      'level_03_easy'
+    );
+  });
+
+  test('Medium: double negation', async ({ page, baseURL }) => {
+    // NOT(NOT(A)) = A. Two NOT gates in series.
+    await solvePuzzle(page, baseURL, 'level_03', 'medium',
+      [
+        { type: 'not', x: 350, y: 150 },
+        { type: 'not', x: 500, y: 150 },
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },
+        { from: 'gate_0', fromPin: 0, to: 'gate_1', toPin: 0 },
+        { from: 'gate_1', fromPin: 0, to: 'output_0', toPin: 0 },
+      ],
+      'level_03_medium'
+    );
+  });
+
+  test('Hard: controlled inverter', async ({ page, baseURL }) => {
+    // 2 inputs (A, Enable), 1 output
+    // Output = NOT(A) AND Enable = NOT(A) · EN
+    // Solution: NOT gate on A, then transistor(control=EN, supply=NOT_A)
+    await solvePuzzle(page, baseURL, 'level_03', 'hard',
+      [
+        { type: 'not', x: 300, y: 100 },
+        { type: 'transistor', x: 500, y: 150 },
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },     // A → NOT
+        { from: 'input_1', fromPin: 0, to: 'gate_1', toPin: 0 },     // EN → transistor.control
+        { from: 'gate_0', fromPin: 0, to: 'gate_1', toPin: 1 },      // NOT_A → transistor.supply
+        { from: 'gate_1', fromPin: 0, to: 'output_0', toPin: 0 },
+      ],
+      'level_03_hard'
+    );
+  });
+});

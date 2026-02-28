@@ -24,7 +24,7 @@
       "out": [
         0
       ],
-      "desc": "In=0, CLK=0: No edge"
+      "desc": "In=0, CLK=0: Initial state"
     },
     {
       "in": [
@@ -34,47 +34,7 @@
       "out": [
         0
       ],
-      "desc": "In=0, CLK↑: Still 0"
-    },
-    {
-      "in": [
-        1,
-        0
-      ],
-      "out": [
-        0
-      ],
-      "desc": "In=1, CLK=0: Setup rising"
-    },
-    {
-      "in": [
-        1,
-        1
-      ],
-      "out": [
-        1
-      ],
-      "desc": "In=1, CLK↑: EDGE DETECTED!"
-    },
-    {
-      "in": [
-        1,
-        0
-      ],
-      "out": [
-        0
-      ],
-      "desc": "In=1, CLK=0: Hold"
-    },
-    {
-      "in": [
-        1,
-        1
-      ],
-      "out": [
-        0
-      ],
-      "desc": "In=1, CLK↑: No edge (still high)"
+      "desc": "In=0, CLK↑: Capture 0, Q=0"
     },
     {
       "in": [
@@ -84,7 +44,27 @@
       "out": [
         0
       ],
-      "desc": "In=0, CLK=0: Falling"
+      "desc": "In=0, CLK=0: Idle"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "In=1, CLK=0: RISE DETECTED (Q still 0)"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=1, CLK↑: Capture 1, flag clears"
     },
     {
       "in": [
@@ -94,7 +74,7 @@
       "out": [
         0
       ],
-      "desc": "In=1, CLK=0: Setup new rise"
+      "desc": "In=1, CLK=0: No new rise (Q=1)"
     },
     {
       "in": [
@@ -102,16 +82,56 @@
         1
       ],
       "out": [
+        0
+      ],
+      "desc": "In=1, CLK↑: Still high, no edge"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=0, CLK=0: Input falls"
+    },
+    {
+      "in": [
+        0,
         1
       ],
-      "desc": "In=1, CLK↑: EDGE DETECTED!"
+      "out": [
+        0
+      ],
+      "desc": "In=0, CLK↑: Capture 0, Q=0"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "In=1, CLK=0: RISE DETECTED again!"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "In=1, CLK↑: Capture 1, flag clears"
     }
   ],
   "xpReward": 155,
-  "hint": "Use a D-FF to create a 1-cycle delayed version of the input. Then: Output = Input AND (NOT Delayed). When input goes 0→1, Delayed is still 0, so output is 1. Next cycle, Delayed becomes 1, output returns to 0.",
+  "hint": "Use a D-FF to remember the input at each clock edge: D=In, CLK=Clock. Output = In AND NOT(Q). The flag goes HIGH when Input is 1 but the D-FF still holds 0 from the previous capture. The flag clears on the next clock edge.",
   "maxGates": 3,
   "title": "Rising Edge Detector",
   "objective": "Detect 0→1 transitions",
-  "description": "Build a circuit that outputs a single pulse (1 for one clock cycle) whenever the input transitions from 0 to 1.",
+  "description": "Build a circuit that flags HIGH whenever the input has risen to 1 since the last clock capture. The output = Input AND NOT(Q), where Q is the input delayed by one clock edge.",
   "physicsVisual": "edge_detector"
 }

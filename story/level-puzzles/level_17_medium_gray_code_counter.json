@@ -24,7 +24,7 @@
         0,
         0
       ],
-      "desc": "Initial: 00"
+      "desc": "CLK=0: Initial 00"
     },
     {
       "in": [
@@ -34,7 +34,17 @@
         0,
         1
       ],
-      "desc": "Tick 1: 01 (1 bit change)"
+      "desc": "CLK↑: 00→01 (1 bit change)"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK=0: Hold 01"
     },
     {
       "in": [
@@ -44,7 +54,17 @@
         1,
         1
       ],
-      "desc": "Tick 2: 11 (1 bit change)"
+      "desc": "CLK↑: 01→11 (1 bit change)"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "CLK=0: Hold 11"
     },
     {
       "in": [
@@ -54,7 +74,17 @@
         1,
         0
       ],
-      "desc": "Tick 3: 10 (1 bit change)"
+      "desc": "CLK↑: 11→10 (1 bit change)"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK=0: Hold 10"
     },
     {
       "in": [
@@ -64,7 +94,7 @@
         0,
         0
       ],
-      "desc": "Tick 4: 00 (wrap, 1 bit change)"
+      "desc": "CLK↑: 10→00 (wrap, 1 bit change)"
     }
   ],
   "maxGates": 6,

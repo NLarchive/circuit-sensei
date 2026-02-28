@@ -2,7 +2,7 @@
   "$schema": "./levels-index.schema.json",
   "version": "2.0.0",
   "description": "Logic Architect level index with separated theory and puzzle content",
-  "generatedAt": "2026-01-24T17:02:46.944Z",
+  "generatedAt": "2026-02-27T01:07:34.443Z",
   "totalLevels": 20,
   "structure": {
     "theoryFolder": "level-theory/",
@@ -17,7 +17,7 @@
       "objective": "Understand the journey ahead",
       "description": "Welcome to Logic Architect - build a computer from first principles.",
       "isIndex": true,
-      "theoryFile": "level-theory/level_00.json",
+      "theoryFile": "level-theory/level_00_logic_architect_course_overview.json",
       "puzzleFiles": null,
       "xpReward": 0
     },
@@ -27,11 +27,11 @@
       "title": "The Simple Wire",
       "objective": "Connect input to output",
       "description": "The simplest circuit: a wire that connects input to output.",
-      "theoryFile": "level-theory/level_01.json",
+      "theoryFile": "level-theory/level_01_the_simple_wire.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_01_easy.json",
-        "medium": "level-puzzles/level_01_medium.json",
-        "hard": "level-puzzles/level_01_hard.json"
+        "easy": "level-puzzles/level_01_easy_the_simple_wire.json",
+        "medium": "level-puzzles/level_01_medium_dual_wire_bus.json",
+        "hard": "level-puzzles/level_01_hard_signal_fan_out.json"
       },
       "xpReward": 75
     },
@@ -41,11 +41,11 @@
       "title": "The Transistor",
       "objective": "Build a switch",
       "description": "A transistor lets a control signal determine if current can flow.",
-      "theoryFile": "level-theory/level_02.json",
+      "theoryFile": "level-theory/level_02_the_transistor.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_02_easy.json",
-        "medium": "level-puzzles/level_02_medium.json",
-        "hard": "level-puzzles/level_02_hard.json"
+        "easy": "level-puzzles/level_02_easy_transistor_as_switch.json",
+        "medium": "level-puzzles/level_02_medium_controlled_switch.json",
+        "hard": "level-puzzles/level_02_hard_gated_signal_pair.json"
       },
       "xpReward": 95
     },
@@ -55,11 +55,11 @@
       "title": "The Inverter (NOT)",
       "objective": "Invert the signal",
       "description": "Output the opposite of the input.",
-      "theoryFile": "level-theory/level_03.json",
+      "theoryFile": "level-theory/level_03_the_inverter_not.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_03_easy.json",
-        "medium": "level-puzzles/level_03_medium.json",
-        "hard": "level-puzzles/level_03_hard.json"
+        "easy": "level-puzzles/level_03_easy_the_inverter_not_gate.json",
+        "medium": "level-puzzles/level_03_medium_double_negation.json",
+        "hard": "level-puzzles/level_03_hard_controlled_inverter.json"
       },
       "xpReward": 100
     },
@@ -69,11 +69,11 @@
       "title": "AND Gate",
       "objective": "Both inputs must be HIGH",
       "description": "Output 1 only if Input A AND Input B are 1.",
-      "theoryFile": "level-theory/level_04.json",
+      "theoryFile": "level-theory/level_04_and_gate.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_04_easy.json",
-        "medium": "level-puzzles/level_04_medium.json",
-        "hard": "level-puzzles/level_04_hard.json"
+        "easy": "level-puzzles/level_04_easy_the_and_gate.json",
+        "medium": "level-puzzles/level_04_medium_3_input_and_cascade.json",
+        "hard": "level-puzzles/level_04_hard_build_nand_gate.json"
       },
       "xpReward": 110
     },
@@ -83,11 +83,11 @@
       "title": "OR Gate",
       "objective": "Any input is HIGH",
       "description": "Output 1 if Input A OR Input B is 1.",
-      "theoryFile": "level-theory/level_05.json",
+      "theoryFile": "level-theory/level_05_or_gate.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_05_easy.json",
-        "medium": "level-puzzles/level_05_medium.json",
-        "hard": "level-puzzles/level_05_hard.json"
+        "easy": "level-puzzles/level_05_easy_the_or_gate.json",
+        "medium": "level-puzzles/level_05_medium_3_input_or_cascade.json",
+        "hard": "level-puzzles/level_05_hard_majority_gate_2_of_3_voting.json"
       },
       "xpReward": 120
     },
@@ -97,11 +97,11 @@
       "title": "NAND: The Universal",
       "objective": "Understand NAND",
       "description": "NAND (Not AND) is a universal gate.",
-      "theoryFile": "level-theory/level_06.json",
+      "theoryFile": "level-theory/level_06_nand_the_universal.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_06_easy.json",
-        "medium": "level-puzzles/level_06_medium.json",
-        "hard": "level-puzzles/level_06_hard.json"
+        "easy": "level-puzzles/level_06_easy_the_nand_gate.json",
+        "medium": "level-puzzles/level_06_medium_nor_the_other_universal.json",
+        "hard": "level-puzzles/level_06_hard_nand_universality_proof.json"
       },
       "xpReward": 170
     },
@@ -111,11 +111,11 @@
       "title": "Logic from NAND",
       "objective": "Build NOT using NAND",
       "description": "Prove universality by creating a NOT gate.",
-      "theoryFile": "level-theory/level_07.json",
+      "theoryFile": "level-theory/level_07_logic_from_nand.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_07_easy.json",
-        "medium": "level-puzzles/level_07_medium.json",
-        "hard": "level-puzzles/level_07_hard.json"
+        "easy": "level-puzzles/level_07_easy_not_from_nand.json",
+        "medium": "level-puzzles/level_07_medium_and_from_nand.json",
+        "hard": "level-puzzles/level_07_hard_xor_from_nand_only.json"
       },
       "xpReward": 170
     },
@@ -125,11 +125,11 @@
       "title": "XOR (Exclusive OR)",
       "objective": "Output 1 if inputs differ",
       "description": "Strictly one or the other, not both.",
-      "theoryFile": "level-theory/level_08.json",
+      "theoryFile": "level-theory/level_08_xor_exclusive_or.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_08_easy.json",
-        "medium": "level-puzzles/level_08_medium.json",
-        "hard": "level-puzzles/level_08_hard.json"
+        "easy": "level-puzzles/level_08_easy_the_xor_gate.json",
+        "medium": "level-puzzles/level_08_medium_xnor_equality_detector.json",
+        "hard": "level-puzzles/level_08_hard_parity_generator_3_bit.json"
       },
       "xpReward": 180
     },
@@ -139,11 +139,11 @@
       "title": "De Morgan Laws",
       "objective": "Build OR using NANDs",
       "description": "Invert inputs to swap AND/OR logic.",
-      "theoryFile": "level-theory/level_09.json",
+      "theoryFile": "level-theory/level_09_de_morgan_laws.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_09_easy.json",
-        "medium": "level-puzzles/level_09_medium.json",
-        "hard": "level-puzzles/level_09_hard.json"
+        "easy": "level-puzzles/level_09_easy_de_morgans_theorem.json",
+        "medium": "level-puzzles/level_09_medium_de_morgan_nor_to_and.json",
+        "hard": "level-puzzles/level_09_hard_3_variable_de_morgan.json"
       },
       "xpReward": 220
     },
@@ -153,11 +153,11 @@
       "title": "Multiplexer (MUX)",
       "objective": "Select input based on selector",
       "description": "If Sel=0, Out=A. If Sel=1, Out=B.",
-      "theoryFile": "level-theory/level_10.json",
+      "theoryFile": "level-theory/level_10_multiplexer_mux.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_10_easy.json",
-        "medium": "level-puzzles/level_10_medium.json",
-        "hard": "level-puzzles/level_10_hard.json"
+        "easy": "level-puzzles/level_10_easy_2_1_multiplexer.json",
+        "medium": "level-puzzles/level_10_medium_mux_as_universal_gate.json",
+        "hard": "level-puzzles/level_10_hard_4_1_mux_from_2_1_muxes.json"
       },
       "xpReward": 255
     },
@@ -167,11 +167,11 @@
       "title": "Decoder (2-to-4)",
       "objective": "Activate 1 of 4 outputs",
       "description": "Convert binary number to a specific line.",
-      "theoryFile": "level-theory/level_11.json",
+      "theoryFile": "level-theory/level_11_decoder_2_to_4.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_11_easy.json",
-        "medium": "level-puzzles/level_11_medium.json",
-        "hard": "level-puzzles/level_11_hard.json"
+        "easy": "level-puzzles/level_11_easy_2_to_4_decoder.json",
+        "medium": "level-puzzles/level_11_medium_decoder_with_enable.json",
+        "hard": "level-puzzles/level_11_hard_priority_encoder.json"
       },
       "xpReward": 290
     },
@@ -181,11 +181,11 @@
       "title": "Half Adder",
       "objective": "Add 2 bits",
       "description": "Calculate Sum and Carry for two inputs.",
-      "theoryFile": "level-theory/level_12.json",
+      "theoryFile": "level-theory/level_12_half_adder.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_12_easy.json",
-        "medium": "level-puzzles/level_12_medium.json",
-        "hard": "level-puzzles/level_12_hard.json"
+        "easy": "level-puzzles/level_12_easy_half_adder.json",
+        "medium": "level-puzzles/level_12_medium_half_subtractor.json",
+        "hard": "level-puzzles/level_12_hard_apollo_nor_half_adder.json"
       },
       "xpReward": 315
     },
@@ -195,11 +195,11 @@
       "title": "Full Adder",
       "objective": "Add 3 bits (A, B, Cin)",
       "description": "The building block of multi-bit addition.",
-      "theoryFile": "level-theory/level_13.json",
+      "theoryFile": "level-theory/level_13_full_adder.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_13_easy.json",
-        "medium": "level-puzzles/level_13_medium.json",
-        "hard": "level-puzzles/level_13_hard.json"
+        "easy": "level-puzzles/level_13_easy_full_adder.json",
+        "medium": "level-puzzles/level_13_medium_full_subtractor.json",
+        "hard": "level-puzzles/level_13_hard_2_bit_ripple_carry_adder.json"
       },
       "xpReward": 350
     },
@@ -209,11 +209,11 @@
       "title": "SR Latch",
       "objective": "Store a bit",
       "description": "Create a feedback loop to remember state.",
-      "theoryFile": "level-theory/level_14.json",
+      "theoryFile": "level-theory/level_14_sr_latch.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_14_easy.json",
-        "medium": "level-puzzles/level_14_medium.json",
-        "hard": "level-puzzles/level_14_hard.json"
+        "easy": "level-puzzles/level_14_easy_sr_latch.json",
+        "medium": "level-puzzles/level_14_medium_gated_sr_latch.json",
+        "hard": "level-puzzles/level_14_hard_d_latch_from_gates.json"
       },
       "xpReward": 360
     },
@@ -223,11 +223,11 @@
       "title": "D Flip-Flop",
       "objective": "Sync with Clock",
       "description": "Store Data (D) only on the Clock edge.",
-      "theoryFile": "level-theory/level_15.json",
+      "theoryFile": "level-theory/level_15_d_flip_flop.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_15_easy.json",
-        "medium": "level-puzzles/level_15_medium.json",
-        "hard": "level-puzzles/level_15_hard.json"
+        "easy": "level-puzzles/level_15_easy_d_flip_flop.json",
+        "medium": "level-puzzles/level_15_medium_d_flip_flop_with_enable.json",
+        "hard": "level-puzzles/level_15_hard_rising_edge_detector.json"
       },
       "xpReward": 420
     },
@@ -237,11 +237,11 @@
       "title": "Toggle Flip-Flop",
       "objective": "Divide Clock Frequency",
       "description": "Make the output flip every time the clock pulses.",
-      "theoryFile": "level-theory/level_16.json",
+      "theoryFile": "level-theory/level_16_toggle_flip_flop.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_16_easy.json",
-        "medium": "level-puzzles/level_16_medium.json",
-        "hard": "level-puzzles/level_16_hard.json"
+        "easy": "level-puzzles/level_16_easy_t_flip_flop_toggle.json",
+        "medium": "level-puzzles/level_16_medium_frequency_divider.json",
+        "hard": "level-puzzles/level_16_hard_jk_flip_flop.json"
       },
       "xpReward": 465
     },
@@ -251,11 +251,11 @@
       "title": "2-Bit Counter",
       "objective": "Count 00, 01, 10, 11",
       "description": "Build a circuit that counts clock pulses.",
-      "theoryFile": "level-theory/level_17.json",
+      "theoryFile": "level-theory/level_17_2_bit_counter.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_17_easy.json",
-        "medium": "level-puzzles/level_17_medium.json",
-        "hard": "level-puzzles/level_17_hard.json"
+        "easy": "level-puzzles/level_17_easy_2_bit_ripple_counter.json",
+        "medium": "level-puzzles/level_17_medium_gray_code_counter.json",
+        "hard": "level-puzzles/level_17_hard_synchronous_2_bit_counter.json"
       },
       "xpReward": 525
     },
@@ -265,11 +265,11 @@
       "title": "Traffic Light Controller",
       "objective": "Green -> Yellow -> Red",
       "description": "Design a Finite State Machine.",
-      "theoryFile": "level-theory/level_18.json",
+      "theoryFile": "level-theory/level_18_traffic_light_controller.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_18_easy.json",
-        "medium": "level-puzzles/level_18_medium.json",
-        "hard": "level-puzzles/level_18_hard.json"
+        "easy": "level-puzzles/level_18_easy_traffic_light_fsm.json",
+        "medium": "level-puzzles/level_18_medium_ring_counter.json",
+        "hard": "level-puzzles/level_18_hard_sequence_detector_101.json"
       },
       "xpReward": 670
     },
@@ -279,11 +279,11 @@
       "title": "Arithmetic Logic Unit",
       "objective": "Add or Subtract based on Opcode",
       "description": "The calculator core.",
-      "theoryFile": "level-theory/level_19.json",
+      "theoryFile": "level-theory/level_19_arithmetic_logic_unit.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_19_easy.json",
-        "medium": "level-puzzles/level_19_medium.json",
-        "hard": "level-puzzles/level_19_hard.json"
+        "easy": "level-puzzles/level_19_easy_simple_alu.json",
+        "medium": "level-puzzles/level_19_medium_1_bit_alu.json",
+        "hard": "level-puzzles/level_19_hard_magnitude_comparator.json"
       },
       "xpReward": 1000
     },
@@ -293,11 +293,11 @@
       "title": "The CPU Datapath",
       "objective": "Fetch, Decode, Execute",
       "description": "The final challenge. Build a simple processor.",
-      "theoryFile": "level-theory/level_boss.json",
+      "theoryFile": "level-theory/level_boss_the_cpu_datapath.json",
       "puzzleFiles": {
-        "easy": "level-puzzles/level_boss_easy.json",
-        "medium": "level-puzzles/level_boss_medium.json",
-        "hard": "level-puzzles/level_boss_hard.json"
+        "easy": "level-puzzles/level_boss_easy_microprocessor_core.json",
+        "medium": "level-puzzles/level_boss_medium_instruction_decoder.json",
+        "hard": "level-puzzles/level_boss_hard_2_stage_pipeline.json"
       },
       "xpReward": 3000
     }

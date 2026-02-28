@@ -1,15 +1,9 @@
 {
-  "id": "level_09_hard",
-  "baseId": "level_09",
-  "variant": "hard",
+  "id": "level_02_medium",
+  "baseId": "level_02",
+  "variant": "medium",
   "availableGates": [
-    "transistor",
-    "not",
-    "and",
-    "or",
-    "nand",
-    "nor",
-    "xor"
+    "transistor"
   ],
   "inputs": 3,
   "targetTruthTable": [
@@ -20,7 +14,7 @@
         0
       ],
       "out": [
-        1
+        0
       ]
     },
     {
@@ -30,7 +24,7 @@
         1
       ],
       "out": [
-        1
+        0
       ]
     },
     {
@@ -40,7 +34,7 @@
         0
       ],
       "out": [
-        1
+        0
       ]
     },
     {
@@ -50,7 +44,7 @@
         1
       ],
       "out": [
-        1
+        0
       ]
     },
     {
@@ -60,7 +54,7 @@
         0
       ],
       "out": [
-        1
+        0
       ]
     },
     {
@@ -70,7 +64,7 @@
         1
       ],
       "out": [
-        1
+        0
       ]
     },
     {
@@ -80,7 +74,7 @@
         0
       ],
       "out": [
-        1
+        0
       ]
     },
     {
@@ -90,15 +84,15 @@
         1
       ],
       "out": [
-        0
+        1
       ]
     }
   ],
-  "maxGates": 5,
-  "xpReward": 90,
-  "hint": "NOT(A AND B AND C) = (NOT A) OR (NOT B) OR (NOT C). Use three NOT gates and two OR gates.",
-  "title": "3-Variable De Morgan",
-  "objective": "Prove NOT(A·B·C) = A'+B'+C'",
-  "description": "Extend De Morgan's theorem to three variables. Build a circuit that outputs NOT(A AND B AND C) using only OR and NOT gates.",
-  "physicsVisual": "de_morgan_3var"
+  "maxGates": 2,
+  "xpReward": 30,
+  "hint": "Use two transistor switches in series so output is HIGH only when all three control conditions are HIGH.",
+  "title": "Series Controlled Switches",
+  "objective": "Build a 3-input AND using transistors",
+  "description": "Extend the transistor switch idea by cascading control conditions. Current should reach output only when A, B, and C are all HIGH.",
+  "physicsVisual": "transistor_and"
 }

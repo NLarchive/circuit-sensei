@@ -28,7 +28,8 @@ export class GameManager {
             achievements: [],
             highScores: {},
             // Persist last selected variant per level: { levelId: 'easy' }
-            selectedVariants: {}
+            selectedVariants: {},
+            devMode: false // State of the dev-unlock toggle
         };
 
         // Current session tracked data for achievements/stats
@@ -122,6 +123,10 @@ export class GameManager {
                 tiers: Object.keys(this.tiers).length,
                 variants: Object.keys(this.levelVariants || {}).length
             });
+
+            // Ensure progress is synced with newly loaded levels/variants
+            this.recalculateProgressXP();
+            this.recalculateTiers();
 
             return true;
         } catch (error) {
@@ -328,16 +333,19 @@ export class GameManager {
         if (!this.currentLevel) return;
 
         const levelId = this.currentLevel.id.replace(/_(easy|medium|hard)$/, ''); // Get base level ID
-        const xpReward = this.currentLevel.xpReward || 0;
-        const bonusXP = Math.round(xpReward * (score / 100));
+        const oldXP = this.progress.xp;
 
         // Update progress for the variant
         if (!this.progress.completedLevels[levelId]) {
-            this.progress.completedLevels[levelId] = { easy: false, medium: false, hard: false };
+            this.progress.completedLevels[levelId] = { easy: false, medium: false, hard: false, original: false };
         }
+        
+        // Mark as completed
         this.progress.completedLevels[levelId][this.currentVariant] = true;
 
-        this.progress.xp += bonusXP;
+        // Re-calculate the total XP based on actual completions (prevents farming)
+        this.recalculateProgressXP();
+        const bonusXP = Math.max(0, this.progress.xp - oldXP);
 
         // Check for tier unlock
         this.checkTierUnlocks();
@@ -354,10 +362,60 @@ export class GameManager {
             totalXP: this.progress.xp
         });
 
-        globalEvents.emit(Events.XP_GAINED, {
-            amount: bonusXP,
-            total: this.progress.xp
-        });
+        if (bonusXP > 0) {
+            globalEvents.emit(Events.XP_GAINED, {
+                amount: bonusXP,
+                total: this.progress.xp
+            });
+        }
+    }
+
+    /**
+     * Re-calculate total XP based on completed levels and their rewards
+     */
+    recalculateProgressXP() {
+        if (this.progress.devMode) {
+            this.progress.xp = 9999;
+            return 9999;
+        }
+        let totalXP = 0;
+        if (!this.progress.completedLevels) {
+            this.progress.xp = 0;
+            return 0;
+        }
+
+        for (const [levelId, variants] of Object.entries(this.progress.completedLevels)) {
+            const variantsData = this.getVariantsForLevel(levelId);
+            
+            // Check easy, medium, hard, and legacy 'original'
+            ['easy', 'medium', 'hard', 'original'].forEach(v => {
+                if (variants[v] && variantsData && variantsData[v]) {
+                    totalXP += (variantsData[v].xpReward || 0);
+                } else if (variants[v] && v === 'original') {
+                    // Fallback for legacy 'original' variant
+                    const level = this.levels?.find(l => l.id === levelId);
+                    if (level) totalXP += (level.xpReward || 0);
+                }
+            });
+        }
+        
+        this.progress.xp = totalXP;
+        return totalXP;
+    }
+
+    /**
+     * Re-calculate unlocked tiers based on current XP
+     */
+    recalculateTiers() {
+        if (this.progress.devMode) {
+            this.progress.unlockedTiers = ['intro', 'tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'tier_6'];
+            return this.progress.unlockedTiers;
+        }
+        // Reset to initial state
+        this.progress.unlockedTiers = ['intro', 'tier_1'];
+        // Re-apply tier unlocks based on XP
+        this.checkTierUnlocks();
+        return this.progress.unlockedTiers;
     }
 
     /**
@@ -526,6 +584,11 @@ export class GameManager {
             // Ensure selectedVariants exists (migrate older saves)
             if (!this.progress.selectedVariants || typeof this.progress.selectedVariants !== 'object') {
                 this.progress.selectedVariants = {};
+            }
+
+            // Ensure devMode exists
+            if (this.progress.devMode === undefined) {
+                this.progress.devMode = false;
             }
             
             // Retroactive fix: 'intro' and 'tier_1' should ALWAYS be unlocked

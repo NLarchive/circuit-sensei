@@ -1171,6 +1171,13 @@ export class HUD {
     }
     
     showRoadmap() {
+        // Sync the dev unlock button icon state
+        const btn = document.getElementById('btn-dev-unlock');
+        if (btn) {
+            const isDevUnlocked = gameManager.progress.devMode;
+            btn.textContent = isDevUnlocked ? '🔓' : '🔒';
+            btn.title = isDevUnlocked ? 'Unlocked (Dev Mode)' : 'Levels Locked (default)';
+        }
         HUDRoadmap.showRoadmap();
     }
 
@@ -1178,33 +1185,36 @@ export class HUD {
      * DEV MODE: Toggle lock / unlock all tiers for testing
      */
     devUnlockAll() {
-        const allTiers = ['intro', 'tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'tier_6'];
+        // Toggle the explicit devMode flag
+        gameManager.progress.devMode = !gameManager.progress.devMode;
+        
+        // Let recalculate methods handle the state based on the flag
+        gameManager.recalculateProgressXP();
+        gameManager.recalculateTiers();
+        gameManager.saveProgress();
+
+        const isDevUnlocked = gameManager.progress.devMode;
         const btn = document.getElementById('btn-dev-unlock');
-        const isFullyUnlocked = allTiers.every(t => gameManager.progress.unlockedTiers.includes(t));
+        if (btn) {
+            btn.textContent = isDevUnlocked ? '🔓' : '🔒';
+            btn.title = isDevUnlocked ? 'Unlocked (Dev Mode)' : 'Levels Locked (default)';
+        }
 
-        if (isFullyUnlocked) {
-            // Lock back to defaults
-            gameManager.progress.unlockedTiers = ['intro', 'tier_1'];
-            gameManager.progress.xp = 0;
-            gameManager.saveProgress();
-
-            btn.textContent = '🔒';
-            btn.title = 'Levels Locked (default)';
-            console.log('🔒 DEV MODE: Tiers locked back to defaults');
+        if (isDevUnlocked) {
+            console.log('🔓 DEV MODE activated: All tiers unlocked, XP set to 9999');
         } else {
-            // Unlock all tiers
-            gameManager.progress.unlockedTiers = allTiers;
-            gameManager.progress.xp = 9999;
-            gameManager.saveProgress();
+            console.log(`🔒 DEV MODE deactivated: Tiers restored to legitimate progress (XP: ${gameManager.progress.xp})`);
+        }
 
-            btn.textContent = '🔓';
-            btn.title = 'All Levels Unlocked!';
-            console.log('🔓 DEV MODE: All tiers unlocked, XP set to 9999');
+        // Always update the navbar XP display when switching modes
+        const xpDisplay = document.getElementById('xp-display');
+        if (xpDisplay) {
+            xpDisplay.innerText = gameManager.progress.xp;
         }
 
         // Refresh roadmap if visible
         if (!document.getElementById('roadmap-overlay').classList.contains('hidden')) {
-            this.showRoadmap();
+            HUDRoadmap.showRoadmap();
         }
     }
 

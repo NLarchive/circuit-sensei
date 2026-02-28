@@ -16,60 +16,8 @@
     "fullAdder"
   ],
   "inputs": 2,
-  "targetSequence": [
-    {
-      "in": [
-        0,
-        1
-      ],
-      "out": [
-        0
-      ],
-      "desc": "Reset High"
-    },
-    {
-      "in": [
-        0,
-        0
-      ],
-      "out": [
-        0
-      ],
-      "desc": "Reset Low, Ready"
-    },
-    {
-      "in": [
-        1,
-        0
-      ],
-      "out": [
-        0
-      ],
-      "desc": "Clock 1: Fetch"
-    },
-    {
-      "in": [
-        0,
-        0
-      ],
-      "out": [
-        0
-      ],
-      "desc": "Hold"
-    },
-    {
-      "in": [
-        1,
-        0
-      ],
-      "out": [
-        1
-      ],
-      "desc": "Clock 2: Execute & Writeback"
-    }
-  ],
   "xpReward": 1000,
-  "hint": "This is essentially a 2-to-4 decoder with additional logic. For each opcode, determine which control signals should be HIGH. ALU_op for arithmetic, RegWrite for register destination, MemRead/MemWrite for memory ops.",
+  "hint": "This is essentially a 2-to-4 decoder with additional logic. For each opcode, determine which control signals should be HIGH. ALU_Sub=1 only for SUB. RegWrite=1 for ADD, SUB, LOAD (not STORE). MemRead=1 only for LOAD. MemWrite=1 only for STORE.",
   "targetTruthTable": [
     {
       "in": [

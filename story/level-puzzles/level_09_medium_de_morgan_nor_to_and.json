@@ -3,13 +3,7 @@
   "baseId": "level_09",
   "variant": "medium",
   "availableGates": [
-    "transistor",
-    "not",
-    "and",
-    "or",
-    "nand",
-    "nor",
-    "xor"
+    "nor"
   ],
   "inputs": 2,
   "targetTruthTable": [

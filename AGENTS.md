@@ -157,5 +157,3 @@ task-project-state.json
 vite.config.js
 vitest.config.js
 """
-
-project state and task done and to do on: "D:\teach\circuits-logical-gates\task-project-state.json", that must be updated when a task is done.

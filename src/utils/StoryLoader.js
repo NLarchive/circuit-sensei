@@ -76,6 +76,22 @@ export class StoryLoader {
         }
     }
 
+    static async _getLevelEntry(levelId) {
+        const index = await this.loadIndex();
+        if (!index || !index.levels) return null;
+        return index.levels.find(l => l.id === levelId) || null;
+    }
+
+    static _resolvePuzzlePath(baseLevelId, variantName, entry = null) {
+        const puzzlePath = entry?.puzzleFiles?.[variantName];
+        if (puzzlePath) {
+            return puzzlePath;
+        }
+        // No legacy fallback — all paths must be resolved from levels-index.json
+        console.warn(`No puzzle path found in index for ${baseLevelId}_${variantName}`);
+        return null;
+    }
+
     /**
      * Load theory content for a specific level
      * @param {string} levelId - Base level ID (e.g., 'level_01')
@@ -87,7 +103,13 @@ export class StoryLoader {
         
         try {
             const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
-            const response = await fetch(`${base}story/level-theory/${levelId}.json`);
+            const entry = await this._getLevelEntry(levelId);
+            const theoryPath = entry?.theoryFile;
+            if (!theoryPath) {
+                console.warn(`No theoryFile in index for level ${levelId}`);
+                return null;
+            }
+            const response = await fetch(`${base}story/${theoryPath}`);
             const theory = await response.json();
             this._theoryCache.set(levelId, theory);
             return theory;
@@ -108,7 +130,24 @@ export class StoryLoader {
         
         try {
             const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
-            const response = await fetch(`${base}story/level-puzzles/${puzzleId}.json`);
+
+            let puzzlePath = null;
+            const puzzleIdMatch = /^((?:level_\d{2}|level_boss))_(easy|medium|hard)$/.exec(puzzleId);
+            if (puzzleIdMatch) {
+                const [, baseLevelId, variantName] = puzzleIdMatch;
+                const entry = await this._getLevelEntry(baseLevelId);
+                puzzlePath = this._resolvePuzzlePath(baseLevelId, variantName, entry);
+            } else if (puzzleId.startsWith('level-puzzles/') && puzzleId.endsWith('.json')) {
+                // Full relative path passed directly (e.g. from an index entry)
+                puzzlePath = puzzleId;
+            } else {
+                // Unknown format — cannot resolve to a titled file, abort cleanly
+                console.warn(`Cannot resolve puzzle path for id: ${puzzleId}`);
+                return null;
+            }
+
+            if (!puzzlePath) return null;
+            const response = await fetch(`${base}story/${puzzlePath}`);
             const puzzle = await response.json();
             this._puzzleCache.set(puzzleId, puzzle);
             return puzzle;

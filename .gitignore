@@ -59,3 +59,4 @@ ehthumbs.db
 
 # MCP / Playwright temp
 .playwright-mcp/
+__screenshots__/

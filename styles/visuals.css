@@ -10,12 +10,16 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    align-items: center;
+    width: 100%;
 }
 
 .visual-caption {
     color: var(--text-color);
     font-size: 0.9rem;
     opacity: 0.9;
+    text-align: center;
+    width: 100%;
 }
 
 /* Equation block with formula and explanation */
@@ -64,6 +68,7 @@
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     padding: 10px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
 /* Visual container - placed below concept text */
@@ -72,10 +77,50 @@
     background: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .visual-container .visual-stack {
     margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 600px) {
+    .visual-container {
+        padding: 10px 6px;
+        margin: 16px -16px; /* Span full width of concept-card (padding is 16px) */
+        border-radius: 0;   /* Edge to edge looks cleaner for full-width items */
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .edu-svg {
+        max-width: 100%; /* Take full container width */
+        width: 100%;
+        margin: 8px 0;
+        padding: 4px;
+        border-radius: 4px;
+    }
+    
+    .visual-caption {
+        font-size: 0.85rem;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .visual-container .visual-stack {
+        width: 100%;
+    }
 }
 
 /* Hide the old intro-visual area when visuals are embedded in text */

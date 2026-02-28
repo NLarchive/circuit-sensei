@@ -1,47 +1,73 @@
-﻿const fs = require('fs');
-const path = require('path');
-const dir = 'story/levels';
-const files = fs.readdirSync(dir).filter(f => f.endsWith('.json'));
-let found = false;
-files.forEach(f => {
-  const data = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
-  if (!data.physicsDetails || !Array.isArray(data.physicsDetails.conceptCards)) return;
-  const map = new Map();
-  data.physicsDetails.conceptCards.forEach((card, idx) => {
-    const visuals = [];
-    if (Array.isArray(card.visuals)) {
-      card.visuals.forEach(v => {
-        const t = typeof v === 'string' ? v : (v.type || v.visual || v.physicsVisual);
-        const title = typeof v === 'string' ? '' : (v.title || v.name || '');
-        visuals.push({ t, title, idx, cardTerm: card.term });
-      });
-    }
-    if (card.visual) {
-      const v = card.visual;
-      const t = typeof v === 'string' ? v : (v.type || v.visual || v.physicsVisual);
-      const title = typeof v === 'string' ? '' : (v.title || '');
-      visuals.push({ t, title, idx, cardTerm: card.term });
-    }
-    if (card.physicsVisual) {
-      const t = card.physicsVisual;
-      visuals.push({ t, title: '', idx, cardTerm: card.term });
-    }
-    visuals.forEach(v => {
-      if (!v.t) return;
-      if (!map.has(v.t)) map.set(v.t, []);
-      map.get(v.t).push(v);
-    });
-  });
-  const duplicates = [...map].filter(([k, arr]) => arr.length > 1);
-  if (duplicates.length) {
-    found = true;
-    console.log(\n duplicates:);
-    duplicates.forEach(([k, arr]) => {
-      console.log(  visual: );
-      arr.forEach(a => {
-        console.log(    card idx: term:\ \ title:\\);
-      });
-    });
+import fs from 'node:fs';
+import path from 'node:path';
+
+const puzzlesDir = path.join(process.cwd(), 'story', 'level-puzzles');
+
+function stableStringify(value) {
+  if (Array.isArray(value)) {
+    return `[${value.map(stableStringify).join(',')}]`;
   }
-});
-if (!found) console.log('No duplicates found');
+  if (value && typeof value === 'object') {
+    const keys = Object.keys(value).sort();
+    return `{${keys.map((key) => `${JSON.stringify(key)}:${stableStringify(value[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function readPuzzleFiles(dir) {
+  if (!fs.existsSync(dir)) {
+    throw new Error(`Puzzle directory not found: ${dir}`);
+  }
+  return fs
+    .readdirSync(dir)
+    .filter((fileName) => fileName.endsWith('.json'))
+    .sort();
+}
+
+function signatureForPuzzle(puzzle) {
+  const behavior = puzzle.targetTruthTable ?? puzzle.targetSequence ?? null;
+  return stableStringify({
+    availableGates: puzzle.availableGates ?? [],
+    inputs: puzzle.inputs ?? null,
+    outputs: puzzle.outputs ?? null,
+    maxGates: puzzle.maxGates ?? null,
+    behavior,
+  });
+}
+
+function findDuplicates(files) {
+  const bySignature = new Map();
+
+  for (const fileName of files) {
+    const filePath = path.join(puzzlesDir, fileName);
+    const puzzle = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const signature = signatureForPuzzle(puzzle);
+
+    if (!bySignature.has(signature)) {
+      bySignature.set(signature, []);
+    }
+    bySignature.get(signature).push(fileName);
+  }
+
+  return [...bySignature.values()].filter((group) => group.length > 1);
+}
+
+try {
+  const files = readPuzzleFiles(puzzlesDir);
+  const duplicateGroups = findDuplicates(files);
+
+  if (duplicateGroups.length === 0) {
+    console.log('No duplicate puzzle definitions found.');
+    process.exit(0);
+  }
+
+  console.log(`Found ${duplicateGroups.length} duplicate group(s):`);
+  duplicateGroups.forEach((group, index) => {
+    console.log(`${index + 1}. ${group.join(' | ')}`);
+  });
+
+  process.exit(1);
+} catch (error) {
+  console.error('Duplicate scan failed:', error.message);
+  process.exit(2);
+}

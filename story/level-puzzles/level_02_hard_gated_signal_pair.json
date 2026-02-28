@@ -14,7 +14,8 @@
         0
       ],
       "out": [
-        1
+        0,
+        0
       ]
     },
     {
@@ -24,6 +25,7 @@
         1
       ],
       "out": [
+        0,
         0
       ]
     },
@@ -34,7 +36,8 @@
         0
       ],
       "out": [
-        1
+        0,
+        0
       ]
     },
     {
@@ -44,7 +47,8 @@
         1
       ],
       "out": [
-        0
+        0,
+        1
       ]
     },
     {
@@ -54,7 +58,8 @@
         0
       ],
       "out": [
-        1
+        0,
+        0
       ]
     },
     {
@@ -64,6 +69,7 @@
         1
       ],
       "out": [
+        1,
         0
       ]
     },
@@ -74,6 +80,7 @@
         0
       ],
       "out": [
+        0,
         0
       ]
     },
@@ -84,15 +91,16 @@
         1
       ],
       "out": [
-        0
+        1,
+        1
       ]
     }
   ],
-  "maxGates": 4,
+  "maxGates": 2,
   "xpReward": 50,
-  "hint": "Build the function: OUT = NOT((A AND B) OR C). Chain transistors in series for AND, parallel for OR. Remember to invert at the end.",
-  "title": "CMOS Logic: AND-OR-INVERT (AOI)",
-  "objective": "Build an AOI21 gate: OUT = NOT((A AND B) OR C)",
-  "description": "Implement a compound AOI (AND-OR-INVERT) gate using only transistors. This optimized CMOS structure is faster and smaller than using separate gates.",
-  "physicsVisual": "cmos_aoi"
+  "hint": "Use two transistors as independent controlled switches sharing the same enable line. T1: control=C, data=A → Out1 = A·C. T2: control=C, data=B → Out2 = B·C. Enable signal C gates both paths.",
+  "title": "Gated Signal Pair",
+  "objective": "Gate two signals with a shared enable",
+  "description": "Use two transistors to gate a pair of data signals with one enable line. When Enable (C) is HIGH, signals A and B pass through to their respective outputs. When Enable is LOW, both outputs are forced to 0. This is how enable lines work in real bus drivers.",
+  "physicsVisual": "gated_pair"
 }

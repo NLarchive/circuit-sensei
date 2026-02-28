@@ -503,7 +503,7 @@
     },
     "Boolean NOT": {
       "origin_level": "level_03",
-      "symbol": "¯, ′, ¬, NOT",
+      "symbol": "¯, ', ′, ¬, NOT",
       "definition": "A logical operation that outputs the opposite of its input. Also called inversion or complement.",
       "why": "NOT is the simplest logic operation—it flips 0 to 1 and 1 to 0. Combined with AND and OR, it can express any Boolean function.",
       "latex": "Y = \\bar{A} = NOT(A)",
@@ -974,6 +974,15 @@
         "complement"
       ],
       "example": "¬A"
+    },
+    "'": {
+      "name": "Prime / Complement (NOT)",
+      "description": "Common notation for logical NOT; used as a suffix for Boolean inversion.",
+      "aliases": [
+        "NOT prime",
+        "complement notation"
+      ],
+      "example": "A'"
     },
     "→": {
       "name": "Arrow / Mapping",

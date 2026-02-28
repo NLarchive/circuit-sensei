@@ -839,7 +839,7 @@ export const HUDVisuals = {
 
             case 'half_adder':
                 return `
-                    <svg viewBox="0 0 220 120" class="edu-svg">
+                    <svg viewBox="0 0 300 120" class="edu-svg">
                         <!-- Box representation -->
                         <rect x="70" y="25" width="80" height="60" fill="#222" stroke="#0f0" stroke-width="2" rx="5"/>
                         <text x="110" y="50" fill="#0f0" font-size="12" text-anchor="middle">HALF</text>
@@ -852,10 +852,10 @@ export const HUDVisuals = {
                         <text x="30" y="73" fill="#ff0" font-size="10">B</text>
                         
                         <!-- Outputs -->
-                        <line x1="150" y1="40" x2="180" y2="40" stroke="#aaa" stroke-width="2"/>
-                        <line x1="150" y1="70" x2="180" y2="70" stroke="#aaa" stroke-width="2"/>
-                        <text x="185" y="43" fill="#0ff" font-size="9">Sum (XOR)</text>
-                        <text x="185" y="73" fill="#f0f" font-size="9">Carry (AND)</text>
+                        <line x1="150" y1="40" x2="200" y2="40" stroke="#aaa" stroke-width="2"/>
+                        <line x1="150" y1="70" x2="200" y2="70" stroke="#aaa" stroke-width="2"/>
+                        <text x="210" y="43" fill="#0ff" font-size="9">Sum (XOR)</text>
+                        <text x="210" y="73" fill="#f0f" font-size="9">Carry (AND)</text>
                         
                         <!-- Binary addition example -->
                         <text x="110" y="95" fill="#aaa" font-size="10" text-anchor="middle">1 + 1 = 10 (binary)</text>
@@ -867,7 +867,7 @@ export const HUDVisuals = {
 
             case 'full_adder':
                 return `
-                    <svg viewBox="0 0 220 130" class="edu-svg">
+                    <svg viewBox="0 0 280 130" class="edu-svg">
                         <rect x="60" y="20" width="100" height="80" fill="#222" stroke="#0f0" stroke-width="2" rx="5"/>
                         <text x="110" y="55" fill="#0f0" font-size="14" text-anchor="middle">FULL</text>
                         <text x="110" y="72" fill="#0f0" font-size="14" text-anchor="middle">ADDER</text>
@@ -881,10 +881,10 @@ export const HUDVisuals = {
                         <text x="12" y="88" fill="#f80" font-size="9">Cᵢₙ</text>
                         
                         <!-- 2 outputs -->
-                        <line x1="160" y1="45" x2="190" y2="45" stroke="#aaa" stroke-width="2"/>
-                        <line x1="160" y1="75" x2="190" y2="75" stroke="#aaa" stroke-width="2"/>
-                        <text x="195" y="48" fill="#0ff" font-size="9">Sum</text>
-                        <text x="195" y="78" fill="#f0f" font-size="9">Cₒᵤₜ</text>
+                        <line x1="160" y1="45" x2="210" y2="45" stroke="#aaa" stroke-width="2"/>
+                        <line x1="160" y1="75" x2="210" y2="75" stroke="#aaa" stroke-width="2"/>
+                        <text x="220" y="48" fill="#0ff" font-size="9">Sum</text>
+                        <text x="220" y="78" fill="#f0f" font-size="9">Cₒᵤₜ</text>
                         
                         <!-- Example: 12 + 9 -->
                         <text x="110" y="112" fill="#aaa" font-size="9" text-anchor="middle">Chain Full Adders for multi-bit addition</text>

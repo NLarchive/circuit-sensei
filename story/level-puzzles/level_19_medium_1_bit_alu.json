@@ -116,9 +116,9 @@
   ],
   "maxGates": 6,
   "xpReward": 320,
-  "hint": "Compute ADD, AND, OR results in parallel. Use a 4:1 MUX (or tree of 2:1 MUXes) controlled by 2-bit opcode to select output. For simplicity, just implement 2 ops: opcode=0 for ADD, opcode=1 for AND.",
-  "title": "ALU with Logic Operations",
-  "objective": "Add AND, OR, XOR operations",
-  "description": "Extend the ALU to perform both arithmetic (ADD/SUB) and logic (AND/OR/XOR) operations based on a 2-bit opcode.",
+  "hint": "Use a Full Adder for the ADD path, an AND gate for the logic path, then select between them using a MUX controlled by the opcode. The Full Adder's Carry output doubles as the AND result!",
+  "title": "1-Bit ALU",
+  "objective": "Build ALU with ADD and AND operations",
+  "description": "Build a simple ALU that performs two operations on 1-bit inputs: addition (Op=0) and bitwise AND (Op=1). A single opcode bit selects which operation to output.",
   "physicsVisual": "alu_extended"
 }

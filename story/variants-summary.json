@@ -4,6 +4,10 @@
       "xpReward": 10,
       "title": "The Simple Wire"
     },
+    "expert": {
+      "xpReward": 55,
+      "title": "Crossbar Routing"
+    },
     "hard": {
       "xpReward": 40,
       "title": "Signal Fan-Out"
@@ -18,19 +22,27 @@
       "xpReward": 15,
       "title": "Transistor as Switch"
     },
+    "expert": {
+      "xpReward": 65,
+      "title": "4-Input AND Chain"
+    },
     "hard": {
       "xpReward": 50,
-      "title": "CMOS Logic: AND-OR-INVERT (AOI)"
+      "title": "Gated Signal Pair"
     },
     "medium": {
       "xpReward": 30,
-      "title": "NAND from Transistors"
+      "title": "Series Controlled Switches"
     }
   },
   "level_03": {
     "easy": {
       "xpReward": 20,
       "title": "The Inverter (NOT Gate)"
+    },
+    "expert": {
+      "xpReward": 65,
+      "title": "Dual Inhibit Gate"
     },
     "hard": {
       "xpReward": 50,
@@ -46,6 +58,10 @@
       "xpReward": 25,
       "title": "The AND Gate"
     },
+    "expert": {
+      "xpReward": 65,
+      "title": "Material Implication Gate"
+    },
     "hard": {
       "xpReward": 50,
       "title": "Build NAND Gate"
@@ -59,6 +75,10 @@
     "easy": {
       "xpReward": 25,
       "title": "The OR Gate"
+    },
+    "expert": {
+      "xpReward": 80,
+      "title": "Hazard-Free Consensus Logic"
     },
     "hard": {
       "xpReward": 60,
@@ -74,6 +94,10 @@
       "xpReward": 30,
       "title": "The NAND Gate"
     },
+    "expert": {
+      "xpReward": 110,
+      "title": "Full Adder from NAND Only"
+    },
     "hard": {
       "xpReward": 85,
       "title": "NAND Universality Proof"
@@ -87,6 +111,10 @@
     "easy": {
       "xpReward": 40,
       "title": "NOT from NAND"
+    },
+    "expert": {
+      "xpReward": 95,
+      "title": "OR from NAND"
     },
     "hard": {
       "xpReward": 75,
@@ -102,6 +130,10 @@
       "xpReward": 45,
       "title": "The XOR Gate"
     },
+    "expert": {
+      "xpReward": 95,
+      "title": "Binary-to-Gray Code Converter"
+    },
     "hard": {
       "xpReward": 75,
       "title": "Parity Generator (3-bit)"
@@ -115,6 +147,10 @@
     "easy": {
       "xpReward": 60,
       "title": "De Morgan's Theorem"
+    },
+    "expert": {
+      "xpReward": 110,
+      "title": "Boolean Minimization Challenge"
     },
     "hard": {
       "xpReward": 90,
@@ -130,6 +166,10 @@
       "xpReward": 70,
       "title": "2:1 Multiplexer"
     },
+    "expert": {
+      "xpReward": 130,
+      "title": "8:1 MUX from 2:1 MUXes"
+    },
     "hard": {
       "xpReward": 100,
       "title": "4:1 MUX from 2:1 MUXes"
@@ -143,6 +183,10 @@
     "easy": {
       "xpReward": 80,
       "title": "2-to-4 Decoder"
+    },
+    "expert": {
+      "xpReward": 140,
+      "title": "7-Segment Display: Segment A"
     },
     "hard": {
       "xpReward": 115,
@@ -158,6 +202,10 @@
       "xpReward": 90,
       "title": "Half Adder"
     },
+    "expert": {
+      "xpReward": 150,
+      "title": "XOR from NOR Only"
+    },
     "hard": {
       "xpReward": 125,
       "title": "Apollo NOR Half Adder"
@@ -171,6 +219,10 @@
     "easy": {
       "xpReward": 100,
       "title": "Full Adder"
+    },
+    "expert": {
+      "xpReward": 165,
+      "title": "2×2 Binary Multiplier"
     },
     "hard": {
       "xpReward": 135,
@@ -186,6 +238,10 @@
       "xpReward": 110,
       "title": "SR Latch"
     },
+    "expert": {
+      "xpReward": 165,
+      "title": "Register File Cell"
+    },
     "hard": {
       "xpReward": 135,
       "title": "D Latch from Gates"
@@ -199,6 +255,10 @@
     "easy": {
       "xpReward": 130,
       "title": "D Flip-Flop"
+    },
+    "expert": {
+      "xpReward": 185,
+      "title": "2-Bit Shift Register (SIPO)"
     },
     "hard": {
       "xpReward": 155,
@@ -214,6 +274,10 @@
       "xpReward": 140,
       "title": "T Flip-Flop (Toggle)"
     },
+    "expert": {
+      "xpReward": 200,
+      "title": "Loadable Toggle Flip-Flop"
+    },
     "hard": {
       "xpReward": 170,
       "title": "JK Flip-Flop"
@@ -227,6 +291,10 @@
     "easy": {
       "xpReward": 160,
       "title": "2-Bit Ripple Counter"
+    },
+    "expert": {
+      "xpReward": 230,
+      "title": "Up/Down Counter"
     },
     "hard": {
       "xpReward": 190,
@@ -242,6 +310,10 @@
       "xpReward": 200,
       "title": "Traffic Light FSM"
     },
+    "expert": {
+      "xpReward": 275,
+      "title": "Modulo-3 Counter"
+    },
     "hard": {
       "xpReward": 250,
       "title": "Sequence Detector (101)"
@@ -256,19 +328,27 @@
       "xpReward": 300,
       "title": "Simple ALU"
     },
+    "expert": {
+      "xpReward": 450,
+      "title": "Signed Overflow Detector"
+    },
     "hard": {
       "xpReward": 380,
       "title": "Magnitude Comparator"
     },
     "medium": {
       "xpReward": 320,
-      "title": "ALU with Logic Operations"
+      "title": "1-Bit ALU"
     }
   },
   "level_boss": {
     "easy": {
       "xpReward": 500,
       "title": "Microprocessor Core"
+    },
+    "expert": {
+      "xpReward": 2000,
+      "title": "3-Stage Pipeline with Stall"
     },
     "hard": {
       "xpReward": 1500,

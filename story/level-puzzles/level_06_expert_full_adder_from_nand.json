@@ -1,0 +1,114 @@
+{
+  "id": "level_06_expert",
+  "baseId": "level_06",
+  "variant": "expert",
+  "availableGates": [
+    "nand"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "0+0+0 = Sum:0 Cout:0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "0+0+1 = Sum:1 Cout:0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "0+1+0 = Sum:1 Cout:0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "0+1+1 = Sum:0 Cout:1"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "1+0+0 = Sum:1 Cout:0"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "1+0+1 = Sum:0 Cout:1"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "1+1+0 = Sum:0 Cout:1"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "1+1+1 = Sum:1 Cout:1"
+    }
+  ],
+  "maxGates": 9,
+  "xpReward": 110,
+  "hint": "Classic 9-NAND full adder: N1=NAND(A,B), N2=NAND(A,N1), N3=NAND(B,N1), N4=NAND(N2,N3) gives half-sum. N5=NAND(N4,Cin), N6=NAND(N4,N5), N7=NAND(Cin,N5) gives Sum=NAND(N6,N7). For Carry: N8=NAND(N5,N5)=NOT(N5), Cout=NAND(N8,N1).",
+  "title": "Full Adder from NAND Only",
+  "objective": "Build Sum and Carry-out using only NAND gates",
+  "description": "Build a complete full adder (A + B + Cin = Sum, Cout) using only NAND gates. This classic puzzle requires exactly 9 NAND gates and proves that NAND alone can implement any arithmetic function. This is how adders are built at the transistor level in real CPUs.",
+  "physicsVisual": "nand_full_adder"
+}

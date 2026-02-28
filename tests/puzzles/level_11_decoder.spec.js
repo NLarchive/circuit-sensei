@@ -120,4 +120,24 @@ test.describe('Level 11 – Decoder & Encoder', () => {
       'level_11_hard'
     );
   });
+
+  test('Expert: 7-segment display segment A', async ({ page, baseURL }) => {
+    // 3 inputs (B₂,B₁,B₀), 1 output. Seg A = B₁ OR NOT(B₂ XOR B₀)
+    await solvePuzzle(page, baseURL, 'level_11', 'expert',
+      [
+        { type: 'xor', x: 350, y: 100 },  // gate_0: XOR(B₂,B₀)
+        { type: 'not', x: 450, y: 100 },  // gate_1: NOT(B₂ XOR B₀)
+        { type: 'or',  x: 550, y: 150 },  // gate_2: OR(B₁, NOT(B₂ XOR B₀))
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // B₂
+        { from: 'input_2', fromPin: 0, to: 'gate_0', toPin: 1 },  // B₀
+        { from: 'gate_0',  fromPin: 0, to: 'gate_1', toPin: 0 },  // XOR→NOT
+        { from: 'input_1', fromPin: 0, to: 'gate_2', toPin: 0 },  // B₁
+        { from: 'gate_1',  fromPin: 0, to: 'gate_2', toPin: 1 },  // NOT(XOR)
+        { from: 'gate_2',  fromPin: 0, to: 'output_0', toPin: 0 }, // Seg A
+      ],
+      'level_11_expert'
+    );
+  });
 });

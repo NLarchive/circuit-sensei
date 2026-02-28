@@ -1,0 +1,108 @@
+{
+  "id": "level_09_expert",
+  "baseId": "level_09",
+  "variant": "expert",
+  "availableGates": [
+    "not",
+    "and",
+    "or"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "m0: A'B'C' ✓"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "m1: A'B'C ✓"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "m2: A'BC' ✓"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "m3: A'BC ✓"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "m4: AB'C' ✗"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "m5: AB'C ✓"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "m6: ABC' ✗"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "m7: ABC ✓"
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 110,
+  "hint": "Don't implement each minterm separately! Use a Karnaugh map: the K-map reveals that F = Σ(0,1,2,3,5,7) simplifies to just F = A' + C. That's only NOT(A) OR C — just 2 gates!",
+  "title": "Boolean Minimization Challenge",
+  "objective": "Find the minimal circuit using K-map thinking",
+  "description": "This truth table has 6 minterms — but the minimum implementation uses only 2 gates. A naive SOP approach won't fit the gate budget. You must find the simplified Boolean expression. This is the core skill of Karnaugh map (K-map) minimization.",
+  "physicsVisual": "kmap_minimization"
+}

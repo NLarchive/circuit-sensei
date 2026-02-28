@@ -571,19 +571,33 @@ test.describe("Basic Wiring + Gate Placement", () => {
     await expect(gateList).toBeVisible();
   });
 
-  test("should switch between select and wire modes", async ({ page }) => {
+  test("should open controls reference modal via info button", async ({ page }) => {
     const modeToggle = page.locator("#btn-mode-toggle");
     
-    // Initial state: wire mode (default)
-    await expect(modeToggle).toHaveAttribute('title', 'Wire Connection Mode');
+    // Button should be an info button now
+    await expect(modeToggle).toHaveAttribute('title', 'Controls Reference');
     
-    // Click to switch to select mode
+    // Click to open controls info modal
     await modeToggle.click();
-    await expect(modeToggle).toHaveAttribute('title', 'Select/Move Mode');
-    
-    // Click to switch back to wire mode
-    await modeToggle.click();
-    await expect(modeToggle).toHaveAttribute('title', 'Wire Connection Mode');
+    const modal = page.locator('#controls-info-modal');
+    await expect(modal).not.toHaveClass(/hidden/);
+
+    // Both tabs should be present
+    await expect(page.locator('.ctrl-tab-btn[data-ctrl-tab="keyboard"]')).toBeVisible();
+    await expect(page.locator('.ctrl-tab-btn[data-ctrl-tab="touch"]')).toBeVisible();
+
+    // Keyboard panel should be active by default
+    await expect(page.locator('#ctrl-panel-keyboard')).not.toHaveClass(/hidden/);
+    await expect(page.locator('#ctrl-panel-touch')).toHaveClass(/hidden/);
+
+    // Switch to touch tab
+    await page.locator('.ctrl-tab-btn[data-ctrl-tab="touch"]').click();
+    await expect(page.locator('#ctrl-panel-touch')).not.toHaveClass(/hidden/);
+    await expect(page.locator('#ctrl-panel-keyboard')).toHaveClass(/hidden/);
+
+    // Close the modal
+    await page.locator('#btn-close-controls-info-bottom').click();
+    await expect(modal).toHaveClass(/hidden/);
   });
 
   test("should create wire connection on canvas", async ({ page }) => {

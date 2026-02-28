@@ -44,6 +44,8 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    min-width: 0;
+    min-height: 0;
     z-index: 10;
 }
 
@@ -65,6 +67,9 @@
         left: -260px;
         top: 0;
         bottom: 0;
+        height: 100vh;
+        height: 100svh;
+        height: 100dvh;
         width: 250px;
         z-index: 950;
         transition: left 0.3s ease;
@@ -98,6 +103,8 @@
     grid-row: 2;
     position: relative;
     overflow: hidden;
+    min-width: 0;
+    min-height: 0;
 }
 
 /* Mobile: main view takes full width */

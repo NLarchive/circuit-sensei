@@ -1,0 +1,159 @@
+{
+  "id": "level_16_expert",
+  "baseId": "level_16",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 4,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Init: Q=0"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Setup: T=1 (toggle pending)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "CLK↑ T=1: TOGGLE 0→1"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Setup: T=1 (toggle pending)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑ T=1: TOGGLE 1→0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Setup: Load=1, D=1"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "CLK↑ Load=1: LOAD D=1 into Q"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Setup: T=0 (hold pending)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "CLK↑ T=0: HOLD Q=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Setup: Load=1, D=0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑ Load=1: LOAD D=0 into Q"
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 200,
+  "hint": "Inputs are [T, CLK, Load, D]. When Load=0, D_input = T XOR Q (toggle). When Load=1, D_input = D (parallel load). Use a MUX: MUX(sel=Load, d0=XOR(T,Q), d1=D) → DFF(D_input, CLK). The XOR uses the DFF's Q output as feedback.",
+  "title": "Loadable Toggle Flip-Flop",
+  "objective": "Build a T-FF with parallel load capability",
+  "description": "Build a Toggle Flip-Flop with parallel load: when Load=0, T controls toggle/hold; when Load=1, value D is loaded directly. This is the core of loadable counters — they count freely or jump to a preset value. Inputs: [T, CLK, Load, D].",
+  "physicsVisual": "loadable_tff"
+}

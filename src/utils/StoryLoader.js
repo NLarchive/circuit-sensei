@@ -132,7 +132,7 @@ export class StoryLoader {
             const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
 
             let puzzlePath = null;
-            const puzzleIdMatch = /^((?:level_\d{2}|level_boss))_(easy|medium|hard)$/.exec(puzzleId);
+            const puzzleIdMatch = /^((?:level_\d{2}|level_boss))_(easy|medium|hard|expert)$/.exec(puzzleId);
             if (puzzleIdMatch) {
                 const [, baseLevelId, variantName] = puzzleIdMatch;
                 const entry = await this._getLevelEntry(baseLevelId);
@@ -251,7 +251,7 @@ export class StoryLoader {
     /**
      * Load a specific variant of a level
      * @param {string} baseLevelId - Base level ID (e.g., 'level_01')
-     * @param {string} variantName - Variant name ('easy', 'medium', 'hard')
+     * @param {string} variantName - Variant name ('easy', 'medium', 'hard', 'expert')
      */
     static async loadLevelVariant(baseLevelId, variantName) {
         try {
@@ -274,7 +274,7 @@ export class StoryLoader {
 
     /**
      * Extract variants for a specific level
-     * Returns an object with keys 'easy', 'medium', 'hard' when present
+     * Returns an object with keys 'easy', 'medium', 'hard', 'expert' when present
      */
     static async loadLevelVariants(baseLevelId) {
         try {
@@ -289,7 +289,7 @@ export class StoryLoader {
             if (!baseLevel) return {};
             
             const variants = {};
-            const variantNames = ['easy', 'medium', 'hard'];
+            const variantNames = ['easy', 'medium', 'hard', 'expert'];
             
             for (const v of variantNames) {
                 if (entry.puzzleFiles[v]) {

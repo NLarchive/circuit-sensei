@@ -66,4 +66,35 @@ test.describe('Level 14 – SR Latch', () => {
       'level_14_hard'
     );
   });
+
+  test('Expert: register file cell', async ({ page, baseURL }) => {
+    // 3 inputs (DataIn,WE,RE), 2 outputs (Q gated, Q̄ gated)
+    // Write: S=DataIn·WE, R=NOT(DataIn)·WE → SR Latch. Read: Q·RE, Q̄·RE
+    await solvePuzzle(page, baseURL, 'level_14', 'expert',
+      [
+        { type: 'and',     x: 300, y: 80 },   // gate_0: AND(DataIn,WE) → S
+        { type: 'not',     x: 250, y: 200 },  // gate_1: NOT(DataIn)
+        { type: 'and',     x: 350, y: 220 },  // gate_2: AND(NOT_DataIn,WE) → R
+        { type: 'srLatch', x: 500, y: 150 },  // gate_3: SR Latch (S,R)
+        { type: 'and',     x: 650, y: 100 },  // gate_4: AND(Q,RE) → Out0
+        { type: 'and',     x: 650, y: 250 },  // gate_5: AND(Q̄,RE) → Out1
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // DataIn
+        { from: 'input_1', fromPin: 0, to: 'gate_0', toPin: 1 },  // WE
+        { from: 'input_0', fromPin: 0, to: 'gate_1', toPin: 0 },  // DataIn→NOT
+        { from: 'gate_1',  fromPin: 0, to: 'gate_2', toPin: 0 },  // NOT_DataIn
+        { from: 'input_1', fromPin: 0, to: 'gate_2', toPin: 1 },  // WE
+        { from: 'gate_0',  fromPin: 0, to: 'gate_3', toPin: 0 },  // S
+        { from: 'gate_2',  fromPin: 0, to: 'gate_3', toPin: 1 },  // R
+        { from: 'gate_3',  fromPin: 0, to: 'gate_4', toPin: 0 },  // Q
+        { from: 'input_2', fromPin: 0, to: 'gate_4', toPin: 1 },  // RE
+        { from: 'gate_3',  fromPin: 1, to: 'gate_5', toPin: 0 },  // Q̄
+        { from: 'input_2', fromPin: 0, to: 'gate_5', toPin: 1 },  // RE
+        { from: 'gate_4',  fromPin: 0, to: 'output_0', toPin: 0 }, // Out0
+        { from: 'gate_5',  fromPin: 0, to: 'output_1', toPin: 0 }, // Out1
+      ],
+      'level_14_expert'
+    );
+  });
 });

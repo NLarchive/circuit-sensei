@@ -66,4 +66,24 @@ test.describe('Level 15 – D Flip-Flop', () => {
       'level_15_hard'
     );
   });
+
+  test('Expert: 2-bit shift register (SIPO)', async ({ page, baseURL }) => {
+    // 2 inputs (CLK,Din), 2 outputs (Q₁,Q₀). Two DFFs in series.
+    // Gate order: DFF₂ before DFF₁ so DFF₂ captures old Q₀
+    await solvePuzzle(page, baseURL, 'level_15', 'expert',
+      [
+        { type: 'dFlipFlop', x: 550, y: 100 },  // gate_0: DFF₂ (D=Q₀, CLK) → Q₁
+        { type: 'dFlipFlop', x: 400, y: 100 },  // gate_1: DFF₁ (D=Din, CLK) → Q₀
+      ],
+      [
+        { from: 'gate_1',  fromPin: 0, to: 'gate_0', toPin: 0 },  // Q₀→DFF₂.D
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 1 },  // CLK
+        { from: 'input_1', fromPin: 0, to: 'gate_1', toPin: 0 },  // Din→DFF₁.D
+        { from: 'input_0', fromPin: 0, to: 'gate_1', toPin: 1 },  // CLK
+        { from: 'gate_0',  fromPin: 0, to: 'output_0', toPin: 0 }, // Q₁
+        { from: 'gate_1',  fromPin: 0, to: 'output_1', toPin: 0 }, // Q₀
+      ],
+      'level_15_expert'
+    );
+  });
 });

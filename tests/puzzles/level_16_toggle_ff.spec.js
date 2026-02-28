@@ -71,4 +71,27 @@ test.describe('Level 16 – Toggle & JK Flip-Flop', () => {
       'level_16_hard'
     );
   });
+
+  test('Expert: loadable toggle flip-flop', async ({ page, baseURL }) => {
+    // 4 inputs (T,CLK,Load,D), 1 output (Q)
+    // MUX(sel=Load, d0=XOR(T,Q), d1=D) → DFF
+    await solvePuzzle(page, baseURL, 'level_16', 'expert',
+      [
+        { type: 'xor',       x: 300, y: 100 },  // gate_0: XOR(T,Q_fb) → toggle
+        { type: 'mux2to1',   x: 450, y: 150 },  // gate_1: MUX(toggle,D,Load)
+        { type: 'dFlipFlop', x: 600, y: 150 },  // gate_2: DFF(mux_out,CLK) → Q
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // T
+        { from: 'gate_2',  fromPin: 0, to: 'gate_0', toPin: 1 },  // Q feedback
+        { from: 'gate_0',  fromPin: 0, to: 'gate_1', toPin: 0 },  // toggle → MUX.d0
+        { from: 'input_3', fromPin: 0, to: 'gate_1', toPin: 1 },  // D → MUX.d1
+        { from: 'input_2', fromPin: 0, to: 'gate_1', toPin: 2 },  // Load → MUX.sel
+        { from: 'gate_1',  fromPin: 0, to: 'gate_2', toPin: 0 },  // MUX.out → DFF.D
+        { from: 'input_1', fromPin: 0, to: 'gate_2', toPin: 1 },  // CLK
+        { from: 'gate_2',  fromPin: 0, to: 'output_0', toPin: 0 }, // Q
+      ],
+      'level_16_expert'
+    );
+  });
 });

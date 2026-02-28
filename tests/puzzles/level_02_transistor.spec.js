@@ -55,4 +55,25 @@ test.describe('Level 02 – The Transistor', () => {
       'level_02_hard'
     );
   });
+
+  test('Expert: 4-input AND chain', async ({ page, baseURL }) => {
+    // 4 inputs (A,B,C,D), 1 output. Chain 3 transistors: T(A,B)→T(C,AB)→T(D,ABC)
+    await solvePuzzle(page, baseURL, 'level_02', 'expert',
+      [
+        { type: 'transistor', x: 300, y: 150 },  // gate_0: T(ctrl=A, data=B) → A·B
+        { type: 'transistor', x: 450, y: 150 },  // gate_1: T(ctrl=C, data=AB)
+        { type: 'transistor', x: 600, y: 150 },  // gate_2: T(ctrl=D, data=ABC)
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // A→ctrl
+        { from: 'input_1', fromPin: 0, to: 'gate_0', toPin: 1 },  // B→data
+        { from: 'input_2', fromPin: 0, to: 'gate_1', toPin: 0 },  // C→ctrl
+        { from: 'gate_0',  fromPin: 0, to: 'gate_1', toPin: 1 },  // AB→data
+        { from: 'input_3', fromPin: 0, to: 'gate_2', toPin: 0 },  // D→ctrl
+        { from: 'gate_1',  fromPin: 0, to: 'gate_2', toPin: 1 },  // ABC→data
+        { from: 'gate_2',  fromPin: 0, to: 'output_0', toPin: 0 }, // ABCD
+      ],
+      'level_02_expert'
+    );
+  });
 });

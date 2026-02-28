@@ -1,0 +1,60 @@
+{
+  "id": "level_04_expert",
+  "baseId": "level_04",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "F→F: vacuously true"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "F→T: true"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "T→F: the ONLY false case (counterexample)"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "T→T: true"
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 65,
+  "hint": "A → B = NOT(A AND NOT(B)). First invert B to get B̄, then AND with A to get A·B̄ (the counterexample detector), then invert the result. The output is FALSE only when A is TRUE and B is FALSE.",
+  "title": "Material Implication Gate",
+  "objective": "Build the logical implication A → B",
+  "description": "Build the material implication gate: A → B is FALSE only when A is TRUE and B is FALSE — the logical counterexample. In propositional logic, implication is the most fundamental connective: every theorem is an implication. Implementation: NOT(A AND NOT(B)).",
+  "physicsVisual": "implication_gate"
+}

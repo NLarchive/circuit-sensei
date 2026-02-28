@@ -10,6 +10,8 @@ import { MessageDisplay } from './feedback/MessageDisplay.js';
 import { SidebarController } from './sidebar/SidebarController.js';
 import { KeyboardManager } from './controls/KeyboardManager.js';
 import { LoadingScreen } from './overlays/LoadingScreen.js';
+import { CompletionModal } from './overlays/CompletionModal.js';
+import { certificationModal } from '../certification/index.js';
 import { asyncQueue } from '../utils/AsyncPriorityQueue.js';
 
 export class HUD {
@@ -51,7 +53,7 @@ export class HUD {
                 </div>
                 <div class="nav-right-group">
                     <div class="mode-toggle">
-                        <button id="btn-mode-toggle" class="btn-mode active" title="Wire Connection Mode">🔌</button>
+                        <button id="btn-mode-toggle" class="btn-mode" title="Controls Reference">ℹ️</button>
                     </div>
                     <div class="zoom-controls desktop-only">
                         <button id="btn-zoom-out" class="btn secondary btn-small">−</button>
@@ -102,6 +104,7 @@ export class HUD {
             <div class="mode-select-wrap">
                 <label class="mode-select-label" for="mode-select-mobile">Mode</label>
                 <select id="mode-select-mobile" class="mode-select-mobile" aria-label="Game mode">
+                    <option value="GAME">Game</option>
                     <option value="STORY">Story</option>
                     <option value="DESIGNER">Designer</option>
                     <option value="ENDLESS">Endless</option>
@@ -140,6 +143,7 @@ export class HUD {
                             <div class="xp-info">Total XP: <span id="roadmap-xp">0</span></div>
                             <div class="hint-info">Hint use: <span id="roadmap-hints-used">0</span>/<span id="roadmap-hints-total">0</span></div>
                         </div>
+                        <button id="btn-roadmap-certification" class="btn secondary">View Certification</button>
                         <button id="btn-close-roadmap" class="btn secondary">Continue Playing</button>
                     </div>
                 </div>
@@ -206,6 +210,56 @@ export class HUD {
                         <button id="btn-close-term-popup" class="btn-icon small">×</button>
                     </div>
                     <div id="term-popup-body"></div>
+                </div>
+            </div>
+
+            <!-- Controls Reference Modal (opened by ℹ️ button) -->
+            <div id="controls-info-modal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="controls-info-title">
+                <div class="overlay-content" style="max-width:500px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                        <h3 id="controls-info-title" style="margin:0;">ℹ️ Controls Reference</h3>
+                        <button id="btn-close-controls-info" class="btn-icon" title="Close">×</button>
+                    </div>
+                    <div style="display:flex;gap:8px;margin-bottom:16px;">
+                        <button class="ctrl-tab-btn btn secondary btn-small active" data-ctrl-tab="keyboard">🖱️ Desktop Mode</button>
+                        <button class="ctrl-tab-btn btn secondary btn-small" data-ctrl-tab="touch">📱 Phone Mode</button>
+                    </div>
+                    <div id="ctrl-panel-keyboard" class="ctrl-tab-panel">
+                        <ul class="controls-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Click pin</kbd><span>Start or complete a wire connection</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Click + drag gate</kbd><span>Move component (no hand mode required)</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Click input gate</kbd><span>Toggle input ON / OFF</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Right-click gate/wire</kbd><span>Delete component or connection</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Drag empty canvas</kbd><span>Pan canvas</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Middle-click + drag</kbd><span>Pan canvas</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Mouse wheel</kbd><span>Zoom in / out</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Ctrl +</kbd><span>Zoom in</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Ctrl −</kbd><span>Zoom out</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Ctrl 0</kbd><span>Reset zoom</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Reset / Verify / Next</kbd><span>Main puzzle actions from navbar buttons</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Pause / Step</kbd><span>Clock controls for sequential circuits</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Glossary / Help</kbd><span>Open learning references</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">F1</kbd><span>Show level help</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Shift ?</kbd><span>All keyboard shortcuts</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">I</kbd><span>Show this controls reference</span></li>
+                        </ul>
+                    </div>
+                    <div id="ctrl-panel-touch" class="ctrl-tab-panel hidden">
+                        <ul class="controls-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Tap pin</kbd><span>Start or complete a wire connection</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Hold + drag gate</kbd><span>Move component (no hand mode required)</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Tap input node</kbd><span>Toggle input ON / OFF</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Double-tap gate/wire</kbd><span>Delete component or connection</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Two-finger pinch</kbd><span>Zoom in / out</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">One-finger drag</kbd><span>Pan the canvas</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Tap component in sidebar</kbd><span>Select component to place</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Tap canvas</kbd><span>Place selected component</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">Reset / Verify / Next</kbd><span>Main puzzle actions from navbar buttons</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">⋯ More menu</kbd><span>Pause, Step, Zoom, Help, Glossary on small screens</span></li>
+                            <li style="display:flex;align-items:baseline;gap:10px;"><kbd class="ctrl-key">ℹ️ button</kbd><span>Open this controls reference</span></li>
+                        </ul>
+                    </div>
+                    <button id="btn-close-controls-info-bottom" class="btn primary" style="margin-top:16px;width:100%;">Close</button>
                 </div>
             </div>
         `;
@@ -426,6 +480,17 @@ export class HUD {
         if (modeSelect) {
             modeSelect.addEventListener('change', (e) => {
                 const mode = e.target.value;
+                if (mode === 'GAME') {
+                    // Return to active puzzle: hide roadmap / overlays
+                    document.getElementById('roadmap-overlay')?.classList.add('hidden');
+                    document.getElementById('level-intro-overlay')?.classList.add('hidden');
+                    return;
+                }
+                if (mode === 'STORY') {
+                    // Always navigate to roadmap regardless of previous state
+                    gameManager.startGame('STORY');
+                    return;
+                }
                 const tab = this.sidebar.querySelector(`.tab-btn[data-mode="${mode}"]`);
                 if (tab) tab.click();
             });
@@ -439,27 +504,58 @@ export class HUD {
             globalEvents.emit(Events.ZOOM_CHANGED, { delta: -0.1 });
         });
 
-        // Mode Toggle
-        // Fused Mode Toggle (Hand/Wire)
-        let currentMode = 'wire';
+        // Controls-info button (replaces old hand/wire mode toggle)
         const modeToggleBtn = document.getElementById('btn-mode-toggle');
-        const modeIcons = { select: '✋', wire: '🔌' };
-        const modeTitles = { select: 'Select/Move Mode', wire: 'Wire Connection Mode' };
-        function updateModeButton() {
-            modeToggleBtn.innerText = modeIcons[currentMode];
-            modeToggleBtn.title = modeTitles[currentMode];
+        const controlsInfoModal = document.getElementById('controls-info-modal');
+
+        const setControlsTab = (tab) => {
+            if (!controlsInfoModal) return;
+            controlsInfoModal.querySelectorAll('.ctrl-tab-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = controlsInfoModal.querySelector(`.ctrl-tab-btn[data-ctrl-tab="${tab}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            controlsInfoModal.querySelectorAll('.ctrl-tab-panel').forEach(p => p.classList.add('hidden'));
+            const panel = controlsInfoModal.querySelector(`#ctrl-panel-${tab}`);
+            if (panel) panel.classList.remove('hidden');
+        };
+
+        const openControlsInfo = () => {
+            if (!controlsInfoModal) return;
+            setControlsTab('keyboard');
+            controlsInfoModal.classList.remove('hidden');
+            const closeBtn = controlsInfoModal.querySelector('#btn-close-controls-info');
+            if (closeBtn) closeBtn.focus();
+        };
+        const closeControlsInfo = () => {
+            controlsInfoModal?.classList.add('hidden');
+            modeToggleBtn?.focus();
+        };
+
+        if (modeToggleBtn) {
+            modeToggleBtn.addEventListener('click', openControlsInfo);
         }
-        modeToggleBtn.addEventListener('click', () => {
-            currentMode = currentMode === 'select' ? 'wire' : 'select';
-            window.interactionMode = currentMode;
-            updateModeButton();
-            globalEvents.emit('INTERACTION_MODE_CHANGED', { mode: currentMode });
-        });
-        // Set initial state (default to connector/wire mode)
-        updateModeButton();
-        window.interactionMode = currentMode;
-        // Notify listeners so InputHandler, CanvasRenderer, etc. sync to the initial mode
-        globalEvents.emit('INTERACTION_MODE_CHANGED', { mode: currentMode });
+
+        // Tab switching inside controls-info modal
+        if (controlsInfoModal) {
+            controlsInfoModal.querySelectorAll('.ctrl-tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tab = btn.dataset.ctrlTab || 'keyboard';
+                    setControlsTab(tab);
+                });
+            });
+            controlsInfoModal.querySelector('#btn-close-controls-info')?.addEventListener('click', closeControlsInfo);
+            controlsInfoModal.querySelector('#btn-close-controls-info-bottom')?.addEventListener('click', closeControlsInfo);
+            controlsInfoModal.addEventListener('click', (e) => {
+                if (e.target === controlsInfoModal) closeControlsInfo();
+            });
+            controlsInfoModal.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeControlsInfo();
+            });
+        }
+
+        // Unified interaction mode – no select/wire toggle needed; always wire-unified.
+        window.interactionMode = 'wire';
+        globalEvents.emit('INTERACTION_MODE_CHANGED', { mode: 'wire' });
 
         // Help Button - show level intro/help for current mode
         document.getElementById('btn-help').addEventListener('click', () => {
@@ -641,6 +737,10 @@ export class HUD {
             document.getElementById('roadmap-overlay').classList.add('hidden');
             globalEvents.emit(Events.UI_OVERLAY_CLOSED, { overlay: 'roadmap' });
         });
+
+        document.getElementById('btn-roadmap-certification').addEventListener('click', () => {
+            certificationModal.open(gameManager.getCertification());
+        });
         
         // Roadmap level selection with priority for user interactions
         // User clicks interrupt background prefetch and supersede earlier clicks
@@ -719,6 +819,11 @@ export class HUD {
         globalEvents.on(Events.LEVEL_LOADED, (data) => {
             this.updateLevelInfo(data.level);
             this.updateToolbox(gameManager.getAvailableGates());
+
+            // In Story mode, switch mobile mode-select to "Game" so the user
+            // can always re-select "Story" to navigate back to the roadmap.
+            const modeSelectEl = document.getElementById('mode-select-mobile');
+            if (modeSelectEl && gameManager.mode === 'STORY') modeSelectEl.value = 'GAME';
             
             // Next button logic depends on mode
             const nextBtn = document.getElementById('btn-next');
@@ -746,12 +851,18 @@ export class HUD {
         });
         
         globalEvents.on(Events.MODE_CHANGED, (data) => {
+            // Keep the mobile dropdown in sync
+            const modeSelectEl = document.getElementById('mode-select-mobile');
             if (data.mode === 'STORY') {
                 // Always show roadmap when Story mode is selected
                 document.getElementById('level-intro-overlay').classList.add('hidden');
                 this.showRoadmap();
+                // Roadmap is visible → show "Story" in dropdown so next pick of
+                // a level will switch dropdown to "Game"
+                if (modeSelectEl) modeSelectEl.value = 'STORY';
             } else {
                 document.getElementById('roadmap-overlay').classList.add('hidden');
+                if (modeSelectEl) modeSelectEl.value = data.mode;
             }
         });
 
@@ -807,7 +918,7 @@ export class HUD {
     updateLevelInfo(level) {
         // Build navbar variant selector (single source of truth)
         const levelId = String(level?.id || '');
-        const baseLevelId = levelId.replace(/_(easy|medium|hard)$/i, '');
+        const baseLevelId = levelId.replace(/_(easy|medium|hard|expert)$/i, '');
         const variants = (gameManager.levelVariants && gameManager.levelVariants[baseLevelId]) || {};
         const hasVariants = Object.keys(variants).length > 0;
 
@@ -819,7 +930,7 @@ export class HUD {
         const inlineSel = document.getElementById('nav-variant-select-inline');
 
         if (hasVariants) {
-            const allVariants = ['easy','medium','hard'];
+            const allVariants = ['easy','medium','hard','expert'];
             const optionsHtml = allVariants.map(v => variants[v] ? `<option value="${v}" ${v === selected ? 'selected' : ''}>${DIFFICULTY_LABELS[v] || v}</option>` : '').join('');
             
             // Set title text only
@@ -828,14 +939,14 @@ export class HUD {
             // Populate inline selector and style it
             if (inlineSel) {
                 inlineSel.innerHTML = optionsHtml;
-                inlineSel.classList.remove('badge-easy','badge-medium','badge-hard');
+                inlineSel.classList.remove('badge-easy','badge-medium','badge-hard','badge-expert');
                 inlineSel.classList.add(`badge-${selected}`);
                 inlineSel.value = selected;
                 inlineSel.style.display = 'inline-block';
 
                 inlineSel.onchange = (e) => {
                     const v = e.target.value;
-                    inlineSel.classList.remove('badge-easy','badge-medium','badge-hard');
+                    inlineSel.classList.remove('badge-easy','badge-medium','badge-hard','badge-expert');
                     inlineSel.classList.add(`badge-${v}`);
                     gameManager.loadLevel(gameManager.currentLevelIndex, v, { showIntro: false });
                     this.updateNextButtonState();
@@ -846,7 +957,7 @@ export class HUD {
             if (inlineSel) {
                 inlineSel.innerHTML = '';
                 inlineSel.style.display = 'none';
-                inlineSel.classList.remove('badge-easy','badge-medium','badge-hard');
+                inlineSel.classList.remove('badge-easy','badge-medium','badge-hard','badge-expert');
             }
         }
 

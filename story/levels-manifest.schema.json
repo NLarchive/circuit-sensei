@@ -117,7 +117,8 @@
           "properties": {
             "easy": { "$ref": "#/definitions/variantOverride" },
             "medium": { "$ref": "#/definitions/variantOverride" },
-            "hard": { "$ref": "#/definitions/variantOverride" }
+            "hard": { "$ref": "#/definitions/variantOverride" },
+            "expert": { "$ref": "#/definitions/variantOverride" }
           },
           "additionalProperties": false
         }

@@ -1,0 +1,68 @@
+{
+  "id": "level_01_expert",
+  "baseId": "level_01",
+  "variant": "expert",
+  "availableGates": [],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "Both LOW"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "desc": "B routes to Out1, Out2"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "desc": "A routes to Out0, Out3"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "desc": "Full crossbar active"
+    }
+  ],
+  "maxGates": 0,
+  "xpReward": 55,
+  "hint": "Route input A to outputs 0 and 3, and input B to outputs 1 and 2. The signals cross paths — this is a crossbar pattern used in network-on-chip interconnects.",
+  "title": "Crossbar Routing",
+  "objective": "Route 2 signals across 4 outputs in a cross pattern",
+  "description": "Wire two inputs to four outputs in a crossbar pattern: Out0=A, Out1=B, Out2=B, Out3=A. This is the basis of crossbar switches used in network routers and memory bus arbiters.",
+  "physicsVisual": "crossbar_switch"
+}

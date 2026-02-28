@@ -31,7 +31,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_01_easy_the_simple_wire.json",
         "medium": "level-puzzles/level_01_medium_dual_wire_bus.json",
-        "hard": "level-puzzles/level_01_hard_signal_fan_out.json"
+        "hard": "level-puzzles/level_01_hard_signal_fan_out.json",
+        "expert": "level-puzzles/level_01_expert_crossbar_routing.json"
       },
       "xpReward": 75
     },
@@ -45,7 +46,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_02_easy_transistor_as_switch.json",
         "medium": "level-puzzles/level_02_medium_controlled_switch.json",
-        "hard": "level-puzzles/level_02_hard_gated_signal_pair.json"
+        "hard": "level-puzzles/level_02_hard_gated_signal_pair.json",
+        "expert": "level-puzzles/level_02_expert_4_input_and_chain.json"
       },
       "xpReward": 95
     },
@@ -59,7 +61,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_03_easy_the_inverter_not_gate.json",
         "medium": "level-puzzles/level_03_medium_double_negation.json",
-        "hard": "level-puzzles/level_03_hard_controlled_inverter.json"
+        "hard": "level-puzzles/level_03_hard_controlled_inverter.json",
+        "expert": "level-puzzles/level_03_expert_dual_inhibit_gate.json"
       },
       "xpReward": 100
     },
@@ -73,7 +76,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_04_easy_the_and_gate.json",
         "medium": "level-puzzles/level_04_medium_3_input_and_cascade.json",
-        "hard": "level-puzzles/level_04_hard_build_nand_gate.json"
+        "hard": "level-puzzles/level_04_hard_build_nand_gate.json",
+        "expert": "level-puzzles/level_04_expert_material_implication.json"
       },
       "xpReward": 110
     },
@@ -87,7 +91,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_05_easy_the_or_gate.json",
         "medium": "level-puzzles/level_05_medium_3_input_or_cascade.json",
-        "hard": "level-puzzles/level_05_hard_majority_gate_2_of_3_voting.json"
+        "hard": "level-puzzles/level_05_hard_majority_gate_2_of_3_voting.json",
+        "expert": "level-puzzles/level_05_expert_hazard_free_consensus.json"
       },
       "xpReward": 120
     },
@@ -101,7 +106,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_06_easy_the_nand_gate.json",
         "medium": "level-puzzles/level_06_medium_nor_the_other_universal.json",
-        "hard": "level-puzzles/level_06_hard_nand_universality_proof.json"
+        "hard": "level-puzzles/level_06_hard_nand_universality_proof.json",
+        "expert": "level-puzzles/level_06_expert_full_adder_from_nand.json"
       },
       "xpReward": 170
     },
@@ -115,7 +121,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_07_easy_not_from_nand.json",
         "medium": "level-puzzles/level_07_medium_and_from_nand.json",
-        "hard": "level-puzzles/level_07_hard_xor_from_nand_only.json"
+        "hard": "level-puzzles/level_07_hard_xor_from_nand_only.json",
+        "expert": "level-puzzles/level_07_expert_or_from_nand.json"
       },
       "xpReward": 170
     },
@@ -129,7 +136,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_08_easy_the_xor_gate.json",
         "medium": "level-puzzles/level_08_medium_xnor_equality_detector.json",
-        "hard": "level-puzzles/level_08_hard_parity_generator_3_bit.json"
+        "hard": "level-puzzles/level_08_hard_parity_generator_3_bit.json",
+        "expert": "level-puzzles/level_08_expert_binary_to_gray.json"
       },
       "xpReward": 180
     },
@@ -143,7 +151,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_09_easy_de_morgans_theorem.json",
         "medium": "level-puzzles/level_09_medium_de_morgan_nor_to_and.json",
-        "hard": "level-puzzles/level_09_hard_3_variable_de_morgan.json"
+        "hard": "level-puzzles/level_09_hard_3_variable_de_morgan.json",
+        "expert": "level-puzzles/level_09_expert_boolean_minimization.json"
       },
       "xpReward": 220
     },
@@ -157,7 +166,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_10_easy_2_1_multiplexer.json",
         "medium": "level-puzzles/level_10_medium_mux_as_universal_gate.json",
-        "hard": "level-puzzles/level_10_hard_4_1_mux_from_2_1_muxes.json"
+        "hard": "level-puzzles/level_10_hard_4_1_mux_from_2_1_muxes.json",
+        "expert": "level-puzzles/level_10_expert_8_to_1_mux.json"
       },
       "xpReward": 255
     },
@@ -171,7 +181,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_11_easy_2_to_4_decoder.json",
         "medium": "level-puzzles/level_11_medium_decoder_with_enable.json",
-        "hard": "level-puzzles/level_11_hard_priority_encoder.json"
+        "hard": "level-puzzles/level_11_hard_priority_encoder.json",
+        "expert": "level-puzzles/level_11_expert_7_segment_display.json"
       },
       "xpReward": 290
     },
@@ -185,7 +196,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_12_easy_half_adder.json",
         "medium": "level-puzzles/level_12_medium_half_subtractor.json",
-        "hard": "level-puzzles/level_12_hard_apollo_nor_half_adder.json"
+        "hard": "level-puzzles/level_12_hard_apollo_nor_half_adder.json",
+        "expert": "level-puzzles/level_12_expert_xor_from_nor.json"
       },
       "xpReward": 315
     },
@@ -199,7 +211,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_13_easy_full_adder.json",
         "medium": "level-puzzles/level_13_medium_full_subtractor.json",
-        "hard": "level-puzzles/level_13_hard_2_bit_ripple_carry_adder.json"
+        "hard": "level-puzzles/level_13_hard_2_bit_ripple_carry_adder.json",
+        "expert": "level-puzzles/level_13_expert_2x2_binary_multiplier.json"
       },
       "xpReward": 350
     },
@@ -213,7 +226,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_14_easy_sr_latch.json",
         "medium": "level-puzzles/level_14_medium_gated_sr_latch.json",
-        "hard": "level-puzzles/level_14_hard_d_latch_from_gates.json"
+        "hard": "level-puzzles/level_14_hard_d_latch_from_gates.json",
+        "expert": "level-puzzles/level_14_expert_register_file_cell.json"
       },
       "xpReward": 360
     },
@@ -227,7 +241,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_15_easy_d_flip_flop.json",
         "medium": "level-puzzles/level_15_medium_d_flip_flop_with_enable.json",
-        "hard": "level-puzzles/level_15_hard_rising_edge_detector.json"
+        "hard": "level-puzzles/level_15_hard_rising_edge_detector.json",
+        "expert": "level-puzzles/level_15_expert_shift_register.json"
       },
       "xpReward": 420
     },
@@ -241,7 +256,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_16_easy_t_flip_flop_toggle.json",
         "medium": "level-puzzles/level_16_medium_frequency_divider.json",
-        "hard": "level-puzzles/level_16_hard_jk_flip_flop.json"
+        "hard": "level-puzzles/level_16_hard_jk_flip_flop.json",
+        "expert": "level-puzzles/level_16_expert_loadable_toggle_ff.json"
       },
       "xpReward": 465
     },
@@ -255,7 +271,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_17_easy_2_bit_ripple_counter.json",
         "medium": "level-puzzles/level_17_medium_gray_code_counter.json",
-        "hard": "level-puzzles/level_17_hard_synchronous_2_bit_counter.json"
+        "hard": "level-puzzles/level_17_hard_synchronous_2_bit_counter.json",
+        "expert": "level-puzzles/level_17_expert_up_down_counter.json"
       },
       "xpReward": 525
     },
@@ -269,7 +286,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_18_easy_traffic_light_fsm.json",
         "medium": "level-puzzles/level_18_medium_ring_counter.json",
-        "hard": "level-puzzles/level_18_hard_sequence_detector_101.json"
+        "hard": "level-puzzles/level_18_hard_sequence_detector_101.json",
+        "expert": "level-puzzles/level_18_expert_mod3_counter.json"
       },
       "xpReward": 670
     },
@@ -283,7 +301,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_19_easy_simple_alu.json",
         "medium": "level-puzzles/level_19_medium_1_bit_alu.json",
-        "hard": "level-puzzles/level_19_hard_magnitude_comparator.json"
+        "hard": "level-puzzles/level_19_hard_magnitude_comparator.json",
+        "expert": "level-puzzles/level_19_expert_overflow_detector.json"
       },
       "xpReward": 1000
     },
@@ -297,7 +316,8 @@
       "puzzleFiles": {
         "easy": "level-puzzles/level_boss_easy_microprocessor_core.json",
         "medium": "level-puzzles/level_boss_medium_instruction_decoder.json",
-        "hard": "level-puzzles/level_boss_hard_2_stage_pipeline.json"
+        "hard": "level-puzzles/level_boss_hard_2_stage_pipeline.json",
+        "expert": "level-puzzles/level_boss_expert_3_stage_pipeline_stall.json"
       },
       "xpReward": 3000
     }

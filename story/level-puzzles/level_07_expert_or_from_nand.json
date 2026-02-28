@@ -1,0 +1,58 @@
+{
+  "id": "level_07_expert",
+  "baseId": "level_07",
+  "variant": "expert",
+  "availableGates": [
+    "nand"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "0 OR 0 = 0"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "0 OR 1 = 1"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "1 OR 0 = 1"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "1 OR 1 = 1"
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 95,
+  "hint": "First invert each input: A' = NAND(A,A), B' = NAND(B,B). Then NAND(A',B') = (A'·B')' = A+B by De Morgan's theorem.",
+  "title": "OR from NAND",
+  "objective": "Build OR gate using only NAND gates",
+  "description": "Complete the NAND universality series! You've built NOT and AND from NAND — now prove you can also build OR. By De Morgan's law, OR(A,B) = NAND(NOT A, NOT B).",
+  "physicsVisual": "nand_to_or"
+}

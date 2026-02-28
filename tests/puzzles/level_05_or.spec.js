@@ -61,4 +61,36 @@ test.describe('Level 05 – OR Gate', () => {
       'level_05_hard'
     );
   });
+
+  test('Expert: hazard-free consensus logic', async ({ page, baseURL }) => {
+    // 3 inputs (A,B,C), 4 outputs: AB, ĀC, BC, F=AB+ĀC+BC
+    await solvePuzzle(page, baseURL, 'level_05', 'expert',
+      [
+        { type: 'not', x: 250, y: 200 },  // gate_0: NOT(A)
+        { type: 'and', x: 400, y: 80 },   // gate_1: AND(A,B) → AB
+        { type: 'and', x: 400, y: 200 },  // gate_2: AND(NOT_A,C) → ĀC
+        { type: 'and', x: 400, y: 350 },  // gate_3: AND(B,C) → BC
+        { type: 'or',  x: 550, y: 140 },  // gate_4: OR(AB, ĀC)
+        { type: 'or',  x: 650, y: 250 },  // gate_5: OR(gate_4, BC) → F
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // A→NOT
+        { from: 'input_0', fromPin: 0, to: 'gate_1', toPin: 0 },  // A
+        { from: 'input_1', fromPin: 0, to: 'gate_1', toPin: 1 },  // B
+        { from: 'gate_0',  fromPin: 0, to: 'gate_2', toPin: 0 },  // NOT_A
+        { from: 'input_2', fromPin: 0, to: 'gate_2', toPin: 1 },  // C
+        { from: 'input_1', fromPin: 0, to: 'gate_3', toPin: 0 },  // B
+        { from: 'input_2', fromPin: 0, to: 'gate_3', toPin: 1 },  // C
+        { from: 'gate_1',  fromPin: 0, to: 'gate_4', toPin: 0 },  // AB
+        { from: 'gate_2',  fromPin: 0, to: 'gate_4', toPin: 1 },  // ĀC
+        { from: 'gate_4',  fromPin: 0, to: 'gate_5', toPin: 0 },
+        { from: 'gate_3',  fromPin: 0, to: 'gate_5', toPin: 1 },  // BC
+        { from: 'gate_1',  fromPin: 0, to: 'output_0', toPin: 0 }, // AB
+        { from: 'gate_2',  fromPin: 0, to: 'output_1', toPin: 0 }, // ĀC
+        { from: 'gate_3',  fromPin: 0, to: 'output_2', toPin: 0 }, // BC
+        { from: 'gate_5',  fromPin: 0, to: 'output_3', toPin: 0 }, // F
+      ],
+      'level_05_expert'
+    );
+  });
 });

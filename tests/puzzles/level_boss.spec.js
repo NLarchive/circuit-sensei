@@ -186,4 +186,52 @@ test.describe('Level Boss – Microprocessor Challenge', () => {
       'level_boss_hard'
     );
   });
+
+  test('Expert: 3-stage pipeline with stall', async ({ page, baseURL }) => {
+    // 3 inputs (DataIn,CLK,Stall), 2 outputs (Stage3Out,PipeActive)
+    // 3 MUX+DFF stages with stall recirculation, PipeActive = Q1|Q2|Q3
+    // Gates placed in REVERSE stage order so DFFs capture old values
+    // (simulator evaluates in insertion order — later stages must fire first)
+    await solvePuzzle(page, baseURL, 'level_boss', 'expert',
+      [
+        { type: 'mux2to1',   x: 200, y: 400 },  // gate_0: MUX3(Q2, Q3_fb, Stall)
+        { type: 'dFlipFlop', x: 350, y: 400 },   // gate_1: DFF3 → Q3
+        { type: 'mux2to1',   x: 200, y: 250 },  // gate_2: MUX2(Q1, Q2_fb, Stall)
+        { type: 'dFlipFlop', x: 350, y: 250 },   // gate_3: DFF2 → Q2
+        { type: 'mux2to1',   x: 200, y: 100 },  // gate_4: MUX1(DataIn, Q1_fb, Stall)
+        { type: 'dFlipFlop', x: 350, y: 100 },   // gate_5: DFF1 → Q1
+        { type: 'or',        x: 550, y: 200 },   // gate_6: OR(Q1,Q2)
+        { type: 'or',        x: 650, y: 300 },   // gate_7: OR(gate_6,Q3) → PipeActive
+      ],
+      [
+        // Stage 3 (evaluated first): MUX3 + DFF3
+        { from: 'gate_3',  fromPin: 0, to: 'gate_0', toPin: 0 },  // Q2 → MUX3.d0
+        { from: 'gate_1',  fromPin: 0, to: 'gate_0', toPin: 1 },  // Q3 → MUX3.d1 (fb)
+        { from: 'input_2', fromPin: 0, to: 'gate_0', toPin: 2 },  // Stall → MUX3.sel
+        { from: 'gate_0',  fromPin: 0, to: 'gate_1', toPin: 0 },  // MUX3 → DFF3.D
+        { from: 'input_1', fromPin: 0, to: 'gate_1', toPin: 1 },  // CLK
+        // Stage 2 (evaluated second): MUX2 + DFF2
+        { from: 'gate_5',  fromPin: 0, to: 'gate_2', toPin: 0 },  // Q1 → MUX2.d0
+        { from: 'gate_3',  fromPin: 0, to: 'gate_2', toPin: 1 },  // Q2 → MUX2.d1 (fb)
+        { from: 'input_2', fromPin: 0, to: 'gate_2', toPin: 2 },  // Stall
+        { from: 'gate_2',  fromPin: 0, to: 'gate_3', toPin: 0 },  // MUX2 → DFF2.D
+        { from: 'input_1', fromPin: 0, to: 'gate_3', toPin: 1 },  // CLK
+        // Stage 1 (evaluated last): MUX1 + DFF1
+        { from: 'input_0', fromPin: 0, to: 'gate_4', toPin: 0 },  // DataIn → MUX1.d0
+        { from: 'gate_5',  fromPin: 0, to: 'gate_4', toPin: 1 },  // Q1 → MUX1.d1 (fb)
+        { from: 'input_2', fromPin: 0, to: 'gate_4', toPin: 2 },  // Stall
+        { from: 'gate_4',  fromPin: 0, to: 'gate_5', toPin: 0 },  // MUX1 → DFF1.D
+        { from: 'input_1', fromPin: 0, to: 'gate_5', toPin: 1 },  // CLK
+        // PipeActive = Q1 OR Q2 OR Q3
+        { from: 'gate_5',  fromPin: 0, to: 'gate_6', toPin: 0 },  // Q1
+        { from: 'gate_3',  fromPin: 0, to: 'gate_6', toPin: 1 },  // Q2
+        { from: 'gate_6',  fromPin: 0, to: 'gate_7', toPin: 0 },  // Q1|Q2
+        { from: 'gate_1',  fromPin: 0, to: 'gate_7', toPin: 1 },  // Q3
+        // Outputs
+        { from: 'gate_1',  fromPin: 0, to: 'output_0', toPin: 0 }, // Stage3Out
+        { from: 'gate_7',  fromPin: 0, to: 'output_1', toPin: 0 }, // PipeActive
+      ],
+      'level_boss_expert'
+    );
+  });
 });

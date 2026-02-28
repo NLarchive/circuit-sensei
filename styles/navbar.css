@@ -154,7 +154,8 @@
 
 
 /* ==========================================
-   MODE TOGGLE (Select/Wire mode)
+   MODE TOGGLE / INFO BUTTON
+   (controls reference modal trigger)
    ========================================== */
 .mode-toggle {
     display: flex;
@@ -289,6 +290,8 @@
     z-index: 1;
     width: min(92vw, 340px);
     max-height: 80vh;
+    max-height: 80svh;
+    max-height: 80dvh;
     overflow: auto;
     background: var(--panel-bg);
     border: 1px solid var(--border-color);

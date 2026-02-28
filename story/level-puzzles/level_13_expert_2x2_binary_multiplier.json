@@ -1,0 +1,265 @@
+{
+  "id": "level_13_expert",
+  "baseId": "level_13",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1"
+  ],
+  "inputs": 4,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "00×00 = 0000 (0×0=0)"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "00×01 = 0000 (0×1=0)"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "00×10 = 0000 (0×2=0)"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "00×11 = 0000 (0×3=0)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "01×00 = 0000 (1×0=0)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "desc": "01×01 = 0001 (1×1=1)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "desc": "01×10 = 0010 (1×2=2)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "desc": "01×11 = 0011 (1×3=3)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "10×00 = 0000 (2×0=0)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "desc": "10×01 = 0010 (2×1=2)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "desc": "10×10 = 0100 (2×2=4)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "desc": "10×11 = 0110 (2×3=6)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "11×00 = 0000 (3×0=0)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "desc": "11×01 = 0011 (3×1=3)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "desc": "11×10 = 0110 (3×2=6)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "desc": "11×11 = 1001 (3×3=9)"
+    }
+  ],
+  "maxGates": 8,
+  "xpReward": 165,
+  "hint": "Multiplication uses AND gates for partial products, then half adders to sum. P₀ = A₀·B₀. For P₁: half-add A₀·B₁ and A₁·B₀. For P₂,P₃: half-add A₁·B₁ and the carry from P₁. Total: 4 AND gates + 2 half adders (XOR+AND each).",
+  "title": "2×2 Binary Multiplier",
+  "objective": "Multiply two 2-bit numbers",
+  "description": "Build a combinational binary multiplier that computes the 4-bit product of two 2-bit numbers. This is how hardware multiplication works inside every CPU — AND gates generate partial products, then adders sum them.",
+  "physicsVisual": "binary_multiplier"
+}

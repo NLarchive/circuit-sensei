@@ -1,0 +1,109 @@
+{
+  "id": "level_11_expert",
+  "baseId": "level_11",
+  "variant": "expert",
+  "availableGates": [
+    "not",
+    "and",
+    "or",
+    "xor"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Digit 0: segment A = ON  ┏━┓"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Digit 1: segment A = OFF   ┃"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Digit 2: segment A = ON  ┏━┓"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Digit 3: segment A = ON  ┏━┓"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "Digit 4: segment A = OFF ┃ ┃"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Digit 5: segment A = ON  ┏━┓"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Digit 6: segment A = ON  ┏━┓"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "Digit 7: segment A = ON  ┏━━"
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 140,
+  "hint": "K-map analysis: segment A is OFF only for digits 1 (001) and 4 (100). Notice that B₂ XOR B₀ = 1 exactly for those two inputs. So segment A = B₁ OR NOT(B₂ XOR B₀) = B₁ + (B₂ XNOR B₀). Use XOR, NOT, and OR.",
+  "title": "7-Segment Display: Segment A",
+  "objective": "Drive the top segment of a 7-segment display",
+  "description": "The 7-segment display is the most famous combinational logic project in digital electronics. Given a 3-bit binary digit (0-7), determine whether segment A (the top horizontal bar) should be ON or OFF.",
+  "physicsVisual": "seven_segment_a"
+}

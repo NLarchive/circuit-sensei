@@ -114,8 +114,8 @@ async function rightClickMidpoint(page, box, sx, sy, ex, ey) {
 
 /**
  * Toggle an input gate programmatically and re-simulate.
- * (In-game, toggling requires SELECT mode; since we test wire mode,
- * we toggle via the circuit API directly.)
+ * Input toggle now works in the unified interaction mode via a short tap on the gate body;
+ * this helper uses the circuit API directly for reliable programmatic testing.
  */
 async function toggleInput(page, gateId = 'gate_0') {
   await page.evaluate((id) => {

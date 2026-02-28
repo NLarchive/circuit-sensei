@@ -1,0 +1,196 @@
+{
+  "id": "level_02_expert",
+  "baseId": "level_02",
+  "variant": "expert",
+  "availableGates": [
+    "transistor"
+  ],
+  "inputs": 4,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "0000: all off"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ]
+    },
+    {
+      "in": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "1111: ALL gates open — signal passes"
+    }
+  ],
+  "maxGates": 3,
+  "xpReward": 65,
+  "hint": "Chain three transistors in series: T1(ctrl=A, data=B) outputs A·B. T2(ctrl=C, data=T1) outputs A·B·C. T3(ctrl=D, data=T2) outputs A·B·C·D. Only when every control is HIGH does the signal reach the output.",
+  "title": "4-Input AND Chain",
+  "objective": "Build a 4-input AND using transistor cascading",
+  "description": "Create a 4-input AND gate by cascading three transistors in series. Each transistor acts as a switch in a pull-down chain — the output is HIGH only when every switch is closed. This mirrors how series NMOS transistors implement wide AND functions in real CMOS circuits.",
+  "physicsVisual": "transistor_cascade"
+}

@@ -98,6 +98,7 @@
                 "easy": { "type": "string" },
                 "medium": { "type": "string" },
                 "hard": { "type": "string" },
+                "expert": { "type": "string" },
                 "base": { "type": "string" }
               },
               "additionalProperties": false

@@ -1,0 +1,137 @@
+{
+  "id": "level_17_expert",
+  "baseId": "level_17",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK=0, Dir=UP: Initial state 00"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK↑, Dir=UP: Count up 00→01"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK=0, Dir=UP: Hold 01"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK↑, Dir=UP: Count up 01→10"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK=0, Dir=DOWN: Hold 10, direction changes"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK↑, Dir=DOWN: Count down 10→01"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK=0, Dir=DOWN: Hold 01"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK↑, Dir=DOWN: Count down 01→00"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK=0, Dir=DOWN: Hold 00"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "CLK↑, Dir=DOWN: Count down 00→11 (wrap)"
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 230,
+  "hint": "The LSB (Q₀) always toggles: D₀ = NOT(Q₀). The MSB depends on direction: counting UP toggles Q₁ when Q₀=1, counting DOWN toggles Q₁ when Q₀=0. Smart formula: D₁ = Q₁ XOR Q₀ XOR Dir.",
+  "title": "Up/Down Counter",
+  "objective": "Build a bidirectional 2-bit counter",
+  "description": "A bidirectional counter can count up or down based on a direction input. When Dir=0, count up (00→01→10→11→00). When Dir=1, count down (11→10→01→00→11). This is used in motor controllers, position encoders, and CPU program counters.",
+  "physicsVisual": "up_down_counter"
+}

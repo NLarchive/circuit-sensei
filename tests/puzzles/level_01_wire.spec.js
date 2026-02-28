@@ -26,4 +26,19 @@ test.describe('Level 01 – The Simple Wire', () => {
       { from: 'input_0', fromPin: 0, to: 'output_2', toPin: 0 },
     ], 'level_01_hard');
   });
+
+  test('Expert: crossbar routing', async ({ page, baseURL }) => {
+    // 2 inputs (A,B), 4 outputs: Out0=A, Out1=B, Out2=B, Out3=A
+    // No gates — pure crossbar wiring pattern
+    await solvePuzzle(page, baseURL, 'level_01', 'expert',
+      [],
+      [
+        { from: 'input_0', fromPin: 0, to: 'output_0', toPin: 0 },  // A→Out0
+        { from: 'input_1', fromPin: 0, to: 'output_1', toPin: 0 },  // B→Out1
+        { from: 'input_1', fromPin: 0, to: 'output_2', toPin: 0 },  // B→Out2
+        { from: 'input_0', fromPin: 0, to: 'output_3', toPin: 0 },  // A→Out3
+      ],
+      'level_01_expert'
+    );
+  });
 });

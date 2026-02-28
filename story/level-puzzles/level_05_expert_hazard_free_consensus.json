@@ -1,0 +1,133 @@
+{
+  "id": "level_05_expert",
+  "baseId": "level_05",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "No terms active"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "desc": "A̅C = 1"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "B alone: no product active"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "desc": "A̅C + BC active"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "A alone: no product active"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "desc": "A=1 kills A̅C, no B for BC or AB"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "desc": "AB = 1"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "desc": "AB + BC: consensus covers the A transition!"
+    }
+  ],
+  "maxGates": 7,
+  "xpReward": 80,
+  "hint": "Build three AND terms: AB = AND(A,B), A̅C = AND(NOT(A),C), BC = AND(B,C). The consensus term BC covers the hazard when A transitions while B=C=1. Combine: F = OR(OR(AB, A̅C), BC). Four outputs: [AB, A̅C, BC, F].",
+  "title": "Hazard-Free Consensus Logic",
+  "objective": "Eliminate a static-1 hazard with a consensus term",
+  "description": "F = AB + A̅C has a static-1 hazard: when B=C=1 and A transitions 1→0, both products momentarily go LOW, causing a glitch spike. Adding the consensus term BC creates F = AB + A̅C + BC, which is hazard-free because BC bridges the gap. Build all three products and the glitch-free output. Four outputs: [AB, A̅C, BC, F].",
+  "physicsVisual": "hazard_consensus"
+}

@@ -1,0 +1,196 @@
+{
+  "id": "level_boss_expert",
+  "baseId": "level_boss",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop",
+    "fullAdder"
+  ],
+  "inputs": 3,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Empty pipeline"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK: Data enters Stage 1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Hold: Data in Stage 1"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK: Data advances to Stage 2"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Hold: Data in Stage 2"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "CLK: Data reaches Stage 3 — output!"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "Hold: Data at output"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK: Pipeline drains completely"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Hold: Pipeline empty"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK: New data enters Stage 1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "STALL asserted: pipeline freezes"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK + STALL: no advancement!"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Unstall: ready to advance"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK: Data advances to Stage 2 (stall released)"
+    }
+  ],
+  "maxGates": 10,
+  "xpReward": 2000,
+  "hint": "Three DFFs form the pipeline stages. Each DFF input comes from a MUX: MUX(sel=Stall, d0=normal_input, d1=current_Q). When Stall=0, data flows forward. When Stall=1, each stage recirculates its own output (freeze). PipeActive = Q1 OR Q2 OR Q3. Inputs: [DataIn, CLK, Stall]. Outputs: [Stage3Out, PipeActive].",
+  "title": "3-Stage Pipeline with Stall",
+  "objective": "Build a 3-stage pipeline with hazard stall control",
+  "description": "Build a 3-stage pipelined datapath (Fetch → Decode → Execute) with a stall signal that freezes the entire pipeline when a data hazard is detected. Each stage uses a MUX to select between advancing (normal) and recirculating (stall). This is how real CPU pipelines handle hazards — the stall signal prevents corrupted data from propagating.",
+  "physicsVisual": "pipeline_3stage_stall"
+}

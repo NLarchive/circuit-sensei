@@ -129,4 +129,35 @@ test.describe('Level 18 – Finite State Machines', () => {
       'level_18_hard'
     );
   });
+
+  test('Expert: modulo-3 counter', async ({ page, baseURL }) => {
+    // 1 input (CLK), 2 outputs (Q₁,Q₀). Cycles: 00→01→10→00
+    // D₀ = Q₁ NOR Q₀, D₁ = NOT(Q₁) AND Q₀
+    await solvePuzzle(page, baseURL, 'level_18', 'expert',
+      [
+        { type: 'dFlipFlop', x: 450, y: 100 },  // gate_0: FF0 (Q₀)
+        { type: 'dFlipFlop', x: 450, y: 300 },  // gate_1: FF1 (Q₁)
+        { type: 'nor',       x: 300, y: 100 },   // gate_2: NOR(Q₁,Q₀) → D₀
+        { type: 'not',       x: 300, y: 250 },   // gate_3: NOT(Q₁)
+        { type: 'and',       x: 350, y: 320 },   // gate_4: AND(NOT_Q₁,Q₀) → D₁
+      ],
+      [
+        // D₀ = NOR(Q₁,Q₀)
+        { from: 'gate_1',  fromPin: 0, to: 'gate_2', toPin: 0 },  // Q₁
+        { from: 'gate_0',  fromPin: 0, to: 'gate_2', toPin: 1 },  // Q₀
+        { from: 'gate_2',  fromPin: 0, to: 'gate_0', toPin: 0 },  // NOR→D₀
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 1 },  // CLK
+        // D₁ = NOT(Q₁) AND Q₀
+        { from: 'gate_1',  fromPin: 0, to: 'gate_3', toPin: 0 },  // Q₁→NOT
+        { from: 'gate_3',  fromPin: 0, to: 'gate_4', toPin: 0 },  // NOT_Q₁
+        { from: 'gate_0',  fromPin: 0, to: 'gate_4', toPin: 1 },  // Q₀
+        { from: 'gate_4',  fromPin: 0, to: 'gate_1', toPin: 0 },  // AND→D₁
+        { from: 'input_0', fromPin: 0, to: 'gate_1', toPin: 1 },  // CLK
+        // Outputs
+        { from: 'gate_1', fromPin: 0, to: 'output_0', toPin: 0 }, // Q₁
+        { from: 'gate_0', fromPin: 0, to: 'output_1', toPin: 0 }, // Q₀
+      ],
+      'level_18_expert'
+    );
+  });
 });

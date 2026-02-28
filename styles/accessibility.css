@@ -149,6 +149,8 @@ canvas:focus-visible {
     flex-direction: column;
     gap: var(--spacing-sm);
     max-height: 60vh;
+    max-height: 60svh;
+    max-height: 60dvh;
     overflow-y: auto;
     text-align: left;
     padding: var(--spacing-md) 0;

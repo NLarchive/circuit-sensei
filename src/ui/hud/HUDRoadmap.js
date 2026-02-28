@@ -106,11 +106,11 @@ export const HUDRoadmap = {
         
         const variantSelect = hasVariants ? `
             <select class="variant-select badge-${selectedForThisLevel}" data-level-index="${level.index}" title="Select difficulty" aria-label="Difficulty for ${level.title}">
-                ${['easy','medium','hard'].map(v => variants[v] ? `<option value="${v}" ${v === selectedForThisLevel ? 'selected' : ''}>${DIFFICULTY_LABELS[v] || v}</option>` : '').join('')}
+                ${['easy','medium','hard','expert'].map(v => variants[v] ? `<option value="${v}" ${v === selectedForThisLevel ? 'selected' : ''}>${DIFFICULTY_LABELS[v] || v}</option>` : '').join('')}
             </select>
         ` : '';
 
-        const stars = hasVariants ? ['easy', 'medium', 'hard'].map(variant => 
+        const stars = hasVariants ? ['easy', 'medium', 'hard', 'expert'].map(variant => 
             `<span class="difficulty-star ${variantsCompleted[variant] ? 'filled' : 'empty'}" title="${DIFFICULTY_LABELS[variant] || variant} ${variantsCompleted[variant] ? 'completed' : 'not completed'}" aria-label="${DIFFICULTY_LABELS[variant]} ${variantsCompleted[variant] ? 'completed' : 'not completed'}">${variantsCompleted[variant] ? '★' : '☆'}</span>`
         ).join('') : '';
 
@@ -144,7 +144,7 @@ export const HUDRoadmap = {
             s.addEventListener('change', (ev) => {
                 ev.stopPropagation();
                 const val = s.value;
-                s.classList.remove('badge-easy','badge-medium','badge-hard');
+                s.classList.remove('badge-easy','badge-medium','badge-hard','badge-expert');
                 s.classList.add(`badge-${val}`);
 
                 const idx = parseInt(s.dataset.levelIndex);
@@ -159,7 +159,7 @@ export const HUDRoadmap = {
                     const navSel = document.getElementById('nav-variant-select-inline');
                     if (navSel) {
                         navSel.value = val;
-                        navSel.classList.remove('badge-easy','badge-medium','badge-hard');
+                        navSel.classList.remove('badge-easy','badge-medium','badge-hard','badge-expert');
                         navSel.classList.add(`badge-${val}`);
                     }
                     gameManager.loadLevel(idx, val);

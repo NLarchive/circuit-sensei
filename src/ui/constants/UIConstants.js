@@ -6,7 +6,8 @@
 export const DIFFICULTY_LABELS = {
     'easy': 'Easy',
     'medium': 'Medium',
-    'hard': 'Hard'
+    'hard': 'Hard',
+    'expert': 'Expert'
 };
 
 export const TIER_ICONS = {
@@ -29,7 +30,8 @@ export const MESSAGE_TYPES = {
 };
 
 export const INTERACTION_MODES = {
-    SELECT: 'select',
+    // SELECT and WIRE are unified; all interaction works in one mode.
+    // Only PROBE is distinct (used by the logic analyzer).
     WIRE: 'wire',
     PROBE: 'probe'
 };
@@ -67,8 +69,7 @@ export const KEYBOARD_SHORTCUTS = {
     DELETE: { key: 'Delete', description: 'Delete selected component' },
     ESCAPE: { key: 'Escape', description: 'Cancel current action / Close overlay' },
     HELP: { key: '?', shift: true, description: 'Show keyboard shortcuts' },
-    SELECT_MODE: { key: 's', description: 'Switch to Select mode' },
-    WIRE_MODE: { key: 'w', description: 'Switch to Wire mode' },
+    INFO: { key: 'i', description: 'Show controls reference' },
     RESET: { key: 'r', ctrl: true, description: 'Reset circuit' },
     VERIFY: { key: 'Enter', ctrl: true, description: 'Verify solution' },
     ZOOM_IN: { key: '+', ctrl: true, description: 'Zoom in' },

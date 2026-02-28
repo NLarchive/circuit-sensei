@@ -61,4 +61,25 @@ test.describe('Level 07 – Logic from NAND', () => {
       'level_07_hard'
     );
   });
+
+  test('Expert: OR from NAND', async ({ page, baseURL }) => {
+    // 2 inputs (A,B), 1 output. OR = NAND(NAND(A,A), NAND(B,B)).
+    await solvePuzzle(page, baseURL, 'level_07', 'expert',
+      [
+        { type: 'nand', x: 300, y: 100 },  // gate_0: NAND(A,A) = NOT(A)
+        { type: 'nand', x: 300, y: 250 },  // gate_1: NAND(B,B) = NOT(B)
+        { type: 'nand', x: 450, y: 175 },  // gate_2: NAND(A',B') = A+B
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 1 },
+        { from: 'input_1', fromPin: 0, to: 'gate_1', toPin: 0 },
+        { from: 'input_1', fromPin: 0, to: 'gate_1', toPin: 1 },
+        { from: 'gate_0',  fromPin: 0, to: 'gate_2', toPin: 0 },
+        { from: 'gate_1',  fromPin: 0, to: 'gate_2', toPin: 1 },
+        { from: 'gate_2',  fromPin: 0, to: 'output_0', toPin: 0 },
+      ],
+      'level_07_expert'
+    );
+  });
 });

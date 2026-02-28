@@ -2,6 +2,7 @@ import { globalEvents, Events } from './EventBus.js';
 import { LevelGenerator } from './generators/LevelGenerator.js';
 import { StoryLoader } from '../utils/StoryLoader.js';
 import { AchievementSystem } from './systems/AchievementSystem.js';
+import { CertificationEngine } from '../certification/CertificationEngine.js';
 
 /**
  * GameManager - Main game state machine
@@ -9,6 +10,7 @@ import { AchievementSystem } from './systems/AchievementSystem.js';
  */
 export class GameManager {
     constructor() {
+        this.certificationCacheKey = 'logicArchitect_certification';
         this.currentLevel = null;
         this.currentLevelIndex = 0;
         this.currentVariant = 'easy'; // Track current variant
@@ -23,8 +25,8 @@ export class GameManager {
         // Player progress
         this.progress = {
             xp: 0,
-            completedLevels: {}, // { levelId: { easy: false, medium: false, hard: false } }
-            usedHints: {}, // { levelId: { easy: true, medium: false, hard: false } }
+            completedLevels: {}, // { levelId: { easy: false, medium: false, hard: false, expert: false } }
+            usedHints: {}, // { levelId: { easy: true, medium: false, hard: false, expert: false } }
             unlockedTiers: ['intro', 'tier_1'],
             achievements: [],
             highScores: {},
@@ -39,6 +41,9 @@ export class GameManager {
             wiresConnected: 0,
             simulationsRun: 0
         };
+
+        this.certification = this.loadCertificationFromCache();
+        this.certEngine = new CertificationEngine();
 
         this.loadProgress();
         this.setupEventListeners();
@@ -128,6 +133,7 @@ export class GameManager {
             // Ensure progress is synced with newly loaded levels/variants
             this.recalculateProgressXP();
             this.recalculateTiers();
+            this.refreshCertification();
 
             return true;
         } catch (error) {
@@ -190,12 +196,12 @@ export class GameManager {
 
     normalizeLevelId(levelId) {
         if (!levelId) return '';
-        return String(levelId).replace(/_(easy|medium|hard|original)$/i, '');
+        return String(levelId).replace(/_(easy|medium|hard|expert|original)$/i, '');
     }
 
     normalizeVariant(variant) {
         const normalized = String(variant || 'easy').toLowerCase();
-        return ['easy', 'medium', 'hard', 'original'].includes(normalized) ? normalized : 'easy';
+        return ['easy', 'medium', 'hard', 'expert', 'original'].includes(normalized) ? normalized : 'easy';
     }
 
     registerHintUse(levelId, variant) {
@@ -211,7 +217,7 @@ export class GameManager {
         }
 
         if (!this.progress.usedHints[normalizedLevelId]) {
-            this.progress.usedHints[normalizedLevelId] = { easy: false, medium: false, hard: false, original: false };
+            this.progress.usedHints[normalizedLevelId] = { easy: false, medium: false, hard: false, expert: false, original: false };
         }
 
         const alreadyCounted = this.progress.usedHints[normalizedLevelId][normalizedVariant] === true;
@@ -258,6 +264,183 @@ export class GameManager {
             used: this.getUsedHintsCount(),
             total: this.getTotalHintsCount()
         };
+    }
+
+    getPlayableLevels() {
+        if (!Array.isArray(this.levels)) return [];
+        return this.levels.filter(level => level && !level.isIndex);
+    }
+
+    getTotalStarsCount() {
+        const levels = this.getPlayableLevels();
+        return levels.reduce((total, level) => {
+            const variants = this.getVariantsForLevel(level.id) || {};
+            const starVariants = ['easy', 'medium', 'hard', 'expert'].filter(v => variants[v]);
+            if (starVariants.length > 0) return total + starVariants.length;
+            return total + 1;
+        }, 0);
+    }
+
+    getEarnedStarsCount() {
+        const levels = this.getPlayableLevels();
+        return levels.reduce((total, level) => {
+            const completed = (this.progress.completedLevels && this.progress.completedLevels[level.id]) || {};
+            const variants = this.getVariantsForLevel(level.id) || {};
+            const starVariants = ['easy', 'medium', 'hard', 'expert'].filter(v => variants[v]);
+
+            if (starVariants.length > 0) {
+                return total + starVariants.reduce((subtotal, variant) => subtotal + (completed[variant] ? 1 : 0), 0);
+            }
+
+            return total + ((completed.easy || completed.original || completed.medium || completed.hard || completed.expert) ? 1 : 0);
+        }, 0);
+    }
+
+    areAllLevelsCompletedForVariant(targetVariant) {
+        const levels = this.getPlayableLevels();
+        if (levels.length === 0) return false;
+
+        return levels.every(level => {
+            const completed = (this.progress.completedLevels && this.progress.completedLevels[level.id]) || {};
+            const variants = this.getVariantsForLevel(level.id) || {};
+
+            if (targetVariant === 'easy') {
+                const easyAvailable = !!variants.easy || Object.keys(variants).length === 0;
+                if (!easyAvailable) return true;
+                return !!(completed.easy || completed.original);
+            }
+
+            if (!variants[targetVariant]) return true;
+            return !!completed[targetVariant];
+        });
+    }
+
+    areAllAvailableVariantsCompleted() {
+        const levels = this.getPlayableLevels();
+        if (levels.length === 0) return false;
+
+        return levels.every(level => {
+            const completed = (this.progress.completedLevels && this.progress.completedLevels[level.id]) || {};
+            const variants = this.getVariantsForLevel(level.id) || {};
+            const variantKeys = Object.keys(variants).filter(v => ['easy', 'medium', 'hard', 'expert'].includes(v));
+
+            if (variantKeys.length === 0) {
+                return !!(completed.easy || completed.original || completed.medium || completed.hard || completed.expert);
+            }
+
+            return variantKeys.every(v => !!completed[v]);
+        });
+    }
+
+    getTotalAvailableXP() {
+        const levels = this.getPlayableLevels();
+        return levels.reduce((total, level) => {
+            const variants = this.getVariantsForLevel(level.id) || {};
+            const variantValues = Object.entries(variants).filter(([key]) => ['easy', 'medium', 'hard', 'expert'].includes(key));
+
+            if (variantValues.length > 0) {
+                return total + variantValues.reduce((sum, [, variantData]) => sum + (variantData?.xpReward || 0), 0);
+            }
+
+            return total + (level.xpReward || 0);
+        }, 0);
+    }
+
+    /**
+     * Check if all levels for a given variant were completed without using hints
+     */
+    isVariantCompletedHintless(targetVariant) {
+        const levels = this.getPlayableLevels();
+        if (levels.length === 0) return false;
+
+        return levels.every(level => {
+            const completed = (this.progress.completedLevels && this.progress.completedLevels[level.id]) || {};
+            const usedHints = (this.progress.usedHints && this.progress.usedHints[level.id]) || {};
+            const variants = this.getVariantsForLevel(level.id) || {};
+
+            // Check if variant is available and completed
+            if (targetVariant === 'easy') {
+                const easyAvailable = !!variants.easy || Object.keys(variants).length === 0;
+                if (!easyAvailable) return true;
+                const isCompleted = !!(completed.easy || completed.original);
+                if (!isCompleted) return false;
+                // Check if hints were NOT used
+                return !(usedHints.easy || usedHints.original);
+            }
+
+            if (!variants[targetVariant]) return true;
+            if (!completed[targetVariant]) return false;
+            return !usedHints[targetVariant];
+        });
+    }
+
+    /**
+     * Get count of hints used per tier
+     */
+    getHintsUsedPerTier() {
+        const result = { easy: 0, medium: 0, hard: 0, expert: 0 };
+        const usedHints = this.progress.usedHints || {};
+        
+        Object.entries(usedHints).forEach(([, variants]) => {
+            if (!variants || typeof variants !== 'object') return;
+            for (const [variant, used] of Object.entries(variants)) {
+                if (used && result[variant] !== undefined) {
+                    result[variant]++;
+                }
+            }
+        });
+        
+        return result;
+    }
+
+    calculateCertification() {
+        // Delegate to the standalone CertificationEngine via a data-provider adapter
+        const self = this;
+        const dataProvider = {
+            getPlayableLevels:     () => self.getPlayableLevels(),
+            getVariantsForLevel:   (id) => self.getVariantsForLevel(id),
+            getCompletedLevels:    () => (self.progress.completedLevels || {}),
+            getUsedHints:          () => (self.progress.usedHints || {}),
+            getPlayerXP:           () => (self.progress.xp || 0),
+            getPreviousCertification: () => self.certification,
+        };
+        return this.certEngine.calculate(dataProvider);
+    }
+
+    loadCertificationFromCache() {
+        try {
+            const saved = localStorage.getItem(this.certificationCacheKey);
+            return saved ? JSON.parse(saved) : null;
+        } catch (e) {
+            console.warn('Could not load certification cache:', e);
+            return null;
+        }
+    }
+
+    saveCertificationToCache(certification) {
+        try {
+            localStorage.setItem(this.certificationCacheKey, JSON.stringify(certification));
+        } catch (e) {
+            console.warn('Could not save certification cache:', e);
+        }
+    }
+
+    refreshCertification() {
+        const certification = this.calculateCertification();
+        this.certification = certification;
+        this.saveCertificationToCache(certification);
+        return certification;
+    }
+
+    getCertification() {
+        if (!this.certification) {
+            this.certification = this.loadCertificationFromCache();
+        }
+        if (!this.certification) {
+            this.certification = this.calculateCertification();
+            this.saveCertificationToCache(this.certification);
+        }
+        return this.certification;
     }
 
     /**
@@ -417,12 +600,12 @@ export class GameManager {
     completeLevel(score = 100) {
         if (!this.currentLevel) return;
 
-        const levelId = this.currentLevel.id.replace(/_(easy|medium|hard)$/, ''); // Get base level ID
+        const levelId = this.currentLevel.id.replace(/_(easy|medium|hard|expert)$/, ''); // Get base level ID
         const oldXP = this.progress.xp;
 
         // Update progress for the variant
         if (!this.progress.completedLevels[levelId]) {
-            this.progress.completedLevels[levelId] = { easy: false, medium: false, hard: false, original: false };
+            this.progress.completedLevels[levelId] = { easy: false, medium: false, hard: false, expert: false, original: false };
         }
         
         // Mark as completed
@@ -435,6 +618,9 @@ export class GameManager {
         // Check for tier unlock
         this.checkTierUnlocks();
 
+        // Recompute certification after progress changed
+        const certification = this.refreshCertification();
+
         // Save progress
         this.saveProgress();
 
@@ -444,7 +630,8 @@ export class GameManager {
             level: this.currentLevel,
             score,
             xpEarned: bonusXP,
-            totalXP: this.progress.xp
+            totalXP: this.progress.xp,
+            certification
         });
 
         if (bonusXP > 0) {
@@ -472,8 +659,8 @@ export class GameManager {
         for (const [levelId, variants] of Object.entries(this.progress.completedLevels)) {
             const variantsData = this.getVariantsForLevel(levelId);
             
-            // Check easy, medium, hard, and legacy 'original'
-            ['easy', 'medium', 'hard', 'original'].forEach(v => {
+            // Check easy, medium, hard, expert, and legacy 'original'
+            ['easy', 'medium', 'hard', 'expert', 'original'].forEach(v => {
                 if (variants[v] && variantsData && variantsData[v]) {
                     totalXP += (variantsData[v].xpReward || 0);
                 } else if (variants[v] && v === 'original') {
@@ -579,12 +766,12 @@ export class GameManager {
         if (!variants || Object.keys(variants).length === 0) return 'easy';
         
         const completed = (this.progress.completedLevels && this.progress.completedLevels[levelId]) || {};
-        const order = ['easy','medium','hard'];
+        const order = ['easy','medium','hard','expert'];
         for (const v of order) {
             if (variants[v] && !completed[v]) return v;
         }
         // All variants completed - return highest available variant
-        const reverseOrder = ['hard','medium','easy'];
+        const reverseOrder = ['expert','hard','medium','easy'];
         for (const v of reverseOrder) {
             if (variants[v]) return v;
         }
@@ -710,6 +897,12 @@ export class GameManager {
             highScores: {},
             selectedVariants: {}
         };
+        this.certification = null;
+        try {
+            localStorage.removeItem(this.certificationCacheKey);
+        } catch (e) {
+            console.warn('Could not clear certification cache:', e);
+        }
         this.saveProgress();
     }
 

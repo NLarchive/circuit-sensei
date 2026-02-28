@@ -22,6 +22,8 @@
     max-width: 1000px;
     width: 95%;
     max-height: 90vh;
+    max-height: 90svh;
+    max-height: 90dvh;
     overflow-y: auto;
     color: var(--text-color);
     padding: 0 20px 0 20px;

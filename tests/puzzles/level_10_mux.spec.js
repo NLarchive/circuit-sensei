@@ -71,4 +71,48 @@ test.describe('Level 10 – Multiplexer (MUX)', () => {
       'level_10_hard'
     );
   });
+
+  test('Expert: 8:1 MUX from 2:1 MUXes', async ({ page, baseURL }) => {
+    // 11 inputs (D0-D7, S0, S1, S2), 1 output. 7-MUX tree.
+    await solvePuzzle(page, baseURL, 'level_10', 'expert',
+      [
+        { type: 'mux2to1', x: 250, y: 60 },   // gate_0: MUX(D0,D1,S0)
+        { type: 'mux2to1', x: 250, y: 160 },  // gate_1: MUX(D2,D3,S0)
+        { type: 'mux2to1', x: 250, y: 260 },  // gate_2: MUX(D4,D5,S0)
+        { type: 'mux2to1', x: 250, y: 360 },  // gate_3: MUX(D6,D7,S0)
+        { type: 'mux2to1', x: 450, y: 110 },  // gate_4: MUX(M0,M1,S1)
+        { type: 'mux2to1', x: 450, y: 310 },  // gate_5: MUX(M2,M3,S1)
+        { type: 'mux2to1', x: 650, y: 210 },  // gate_6: MUX(M4,M5,S2)
+      ],
+      [
+        // Layer 1
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // D0
+        { from: 'input_1', fromPin: 0, to: 'gate_0', toPin: 1 },  // D1
+        { from: 'input_8', fromPin: 0, to: 'gate_0', toPin: 2 },  // S0
+        { from: 'input_2', fromPin: 0, to: 'gate_1', toPin: 0 },  // D2
+        { from: 'input_3', fromPin: 0, to: 'gate_1', toPin: 1 },  // D3
+        { from: 'input_8', fromPin: 0, to: 'gate_1', toPin: 2 },  // S0
+        { from: 'input_4', fromPin: 0, to: 'gate_2', toPin: 0 },  // D4
+        { from: 'input_5', fromPin: 0, to: 'gate_2', toPin: 1 },  // D5
+        { from: 'input_8', fromPin: 0, to: 'gate_2', toPin: 2 },  // S0
+        { from: 'input_6', fromPin: 0, to: 'gate_3', toPin: 0 },  // D6
+        { from: 'input_7', fromPin: 0, to: 'gate_3', toPin: 1 },  // D7
+        { from: 'input_8', fromPin: 0, to: 'gate_3', toPin: 2 },  // S0
+        // Layer 2
+        { from: 'gate_0',  fromPin: 0, to: 'gate_4', toPin: 0 },  // M0
+        { from: 'gate_1',  fromPin: 0, to: 'gate_4', toPin: 1 },  // M1
+        { from: 'input_9', fromPin: 0, to: 'gate_4', toPin: 2 },  // S1
+        { from: 'gate_2',  fromPin: 0, to: 'gate_5', toPin: 0 },  // M2
+        { from: 'gate_3',  fromPin: 0, to: 'gate_5', toPin: 1 },  // M3
+        { from: 'input_9', fromPin: 0, to: 'gate_5', toPin: 2 },  // S1
+        // Layer 3
+        { from: 'gate_4',   fromPin: 0, to: 'gate_6', toPin: 0 },  // M4
+        { from: 'gate_5',   fromPin: 0, to: 'gate_6', toPin: 1 },  // M5
+        { from: 'input_10', fromPin: 0, to: 'gate_6', toPin: 2 },  // S2
+        // Output
+        { from: 'gate_6',  fromPin: 0, to: 'output_0', toPin: 0 },
+      ],
+      'level_10_expert'
+    );
+  });
 });

@@ -1,0 +1,112 @@
+{
+  "id": "level_19_expert",
+  "baseId": "level_19",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "pos + pos = pos → OK (e.g. 3+2=5)"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "pos + pos = neg → OVERFLOW! (e.g. 5+4=−7)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "pos + neg = pos → OK (e.g. 5+(−3)=2)"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "pos + neg = neg → OK (e.g. 3+(−5)=−2)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "neg + pos = pos → OK (e.g. (−3)+5=2)"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "neg + pos = neg → OK (e.g. (−5)+3=−2)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "neg + neg = pos → OVERFLOW! (e.g. (−5)+(−4)=7)"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "neg + neg = neg → OK (e.g. (−3)+(−2)=−5)"
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 450,
+  "hint": "Overflow occurs when two same-sign numbers produce a different-sign result. V = NOT(A⊕B) · (A⊕S). First XOR checks if A,B have same sign. Second XOR checks if result sign differs from A. AND combines them.",
+  "title": "Signed Overflow Detector",
+  "objective": "Detect two's complement arithmetic overflow",
+  "description": "In signed (two's complement) arithmetic, overflow occurs when adding two positive numbers yields negative, or two negatives yield positive. Given the MSBs of operands A, B and their sum S, output 1 if overflow occurred. Every real ALU has this flag — it's the V bit in ARM's CPSR!",
+  "physicsVisual": "overflow_detector"
+}

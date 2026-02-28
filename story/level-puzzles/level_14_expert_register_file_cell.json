@@ -1,0 +1,110 @@
+{
+  "id": "level_14_expert",
+  "baseId": "level_14",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch"
+  ],
+  "inputs": 3,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Idle: Q=0 (init), read gate closed"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Write 1: SET latch, read gate closed"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Read: Q=1, Q̄=0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Idle: hold state, read gate closed"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Write 0: RESET latch, read gate closed"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "Read: Q=0, Q̄=1"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "Simultaneous write 1 + read: Q=1, Q̄=0"
+    }
+  ],
+  "maxGates": 6,
+  "xpReward": 165,
+  "hint": "Inputs are [DataIn, WriteEnable, ReadEnable]. Write path: S = DataIn AND WE, R = NOT(DataIn) AND WE → feed to SR Latch. Read path: Out0 = Q AND RE, Out1 = Q̄ AND RE. When WE=0, S=R=0 (hold). When RE=0, outputs are gated to 0.",
+  "title": "Register File Cell",
+  "objective": "Build a 1-bit register cell with read/write enable",
+  "description": "Build the fundamental building block of a register file: a 1-bit storage cell with separate Write Enable (WE) and Read Enable (RE) control. The write path derives Set/Reset from DataIn and WE. The read path gates the stored value through RE. This is exactly how register files in real CPUs are constructed — one cell per bit, arrayed into registers.",
+  "physicsVisual": "register_file_cell"
+}

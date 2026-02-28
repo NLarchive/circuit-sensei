@@ -1,0 +1,63 @@
+{
+  "id": "level_03_expert",
+  "baseId": "level_03",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Both LOW: no inhibit"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "B inhibits A: only Out1 active"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "A inhibits B: only Out0 active"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "Mutual cancel: both inhibited"
+    }
+  ],
+  "maxGates": 4,
+  "xpReward": 65,
+  "hint": "Out0 = A AND NOT(B): invert B, then use a transistor with ctrl=A and data=NOT_B. Out1 = B AND NOT(A): invert A, then use a transistor with ctrl=B and data=NOT_A.",
+  "title": "Dual Inhibit Gate",
+  "objective": "Build two inhibit outputs: A·B̄ and B·Ā",
+  "description": "The inhibit (AND-NOT) function outputs HIGH only when one input is HIGH and the other is LOW. Build both directions simultaneously: Out0 = A AND NOT(B), Out1 = B AND NOT(A). This is the core of half-subtractor borrow logic and priority arbitration circuits.",
+  "physicsVisual": "inhibit_gate"
+}

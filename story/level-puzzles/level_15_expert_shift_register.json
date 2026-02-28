@@ -1,0 +1,115 @@
+{
+  "id": "level_15_expert",
+  "baseId": "level_15",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 2,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK=0, Din=1: Initial state [0,0]. Data ready."
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK↑, Din=1: Shift in 1 → Q0=1, Q1=0"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK=0, Din=1: Hold [0,1]"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "CLK↑, Din=1: Shift → Q0=1, Q1=Q0_old=1"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        1
+      ],
+      "desc": "CLK=0, Din=0: Hold [1,1]. Data changes."
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK↑, Din=0: Shift in 0 → Q0=0, Q1=Q0_old=1"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK=0, Din=0: Hold [1,0]"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK↑, Din=0: Shift → Q0=0, Q1=Q0_old=0"
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 185,
+  "hint": "A shift register is just D flip-flops in series! Connect Din → DFF₁.D, DFF₁.Q → DFF₂.D. Both share the same clock. Data 'shifts' one position each clock edge. UART, SPI, and USB all use this principle.",
+  "title": "2-Bit Shift Register (SIPO)",
+  "objective": "Build a Serial-In Parallel-Out shift register",
+  "description": "Shift registers are the backbone of serial communication (UART, SPI, USB). Build a 2-bit SIPO (Serial-In, Parallel-Out) shift register: on each clock edge, data shifts from Din into Q₀, and Q₀'s old value shifts into Q₁.",
+  "physicsVisual": "shift_register"
+}

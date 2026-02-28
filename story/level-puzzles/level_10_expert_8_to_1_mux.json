@@ -1,0 +1,322 @@
+{
+  "id": "level_10_expert",
+  "baseId": "level_10",
+  "variant": "expert",
+  "availableGates": [
+    "mux2to1"
+  ],
+  "inputs": 11,
+  "targetTruthTable": [
+    {
+      "in": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=000: select D0=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=000: select D0=0"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=001: select D1=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=001: select D1=0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=010: select D2=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=010: select D2=0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=011: select D3=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=011: select D3=0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=100: select D4=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=100: select D4=0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=101: select D5=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=101: select D5=0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=110: select D6=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=110: select D6=0"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "S=111: select D7=1"
+    },
+    {
+      "in": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "S=111: select D7=0"
+    }
+  ],
+  "maxGates": 7,
+  "xpReward": 130,
+  "hint": "Build a 3-layer tree: Layer 1 has four MUXes selecting (D0,D1), (D2,D3), (D4,D5), (D6,D7) using S0. Layer 2 has two MUXes selecting between layer-1 pairs using S1. Layer 3 has one final MUX selecting between layer-2 outputs using S2. Inputs: [D0..D7, S0, S1, S2].",
+  "title": "8:1 MUX from 2:1 MUXes",
+  "objective": "Build an 8-input multiplexer from a tree of seven 2:1 MUXes",
+  "description": "Construct an 8:1 multiplexer using seven 2:1 MUXes arranged in a binary tree. Three select lines (S0, S1, S2) choose one of eight data inputs. This is how wide multiplexers are built in real datapaths — a key building block of register file read ports and ALU input selection.",
+  "physicsVisual": "mux_8to1_tree"
+}

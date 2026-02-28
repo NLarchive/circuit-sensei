@@ -91,4 +91,35 @@ test.describe('Level 17 – Counters', () => {
       'level_17_hard'
     );
   });
+
+  test('Expert: up/down counter', async ({ page, baseURL }) => {
+    // 2 inputs (CLK,Dir), 2 outputs (Q₁,Q₀)
+    // D₀=NOT(Q₀), D₁=Q₁ XOR Q₀ XOR Dir
+    await solvePuzzle(page, baseURL, 'level_17', 'expert',
+      [
+        { type: 'dFlipFlop', x: 450, y: 100 },  // gate_0: FF0 (Q₀)
+        { type: 'dFlipFlop', x: 450, y: 300 },  // gate_1: FF1 (Q₁)
+        { type: 'not',       x: 300, y: 100 },   // gate_2: NOT(Q₀) → D₀
+        { type: 'xor',       x: 280, y: 250 },   // gate_3: XOR(Q₁,Q₀)
+        { type: 'xor',       x: 350, y: 350 },   // gate_4: XOR(gate_3,Dir) → D₁
+      ],
+      [
+        // D₀ = NOT(Q₀)
+        { from: 'gate_0',  fromPin: 0, to: 'gate_2', toPin: 0 },  // Q₀→NOT
+        { from: 'gate_2',  fromPin: 0, to: 'gate_0', toPin: 0 },  // NOT(Q₀)→D₀
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 1 },  // CLK
+        // D₁ = Q₁ XOR Q₀ XOR Dir
+        { from: 'gate_1',  fromPin: 0, to: 'gate_3', toPin: 0 },  // Q₁
+        { from: 'gate_0',  fromPin: 0, to: 'gate_3', toPin: 1 },  // Q₀
+        { from: 'gate_3',  fromPin: 0, to: 'gate_4', toPin: 0 },  // Q₁⊕Q₀
+        { from: 'input_1', fromPin: 0, to: 'gate_4', toPin: 1 },  // Dir
+        { from: 'gate_4',  fromPin: 0, to: 'gate_1', toPin: 0 },  // D₁
+        { from: 'input_0', fromPin: 0, to: 'gate_1', toPin: 1 },  // CLK
+        // Outputs
+        { from: 'gate_1', fromPin: 0, to: 'output_0', toPin: 0 }, // Q₁
+        { from: 'gate_0', fromPin: 0, to: 'output_1', toPin: 0 }, // Q₀
+      ],
+      'level_17_expert'
+    );
+  });
 });

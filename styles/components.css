@@ -227,6 +227,11 @@
     color: white;
 }
 
+.badge-expert {
+    background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+    color: white;
+}
+
 .variant-badge {
     background: rgba(255, 255, 255, 0.03);
     color: var(--text-color);
@@ -291,6 +296,12 @@
 .variant-select.badge-hard {
     background: linear-gradient(135deg, #f44336, #d32f2f);
     border-color: #f44336;
+    color: white;
+}
+
+.variant-select.badge-expert {
+    background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+    border-color: #9c27b0;
     color: white;
 }
 

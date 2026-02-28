@@ -25,14 +25,10 @@ class KeyboardManagerClass {
      * Register default shortcuts
      */
     registerDefaultShortcuts() {
-        // Mode switching
-        this.register('s', () => {
-            globalEvents.emit('INTERACTION_MODE_CHANGED', { mode: INTERACTION_MODES.SELECT });
-        }, { description: 'Select mode' });
-
-        this.register('w', () => {
-            globalEvents.emit('INTERACTION_MODE_CHANGED', { mode: INTERACTION_MODES.WIRE });
-        }, { description: 'Wire mode' });
+        // Controls info modal
+        this.register('i', () => {
+            document.getElementById('btn-mode-toggle')?.click();
+        }, { description: 'Show controls reference' });
 
         // Zoom controls
         this.register('+', () => {

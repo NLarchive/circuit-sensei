@@ -23,6 +23,7 @@
 ### Curriculum & Content
 - [EDUCATIONAL_CONTENT.md](EDUCATIONAL_CONTENT.md) - Detailed curriculum design, learning objectives, and physics progression
 - [story/README.md](story/README.md) - Levels manifest documentation and data schema
+- [docs/CURRICULUM_GAP_INDEX_2026-02-28.md](docs/CURRICULUM_GAP_INDEX_2026-02-28.md) - Curriculum coverage audit with theory/puzzle gaps and prioritized recommendations
 
 ### Legacy Documentation
 - [MIGRATION.md](MIGRATION.md) - Legacy migration notes from previous architecture

@@ -138,4 +138,28 @@ test.describe('Level 19 – ALU & Comparator', () => {
       'level_19_hard'
     );
   });
+
+  test('Expert: signed overflow detector', async ({ page, baseURL }) => {
+    // 3 inputs (A_msb,B_msb,S_msb), 1 output (overflow)
+    // V = NOT(A⊕B) · (A⊕S)
+    await solvePuzzle(page, baseURL, 'level_19', 'expert',
+      [
+        { type: 'xor', x: 300, y: 100 },  // gate_0: XOR(A,B)
+        { type: 'not', x: 400, y: 100 },  // gate_1: NOT(A⊕B) = same sign
+        { type: 'xor', x: 300, y: 250 },  // gate_2: XOR(A,S) = result differs
+        { type: 'and', x: 500, y: 175 },  // gate_3: AND → overflow
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // A
+        { from: 'input_1', fromPin: 0, to: 'gate_0', toPin: 1 },  // B
+        { from: 'gate_0',  fromPin: 0, to: 'gate_1', toPin: 0 },  // A⊕B→NOT
+        { from: 'input_0', fromPin: 0, to: 'gate_2', toPin: 0 },  // A
+        { from: 'input_2', fromPin: 0, to: 'gate_2', toPin: 1 },  // S
+        { from: 'gate_1',  fromPin: 0, to: 'gate_3', toPin: 0 },  // NOT(A⊕B)
+        { from: 'gate_2',  fromPin: 0, to: 'gate_3', toPin: 1 },  // A⊕S
+        { from: 'gate_3',  fromPin: 0, to: 'output_0', toPin: 0 }, // V
+      ],
+      'level_19_expert'
+    );
+  });
 });

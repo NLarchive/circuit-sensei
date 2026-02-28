@@ -60,4 +60,25 @@ test.describe('Level 08 – XOR (Exclusive OR)', () => {
       'level_08_hard'
     );
   });
+
+  test('Expert: binary-to-Gray code converter', async ({ page, baseURL }) => {
+    // 3 inputs (B₂,B₁,B₀), 3 outputs (G₂,G₁,G₀)
+    // G₂=B₂ (passthrough), G₁=B₂ XOR B₁, G₀=B₁ XOR B₀
+    await solvePuzzle(page, baseURL, 'level_08', 'expert',
+      [
+        { type: 'xor', x: 400, y: 100 },  // gate_0: XOR(B₂,B₁) → G₁
+        { type: 'xor', x: 400, y: 250 },  // gate_1: XOR(B₁,B₀) → G₀
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // B₂
+        { from: 'input_1', fromPin: 0, to: 'gate_0', toPin: 1 },  // B₁
+        { from: 'input_1', fromPin: 0, to: 'gate_1', toPin: 0 },  // B₁
+        { from: 'input_2', fromPin: 0, to: 'gate_1', toPin: 1 },  // B₀
+        { from: 'input_0', fromPin: 0, to: 'output_0', toPin: 0 }, // G₂=B₂
+        { from: 'gate_0',  fromPin: 0, to: 'output_1', toPin: 0 }, // G₁
+        { from: 'gate_1',  fromPin: 0, to: 'output_2', toPin: 0 }, // G₀
+      ],
+      'level_08_expert'
+    );
+  });
 });

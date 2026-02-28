@@ -70,4 +70,21 @@ test.describe('Level 09 – De Morgan Laws', () => {
       'level_09_hard'
     );
   });
+
+  test('Expert: Boolean minimization challenge', async ({ page, baseURL }) => {
+    // 3 inputs (A,B,C), 1 output. F = NOT(A) OR C (K-map minimized)
+    await solvePuzzle(page, baseURL, 'level_09', 'expert',
+      [
+        { type: 'not', x: 350, y: 100 },  // gate_0: NOT(A)
+        { type: 'or',  x: 500, y: 150 },  // gate_1: OR(NOT_A, C) → F
+      ],
+      [
+        { from: 'input_0', fromPin: 0, to: 'gate_0', toPin: 0 },  // A→NOT
+        { from: 'gate_0',  fromPin: 0, to: 'gate_1', toPin: 0 },  // NOT_A
+        { from: 'input_2', fromPin: 0, to: 'gate_1', toPin: 1 },  // C
+        { from: 'gate_1',  fromPin: 0, to: 'output_0', toPin: 0 }, // F
+      ],
+      'level_09_expert'
+    );
+  });
 });

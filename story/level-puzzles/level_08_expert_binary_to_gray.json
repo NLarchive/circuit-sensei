@@ -1,0 +1,122 @@
+{
+  "id": "level_08_expert",
+  "baseId": "level_08",
+  "variant": "expert",
+  "availableGates": [
+    "xor"
+  ],
+  "inputs": 3,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0,
+        0
+      ],
+      "out": [
+        0,
+        0,
+        0
+      ],
+      "desc": "Binary 000 → Gray 000"
+    },
+    {
+      "in": [
+        0,
+        0,
+        1
+      ],
+      "out": [
+        0,
+        0,
+        1
+      ],
+      "desc": "Binary 001 → Gray 001"
+    },
+    {
+      "in": [
+        0,
+        1,
+        0
+      ],
+      "out": [
+        0,
+        1,
+        1
+      ],
+      "desc": "Binary 010 → Gray 011"
+    },
+    {
+      "in": [
+        0,
+        1,
+        1
+      ],
+      "out": [
+        0,
+        1,
+        0
+      ],
+      "desc": "Binary 011 → Gray 010"
+    },
+    {
+      "in": [
+        1,
+        0,
+        0
+      ],
+      "out": [
+        1,
+        1,
+        0
+      ],
+      "desc": "Binary 100 → Gray 110"
+    },
+    {
+      "in": [
+        1,
+        0,
+        1
+      ],
+      "out": [
+        1,
+        1,
+        1
+      ],
+      "desc": "Binary 101 → Gray 111"
+    },
+    {
+      "in": [
+        1,
+        1,
+        0
+      ],
+      "out": [
+        1,
+        0,
+        1
+      ],
+      "desc": "Binary 110 → Gray 101"
+    },
+    {
+      "in": [
+        1,
+        1,
+        1
+      ],
+      "out": [
+        1,
+        0,
+        0
+      ],
+      "desc": "Binary 111 → Gray 100"
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 95,
+  "hint": "Gray code rule: G₂ = B₂ (MSB passes through), G₁ = B₂ XOR B₁, G₀ = B₁ XOR B₀. Each Gray bit is the XOR of adjacent binary bits. Only two XOR gates needed!",
+  "title": "Binary-to-Gray Code Converter",
+  "objective": "Convert 3-bit binary to Gray code",
+  "description": "Gray code changes only one bit between consecutive values — essential for error-free counting in encoders, ADCs, and the Gray code counters you'll build later. Convert a 3-bit binary number to its Gray code equivalent.",
+  "physicsVisual": "binary_to_gray"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "level_12_expert",
+  "baseId": "level_12",
+  "variant": "expert",
+  "availableGates": [
+    "nor"
+  ],
+  "inputs": 2,
+  "targetTruthTable": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "0 XOR 0 = 0 (same → 0)"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "0 XOR 1 = 1 (different → 1)"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        1
+      ],
+      "desc": "1 XOR 0 = 1 (different → 1)"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "1 XOR 1 = 0 (same → 0)"
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 150,
+  "hint": "Like the Apollo AGC engineers: (1) A' = A NOR A, (2) B' = B NOR B, (3) R = A NOR B = (A+B)', (4) S = A' NOR B' = (A'·B'→AB by De Morgan), (5) XOR = R NOR S.",
+  "title": "XOR from NOR Only",
+  "objective": "Build XOR using only NOR gates",
+  "description": "The Apollo Guidance Computer was built entirely from NOR gates. You already built a Half Adder from NOR (the Apollo challenge). Now build the XOR function — the heart of addition — using only NOR gates. This is how NASA's engineers computed in 1969.",
+  "physicsVisual": "apollo_nor_xor"
+}

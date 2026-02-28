@@ -3,7 +3,12 @@ import { MathUtils } from '../utils/MathUtils.js';
 import { GameConfig } from '../../config/gameConfig.js';
 
 /**
- * InputHandler - Handles mouse/touch interactions for the circuit editor
+ * InputHandler - Handles mouse/touch interactions for the circuit editor.
+ *
+ * Unified interaction model (no separate hand/wire mode):
+ *  - Desktop: click pin → wire | drag gate body → move | right-click → delete | drag canvas → pan
+ *  - Mobile:  tap pin → wire | hold+drag gate → move | double-tap → delete | 1-finger drag → pan | 2-finger → zoom
+ *  - Both:    tap/click input node body → toggle ON/OFF
  */
 export class InputHandler {
     constructor(canvas, circuit, renderer) {
@@ -11,18 +16,21 @@ export class InputHandler {
         this.circuit = circuit;
         this.renderer = renderer;
         
-        // Interaction mode: 'select' or 'wire'
-        this.mode = 'select';
+        // Interaction mode – kept for 'probe' mode compatibility; main flow is 'wire' always.
+        this.mode = 'wire';
         
-        // State
+        // Wiring state
+        this.isWiring = false;
+        this.wiringStart = null; // { gate, index, type: 'input'|'output' }
+        this.mousePos = { x: 0, y: 0 };
+
+        // Drag state
         this.isDragging = false;
         this.draggedGate = null;
         this.dragOffset = { x: 0, y: 0 };
         this.dragStartPos = { x: 0, y: 0 };
-        
-        this.isWiring = false;
-        this.wiringStart = null; // { gate, pinIndex, type: 'input'|'output' }
-        this.mousePos = { x: 0, y: 0 };
+        // Pending drag: gate was pressed but not yet moved far enough to start dragging
+        this.pendingDrag = null; // { gate, offset, startPos }
         
         // Panning state
         this.isPanning = false;
@@ -33,6 +41,12 @@ export class InputHandler {
         this.isPinching = false;
         this.lastTouchPos = { x: 0, y: 0 };
         this.pendingGatePlacement = null; // Used for mobile placement
+
+        // Double-tap detection (mobile delete)
+        this.lastTapTime = 0;
+        this.lastTapPos = { x: 0, y: 0 };
+        this.DOUBLE_TAP_DELAY = 300;  // ms
+        this.DOUBLE_TAP_RADIUS = 40; // px (generous for touch)
 
         this.setupEventListeners();
         this.setupDropZone();
@@ -82,9 +96,12 @@ export class InputHandler {
     }
 
     bindModeEvents() {
+        // 'probe' mode is the only mode the rest of the app still switches to.
+        // The select/wire distinction no longer exists – unified interaction handles both.
         globalEvents.on('INTERACTION_MODE_CHANGED', (data) => {
             this.mode = data.mode;
-            this.canvas.style.cursor = this.mode === 'wire' ? 'crosshair' : 'default';
+            // crosshair is appropriate for all wire/unified modes
+            this.canvas.style.cursor = (this.mode === 'probe') ? 'cell' : 'crosshair';
         });
 
         globalEvents.on(Events.GATE_SELECT, (data) => {
@@ -95,21 +112,52 @@ export class InputHandler {
 
     setMode(mode) {
         this.mode = mode;
-        this.canvas.style.cursor = mode === 'wire' ? 'crosshair' : 'default';
+        this.canvas.style.cursor = (mode === 'probe') ? 'cell' : 'crosshair';
     }
 
     handleTouchStart(e) {
         if (e.touches.length === 2) {
             this.initialTouchDistance = this.getTouchDistance(e.touches);
             this.isPinching = true;
-            this.isPanning = false; // Stop panning when pinching starts
+            this.isPanning = false;
             return;
         }
 
         e.preventDefault();
         const touch = e.touches[0];
+
+        // ── Double-tap to delete ──────────────────────────────────────────
+        const now = Date.now();
+        const tapDist = Math.hypot(
+            touch.clientX - this.lastTapPos.x,
+            touch.clientY - this.lastTapPos.y
+        );
+        if (now - this.lastTapTime < this.DOUBLE_TAP_DELAY && tapDist < this.DOUBLE_TAP_RADIUS) {
+            const pos = this.getMousePos(touch);
+            const gate = this.renderer.getGateAtPosition(pos.x, pos.y);
+            if (gate) {
+                this.circuit.removeGate(gate.id);
+                this.circuit.simulate();
+                this.renderer.draw();
+                this.lastTapTime = 0;
+                this.lastTapPos = { x: 0, y: 0 };
+                return;
+            }
+            const wire = this.getWireAtPosition(pos.x, pos.y);
+            if (wire) {
+                this.circuit.removeWire(wire.id);
+                this.circuit.simulate();
+                this.renderer.draw();
+                this.lastTapTime = 0;
+                this.lastTapPos = { x: 0, y: 0 };
+                return;
+            }
+        }
+        this.lastTapTime = now;
+        this.lastTapPos = { x: touch.clientX, y: touch.clientY };
+        // ─────────────────────────────────────────────────────────────────
+
         this.lastTouchPos = { x: touch.clientX, y: touch.clientY };
-        
         const mouseEvent = new MouseEvent('mousedown', {
             clientX: touch.clientX,
             clientY: touch.clientY,
@@ -179,25 +227,25 @@ export class InputHandler {
         const pos = this.getMousePos(e);
         this.mousePos = pos;
 
-        // Mobile placement mode
+        // ── Mobile gate-placement mode ────────────────────────────────────
         if (this.pendingGatePlacement) {
             const x = GameConfig.SNAP_TO_GRID ? MathUtils.snapToGrid(pos.x, GameConfig.GRID_SIZE) : pos.x;
             const y = GameConfig.SNAP_TO_GRID ? MathUtils.snapToGrid(pos.y, GameConfig.GRID_SIZE) : pos.y;
             this.circuit.addGate(this.pendingGatePlacement, x, y);
             this.pendingGatePlacement = null;
-            this.canvas.style.cursor = this.mode === 'wire' ? 'crosshair' : 'default';
+            this.canvas.style.cursor = 'crosshair';
             this.renderer.draw();
             return;
         }
 
-        // Middle mouse button always pans
+        // ── Middle mouse → always pan ─────────────────────────────────────
         if (e.button === 1) {
             this.isPanning = true;
             this.panStart = { x: e.clientX, y: e.clientY };
             return;
         }
 
-        // Right click to delete
+        // ── Right-click → delete (desktop) ───────────────────────────────
         if (e.button === 2) {
             const gate = this.renderer.getGateAtPosition(pos.x, pos.y);
             if (gate) {
@@ -206,7 +254,6 @@ export class InputHandler {
                 this.renderer.draw();
                 return;
             }
-            
             const wire = this.getWireAtPosition(pos.x, pos.y);
             if (wire) {
                 this.circuit.removeWire(wire.id);
@@ -214,20 +261,13 @@ export class InputHandler {
                 this.renderer.draw();
                 return;
             }
+            return;
         }
 
-        // WIRE MODE: prioritize pin clicks
-        if (this.mode === 'wire') {
-            const pin = this.getPinAtPosition(pos.x, pos.y);
-            console.log('Wiring start attempt:', { pos, pin });
-            if (pin) {
-                this.isWiring = true;
-                this.wiringStart = pin;
-                return;
-            }
-        }
+        // ── Left click ────────────────────────────────────────────────────
+        if (e.button !== 0) return;
 
-        // PROBE MODE: clicking pins/wires to add to analyzer
+        // PROBE MODE: clicking pins to add to analyzer
         if (this.mode === 'probe') {
             const pin = this.getPinAtPosition(pos.x, pos.y);
             if (pin) {
@@ -236,28 +276,30 @@ export class InputHandler {
             }
         }
 
-        // SELECT MODE: handle gates first
-        if (this.mode === 'select') {
-            const gate = this.renderer.getGateAtPosition(pos.x, pos.y);
-            if (gate) {
-                // Start Dragging
-                this.isDragging = true;
-                this.draggedGate = gate;
-                this.dragStartPos = { x: pos.x, y: pos.y };
-                this.dragOffset = {
-                    x: pos.x - gate.x,
-                    y: pos.y - gate.y
-                };
-                return;
-            }
+        // Pins have highest priority → start wiring
+        const pin = this.getPinAtPosition(pos.x, pos.y);
+        if (pin) {
+            this.isWiring = true;
+            this.wiringStart = pin;
+            return;
         }
 
-        // Default: Start panning
-        if (e.button === 0 || e.button === 1) {
-            this.isPanning = true;
-            this.panStart = { x: e.clientX, y: e.clientY };
-            this.canvas.style.cursor = 'grabbing';
+        // Gate body → enter pending-drag state (move with sustained drag,
+        //             toggle on short tap if it's an input node)
+        const gate = this.renderer.getGateAtPosition(pos.x, pos.y);
+        if (gate) {
+            this.pendingDrag = {
+                gate,
+                offset: { x: pos.x - gate.x, y: pos.y - gate.y },
+                startPos: { x: pos.x, y: pos.y }
+            };
+            return;
         }
+
+        // Empty canvas → pan
+        this.isPanning = true;
+        this.panStart = { x: e.clientX, y: e.clientY };
+        this.canvas.style.cursor = 'grabbing';
     }
 
     handleMouseMove(e) {
@@ -267,16 +309,28 @@ export class InputHandler {
         if (this.isPanning) {
             const dx = e.clientX - this.panStart.x;
             const dy = e.clientY - this.panStart.y;
-            
             this.renderer.offset.x += dx;
             this.renderer.offset.y += dy;
-            
             this.panStart = { x: e.clientX, y: e.clientY };
             this.renderer.draw();
             return;
         }
 
-        if (this.isDragging && this.draggedGate && this.mode === 'select') {
+        // Promote pendingDrag → isDragging once the pointer has moved enough
+        if (this.pendingDrag && !this.isDragging) {
+            const moved = Math.hypot(
+                pos.x - this.pendingDrag.startPos.x,
+                pos.y - this.pendingDrag.startPos.y
+            );
+            if (moved > 5) {
+                this.isDragging = true;
+                this.draggedGate = this.pendingDrag.gate;
+                this.dragOffset = this.pendingDrag.offset;
+                this.dragStartPos = this.pendingDrag.startPos;
+            }
+        }
+
+        if (this.isDragging && this.draggedGate) {
             let newX = pos.x - this.dragOffset.x;
             let newY = pos.y - this.dragOffset.y;
             
@@ -288,10 +342,11 @@ export class InputHandler {
             this.draggedGate.x = newX;
             this.draggedGate.y = newY;
             
-            this.renderer.draw(); // Redraw immediately
+            this.renderer.draw();
         }
 
-        if (this.isWiring && this.mode === 'wire') {
+        // Draw in-progress wire (dashed line from start pin to cursor)
+        if (this.isWiring) {
             this.renderer.draw();
             // Draw temp wire with visual feedback
             const ctx = this.renderer.ctx;
@@ -341,12 +396,10 @@ export class InputHandler {
         }
         const pos = this.getMousePos(e);
 
+        // ── Complete wiring ───────────────────────────────────────────────
         if (this.isWiring) {
             const endPin = this.getPinAtPosition(pos.x, pos.y);
-            console.log('Wiring end:', { pos, endPin, startPin: this.wiringStart });
-            
             if (endPin && this.isValidConnection(this.wiringStart, endPin)) {
-                // Create connection
                 try {
                     if (this.wiringStart.type === 'output') {
                         this.circuit.connect(
@@ -361,24 +414,27 @@ export class InputHandler {
                     }
                     this.circuit.simulate();
                 } catch (err) {
-                    console.warn("Connection failed:", err);
+                    console.warn('Connection failed:', err);
                 }
             }
         }
 
-        // Handle Input Node toggling on click (if not dragged significantly)
-        if (this.isDragging && this.draggedGate && this.draggedGate.type === 'input') {
-            const dist = MathUtils.dist(this.dragStartPos.x, this.dragStartPos.y, pos.x, pos.y);
-            if (dist < 5 && this.isClickOnInputBody(pos, this.draggedGate)) {
-                const newValue = this.draggedGate.value === 0 ? 1 : 0;
-                this.draggedGate.setValue(newValue);
+        // ── Short tap/click on a gate (no real drag happened) ─────────────
+        if (this.pendingDrag && !this.isDragging) {
+            const gate = this.pendingDrag.gate;
+            if (gate.type === 'input' && this.isClickOnInputBody(this.pendingDrag.startPos, gate)) {
+                const newValue = gate.value === 0 ? 1 : 0;
+                gate.setValue(newValue);
                 this.circuit.simulate();
-                globalEvents.emit(Events.INPUT_TOGGLED, { id: this.draggedGate.id, value: newValue });
+                globalEvents.emit(Events.INPUT_TOGGLED, { id: gate.id, value: newValue });
             }
         }
 
+        // Reset all transient state
+        this.isPanning = false;
         this.isDragging = false;
         this.draggedGate = null;
+        this.pendingDrag = null;
         this.isWiring = false;
         this.wiringStart = null;
         this.renderer.draw();

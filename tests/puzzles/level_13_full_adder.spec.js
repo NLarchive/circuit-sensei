@@ -128,4 +128,44 @@ test.describe('Level 13 – Full Adder & Subtractor', () => {
       'level_13_hard'
     );
   });
+
+  test('Expert: 2×2 binary multiplier', async ({ page, baseURL }) => {
+    // 4 inputs (A₁,A₀,B₁,B₀), 4 outputs (P₃,P₂,P₁,P₀)
+    // Partial products + half adders
+    await solvePuzzle(page, baseURL, 'level_13', 'expert',
+      [
+        { type: 'and', x: 250, y: 450 },  // gate_0: AND(A₀,B₀) → P₀
+        { type: 'and', x: 250, y: 150 },  // gate_1: AND(A₁,B₀) → pp10
+        { type: 'and', x: 250, y: 250 },  // gate_2: AND(A₀,B₁) → pp01
+        { type: 'and', x: 250, y: 350 },  // gate_3: AND(A₁,B₁) → pp11
+        { type: 'xor', x: 400, y: 200 },  // gate_4: XOR(pp10,pp01) → P₁
+        { type: 'and', x: 400, y: 300 },  // gate_5: AND(pp10,pp01) → C1
+        { type: 'xor', x: 550, y: 300 },  // gate_6: XOR(pp11,C1) → P₂
+        { type: 'and', x: 550, y: 400 },  // gate_7: AND(pp11,C1) → P₃
+      ],
+      [
+        { from: 'input_1', fromPin: 0, to: 'gate_0', toPin: 0 },  // A₀
+        { from: 'input_3', fromPin: 0, to: 'gate_0', toPin: 1 },  // B₀
+        { from: 'input_0', fromPin: 0, to: 'gate_1', toPin: 0 },  // A₁
+        { from: 'input_3', fromPin: 0, to: 'gate_1', toPin: 1 },  // B₀
+        { from: 'input_1', fromPin: 0, to: 'gate_2', toPin: 0 },  // A₀
+        { from: 'input_2', fromPin: 0, to: 'gate_2', toPin: 1 },  // B₁
+        { from: 'input_0', fromPin: 0, to: 'gate_3', toPin: 0 },  // A₁
+        { from: 'input_2', fromPin: 0, to: 'gate_3', toPin: 1 },  // B₁
+        { from: 'gate_1',  fromPin: 0, to: 'gate_4', toPin: 0 },  // pp10
+        { from: 'gate_2',  fromPin: 0, to: 'gate_4', toPin: 1 },  // pp01
+        { from: 'gate_1',  fromPin: 0, to: 'gate_5', toPin: 0 },  // pp10
+        { from: 'gate_2',  fromPin: 0, to: 'gate_5', toPin: 1 },  // pp01
+        { from: 'gate_3',  fromPin: 0, to: 'gate_6', toPin: 0 },  // pp11
+        { from: 'gate_5',  fromPin: 0, to: 'gate_6', toPin: 1 },  // C1
+        { from: 'gate_3',  fromPin: 0, to: 'gate_7', toPin: 0 },  // pp11
+        { from: 'gate_5',  fromPin: 0, to: 'gate_7', toPin: 1 },  // C1
+        { from: 'gate_7',  fromPin: 0, to: 'output_0', toPin: 0 }, // P₃
+        { from: 'gate_6',  fromPin: 0, to: 'output_1', toPin: 0 }, // P₂
+        { from: 'gate_4',  fromPin: 0, to: 'output_2', toPin: 0 }, // P₁
+        { from: 'gate_0',  fromPin: 0, to: 'output_3', toPin: 0 }, // P₀
+      ],
+      'level_13_expert'
+    );
+  });
 });

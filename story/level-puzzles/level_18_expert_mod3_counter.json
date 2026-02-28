@@ -1,0 +1,107 @@
+{
+  "id": "level_18_expert",
+  "baseId": "level_18",
+  "variant": "expert",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 1,
+  "targetSequence": [
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK=0: Initial state 00 (count=0)"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK↑: 00→01 (count=1)"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK=0: Hold 01"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK↑: 01→10 (count=2)"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        1,
+        0
+      ],
+      "desc": "CLK=0: Hold 10"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK↑: 10→00 (WRAP! count mod 3)"
+    },
+    {
+      "in": [
+        0
+      ],
+      "out": [
+        0,
+        0
+      ],
+      "desc": "CLK=0: Hold 00"
+    },
+    {
+      "in": [
+        1
+      ],
+      "out": [
+        0,
+        1
+      ],
+      "desc": "CLK↑: 00→01 (second cycle begins)"
+    }
+  ],
+  "maxGates": 5,
+  "xpReward": 275,
+  "hint": "This isn't a standard binary counter — it wraps at 3 instead of 4! Design custom next-state logic: D₀ = Q₁ NOR Q₀ (only set when 00), D₁ = NOT(Q₁) AND Q₀ (only set when 01). Need 2 D-FFs + combinational next-state logic.",
+  "title": "Modulo-3 Counter",
+  "objective": "Build a counter that cycles 0→1→2→0",
+  "description": "Not all counters are powers of 2! A mod-3 counter counts 0, 1, 2, then wraps back to 0. This requires custom next-state logic — you can't just chain flip-flops. BCD counters (mod-10) in clocks and calculators use the same principle.",
+  "physicsVisual": "mod3_counter"
+}

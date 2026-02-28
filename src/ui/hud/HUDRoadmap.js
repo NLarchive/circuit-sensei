@@ -3,6 +3,17 @@ import { globalEvents, Events } from '../../game/EventBus.js';
 import { DIFFICULTY_LABELS, TIER_ICONS, TIER_ORDER } from '../constants/UIConstants.js';
 
 export const HUDRoadmap = {
+    updateHintUsageDisplay() {
+        const usedDisplay = document.getElementById('roadmap-hints-used');
+        const totalDisplay = document.getElementById('roadmap-hints-total');
+
+        if (!usedDisplay || !totalDisplay) return;
+
+        const hintStats = gameManager.getHintStats();
+        usedDisplay.innerText = hintStats.used;
+        totalDisplay.innerText = hintStats.total;
+    },
+
     showRoadmap() {
         const tiersContainer = document.getElementById('roadmap-tiers');
         const xpDisplay = document.getElementById('roadmap-xp');
@@ -31,6 +42,8 @@ export const HUDRoadmap = {
 
             xpDisplay.innerText = `${gameManager.progress.xp}/${totalAvailableXP}`;
         }
+
+        this.updateHintUsageDisplay();
         
         // Group levels by tier
         const tierGroups = {};
@@ -162,4 +175,8 @@ globalEvents.on(Events.LEVEL_COMPLETE, () => {
     if (overlay && !overlay.classList.contains('hidden')) {
         HUDRoadmap.showRoadmap();
     }
+});
+
+globalEvents.on(Events.HINT_USAGE_UPDATED, () => {
+    HUDRoadmap.updateHintUsageDisplay();
 });

@@ -136,7 +136,10 @@ export class HUD {
                         <div id="roadmap-tiers" class="roadmap-tiers"></div>
                     </div>
                     <div class="roadmap-footer">
-                        <div class="xp-info">Total XP: <span id="roadmap-xp">0</span></div>
+                        <div class="roadmap-stats">
+                            <div class="xp-info">Total XP: <span id="roadmap-xp">0</span></div>
+                            <div class="hint-info">Hint use: <span id="roadmap-hints-used">0</span>/<span id="roadmap-hints-total">0</span></div>
+                        </div>
                         <button id="btn-close-roadmap" class="btn secondary">Continue Playing</button>
                     </div>
                 </div>
@@ -528,6 +531,33 @@ export class HUD {
             const hintText = level.hint || 'No hint available for this level.';
             hintDiv.innerHTML = HUDUtils.formatStoryText(hintText);
             hintDiv.classList.remove('hidden');
+
+            if (level.hint) {
+                globalEvents.emit(Events.HINT_REQUESTED, {
+                    levelId: level.id,
+                    variant: gameManager.currentVariant,
+                    source: 'instruction-overlay'
+                });
+
+                // Animation: red glowing -1
+                let anim = document.createElement('div');
+                anim.className = 'hint-anim-minus';
+                anim.textContent = '-1';
+                document.body.appendChild(anim);
+                // Position over the button
+                const btn = document.getElementById('btn-show-hint');
+                if (btn) {
+                    const rect = btn.getBoundingClientRect();
+                    anim.style.left = `${rect.left + rect.width / 2 - 8}px`;
+                    anim.style.top = `${rect.top - 20}px`;
+                }
+                setTimeout(() => {
+                    anim.classList.add('hint-anim-minus-fade');
+                }, 10);
+                setTimeout(() => {
+                    anim.remove();
+                }, 900);
+            }
         });
 
         // Start Level (from intro) - Show loading screen when user clicks to start game
@@ -1276,6 +1306,8 @@ export class HUD {
         const overlay = document.getElementById('roadmap-overlay');
         const tiersContainer = document.getElementById('roadmap-tiers');
         const xpDisplay = document.getElementById('roadmap-xp');
+        const hintsUsedDisplay = document.getElementById('roadmap-hints-used');
+        const hintsTotalDisplay = document.getElementById('roadmap-hints-total');
         
         if (!overlay || !tiersContainer) return;
         
@@ -1290,6 +1322,12 @@ export class HUD {
         
         if (xpDisplay) {
             xpDisplay.innerText = 'Loading...';
+        }
+        if (hintsUsedDisplay) {
+            hintsUsedDisplay.innerText = '...';
+        }
+        if (hintsTotalDisplay) {
+            hintsTotalDisplay.innerText = '...';
         }
         
         // Show the overlay

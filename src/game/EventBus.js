@@ -103,6 +103,7 @@ export const Events = {
     
     // Progress events
     XP_GAINED: 'XP_GAINED',
+    HINT_USAGE_UPDATED: 'HINT_USAGE_UPDATED',
     ACHIEVEMENT_UNLOCKED: 'ACHIEVEMENT_UNLOCKED',
     TIER_UNLOCKED: 'TIER_UNLOCKED'
 };

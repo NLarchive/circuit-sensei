@@ -24,6 +24,7 @@ export class GameManager {
         this.progress = {
             xp: 0,
             completedLevels: {}, // { levelId: { easy: false, medium: false, hard: false } }
+            usedHints: {}, // { levelId: { easy: true, medium: false, hard: false } }
             unlockedTiers: ['intro', 'tier_1'],
             achievements: [],
             highScores: {},
@@ -173,6 +174,90 @@ export class GameManager {
         globalEvents.on(Events.WIRE_CONNECTED, () => {
             if (this.sessionStats) this.sessionStats.wiresConnected++;
         });
+
+        globalEvents.on(Events.HINT_REQUESTED, (data = {}) => {
+            const levelId = data.levelId || this.currentLevel?.id;
+            const variant = data.variant || this.currentVariant || 'easy';
+            const stats = this.registerHintUse(levelId, variant);
+
+            globalEvents.emit(Events.HINT_USAGE_UPDATED, {
+                ...stats,
+                levelId: this.normalizeLevelId(levelId),
+                variant: this.normalizeVariant(variant)
+            });
+        });
+    }
+
+    normalizeLevelId(levelId) {
+        if (!levelId) return '';
+        return String(levelId).replace(/_(easy|medium|hard|original)$/i, '');
+    }
+
+    normalizeVariant(variant) {
+        const normalized = String(variant || 'easy').toLowerCase();
+        return ['easy', 'medium', 'hard', 'original'].includes(normalized) ? normalized : 'easy';
+    }
+
+    registerHintUse(levelId, variant) {
+        const normalizedLevelId = this.normalizeLevelId(levelId);
+        const normalizedVariant = this.normalizeVariant(variant);
+
+        if (!normalizedLevelId) {
+            return {
+                counted: false,
+                used: this.getUsedHintsCount(),
+                total: this.getTotalHintsCount()
+            };
+        }
+
+        if (!this.progress.usedHints[normalizedLevelId]) {
+            this.progress.usedHints[normalizedLevelId] = { easy: false, medium: false, hard: false, original: false };
+        }
+
+        const alreadyCounted = this.progress.usedHints[normalizedLevelId][normalizedVariant] === true;
+
+        if (!alreadyCounted) {
+            this.progress.usedHints[normalizedLevelId][normalizedVariant] = true;
+            this.saveProgress();
+        }
+
+        return {
+            counted: !alreadyCounted,
+            used: this.getUsedHintsCount(),
+            total: this.getTotalHintsCount()
+        };
+    }
+
+    getUsedHintsCount() {
+        const usedHints = this.progress.usedHints || {};
+        return Object.values(usedHints).reduce((total, variants) => {
+            if (!variants || typeof variants !== 'object') return total;
+            return total + Object.values(variants).filter(Boolean).length;
+        }, 0);
+    }
+
+    getTotalHintsCount() {
+        if (!Array.isArray(this.levels)) return 0;
+
+        return this.levels.reduce((total, level) => {
+            if (!level || level.isIndex) return total;
+
+            const variants = this.getVariantsForLevel(level.id) || {};
+            const variantCount = Object.keys(variants).length;
+
+            if (variantCount > 0) {
+                return total + variantCount;
+            }
+
+            return total + (level.hint ? 1 : 0);
+        }, 0);
+    }
+
+    getHintStats() {
+        return {
+            used: this.getUsedHintsCount(),
+            total: this.getTotalHintsCount()
+        };
     }
 
     /**
@@ -581,6 +666,11 @@ export class GameManager {
                 this.progress.completedLevels = {};
             }
 
+            // Ensure usedHints exists
+            if (!this.progress.usedHints || typeof this.progress.usedHints !== 'object' || Array.isArray(this.progress.usedHints)) {
+                this.progress.usedHints = {};
+            }
+
             // Ensure selectedVariants exists (migrate older saves)
             if (!this.progress.selectedVariants || typeof this.progress.selectedVariants !== 'object') {
                 this.progress.selectedVariants = {};
@@ -614,6 +704,7 @@ export class GameManager {
         this.progress = {
             xp: 0,
             completedLevels: {},
+            usedHints: {},
             unlockedTiers: ['tier_1'],
             achievements: [],
             highScores: {},

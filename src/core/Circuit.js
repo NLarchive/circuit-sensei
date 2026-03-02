@@ -87,7 +87,10 @@ export class Circuit {
         const validationData = level.targetTruthTable || level.targetSequence;
         const outputCount = (validationData && validationData[0] && validationData[0].out.length) || 1;
         for (let i = 0; i < outputCount; i++) {
-            this.addGate('output', 700, 150 + i * 150);
+            const outputGate = this.addGate('output', 700, 150 + i * 150);
+            if (outputGate) {
+                outputGate.label = outputCount > 1 ? `OUT${i}` : 'OUT';
+            }
         }
     }
 
@@ -229,7 +232,7 @@ export class Circuit {
     getOutputs() {
         // Sort outputs by Y position then X to ensure consistent mapping to truth table columns
         const sortedOutputs = [...this.outputs].sort((a, b) => (a.y - b.y) || (a.x - b.x));
-        return sortedOutputs.map(output => output.outputs[0] || 0);
+        return sortedOutputs.map(output => output.outputs[0] === 1 ? 1 : 0);
     }
 
     /**

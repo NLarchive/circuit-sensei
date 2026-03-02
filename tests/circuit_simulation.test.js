@@ -181,4 +181,26 @@ describe('Circuit Simulation & Level Validation', () => {
         expect(freshCircuit.lastSimulationInfo.passes).toBeGreaterThan(0);
         expect(freshCircuit.lastSimulationInfo.physicsNote).toBe('Circuit reached stable state');
     });
+
+    it('should validate T flip-flop via DFF self-connection (Q̅→D feedback)', () => {
+        // Level 16 easy: T flip-flop built from DFF with Q̅ fed back to D
+        const puzzlePath = path.resolve(__dirname, '../story/level-puzzles/level_16_easy_t_flip_flop_toggle.json');
+        const level = JSON.parse(fs.readFileSync(puzzlePath, 'utf8'));
+        circuit.setupLevel(level);
+
+        const clkIn = circuit.inputs[0];
+        const qOut = circuit.outputs[0];
+        const dff = circuit.addGate('dflipflop', 400, 150);
+
+        // Self-connection: !Q (output pin 1) → D (input pin 0) — the critical feedback
+        circuit.connect(dff.id, 1, dff.id, 0);
+        // CLK from input
+        circuit.connect(clkIn.id, 0, dff.id, 1);
+        // Q to output
+        circuit.connect(dff.id, 0, qOut.id, 0);
+
+        const result = Validator.validate(circuit, level);
+        expect(result.valid).toBe(true);
+        expect(result.failedCases).toHaveLength(0);
+    });
 });

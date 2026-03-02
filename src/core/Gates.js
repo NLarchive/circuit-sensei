@@ -210,7 +210,10 @@ export class OutputNode extends Gate {
     }
 
     compute() {
-        return this.inputs.length > 0 ? [this.inputs[0]] : [0];
+        if (this.inputs.length === 0) return [0];
+        const val = this.inputs[0];
+        // HiZ/metastable on an output LED reads as OFF (0); only explicit 1 lights up
+        return [val === 1 ? 1 : 0];
     }
 }
 
@@ -246,8 +249,8 @@ export class NotGate extends Gate {
 
     compute() {
         const a = this.inputs[0];
-        if (a === undefined || a === Signal.HIZ) return [Signal.HIZ];
         if (Signal.isMetastable(a)) return [Signal.METASTABLE];
+        // HiZ/undefined treated as 0 (educational pull-down default)
         return [a === 1 ? 0 : 1];
     }
 }
@@ -290,7 +293,7 @@ export class AndGate extends Gate {
     compute() {
         const a = this.inputs[0];
         const b = this.inputs[1];
-        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         return [(a === 1 && b === 1) ? 1 : 0];
     }
 }
@@ -308,7 +311,7 @@ export class OrGate extends Gate {
     compute() {
         const a = this.inputs[0];
         const b = this.inputs[1];
-        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         return [(a === 1 || b === 1) ? 1 : 0];
     }
 }
@@ -326,7 +329,7 @@ export class NandGate extends Gate {
     compute() {
         const a = this.inputs[0];
         const b = this.inputs[1];
-        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         return [(a === 1 && b === 1) ? 0 : 1];
     }
 }
@@ -344,7 +347,7 @@ export class NorGate extends Gate {
     compute() {
         const a = this.inputs[0];
         const b = this.inputs[1];
-        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         return [(a === 1 || b === 1) ? 0 : 1];
     }
 }
@@ -362,7 +365,7 @@ export class XorGate extends Gate {
     compute() {
         const a = this.inputs[0];
         const b = this.inputs[1];
-        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         return [(a === 1 !== (b === 1)) ? 1 : 0];
     }
 }
@@ -380,7 +383,7 @@ export class XnorGate extends Gate {
     compute() {
         const a = this.inputs[0];
         const b = this.inputs[1];
-        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         return [(a === 1 === (b === 1)) ? 1 : 0];
     }
 }
@@ -399,7 +402,7 @@ export class HalfAdder extends Gate {
     compute() {
         const a = this.inputs[0];
         const b = this.inputs[1];
-        if (a === Signal.HIZ && b === Signal.HIZ) return [Signal.HIZ, Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         const sum = ((a === 1) ^ (b === 1)) ? 1 : 0;
         const carry = ((a === 1) && (b === 1)) ? 1 : 0;
         return [sum, carry];
@@ -421,7 +424,7 @@ export class FullAdder extends Gate {
         const a = this.inputs[0];
         const b = this.inputs[1];
         const cin = this.inputs[2];
-        if (a === Signal.HIZ && b === Signal.HIZ && cin === Signal.HIZ) return [Signal.HIZ, Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         const va = (a === 1);
         const vb = (b === 1);
         const vc = (cin === 1);
@@ -445,7 +448,7 @@ export class Mux2to1 extends Gate {
         const a = this.inputs[0];
         const b = this.inputs[1];
         const sel = this.inputs[2];
-        if (a === Signal.HIZ && b === Signal.HIZ && sel === Signal.HIZ) return [Signal.HIZ];
+        // HiZ treated as 0 (educational pull-down default)
         return [sel === 1 ? (b === 1 ? 1 : 0) : (a === 1 ? 1 : 0)];
     }
 }

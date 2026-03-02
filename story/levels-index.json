@@ -255,7 +255,7 @@
       "theoryFile": "level-theory/level_16_toggle_flip_flop.json",
       "puzzleFiles": {
         "easy": "level-puzzles/level_16_easy_t_flip_flop_toggle.json",
-        "medium": "level-puzzles/level_16_medium_frequency_divider.json",
+        "medium": "level-puzzles/level_16_medium_enabled_toggle.json",
         "hard": "level-puzzles/level_16_hard_jk_flip_flop.json",
         "expert": "level-puzzles/level_16_expert_loadable_toggle_ff.json"
       },

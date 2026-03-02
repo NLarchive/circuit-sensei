@@ -517,10 +517,9 @@ export class InputHandler {
     }
 
     isValidConnection(start, end) {
-        // Must connect output to input
+        // Must connect output to input (one side output, one side input)
         if (start.type === end.type) return false;
-        // Cannot connect to self
-        if (start.gate.id === end.gate.id) return false;
+        // Self-connections are allowed (e.g. DFF feedback: !Q → D)
         return true;
     }
 

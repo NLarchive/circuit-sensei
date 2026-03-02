@@ -501,9 +501,17 @@ test.describe("Level Intro + Physics Overlays", () => {
     // Check that level metadata declares a visual so we know this level should have a visualization
     const hasVisualDeclared = await page.evaluate(async () => {
       try {
-        const resp = await fetch('/story/level-theory/level_01.json');
-        if (!resp.ok) return false;
-        const level = await resp.json();
+        const indexResp = await fetch('/story/levels-index.json');
+        if (!indexResp.ok) return false;
+        const levelsIndex = await indexResp.json();
+        if (!levelsIndex || !Array.isArray(levelsIndex.levels)) return false;
+
+        const levelEntry = levelsIndex.levels.find((l) => l && l.id === 'level_01');
+        if (!levelEntry || !levelEntry.theoryFile) return false;
+
+        const theoryResp = await fetch(`/story/${levelEntry.theoryFile}`);
+        if (!theoryResp.ok) return false;
+        const level = await theoryResp.json();
         if (!level) return false;
         if (level.physicsVisual) return true;
         if (level.physicsDetails && Array.isArray(level.physicsDetails.conceptCards)) {
@@ -962,7 +970,7 @@ test.describe("Mode Switching", () => {
     // Refresh roadmap
     await page.evaluate(() => window.HUDRoadmap.showRoadmap());
     
-    // Now all completed, should select 'hard' (highest)
-    await expect(variantSelect).toHaveValue('hard');
+    // Now easy/medium/hard completed: next uncompleted is 'expert'
+    await expect(variantSelect).toHaveValue('expert');
   });
 });

@@ -175,12 +175,32 @@ export class CanvasRenderer {
         
         this.ctx.beginPath();
         this.ctx.moveTo(start.x, start.y);
-        
-        // Manhattan routing (right angles)
-        const midX = start.x + (end.x - start.x) / 2;
-        this.ctx.lineTo(midX, start.y);
-        this.ctx.lineTo(midX, end.y);
-        this.ctx.lineTo(end.x, end.y);
+
+        // Self-feedback loop routing (same gate) so Q̅→D remains visible
+        let feedbackBadge = null;
+        if (fromGate.id === toGate.id) {
+            const dims = this.getGateDimensions(fromGate);
+            const loopRightX = fromGate.x + dims.width + 24;
+            const loopTopY = fromGate.y - 24;
+            const loopLeftX = fromGate.x - 24;
+
+            this.ctx.lineTo(loopRightX, start.y);
+            this.ctx.lineTo(loopRightX, loopTopY);
+            this.ctx.lineTo(loopLeftX, loopTopY);
+            this.ctx.lineTo(loopLeftX, end.y);
+            this.ctx.lineTo(end.x, end.y);
+
+            feedbackBadge = {
+                x: fromGate.x + dims.width / 2,
+                y: loopTopY - 8
+            };
+        } else {
+            // Manhattan routing (right angles)
+            const midX = start.x + (end.x - start.x) / 2;
+            this.ctx.lineTo(midX, start.y);
+            this.ctx.lineTo(midX, end.y);
+            this.ctx.lineTo(end.x, end.y);
+        }
 
         if (isHigh) {
             this.ctx.strokeStyle = this.colors.wireOn;
@@ -199,10 +219,44 @@ export class CanvasRenderer {
             this.ctx.shadowBlur = 10;
             this.ctx.shadowColor = this.ctx.strokeStyle;
         }
+
+        // Smoother corners for looped/self-feedback wires
+        this.ctx.lineJoin = 'round';
+        this.ctx.lineCap = 'round';
         
         this.ctx.stroke();
         this.ctx.shadowBlur = 0;
         this.ctx.setLineDash([]); // Reset dash
+
+        if (feedbackBadge) {
+            this.drawFeedbackBadge(feedbackBadge.x, feedbackBadge.y, isHigh, isMetastable);
+        }
+    }
+
+    drawFeedbackBadge(x, y, isHigh, isMetastable) {
+        const label = 'FB';
+        const width = 22;
+        const height = 12;
+        const left = x - width / 2;
+        const top = y - height / 2;
+
+        this.ctx.save();
+        this.ctx.fillStyle = this.colors.gateBody;
+        this.ctx.strokeStyle = isMetastable
+            ? this.colors.wireMetastable
+            : (isHigh ? this.colors.wireOn : this.colors.gateBorder);
+        this.ctx.lineWidth = 1.5;
+        this.ctx.beginPath();
+        this.ctx.roundRect(left, top, width, height, 3);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.font = 'bold 8px monospace';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillText(label, x, y + 0.5);
+        this.ctx.restore();
     }
 
     /**
@@ -298,6 +352,35 @@ export class CanvasRenderer {
             case 'xor':
             case 'xnor':
                 this.drawXorGate(gate, type === 'xnor');
+                break;
+            case 'dflipflop':
+                this.drawDFlipFlop(gate);
+                break;
+            case 'srlatch':
+                this.drawSRLatch(gate);
+                break;
+            case 'tflipflop':
+                this.drawTFlipFlop(gate);
+                break;
+            case 'jkflipflop':
+                this.drawJKFlipFlop(gate);
+                break;
+            case 'mux2to1':
+                this.drawMux2to1(gate);
+                break;
+            case 'halfadder':
+            case 'halfAdder':
+                this.drawLabeledGate(gate, 'HA', ['A', 'B'], ['S', 'C']);
+                break;
+            case 'fulladder':
+            case 'fullAdder':
+                this.drawLabeledGate(gate, 'FA', ['A', 'B', 'Cin'], ['S', 'Cout']);
+                break;
+            case 'tristate':
+                this.drawLabeledGate(gate, 'TRI', ['D', 'EN'], ['Y']);
+                break;
+            case 'transistor':
+                this.drawLabeledGate(gate, 'TRANS', ['CTRL', 'IN'], ['OUT']);
                 break;
             default:
                 this.drawGenericGate(gate);
@@ -602,6 +685,288 @@ export class CanvasRenderer {
         this.ctx.fillText(inverted ? 'XNOR' : 'XOR', x + 40, y + this.gateHeight / 2 + 4);
 
         this.drawInputPins(gate, 2);
+    }
+
+
+    /**
+     * Draw D Flip-Flop with labeled pins: D, CLK → Q, !Q
+     */
+    drawDFlipFlop(gate) {
+        const { x, y, outputs } = gate;
+        const w = this.gateWidth;
+        const h = this.gateHeight;
+        const qOn  = outputs[0] === 1;
+        const qNotOn = outputs[1] === 1;
+
+        this.ctx.fillStyle = this.colors.gateBody;
+        this.ctx.strokeStyle = qOn ? this.colors.wireOn : this.colors.gateBorder;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.roundRect(x, y, w, h, 4);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        // Header divider
+        this.ctx.strokeStyle = this.colors.gateBorder;
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + 2, y + 16);
+        this.ctx.lineTo(x + w - 2, y + 16);
+        this.ctx.stroke();
+
+        // Title
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.font = 'bold 9px monospace';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('DFF', x + w / 2, y + 12);
+
+        // Pin labels  – input pins at y+20 (D) and y+40 (CLK), text 4px below dot
+        this.ctx.font = '9px monospace';
+        this.ctx.textAlign = 'left';
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('D',        x + 5, y + 24);   // pin 0 (D)
+        this.ctx.fillText('\u25B7CLK', x + 3, y + 44); // pin 1 (CLK), ▷ = edge-triggered
+
+        // Output pins at y+20 (Q) and y+40 (!Q), text 4px below dot
+        this.ctx.textAlign = 'right';
+        this.ctx.fillStyle = qOn  ? this.colors.wireOn : this.colors.text;
+        this.ctx.fillText('Q',  x + w - 5, y + 24); // output pin 0
+        this.ctx.fillStyle = qNotOn ? this.colors.wireOn : this.colors.text;
+        this.ctx.fillText('!Q', x + w - 5, y + 44); // output pin 1
+
+        this.drawInputPins(gate, 2);
+    }
+
+    /**
+     * Draw SR Latch with labeled pins: S, R → Q, !Q
+     */
+    drawSRLatch(gate) {
+        const { x, y, outputs } = gate;
+        const w = this.gateWidth;
+        const h = this.gateHeight;
+        const qOn = outputs[0] === 1;
+
+        this.ctx.fillStyle = this.colors.gateBody;
+        this.ctx.strokeStyle = qOn ? this.colors.wireOn : this.colors.gateBorder;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.roundRect(x, y, w, h, 4);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        this.ctx.strokeStyle = this.colors.gateBorder;
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + 2, y + 16);
+        this.ctx.lineTo(x + w - 2, y + 16);
+        this.ctx.stroke();
+
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.font = 'bold 9px monospace';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('SR', x + w / 2, y + 12);
+
+        this.ctx.font = '9px monospace';
+        this.ctx.textAlign = 'left';
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('S', x + 5, y + 24); // pin 0
+        this.ctx.fillText('R', x + 5, y + 44); // pin 1
+
+        this.ctx.textAlign = 'right';
+        this.ctx.fillStyle = qOn ? this.colors.wireOn : this.colors.text;
+        this.ctx.fillText('Q',  x + w - 5, y + 24);
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('!Q', x + w - 5, y + 44);
+
+        this.drawInputPins(gate, 2);
+    }
+
+    /**
+     * Draw T Flip-Flop with labeled pins: T, CLK → Q, !Q
+     */
+    drawTFlipFlop(gate) {
+        const { x, y, outputs } = gate;
+        const w = this.gateWidth;
+        const h = this.gateHeight;
+        const qOn = outputs[0] === 1;
+
+        this.ctx.fillStyle = this.colors.gateBody;
+        this.ctx.strokeStyle = qOn ? this.colors.wireOn : this.colors.gateBorder;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.roundRect(x, y, w, h, 4);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        this.ctx.strokeStyle = this.colors.gateBorder;
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + 2, y + 16);
+        this.ctx.lineTo(x + w - 2, y + 16);
+        this.ctx.stroke();
+
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.font = 'bold 9px monospace';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('TFF', x + w / 2, y + 12);
+
+        this.ctx.font = '9px monospace';
+        this.ctx.textAlign = 'left';
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('T',        x + 5, y + 24); // pin 0
+        this.ctx.fillText('\u25B7CLK', x + 3, y + 44); // pin 1
+
+        this.ctx.textAlign = 'right';
+        this.ctx.fillStyle = qOn ? this.colors.wireOn : this.colors.text;
+        this.ctx.fillText('Q',  x + w - 5, y + 24);
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('!Q', x + w - 5, y + 44);
+
+        this.drawInputPins(gate, 2);
+    }
+
+    /**
+     * Draw JK Flip-Flop with labeled pins: J, K, CLK → Q, !Q
+     */
+    drawJKFlipFlop(gate) {
+        const { x, y, outputs } = gate;
+        const w = this.gateWidth;
+        const h = this.gateHeight;
+        const qOn = outputs[0] === 1;
+        // 3 inputs: spacing = h/4 = 15, pins at y+15, y+30, y+45
+
+        this.ctx.fillStyle = this.colors.gateBody;
+        this.ctx.strokeStyle = qOn ? this.colors.wireOn : this.colors.gateBorder;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.roundRect(x, y, w, h, 4);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        this.ctx.strokeStyle = this.colors.gateBorder;
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + 2, y + 13);
+        this.ctx.lineTo(x + w - 2, y + 13);
+        this.ctx.stroke();
+
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.font = 'bold 9px monospace';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('JK', x + w / 2, y + 10);
+
+        // 3 input pins at y+15(J), y+30(K), y+45(CLK) → labels 4px below
+        this.ctx.font = '9px monospace';
+        this.ctx.textAlign = 'left';
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('J',        x + 5, y + 19);
+        this.ctx.fillText('K',        x + 5, y + 34);
+        this.ctx.fillText('\u25B7CLK', x + 3, y + 49);
+
+        // 2 output pins at y+20(Q), y+40(!Q) → labels 4px below
+        this.ctx.textAlign = 'right';
+        this.ctx.fillStyle = qOn ? this.colors.wireOn : this.colors.text;
+        this.ctx.fillText('Q',  x + w - 5, y + 24);
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('!Q', x + w - 5, y + 44);
+
+        this.drawInputPins(gate, 3);
+    }
+
+    /**
+     * Draw 2:1 Multiplexer with labeled pins: I0, I1, S → Y
+     */
+    drawMux2to1(gate) {
+        const { x, y, outputs } = gate;
+        const w = this.gateWidth;
+        const h = this.gateHeight;
+        const isOn = outputs[0] === 1;
+        // 3 inputs (I0, I1, S): spacing = h/4 = 15
+
+        this.ctx.fillStyle = this.colors.gateBody;
+        this.ctx.strokeStyle = isOn ? this.colors.wireOn : this.colors.gateBorder;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.roundRect(x, y, w, h, 4);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        this.ctx.strokeStyle = this.colors.gateBorder;
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + 2, y + 13);
+        this.ctx.lineTo(x + w - 2, y + 13);
+        this.ctx.stroke();
+
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.font = 'bold 9px monospace';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('MUX', x + w / 2, y + 10);
+
+        // 3 input pins at y+15(I0), y+30(I1), y+45(S) → labels 4px below
+        this.ctx.font = '9px monospace';
+        this.ctx.textAlign = 'left';
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.fillText('I0', x + 5, y + 19);
+        this.ctx.fillText('I1', x + 5, y + 34);
+        this.ctx.fillText('S',  x + 5, y + 49);
+
+        // Single output at y+30 (h/2), label 4px below
+        this.ctx.textAlign = 'right';
+        this.ctx.fillStyle = isOn ? this.colors.wireOn : this.colors.text;
+        this.ctx.fillText('Y', x + w - 5, y + 34);
+
+        this.drawInputPins(gate, 3);
+    }
+
+    /**
+     * Draw a labeled gate with arbitrary input/output pin names (flexible helper)
+     */
+    drawLabeledGate(gate, title, inputLabels, outputLabels) {
+        const { x, y, outputs } = gate;
+        const w = this.gateWidth;
+        const h = this.gateHeight;
+        const inCount  = inputLabels.length;
+        const outCount = outputLabels.length;
+        const isOn = outputs[0] === 1;
+
+        this.ctx.fillStyle = this.colors.gateBody;
+        this.ctx.strokeStyle = isOn ? this.colors.wireOn : this.colors.gateBorder;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.roundRect(x, y, w, h, 4);
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        this.ctx.strokeStyle = this.colors.gateBorder;
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x + 2, y + 14);
+        this.ctx.lineTo(x + w - 2, y + 14);
+        this.ctx.stroke();
+
+        this.ctx.fillStyle = this.colors.text;
+        this.ctx.font = 'bold 9px monospace';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText(title, x + w / 2, y + 11);
+
+        const inSpacing  = h / (inCount + 1);
+        const outSpacing = h / (outCount + 1);
+
+        this.ctx.font = '9px monospace';
+        this.ctx.textAlign = 'left';
+        this.ctx.fillStyle = this.colors.text;
+        inputLabels.forEach((lbl, i) => {
+            this.ctx.fillText(lbl, x + 4, y + inSpacing * (i + 1) + 4);
+        });
+
+        this.ctx.textAlign = 'right';
+        outputLabels.forEach((lbl, i) => {
+            this.ctx.fillStyle = (outputs[i] === 1) ? this.colors.wireOn : this.colors.text;
+            this.ctx.fillText(lbl, x + w - 4, y + outSpacing * (i + 1) + 4);
+        });
+
+        this.drawInputPins(gate, inCount);
     }
 
     /**

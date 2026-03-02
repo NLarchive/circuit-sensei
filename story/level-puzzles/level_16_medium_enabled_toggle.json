@@ -1,0 +1,108 @@
+{
+  "id": "level_16_medium",
+  "baseId": "level_16",
+  "variant": "medium",
+  "availableGates": [
+    "transistor",
+    "not",
+    "and",
+    "or",
+    "nand",
+    "nor",
+    "xor",
+    "mux2to1",
+    "srLatch",
+    "dFlipFlop"
+  ],
+  "inputs": 2,
+  "outputs": 1,
+  "targetSequence": [
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0, EN=0: initial state Q=0"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑, EN=0: hold — no toggle when disabled"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0: hold"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "CLK↑, EN=1: toggle Q 0→1"
+    },
+    {
+      "in": [
+        0,
+        1
+      ],
+      "out": [
+        1
+      ],
+      "desc": "CLK=0: hold at 1"
+    },
+    {
+      "in": [
+        1,
+        1
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑, EN=1: toggle Q 1→0"
+    },
+    {
+      "in": [
+        0,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK=0: hold"
+    },
+    {
+      "in": [
+        1,
+        0
+      ],
+      "out": [
+        0
+      ],
+      "desc": "CLK↑, EN=0: hold again — disabled still prevents toggle"
+    }
+  ],
+  "maxGates": 2,
+  "xpReward": 165,
+  "hint": "D = EN XOR Q. Wire EN and Q_out into an XOR gate; feed its output into D. CLK connects to the flip-flop clock. When EN=0, D=Q so the flip-flop holds; when EN=1, D=NOT(Q), so it toggles.",
+  "title": "Enabled Toggle Flip-Flop",
+  "objective": "Toggle Q on each clock edge only when EN=1; hold state when EN=0",
+  "description": "Extend the basic T flip-flop with an Enable control. Q toggles on every rising clock edge when EN=1. When EN=0 the flip-flop ignores the clock and keeps its current value.",
+  "physicsVisual": "t_flipflop_enable"
+}

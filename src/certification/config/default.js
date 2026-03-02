@@ -56,7 +56,7 @@ const defaultConfig = {
         },
     },
 
-    /* ──────── Skills & Knowledge Domain (LinkedIn-friendly) ──────── */
+    /* ──────── Skills & Knowledge Domain ──────── */
     skills: [
         'Transistor-Level Switching Logic',
         'Digital Logic Design',

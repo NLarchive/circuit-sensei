@@ -36,10 +36,10 @@ export class GameManager {
         };
 
         // Current session tracked data for achievements/stats
+        // Reset on every level load to prevent stats bleeding between levels
         this.sessionStats = {
             gatesPlaced: 0,
-            wiresConnected: 0,
-            simulationsRun: 0
+            wiresConnected: 0
         };
 
         this.certification = this.loadCertificationFromCache();
@@ -569,6 +569,9 @@ export class GameManager {
         this.currentVariant = variant; // Track current variant
         this.state = 'PLAYING';
 
+        // Reset per-level interaction stats so anti-cheat starts fresh for every level
+        this.sessionStats = { gatesPlaced: 0, wiresConnected: 0 };
+
         const showIntro = options && options.showIntro === false ? false : true;
 
         if (signal && signal.aborted) return false;
@@ -599,6 +602,29 @@ export class GameManager {
      */
     completeLevel(score = 100) {
         if (!this.currentLevel) return;
+
+        // --- ANTI-CHEAT: Require real user interaction before completion ---
+        // Prevents exploiting 'Verify' on an untouched canvas.
+        // We check that the user has actually placed at least one gate or drawn
+        // at least one wire during this level session.
+        // Note: SIMULATION_TICK fires automatically every frame so we do NOT
+        // use it here; only explicit user-action events are reliable.
+        const hasMinimalInteraction = this.sessionStats &&
+            (this.sessionStats.gatesPlaced > 0 || this.sessionStats.wiresConnected > 0);
+
+        // Enforce on hard/expert variants AND on any level in tier_3 or higher.
+        // Intro/tier_1/tier_2 levels stay open to avoid frustrating beginners.
+        const isAdvancedLevel = ['hard', 'expert'].includes(this.currentVariant) ||
+            (this.currentLevel.tier && !['intro', 'tier_1', 'tier_2'].includes(this.currentLevel.tier));
+
+        if (isAdvancedLevel && !hasMinimalInteraction) {
+            console.warn('[Anti-Cheat] Level completion blocked: no circuit interaction detected.');
+            globalEvents.emit(Events.MESSAGE_DISPLAYED, {
+                text: 'You need to build a circuit first — place gates and connect wires.',
+                type: 'warning'
+            });
+            return;
+        }
 
         const levelId = this.currentLevel.id.replace(/_(easy|medium|hard|expert)$/, ''); // Get base level ID
         const oldXP = this.progress.xp;

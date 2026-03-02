@@ -866,6 +866,10 @@ export class HUD {
             }
         });
 
+        globalEvents.on(Events.MESSAGE_DISPLAYED, (data) => {
+            this.showMessage(data.text, data.type || 'info');
+        });
+
         globalEvents.on(Events.XP_GAINED, (data) => {
             document.getElementById('xp-display').innerText = data.total;
         });
